@@ -1,7 +1,9 @@
 #pragma once
 
 /**
- *   @brief Vector implementation which provides the most important methods as defined by std::vector
+ *   @brief Vector implementation which provides the most important methods as defined by std::vector. This is neither part of 
+ *   Pico nor of the Arduino framwork but nevertheless it is quite handy to have and most of the times quite better then dealing
+ *   with raw c arrays.
  *
  *   by Phil Schatzmann
  **/

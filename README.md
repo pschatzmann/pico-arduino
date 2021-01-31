@@ -87,6 +87,7 @@ The Pico has 2 processors, so here are the examples which use this Pico specific
 - [multi_processor_fifo](examples/multi_processor_fifo) 
 - [queue](examples/queue)
 - [semaphore](examples/semaphore) .
+
 And finally some other Pico specific functionality:
 
 - [blink_timer](examples/blink_timer)
