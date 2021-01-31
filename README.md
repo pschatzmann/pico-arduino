@@ -77,23 +77,23 @@ The result can be found in the arduino/examples/blink/build directory.
 
 Here is the list of the provided examples
 
-- [hallo_world](hallo_world)
+- [hallo_world](examples/hallo_world)
 - [blink](examples/blink)
-- [tone](tone)
+- [tone](examples/tone)
 
 The Pico has 2 processors, so here are the examples which use this Pico specific functionality:
 
-- [multi_processor](multi_processor) 
-- [multi_processor_fifo](multi_processor_fifo) 
-- [queue](queue)
-- [semaphore](semaphore) .
+- [multi_processor](examples/multi_processor) 
+- [multi_processor_fifo](examples/multi_processor_fifo) 
+- [queue](examples/queue)
+- [semaphore](examples/semaphore) .
 And finally some other Pico specific functionality:
 
-- [blink_timer](blink_timer)
+- [blink_timer](examples/blink_timer)
 
 ## Documentation
 
-The generated [Class documentation](/doc/html/index.html) can be found in the doc folder
+The generated [Class documentation](https://pschatzmann.github.io/pico-arduino/doc/html/) can be found in the doc folder
 
 ## Pinout
 
