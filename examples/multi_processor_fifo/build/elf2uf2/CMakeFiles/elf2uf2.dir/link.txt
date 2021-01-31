@@ -1,0 +1,1 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/opt/qt/lib CMakeFiles/elf2uf2.dir/main.cpp.o -o elf2uf2 

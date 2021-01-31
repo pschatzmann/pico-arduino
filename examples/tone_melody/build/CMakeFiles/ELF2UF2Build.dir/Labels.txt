@@ -1,0 +1,13 @@
+# Target labels
+ ELF2UF2Build
+# Source files and their labels
+/Users/pschatzmann/Documents/Projects/cpp/pico-arduino/examples/tone_melody/build/CMakeFiles/ELF2UF2Build
+/Users/pschatzmann/Documents/Projects/cpp/pico-arduino/examples/tone_melody/build/CMakeFiles/ELF2UF2Build.rule
+/Users/pschatzmann/Documents/Projects/cpp/pico-arduino/examples/tone_melody/build/CMakeFiles/ELF2UF2Build-complete.rule
+/Users/pschatzmann/Documents/Projects/cpp/pico-arduino/examples/tone_melody/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-install.rule
+/Users/pschatzmann/Documents/Projects/cpp/pico-arduino/examples/tone_melody/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir.rule
+/Users/pschatzmann/Documents/Projects/cpp/pico-arduino/examples/tone_melody/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download.rule
+/Users/pschatzmann/Documents/Projects/cpp/pico-arduino/examples/tone_melody/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update.rule
+/Users/pschatzmann/Documents/Projects/cpp/pico-arduino/examples/tone_melody/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch.rule
+/Users/pschatzmann/Documents/Projects/cpp/pico-arduino/examples/tone_melody/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure.rule
+/Users/pschatzmann/Documents/Projects/cpp/pico-arduino/examples/tone_melody/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-build.rule
