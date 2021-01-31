@@ -87,7 +87,7 @@ $(function() {
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        ~<a class="code" href="class_pico_logger.html">PicoLogger</a>(){}</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="comment">// activate the logging</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> setLogger(<a class="code" href="classarduino_1_1_stream.html">Stream</a>&amp; out, <a class="code" href="class_pico_logger.html#af15ec27beaed81a34725f0f50589be18">LogLevel</a> level=Error){</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> begin(<a class="code" href="classarduino_1_1_stream.html">Stream</a>&amp; out, <a class="code" href="class_pico_logger.html#af15ec27beaed81a34725f0f50589be18">LogLevel</a> level=Error){</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            this-&gt;log_stream_ptr = &amp;out;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            this-&gt;log_level = level;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        }</div>
