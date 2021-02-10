@@ -2,7 +2,7 @@
 
 Thread thread;
 
-void methodOn2ndProcessor(){
+void methodOn2ndProcessor(void*){
     while(true){
         Serial.println("Thread 1");
         delay(1000);

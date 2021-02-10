@@ -1,0 +1,20 @@
+.program pio_i2s_slave
+
+; I2S salve - which supports reading of data
+; - the data is latched on the rising edge.
+; - ws 0 = Left channel, 1 = Right channel[1]
+; - we expect 32 bits of data for each cycle
+; - pin0 -> serial data (SD); pin1 -> serial clock (SCK); pin2 -> WS (word select)  
+
+   WAIT 1 PIN 2  ; we expect that the ws line (pin 2) starts with HIGH
+
+.wrap_target
+   WAIT 0 PIN 2  ; wait for  pin 2 to be LOW -> left channel
+   WAIT 0 PIN 1  ; wait for neutral position of clock
+   WAIT 1 PIN 1  ; rasing edge of clock -> data is ready
+   IN PINS 32    ; read 32 bits from pin0
+.wrap
+
+;
+; (c) 2021 Phil Schatzmann
+;

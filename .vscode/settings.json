@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "bitset": "cpp",
+        "algorithm": "cpp",
+        "hash_map": "cpp",
+        "hashtable": "cpp",
+        "chrono": "cpp",
+        "array": "cpp",
+        "vertexarraystate": "cpp"
+    }
+}

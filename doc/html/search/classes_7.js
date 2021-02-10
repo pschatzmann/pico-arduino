@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['thread_58',['Thread',['../class_thread.html',1,'']]],
-  ['timeralarm_59',['TimerAlarm',['../class_timer_alarm.html',1,'']]],
-  ['timeralarmrepeating_60',['TimerAlarmRepeating',['../class_timer_alarm_repeating.html',1,'']]]
+  ['semaphore_69',['Semaphore',['../class_semaphore.html',1,'']]],
+  ['server_70',['Server',['../classarduino_1_1_server.html',1,'arduino']]],
+  ['spisettings_71',['SPISettings',['../classarduino_1_1_s_p_i_settings.html',1,'arduino']]],
+  ['stream_72',['Stream',['../classarduino_1_1_stream.html',1,'arduino']]]
 ];

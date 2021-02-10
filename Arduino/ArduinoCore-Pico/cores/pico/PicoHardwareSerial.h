@@ -9,6 +9,7 @@
 #define BUFFER_SIZE 512
 #endif
 
+
 /**
  * @brief PicoDefaultSerial is using the pico default output. It is mapped to the Arduino Serial variable.
  * 
@@ -86,14 +87,13 @@ class PicoHardwareSerial : public HardwareSerial {
         PicoHardwareSerial(){
         }
 
-        PicoHardwareSerial(int uart_addr, int uart_no) {
-            void *ptr = (void*) uart_addr;
-            this->uart = (uart_inst_t *)ptr;
+        PicoHardwareSerial(int uart_no) {
             this->uart_no = uart_no;
+            this->uart = uart_no == 0 ? uart0 : uart1;
         }
 
         virtual void begin(unsigned long baudrate=PICO_DEFAULT_UART_BAUD_RATE) {
-            begin(baudrate);
+            begin(baudrate, SERIAL_8N1);
         }
 
         virtual void begin(unsigned long baudrate, uint16_t config) {
@@ -113,6 +113,7 @@ class PicoHardwareSerial : public HardwareSerial {
          */
 
         virtual void begin(unsigned long baudrate, uint32_t config, int rxPin=-1, int txPin=-1, bool invert=false, bool cts=false, bool rts=false) {
+            Logger.info("begin", toStr(baudrate));
             rx_pin = rxPin;
             tx_pin = txPin;
             setupDefaultRxTxPins();
@@ -296,10 +297,10 @@ class PicoHardwareSerial : public HardwareSerial {
             // we use different pins for uart0 and uar1. We assign values only if it has not been defined in setup
             if (uart_no==0){
                 if (rx_pin==-1) {
-                    rx_pin = 2;
+                    rx_pin = 1;
                 }
                 if (tx_pin==-1){
-                    tx_pin = 1;
+                    tx_pin = 0;
                 }
             } else {
                 if (rx_pin==-1){
@@ -315,6 +316,11 @@ class PicoHardwareSerial : public HardwareSerial {
                 Logger.info("rxPin is ", toStr(rx_pin));
                 Logger.info("txPin is ", toStr(tx_pin));
             }
+            if (tx_pin!=-1)
+                gpio_set_function(tx_pin, GPIO_FUNC_UART);
+            if (rx_pin!=-1)
+                gpio_set_function(rx_pin, GPIO_FUNC_UART);
+
         }
 
         const char* toStr(int value){

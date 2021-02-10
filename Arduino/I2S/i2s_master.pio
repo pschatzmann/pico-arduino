@@ -1,0 +1,30 @@
+.program pio_i2s_master
+.side_set 1 opt
+
+; OUT pin 0 is serial data (SD), side set is serial clock (SCK), set pin is word select (WS)
+; the data is latched on the rising edge.
+; Data is signed, encoded as two's complement with the MSB (most significant bit) first.
+
+.wrap_target              ; 16 cycles 
+   set x, 0               ; no sound if there is no data in the FIFO
+   pull noblock           ; Load a 32-bit word from the TX FIFO into the OSR.
+   set pins,  0           ; write left channel (WS)
+   set y, 16              ; Preload bit counter, assert start bit for 16 bits
+left:                      ; This loop will run 16 times 
+   nop        side 0 [1]  ;
+   out pins, 1       [1]  ; Shift 1 bit from OSR to the first OUT pin
+   nop        side 1 [1]  ; data is latched on the rising edge.
+   jmp y-- left           ; loop for 16 bits.
+
+   set pins,  1           ; write right chanel (WS)
+   set y, 16              ; Preload bit counter, assert start bit for 16 bits
+right:                    ; This loop will run 16 times 
+   nop        side 0 [1]  ; 
+   out pins, 1       [1]  ; Shift 1 bit from OSR to the first OUT pin
+   nop        side 1 [1]  ; data is latched on the rising edge.
+   jmp y-- right          ; loop for 16 bits.
+.wrap
+
+;
+; (c) 2021 Phil Schatzmann
+;

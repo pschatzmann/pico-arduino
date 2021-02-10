@@ -4,12 +4,15 @@
 #  - PICO_SDK_ARDUINO_PATH
 
 ###
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 # initialize PICO_SDK_PATH
 if (DEFINED ENV{PICO_SDK_PATH} AND (NOT PICO_SDK_PATH))
     set(PICO_SDK_PATH $ENV{PICO_SDK_PATH})
     message("Using PICO_SDK_PATH from environment ('${PICO_SDK_PATH}')")
 endif ()
+
 # initialize the Pico SDK
 pico_sdk_init()
 
@@ -20,7 +23,7 @@ if (DEFINED ENV{PICO_SDK_ARDUINO_PATH} AND (NOT PICO_SDK_ARDUINO_PATH))
 endif ()
 
 # Define PICO for c++ Preprocessor 
-add_definitions(-DPICO)
+add_definitions(-DPICO -DARDUINO)
 
 # We search for the ARDUINO library
 find_library(ARDUINO_LIB  
@@ -31,16 +34,33 @@ find_library(ARDUINO_LIB
     NO_SYSTEM_ENVIRONMENT_PATH
     NO_CMAKE_SYSTEM_PATH
 )
-include_directories("${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-API/api" "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-Pico/cores/pico")
+
+find_library(SDFAT_LIB  
+    NAMES "sdfat" 
+    PATHS "${PICO_SDK_ARDUINO_PATH}/lib"
+    NO_CMAKE_FIND_ROOT_PATH
+    NO_DEFAULT_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_SYSTEM_PATH
+)
+
+include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${ARDUINO_SKETCH_INCLUDES}
+    "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-API/api" 
+    "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-Pico/cores/pico"
+    "${PICO_SDK_ARDUINO_PATH}/Arduino/SdFat/src"
+    "${PICO_SDK_ARDUINO_PATH}/Arduino"
+    ${USB_PATH}
+)
 
 # PICO
-add_executable("${ARDUINO_SKETCH_NAME}" ${HEADER_LIST} "${ARDUINO_SKETCH_SOURCE}" )
+add_executable(${ARDUINO_SKETCH_NAME} ${HEADER_LIST} ${ARDUINO_SKETCH_SOURCE} )
 pico_enable_stdio_usb("${ARDUINO_SKETCH_NAME}" 1)
-pico_enable_stdio_uart("${ARDUINO_SKETCH_NAME}" 1)
+pico_enable_stdio_uart("${ARDUINO_SKETCH_NAME}" 0)
 
 # Add pico_stdlib library which aggregates commonly used features
-target_link_libraries("${ARDUINO_SKETCH_NAME}" 
-    ${ARDUINO_LIB}
+target_link_libraries("${ARDUINO_SKETCH_NAME}" PRIVATE
     pico_stdio_uart 
     pico_stdio_usb 
     pico_stdlib 
@@ -51,6 +71,10 @@ target_link_libraries("${ARDUINO_SKETCH_NAME}"
     hardware_adc
     hardware_clocks
     hardware_spi
+    hardware_pio
+    ${ARDUINO_LIB}
+    ${SDFAT_LIB}
+    ${ARDUINO_SKETCH_LIB}
 )
 
 # create map/bin/hex/uf2 file in addition to ELF.

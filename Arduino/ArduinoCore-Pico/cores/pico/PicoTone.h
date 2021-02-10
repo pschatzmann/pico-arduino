@@ -1,79 +1,102 @@
 #pragma once
 
-#include "pico/stdlib.h"
-#include "hardware/pwm.h"
+#include "PicoTimer.h"
+#include "Map.h"
 
- /**
- * @brief We use PWM to generate tones.
- * 
+// forward declaratioins
+extern int64_t stop_tone_callback(alarm_id_t id, void *user_data);
+
+
+/**
+ * @brief We use the TimerAlarmRepeating to generate tones.
  */
 class PicoTone {
     public:
-        PicoTone(){            
+        PicoTone(){
         }
 
-        void tone(uint8_t pinNumber, unsigned int frequency, float duty = 1.0) {
-            setupTone();
-            uint sliceNum = setupTonePin(pinNumber, frequency);
-            pwm_set_gpio_level(pinNumber, pwm_wrap * duty);
-            pwm_set_enabled(sliceNum, true);    
+        ~PicoTone(){
+            noTone();
         }
 
-        void noTone(uint8_t pinNumber) {
-            uint sliceNum = pwm_gpio_to_slice_num(pinNumber);
-            pwm_set_enabled(sliceNum, false);    
+        static  bool generate_sound_callback(repeating_timer_t *rt){
+            PicoTone *pt = (PicoTone*)rt->user_data;
+            pt->state = !pt->state; // toggle state
+            digitalWrite(pt->pin, pt->state); 
+            return true;
         }
 
-protected:
-    uint16_t pwm_wrap;
-    uint8_t tonePins[16];
-    pwm_config tone_pwm_cfg;
-
-    void setupTone(){
-        if (tonePins[0]==0) {
-            // setup pwm
-            tone_pwm_cfg = pwm_get_default_config();
-            // ten thousand cycles per second
-            pwm_config_set_clkdiv(&tone_pwm_cfg, 255);
+        void tone(uint8_t pinNumber, unsigned int frequency) {
+            pin = pinNumber;
+            int delay = 1000 / frequency / 2;
+            alarm.start(generate_sound_callback, delay, MS, this);
         }
-    }
 
-    uint setupTonePin(uint8_t pinNumber, unsigned int frequency) {
-        pwm_wrap = 490196 / frequency;
-        uint slice = pwm_gpio_to_slice_num(pinNumber);
-        if (!isTonePinDefined(pinNumber)){
-            addTonePin(pinNumber);
-            pwm_init(slice, &tone_pwm_cfg, false);
-            gpio_set_function(pinNumber, GPIO_FUNC_PWM);
+        void noTone() {
+            alarm.stop();
         }
-        // output a square wave, so 50% duty cycle
-        pwm_set_wrap(pinNumber, pwm_wrap);
-        return slice;
-    }
 
-    bool isTonePinDefined(uint8_t pinNumber){
-        for (int j=0;j<16;j++){
-            if (tonePins[j]==pinNumber){
-                return true;
+        bool operator==(const PicoTone& other){
+            return other.pin == this->pin;
+        }
+
+        bool operator!=(const PicoTone& other){
+            return other.pin != this->pin;
+        }
+
+        int pin;
+        bool state;
+
+    protected:
+        TimerAlarmRepeating alarm;
+};
+
+
+/**
+ * @brief ArduinoPicoTone provides static methods for PicoTone
+ * 
+ */
+class ArduinoPicoTone {
+    public:
+        static int64_t stop_tone_callback(alarm_id_t id, void *user_data){
+            // ugliy hack: we receive the pin number in user_data (not a pointer!)
+            PicoTone* ptr = (PicoTone*) user_data;
+            noTone(ptr->pin);
+            return 0;
+        }
+
+        // static interface which supports multipe pins concurrently
+        static void tone(uint8_t pinNumber, unsigned int frequency, int duration) {
+            PicoTone ptone = pinMap().get(pinNumber);
+            if (ptone==empyTone()){
+                // add entry
+                pinMap().put(pinNumber, ptone);
+            } 
+            ptone.tone(pinNumber, frequency);
+            add_alarm_in_ms(duration, stop_tone_callback, &ptone , false);
+        }
+
+        // static interface which supports multipe pins
+        static void noTone(uint8_t pinNumber) {
+            // find the actual PicoTone with the pin number
+            PicoTone ptone = pinMap().get(pinNumber);
+            if (ptone!=empyTone()){
+                ptone.noTone();
             }
-            if (tonePins[j]==0){
-                return false;
-            }
         }
-        return false;
-    }
 
-    bool addTonePin(uint8_t pinNumber){
-        for (int j=0;j<16;j++){
-            if (tonePins[j]==pinNumber){
-                return true;
-            }
-            if (tonePins[j]==0){
-                tonePins[j]=pinNumber;
-                return false;
-            }
+        static const PicoTone empyTone() {
+            static const PicoTone EMPTY_TONE;
+            return EMPTY_TONE;
         }
-        return false;
-    }
+
+        // for static interface
+        static  Map<int, PicoTone> pinMap(){
+            static Map<int, PicoTone> ArduinoPicoTonePinMap(empyTone()); 
+            return ArduinoPicoTonePinMap;
+        }
+
 
 };
+
+    

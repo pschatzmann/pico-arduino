@@ -98,32 +98,33 @@ $(function() {
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;PicoLogger.h&quot;</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;PicoHardwareSerial.h&quot;</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;PicoHardwareSPI.h&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;PicoHardwareI2C.h&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;PicoTone.h&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;PicoTimer.h&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;PicoThread.h&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;PicoSemaphore.h&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;PicoMulticoreFifo.h&quot;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;PicoQueue.h&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;pico/stdlib.h&quot;</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &quot;hardware/gpio.h&quot;</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &quot;hardware/adc.h&quot;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">// global variables</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_pico_default_serial.html">PicoDefaultSerial</a> Serial; <span class="comment">// pico_stdio</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_pico_hardware_serial.html">PicoHardwareSerial</a> Serial1;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_pico_hardware_serial.html">PicoHardwareSerial</a> Serial2; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_pico_logger.html">PicoLogger</a> Logger;   <span class="comment">// Support for logging</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_pico_tone.html">PicoTone</a> Tone;          <span class="comment">// Sound support </span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">// Pico specific global methods</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">// Provides the on board temperature in Celsius</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">int</span> getTemperature();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;PicoGPIOFunction.h&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">//#include &quot;PicoHardwareI2C.h&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;PicoTone.h&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;PicoTimer.h&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;PicoThread.h&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;PicoSemaphore.h&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;PicoMulticoreFifo.h&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;PicoQueue.h&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &quot;pico/stdlib.h&quot;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &quot;hardware/gpio.h&quot;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &quot;hardware/adc.h&quot;</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &quot;hardware/pwm.h&quot;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">// global variables</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_pico_default_serial.html">PicoDefaultSerial</a> Serial; <span class="comment">// pico_stdio</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_pico_hardware_serial.html">PicoHardwareSerial</a> Serial1;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_pico_hardware_serial.html">PicoHardwareSerial</a> Serial2; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_pico_logger.html">PicoLogger</a> Logger;   <span class="comment">// Support for logging</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_pico_g_p_i_o_function.html">PicoGPIOFunction</a> GPIOFunction;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">// Pico specific global methods</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">// Provides the on board temperature in Celsius</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keywordtype">int</span> getTemperature();</div>
 <div class="ttc" id="aclass_pico_default_serial_html"><div class="ttname"><a href="class_pico_default_serial.html">PicoDefaultSerial</a></div><div class="ttdoc">PicoDefaultSerial is using the pico default output. It is mapped to the Arduino Serial variable.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSerial.h:16</div></div>
+<div class="ttc" id="aclass_pico_g_p_i_o_function_html"><div class="ttname"><a href="class_pico_g_p_i_o_function.html">PicoGPIOFunction</a></div><div class="ttdoc">The pico requires that the function of the pin is defined. In Arduino, there is no such concept: so w...</div><div class="ttdef"><b>Definition:</b> PicoGPIOFunction.h:24</div></div>
 <div class="ttc" id="aclass_pico_hardware_serial_html"><div class="ttname"><a href="class_pico_hardware_serial.html">PicoHardwareSerial</a></div><div class="ttdoc">Serial Stream for a defined UART. By default we use the following pins: UART0 tx/rx = gp0/gp1; UART1 ...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSerial.h:84</div></div>
 <div class="ttc" id="aclass_pico_logger_html"><div class="ttname"><a href="class_pico_logger.html">PicoLogger</a></div><div class="ttdoc">A simple Logger that writes messages dependent on the log level.</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:10</div></div>
-<div class="ttc" id="aclass_pico_tone_html"><div class="ttname"><a href="class_pico_tone.html">PicoTone</a></div><div class="ttdoc">We use PWM to generate tones.</div><div class="ttdef"><b>Definition:</b> PicoTone.h:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

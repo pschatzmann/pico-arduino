@@ -34,4 +34,5 @@
 #define GP28 28
 #define GP29 29
 
-
+// Some applications expect on the Arduino SPI SS
+#define SS 17

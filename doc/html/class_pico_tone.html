@@ -64,56 +64,57 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Data Fields</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
 <div class="title">PicoTone Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>We use PWM to generate tones.  
+<p>We use the <a class="el" href="class_timer_alarm_repeating.html" title="Repeating Timer functions for simple scheduling of repeated execution.">TimerAlarmRepeating</a> to generate tones.  
  <a href="class_pico_tone.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_pico_tone_8h_source.html">PicoTone.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a85d1e741982d004761fb4b34e3fe5fee"><td class="memItemLeft" align="right" valign="top"><a id="a85d1e741982d004761fb4b34e3fe5fee"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>tone</b> (uint8_t pinNumber, unsigned int frequency, float duty=1.0)</td></tr>
-<tr class="separator:a85d1e741982d004761fb4b34e3fe5fee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd99c84e5c275c54c41e6ff7ddac37d3"><td class="memItemLeft" align="right" valign="top"><a id="abd99c84e5c275c54c41e6ff7ddac37d3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>noTone</b> (uint8_t pinNumber)</td></tr>
-<tr class="separator:abd99c84e5c275c54c41e6ff7ddac37d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6407d5bf844d272c4ab14730cab79254"><td class="memItemLeft" align="right" valign="top"><a id="a6407d5bf844d272c4ab14730cab79254"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>tone</b> (uint8_t pinNumber, unsigned int frequency)</td></tr>
+<tr class="separator:a6407d5bf844d272c4ab14730cab79254"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42c9a4aaed2e8007e79c7afa2a1596fc"><td class="memItemLeft" align="right" valign="top"><a id="a42c9a4aaed2e8007e79c7afa2a1596fc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>noTone</b> ()</td></tr>
+<tr class="separator:a42c9a4aaed2e8007e79c7afa2a1596fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3104699f7724feae62f42423c44842dd"><td class="memItemLeft" align="right" valign="top"><a id="a3104699f7724feae62f42423c44842dd"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_pico_tone.html">PicoTone</a> &amp;other)</td></tr>
+<tr class="separator:a3104699f7724feae62f42423c44842dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85a36311881b07778e2a6ed9d70b33d7"><td class="memItemLeft" align="right" valign="top"><a id="a85a36311881b07778e2a6ed9d70b33d7"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="class_pico_tone.html">PicoTone</a> &amp;other)</td></tr>
+<tr class="separator:a85a36311881b07778e2a6ed9d70b33d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:a10b49b4a1ce5cd0de2210653a54d1209"><td class="memItemLeft" align="right" valign="top"><a id="a10b49b4a1ce5cd0de2210653a54d1209"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setupTone</b> ()</td></tr>
-<tr class="separator:a10b49b4a1ce5cd0de2210653a54d1209"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cf5a3e25fe62c26acfe790cf4c20c4e"><td class="memItemLeft" align="right" valign="top"><a id="a3cf5a3e25fe62c26acfe790cf4c20c4e"></a>
-uint&#160;</td><td class="memItemRight" valign="bottom"><b>setupTonePin</b> (uint8_t pinNumber, unsigned int frequency)</td></tr>
-<tr class="separator:a3cf5a3e25fe62c26acfe790cf4c20c4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabd148eede25269a2500eeb57668f14c"><td class="memItemLeft" align="right" valign="top"><a id="aabd148eede25269a2500eeb57668f14c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isTonePinDefined</b> (uint8_t pinNumber)</td></tr>
-<tr class="separator:aabd148eede25269a2500eeb57668f14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9859f95170cf225863e1ab0e83d96164"><td class="memItemLeft" align="right" valign="top"><a id="a9859f95170cf225863e1ab0e83d96164"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>addTonePin</b> (uint8_t pinNumber)</td></tr>
-<tr class="separator:a9859f95170cf225863e1ab0e83d96164"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a2f9718cae276af969e6b8180be6400a5"><td class="memItemLeft" align="right" valign="top"><a id="a2f9718cae276af969e6b8180be6400a5"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>generate_sound_callback</b> (repeating_timer_t *rt)</td></tr>
+<tr class="separator:a2f9718cae276af969e6b8180be6400a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:adeae8a9a0d06234c424589c06db8fcd8"><td class="memItemLeft" align="right" valign="top"><a id="adeae8a9a0d06234c424589c06db8fcd8"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>pin</b></td></tr>
+<tr class="separator:adeae8a9a0d06234c424589c06db8fcd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab534e9499138f00275c46e63268a1755"><td class="memItemLeft" align="right" valign="top"><a id="ab534e9499138f00275c46e63268a1755"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>state</b></td></tr>
+<tr class="separator:ab534e9499138f00275c46e63268a1755"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a082fff95c6003d82a1845866cb4ea582"><td class="memItemLeft" align="right" valign="top"><a id="a082fff95c6003d82a1845866cb4ea582"></a>
-uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>pwm_wrap</b></td></tr>
-<tr class="separator:a082fff95c6003d82a1845866cb4ea582"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bd6fe7edc02467525d2c1d6ea6efe8a"><td class="memItemLeft" align="right" valign="top"><a id="a5bd6fe7edc02467525d2c1d6ea6efe8a"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>tonePins</b> [16]</td></tr>
-<tr class="separator:a5bd6fe7edc02467525d2c1d6ea6efe8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9532c2d8075eaafadfb8a03aa3057d25"><td class="memItemLeft" align="right" valign="top"><a id="a9532c2d8075eaafadfb8a03aa3057d25"></a>
-pwm_config&#160;</td><td class="memItemRight" valign="bottom"><b>tone_pwm_cfg</b></td></tr>
-<tr class="separator:a9532c2d8075eaafadfb8a03aa3057d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9554acb1e2073d7435332c9138dc1c04"><td class="memItemLeft" align="right" valign="top"><a id="a9554acb1e2073d7435332c9138dc1c04"></a>
+<a class="el" href="class_timer_alarm_repeating.html">TimerAlarmRepeating</a>&#160;</td><td class="memItemRight" valign="bottom"><b>alarm</b></td></tr>
+<tr class="separator:a9554acb1e2073d7435332c9138dc1c04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>We use PWM to generate tones. </p>
+<div class="textblock"><p>We use the <a class="el" href="class_timer_alarm_repeating.html" title="Repeating Timer functions for simple scheduling of repeated execution.">TimerAlarmRepeating</a> to generate tones. </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>ArduinoCore-Pico/cores/pico/<a class="el" href="_pico_tone_8h_source.html">PicoTone.h</a></li>
 </ul>

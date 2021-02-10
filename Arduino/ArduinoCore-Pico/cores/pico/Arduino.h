@@ -26,7 +26,8 @@
 #include "PicoLogger.h"
 #include "PicoHardwareSerial.h"
 #include "PicoHardwareSPI.h"
-#include "PicoHardwareI2C.h"
+#include "PicoGPIOFunction.h"
+//#include "PicoHardwareI2C.h"
 #include "PicoTone.h"
 #include "PicoTimer.h"
 #include "PicoThread.h"
@@ -36,14 +37,14 @@
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 #include "hardware/adc.h"
+#include "hardware/pwm.h"
 
 // global variables
 extern PicoDefaultSerial Serial; // pico_stdio
 extern PicoHardwareSerial Serial1;
 extern PicoHardwareSerial Serial2; 
 extern PicoLogger Logger;   // Support for logging
-extern PicoTone Tone;          // Sound support 
-
+extern PicoGPIOFunction GPIOFunction;
 // Pico specific global methods
 
 // Provides the on board temperature in Celsius

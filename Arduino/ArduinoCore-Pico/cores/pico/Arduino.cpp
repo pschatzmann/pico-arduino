@@ -3,16 +3,18 @@
 #include "PicoLogger.h"
 #include "PicoHardwareSerial.h"
 #include "PicoTone.h"
+#include "AudioTools/AudioTools.h"
 
 // public data
 PicoDefaultSerial Serial;
-PicoHardwareSerial Serial1(UART0_BASE, 0);
-PicoHardwareSerial Serial2(UART1_BASE, 1); 
+PicoHardwareSerial Serial1(0);
+PicoHardwareSerial Serial2(1); 
 PicoLogger Logger;    // Support for logging
-PicoTone ToneImpl;    // Sound support 
 PicoHardwareSPI SPI(spi0);
 PicoHardwareSPI SPI1(spi1);
-PicoHardwareI2C Wire; // I2C 
+PicoGPIOFunction GPIOFunction;
+//PicoHardwareI2C Wire; // I2C 
+AudioLogCls AudioLogger;
 
 // local data
 static bool adc_init_flag = false;
@@ -58,47 +60,33 @@ PinStatus digitalRead(pin_size_t pinNumber) {
     return value==0 ? LOW : HIGH;
 }
 
-// setup the analog to digital converter the first time we use it
-void initADC(){
-    // init if necessary
-    if (adc_init_flag){
-        adc_init();
-        adc_init_flag = true;
-    }
-}
 
 /**
  * @brief User ADC inputs are on 0-3 (GPIO 26-29), the temperature sensor is on input 4.
- * 
+ * Uses PWM on other pins
  * @param pinNumber 
  * @return int 
  */
 int analogRead(int pinNumber){
-    static int current_adc = -1;
-    static bool adc_init_pin_flag[5];
+    // analog read
     if (pinNumber>=26 && pinNumber<=29){
-        // init if necessary
-        initADC();
-        int id = pinNumber - 26;
-        // setup pin for adc
-        if (!adc_init_pin_flag[id]){
-            adc_gpio_init(pinNumber);
-            adc_init_pin_flag[id] = true;
-        }
-
-        // switch pin if necessary
-        if (current_adc!=id){
-            adc_select_input(id);
-        }
+        // ADC
+        GPIOFunction.setFunctionADC(pinNumber);
         return adc_read();
     } else {
-        Logger.error("Invalid analog pin (expected values 26-29) :", String(pinNumber).c_str());
+        if (pwm_gpio_to_channel(pinNumber) == PWM_CHAN_B){
+            return GPIOFunction.readPWM(pinNumber, 100.0);
+        } else {
+            Logger.error("Invalid analog pin (expected values 26-29) :", String(pinNumber).c_str());
+            Logger.error("pwm is expected on PWM_CHAN_B - currently used pin:", String(pinNumber).c_str());
+        }
     }
     return -1;
 }
 
+// reads the on board temparature
 int getTemperature(){
-    initADC();
+    GPIOFunction.initADC();
     //Input 4 is the onboard temperature sensor
     adc_select_input(4);
     int value = adc_read();
@@ -110,25 +98,19 @@ void analogReference(uint8_t mode){
 
 }
 
+// writes PWM
 void analogWrite(pin_size_t pinNumber, int value) {
-   gpio_set_function(pinNumber, GPIO_FUNC_PWM);   
-   pwm_set_gpio_level(pinNumber, value);
+    GPIOFunction.setFunction(pinNumber, GPIO_FUNC_PWM);
+    pwm_set_gpio_level(pinNumber, value);
 }
 
-int64_t stop_tone_callback(alarm_id_t id, void *user_data) {
-    // ugliy hack: we receive the pin number in user_data (not a pointer!)
-    uint32_t pin_ptr = (uint32_t) user_data;
-    noTone(pin_ptr);
-    return 0;
- }
 
 void tone(uint8_t pinNumber, unsigned int frequency, unsigned long duration) {
-    ToneImpl.tone(pinNumber,frequency);
-    add_alarm_in_ms(duration, stop_tone_callback, (void*) pinNumber , false);
+    ArduinoPicoTone::tone(pinNumber, frequency, duration);
 }
 
 void noTone(uint8_t pinNumber) {    
-    ToneImpl.noTone(pinNumber);
+    ArduinoPicoTone::noTone(pinNumber);
 }
 
 // ls

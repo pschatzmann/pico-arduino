@@ -26,17 +26,22 @@ namespace arduino {
 class HardwareI2C : public Stream
 {
   public:
+    // bus master
     virtual void begin() = 0;
+    // slave
     virtual void begin(uint8_t address) = 0;
     virtual void end() = 0;
 
     virtual void setClock(uint32_t freq) = 0;
   
+    // Begin a transmission to the I2C slave device with the given address
     virtual void beginTransmission(uint8_t address) = 0;
     virtual uint8_t endTransmission(bool stopBit) = 0;
     virtual uint8_t endTransmission(void) = 0;
 
+    //Used by the master to request bytes from a slave device   
     virtual size_t requestFrom(uint8_t address, size_t len, bool stopBit) = 0;
+    //Used by the master to request bytes from a slave device
     virtual size_t requestFrom(uint8_t address, size_t len) = 0;
 
     virtual void onReceive(void(*)(int)) = 0;
