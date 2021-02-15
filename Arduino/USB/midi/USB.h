@@ -6,8 +6,8 @@
 #include "device/usbd.h"
 #include "bsp/board.h"
 #include "tusb.h"
-#include "Arduino.h"
 #include "PicoSemaphore.h"
+#include "PicoTimer.h"
 
 /* A combination of interfaces must have a unique product id, since PC will save device driver after the first plug.
  * Same VID/PID with different interface e.g MSC (first), then CDC (later) will possibly cause system error on PC.
