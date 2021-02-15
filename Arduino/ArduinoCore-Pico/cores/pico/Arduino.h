@@ -46,6 +46,5 @@ extern PicoHardwareSerial Serial2;
 extern PicoLogger Logger;   // Support for logging
 extern PicoGPIOFunction GPIOFunction;
 // Pico specific global methods
-
 // Provides the on board temperature in Celsius
 int getTemperature();

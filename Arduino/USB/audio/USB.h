@@ -9,56 +9,6 @@
 #include "usb_descriptors.h"
 #include "AudioTools/Audiotools.h"
 
-/* Blink pattern
- * - 25 ms   : streaming data
- * - 250 ms  : device not mounted
- * - 1000 ms : device mounted
- * - 2500 ms : device is suspended
- */
-enum {
-    BLINK_STREAMING = 25,
-    BLINK_NOT_MOUNTED = 250,
-    BLINK_MOUNTED = 1000,
-    BLINK_SUSPENDED = 2500,
-};
-
-enum {
-    VOLUME_CTRL_0_DB = 0,
-    VOLUME_CTRL_10_DB = 2560,
-    VOLUME_CTRL_20_DB = 5120,
-    VOLUME_CTRL_30_DB = 7680,
-    VOLUME_CTRL_40_DB = 10240,
-    VOLUME_CTRL_50_DB = 12800,
-    VOLUME_CTRL_60_DB = 15360,
-    VOLUME_CTRL_70_DB = 17920,
-    VOLUME_CTRL_80_DB = 20480,
-    VOLUME_CTRL_90_DB = 23040,
-    VOLUME_CTRL_100_DB = 25600,
-    VOLUME_CTRL_SILENCE = 0x8000,
-};
-
-typedef struct TU_ATTR_PACKED {
-    union {
-        struct TU_ATTR_PACKED {
-            uint8_t recipient: 5; ///< Recipient type tusb_request_recipient_t.
-            uint8_t type: 2; ///< Request type tusb_request_type_t.
-            uint8_t direction: 1; ///< Direction type. tusb_dir_t
-        } bmRequestType_bit;
-
-        uint8_t bmRequestType;
-    };
-
-    audio_cs_req_t bRequest;
-    uint8_t bChannelNumber;
-    uint8_t bControlSelector;
-    union {
-        uint8_t bInterface;
-        uint8_t bEndpoint;
-    };
-    uint8_t bEntityID;
-    uint16_t wLength;
-} audio_control_request_t;
-
 
 /**
  * @brief USB Audio Headset device (running on core 1). 
@@ -86,7 +36,11 @@ class USBAudio {
             board_init();
             tusb_init();
             TU_LOG1("Headset running\r\n");
-            multicore_launch_core1(processLoopCallback);
+            if (core==1){
+                multicore_launch_core1(processLoopCallback);
+            } else {
+                processLoopCallback();
+            }
         }
 
         // copy the sound data from the audio source provided in begin
@@ -117,7 +71,8 @@ class USBAudio {
             static bool led_state = false;
 
             // Blink every interval ms
-            if (board_millis() - start_ms < blink_interval_ms) return;
+            if (board_millis() - start_ms < blink_interval_ms) 
+                return;
             start_ms += blink_interval_ms;
 
             board_led_write(led_state);
@@ -173,9 +128,7 @@ class USBAudio {
             if (request->bEntityID == UAC2_ENTITY_SPK_FEATURE_UNIT)
                 return audio_feature_unit_set_request(rhport, request, buf);
 
-            TU_LOG1("Set request not handled, entity = %d, selector = %d, request = %d\r\n",
-                    request->bEntityID, request->bControlSelector, request->bRequest);
-
+            TU_LOG1("Set request not handled, entity = %d, selector = %d, request = %d\r\n", request->bEntityID, request->bControlSelector, request->bRequest);
             return false;
         }
 
@@ -222,7 +175,6 @@ class USBAudio {
             return true;
         }       
 
-
         // setter/getter for instance
         static USBAudio* instance(USBAudio* ptr = nullptr){
             static USBAudio* _instance;
@@ -246,6 +198,58 @@ class USBAudio {
         int spk_data_size;
         // Sound source
         AudioSource *audio_source_ptr;
+
+        /* Blink pattern
+        * - 25 ms   : streaming data
+        * - 250 ms  : device not mounted
+        * - 1000 ms : device mounted
+        * - 2500 ms : device is suspended
+        */
+        enum {
+            BLINK_STREAMING = 25,
+            BLINK_NOT_MOUNTED = 250,
+            BLINK_MOUNTED = 1000,
+            BLINK_SUSPENDED = 2500,
+        };
+
+        enum {
+            VOLUME_CTRL_0_DB = 0,
+            VOLUME_CTRL_10_DB = 2560,
+            VOLUME_CTRL_20_DB = 5120,
+            VOLUME_CTRL_30_DB = 7680,
+            VOLUME_CTRL_40_DB = 10240,
+            VOLUME_CTRL_50_DB = 12800,
+            VOLUME_CTRL_60_DB = 15360,
+            VOLUME_CTRL_70_DB = 17920,
+            VOLUME_CTRL_80_DB = 20480,
+            VOLUME_CTRL_90_DB = 23040,
+            VOLUME_CTRL_100_DB = 25600,
+            VOLUME_CTRL_SILENCE = 0x8000,
+        };
+
+        typedef struct TU_ATTR_PACKED {
+            union {
+                struct TU_ATTR_PACKED {
+                    uint8_t recipient: 5; ///< Recipient type tusb_request_recipient_t.
+                    uint8_t type: 2; ///< Request type tusb_request_type_t.
+                    uint8_t direction: 1; ///< Direction type. tusb_dir_t
+                } bmRequestType_bit;
+
+                uint8_t bmRequestType;
+            };
+
+            audio_cs_req_t bRequest;
+            uint8_t bChannelNumber;
+            uint8_t bControlSelector;
+            union {
+                uint8_t bInterface;
+                uint8_t bEndpoint;
+            };
+            uint8_t bEntityID;
+            uint16_t wLength;
+        } audio_control_request_t;
+
+
 
         // process loop as static method to be used as callback for multicore_launch_core1
         static void processLoopCallback() {
@@ -304,24 +308,19 @@ class USBAudio {
                     TU_LOG2("Get channel %u volume range (%d, %d, %u) dB\r\n", request->bChannelNumber,
                             range_vol.subrange[0].bMin / 256, range_vol.subrange[0].bMax / 256,
                             range_vol.subrange[0].bRes / 256);
-                    return tud_audio_buffer_and_schedule_control_xfer(rhport, (tusb_control_request_t const *) request,
-                                                                    &range_vol, sizeof(range_vol));
+                    return tud_audio_buffer_and_schedule_control_xfer(rhport, (tusb_control_request_t const *) request, &range_vol, sizeof(range_vol));
                 } else if (request->bRequest == AUDIO_CS_REQ_CUR) {
                     audio_control_cur_2_t cur_vol = {.bCur = tu_htole16(volume[request->bChannelNumber])};
                     TU_LOG2("Get channel %u volume %u dB\r\n", request->bChannelNumber, cur_vol.bCur);
-                    return tud_audio_buffer_and_schedule_control_xfer(rhport, (tusb_control_request_t const *) request,
-                                                                    &cur_vol, sizeof(cur_vol));
+                    return tud_audio_buffer_and_schedule_control_xfer(rhport, (tusb_control_request_t const *) request, &cur_vol, sizeof(cur_vol));
                 }
             }
-            TU_LOG1("Feature unit get request not supported, entity = %u, selector = %u, request = %u\r\n",
-                    request->bEntityID, request->bControlSelector, request->bRequest);
-
+            TU_LOG1("Feature unit get request not supported, entity = %u, selector = %u, request = %u\r\n", request->bEntityID, request->bControlSelector, request->bRequest);
             return false;
         }
 
         // Helper for feature unit set requests
-        virtual  bool audio_feature_unit_set_request(uint8_t rhport, audio_control_request_t const *request,
-                                                    uint8_t const *buf) {
+        virtual  bool audio_feature_unit_set_request(uint8_t rhport, audio_control_request_t const *request, uint8_t const *buf) {
             (void) rhport;
 
             TU_ASSERT(request->bEntityID == UAC2_ENTITY_SPK_FEATURE_UNIT);
@@ -329,23 +328,16 @@ class USBAudio {
 
             if (request->bControlSelector == AUDIO_FU_CTRL_MUTE) {
                 TU_VERIFY(request->wLength == sizeof(audio_control_cur_1_t));
-
                 mute[request->bChannelNumber] = ((audio_control_cur_1_t *) buf)->bCur;
-
                 TU_LOG2("Set channel %d Mute: %d\r\n", request->bChannelNumber, mute[request->bChannelNumber]);
-
                 return true;
             } else if (request->bControlSelector == AUDIO_FU_CTRL_VOLUME) {
                 TU_VERIFY(request->wLength == sizeof(audio_control_cur_2_t));
-
                 volume[request->bChannelNumber] = ((audio_control_cur_2_t const *) buf)->bCur;
-
                 TU_LOG2("Set channel %d volume: %d dB\r\n", request->bChannelNumber, volume[request->bChannelNumber] / 256);
-
                 return true;
             } else {
-                TU_LOG1("Feature unit set request not supported, entity = %u, selector = %u, request = %u\r\n",
-                        request->bEntityID, request->bControlSelector, request->bRequest);
+                TU_LOG1("Feature unit set request not supported, entity = %u, selector = %u, request = %u\r\n", request->bEntityID, request->bControlSelector, request->bRequest);
                 return false;
             }
         }

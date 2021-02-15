@@ -25,7 +25,7 @@ void delay(unsigned long ms){
     sleep_ms(ms);
 }
 
-// sleep us milliseconds
+// sleep us microseconds
 void delayMicroseconds(unsigned int us){
     sleep_us(us);
 }

@@ -17,18 +17,14 @@
 class PicoDefaultSerial : public HardwareSerial {
     public:
         PicoDefaultSerial(){
-            stdio_init_all();
         }
 
-        using Print::write; // pull in write(str) and write(buf, size) from Print
-        using Print::print; // pull in write(str) and write(buf, size) from Print
-        using Print::println; // pull in write(str) and write(buf, size) from Print
-
-
         virtual void begin(unsigned long baudrate=PICO_DEFAULT_UART_BAUD_RATE) {
+            stdio_init_all();
             open = true;
         };
         virtual void begin(unsigned long baudrate, uint16_t config){
+            stdio_init_all();
             open = true;
 
         }
@@ -53,12 +49,24 @@ class PicoDefaultSerial : public HardwareSerial {
         }
 
         virtual size_t write(uint8_t c) {
-            return putchar(c);
+            size_t len = putchar(c);
+            stdio_flush();
+            return len;
+        }
+
+        virtual int println(){
+            return println("");
         }
 
         virtual int println(char const* str){
-            return printf("%s\n",str);
+            int len = printf("%s\n",str);
+            flush();
+            return len;
         }
+
+        using Print::write; // pull in write(str) and write(buf, size) from Print
+        using Print::print; // pull in write(str) and write(buf, size) from Print
+        using Print::println; // pull in write(str) and write(buf, size) from Print
 
         virtual operator bool(){
             return open;
@@ -154,6 +162,7 @@ class PicoHardwareSerial : public HardwareSerial {
 
         inline size_t write(const uint8_t *buffer, size_t size) {
             uart_write_blocking(uart, buffer, size);
+            flush();
             return size;
         }
 

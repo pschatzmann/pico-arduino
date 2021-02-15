@@ -7,8 +7,6 @@ typedef bool(* repeating_timer_callback_t )(repeating_timer_t *rt);
 
 enum TimeUnit {MS,US};
 
-static alarm_pool_t *ap;
-
 /**
  * @brief Alarm functions for scheduling future execution.
  * 
@@ -17,12 +15,8 @@ static alarm_pool_t *ap;
 class TimerAlarm {
     public:
         TimerAlarm(){
-            if (ap==nullptr)
-                ap = alarm_pool_get_default();
-            if (ap==nullptr){
-                alarm_pool_init_default();
-                ap = alarm_pool_get_default();
-            }
+            alarm_pool_init_default();
+            ap = alarm_pool_get_default();
         }
 
         ~TimerAlarm(){
@@ -32,9 +26,11 @@ class TimerAlarm {
         void start(alarm_callback_t callback,  uint64_t time, TimeUnit unit = MS, void *user_data=nullptr,  bool fire_if_past=true){
             switch(unit){
                 case MS:
+                    // milliseconds 1/1000 sec
                     alarm_id = alarm_pool_add_alarm_in_ms(ap, time, callback, user_data, fire_if_past);
                     break;
                 case US:
+                    // microseconds 1/1000000  (10^6) sec
                     alarm_id = alarm_pool_add_alarm_in_us(ap, time, callback, user_data, fire_if_past);
                     break;
             }
@@ -57,12 +53,8 @@ class TimerAlarm {
 class TimerAlarmRepeating {
     public:
         TimerAlarmRepeating(){
-            if (ap==nullptr)
-                ap = alarm_pool_get_default();
-            if (ap!=nullptr){
-                alarm_pool_init_default();
-                ap = alarm_pool_get_default();
-            }
+            alarm_pool_init_default();
+            ap = alarm_pool_get_default();
         }
 
         ~TimerAlarmRepeating(){
@@ -87,5 +79,6 @@ class TimerAlarmRepeating {
         }
 
     protected:
+        alarm_pool_t *ap;
         repeating_timer_t timer;
 };

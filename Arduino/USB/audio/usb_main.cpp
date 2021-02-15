@@ -23,8 +23,8 @@
  *
  */
 
-#include "USBAudio.h"
-
+#include "usbd.h"
+#include "USB.h"
 
 //--------------------------------------------------------------------+
 // Device callbacks

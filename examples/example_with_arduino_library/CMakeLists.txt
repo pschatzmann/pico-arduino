@@ -29,10 +29,8 @@ find_library(ARDUINO_LIB
 )
 
 # Download Arduino Library
-set (git_cmd "clone")
-set (git_url "https://github.com/pschatzmann/SpektrumSatellite.git")
 execute_process(
-    COMMAND git ${git_cmd} ${git_url}
+    COMMAND git clone https://github.com/pschatzmann/SpektrumSatellite.git
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 #    COMMAND_ERROR_IS_FATAL ANY
 )

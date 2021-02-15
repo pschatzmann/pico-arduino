@@ -31,7 +31,12 @@ struct AudioInfo {
 
 class AudioInfoSource {
     public:
-         virtual AudioInfo &audioInfo() = 0;
+         virtual AudioInfo &audioInfo() {
+             return ai;
+         }
+
+    protected:
+        AudioInfo ai;
 };
 
 class AudioInfoTarget {
@@ -48,7 +53,7 @@ class AudioOut : public Stream, public AudioInfoTarget {
  * @brief Logger
  * 
  */
-class AudioLogCls {
+class AudioLogger {
     public:
         void begin(Stream &stream){
             stream_ptr = &stream;
@@ -88,15 +93,18 @@ class AudioLogCls {
             }
         }
 
+        static AudioLogger &instance(){
+            static AudioLogger* inst;
+            if (inst==nullptr){
+                inst = new AudioLogger();
+            }
+            return *inst;
+        }
+
     protected:
         Stream *stream_ptr;
 };
 
-extern AudioLogCls AudioLogger;
-
-struct BufferResult {
-
-}
 
 /**
  * @brief a simple single buffer
@@ -123,23 +131,28 @@ class SingleBuffer {
     bool write(T value){
         bool result = false;
 
+        // determine max value (for potential scaling)
+        if (value>max_value){
+            max_value = value;
+        }
+
         // this should not really happen
         if (isFull()){
-            AudioLogger.error("Buffer is full");
+            AudioLogger::instance().error("Buffer is full");
             return false;
         }
 
         // add entry to buffer
-        buffer[buffer_pos]=value;
-        if (buffer_pos<max_size) {
-            buffer_pos++;
+        buffer[buffer_write_pos]=value;
+        if (buffer_write_pos<max_size) {
+            buffer_write_pos++;
             result = true;
         } else {
-            AudioLogger.error("Buffer Overflow");
+            AudioLogger::instance().error("Buffer Overflow");
         }
 
         // call registered handler if buffer is full: e.g to switch to an empty buffer
-        if buffer_full_callback != nullptr && isFull()){
+        if (buffer_full_callback != nullptr && isFull()){
             buffer_full_callback(arg_ptr);
         }
         return result;
@@ -147,16 +160,23 @@ class SingleBuffer {
 
     // provides a pointer to the data and the length in entries: this is efficient since we do not copy data
     size_t data(T* &resultBuffer, size_t requestedLen=DEFAULT_BUFFER_MAX_SIZE){
-        size_t result_len = min(requestedLen, buffer_pos - (read_ptr - buffer));
+        size_t result_len = min(requestedLen, buffer_write_pos - (read_ptr - buffer));
         resultBuffer = read_ptr;
         read_ptr += result_len;
         return result_len;
     }
 
+    // provides a pointer to the data and the length in entries: this is efficient since we do not copy data
+    size_t dataBytes(uint8_t* &resultBuffer, size_t requestedLen=DEFAULT_BUFFER_MAX_SIZE * sizeof(T)){
+        size_t result_len = min(requestedLen /sizeof(T) , buffer_write_pos - (read_ptr - buffer));
+        resultBuffer = (uint8_t*) read_ptr;
+        read_ptr += result_len;
+        return result_len * sizeof(T);
+    }
 
     // copies the data from the buffer into the result. The length is in number of entries. If there is no more data we return 0
      size_t read(T *result, size_t length=DEFAULT_BUFFER_MAX_SIZE) {
-        size_t result_len = min(length, buffer_pos - (read_ptr - buffer));
+        size_t result_len = min(length, buffer_write_pos - (read_ptr - buffer));
         if (result_len>0){
             memcpy(result, read_ptr, result_len * sizeof(T));
             read_ptr += result_len;
@@ -166,7 +186,7 @@ class SingleBuffer {
 
     // copies the data from the buffer into the result. The length is bytes
     virtual size_t readBytes(uint8_t *buffer, size_t length = DEFAULT_BUFFER_MAX_SIZE * sizeof(T)) {
-        return read(buffer, length*sizeof(T)) * sizeof(T);
+        return read((T*)buffer, length*sizeof(T)) * sizeof(T);
     }
 
     // number of entries
@@ -181,36 +201,42 @@ class SingleBuffer {
 
     // reset the buffer position
     void reset(){
-        buffer_pos=0;
+        buffer_write_pos = 0;
         read_ptr = buffer;
+        max_value = 0;
     }
 
     // available number of entries
     size_t available() {
-        return buffer_pos;
+        return buffer_write_pos - (read_ptr-buffer);
     }
 
     // avalable bytes
     size_t availableBytes() {
-        return buffer_pos*sizeof(T);
+        return available()*sizeof(T);
     }
 
     bool isFull() {
-        return buffer_pos>=max_size;
+        return buffer_write_pos>=max_size;
+    }
+
+    T max(){
+        return max_value;
     }
 
     // defines a handler which will be called when the buffer is full
-    void setIsFullCallback(void (*buffer_full_callback)(void* ptr), void* argPtr = this){
-        this->arg_ptr = argPtr;
+    void setIsFullCallback(void (*buffer_full_callback)(void* ptr), void* argPtr = nullptr){
+        this->arg_ptr = argPtr == nullptr ? this :  argPtr;
         this->buffer_full_callback = buffer_full_callback;
     }
 
 
   protected:
     size_t max_size = 1024;
-    size_t buffer_pos;
+    size_t buffer_write_pos = 0;
     T* buffer = nullptr;
     T* read_ptr = nullptr;
+    T max_value=0;
     void (*buffer_full_callback)(void* ptr);
     void* arg_ptr;
 };
@@ -382,7 +408,7 @@ class FilteredStream {
                 }
                 out->write((uint8_t*)data, size * sizeof(InT)/sizeof(OutT));
             } else {
-                AudioLogger.error("Filtering not possible - The input size must be >= output size");
+                AudioLogger::instance().error("Filtering not possible - The input size must be >= output size");
                 out->write((uint8_t*)data, size);
             }
         }
@@ -430,22 +456,25 @@ class SineWaveGenerator  : public AudioInfoSource , public AudioSource {
             int size = length / sizeof(T);
 
             for (int j=0;j<size;j++){
-                T value = sin(2.0 * PI * sample_step++ * frequency / ai.sample_rate) * scale;
+                double value = sin(2.0 * PI * sample_step++ * frequency / ai.sample_rate) * scale;
                 data[j] = value;
             }
-            size_t result = size * sizeof(T);
-//          AudioLogger.info("size: ",result);
-          
+            size_t result = size * sizeof(T);          
             return result;
         }
-        
-        AudioInfo &audioInfo() {
-            return ai;
+
+        virtual size_t data(T* &data, size_t len=512){
+            static const int MAX = 512;
+            static T buffer[MAX];
+            size_t result_size = max(len, MAX);
+            readBytes((uint8_t *)buffer, result_size * sizeof(T));
+            data = buffer;
+            return result_size;            
         }
 
+        
     protected:
-        AudioInfo ai;
-        uint32_t sample_step;
+        uint64_t sample_step;
         uint16_t frequency;
         double scale;
 };
@@ -455,7 +484,7 @@ class SineWaveGenerator  : public AudioInfoSource , public AudioSource {
  * 
  */
 template <class T>
-class NoiseGenerator  :  public AudioSource {
+class NoiseGenerator  :  public AudioSource, public AudioInfoSource {
     public:
         // the scale defines the max value which is generated
         NoiseGenerator(double scale=1.0) {
@@ -463,21 +492,33 @@ class NoiseGenerator  :  public AudioSource {
         }
 
         void begin(){
+            ai.channels = 1;
+            ai.bits_per_sample = sizeof(T)*8;
         }
 
         virtual size_t readBytes(uint8_t *buffer, size_t length){
             T *data = (T*) buffer;
             int size = length / sizeof(T);
             for (int j=0;j<size;j++){
-                T value = (((rand() % 100) - 50) * 32767 / 50) * scale ; // generate number between  -32767 / 32767
+                T value = ((rand() % (static_cast<T>(2 * scale)) - scale)); // generate number between  -scale / scale
                 data[j] = value;
             }
             size_t result = size * sizeof(T);
             return result;
         }
-        
+
+        virtual size_t data(T* &data, size_t len=512){
+            static const int MAX = 512;
+            static T buffer[MAX];
+            size_t result_size = max(len, MAX);
+            readBytes((uint8_t *)buffer, result_size * sizeof(T));
+            data = buffer;
+            return result_size;            
+        }
+
     protected:
         double scale;
+
 };
 
 /**
@@ -485,23 +526,30 @@ class NoiseGenerator  :  public AudioSource {
  * an analog pin using the ADC
  * 
  */
-class Microphone :  public AudioSource  {
+class Microphone :  public AudioSource, public AudioInfoSource  {
     public:        
-        Microphone(int numberOfBuffers=5, bufferSize=512){
+        Microphone(uint16_t bufferSize=512, uint16_t numberOfBuffers=5){
+            this->buffer_size = bufferSize;
             for (int j=0;j<numberOfBuffers;j++) {
                 // allocate all buffers
-                SingleBuffer new_buffer = new SingleBuffer<int16_t>(bufferSize);
-                new_buffer.setIsFullCallback(callback_write_is_full, this);
-                availableBuffers.push(new_buffer);
+                auto new_buffer = new SingleBuffer<int16_t>(bufferSize);
+                if (new_buffer!=nullptr){
+                    new_buffer->setIsFullCallback(callback_write_is_full, this);
+                    availableBuffers.push(new_buffer);
+                } else {
+                    AudioLogger::instance().error("Could not allocate all buffers");
+                }
             }
             // current write buffer in use
-            actualWrite = availableBuffers.pop();
+            availableBuffers.pop(actualWrite);
         }
 
         ~Microphone(){
              end();
              while(availableBuffers.size()>0){
-                 delete availableBuffers.pop();
+                SingleBuffer<int16_t>* tmp;
+                availableBuffers.pop(tmp);
+                delete tmp;
              }
              if (actualWrite!=nullptr){
                  delete actualWrite;
@@ -512,72 +560,111 @@ class Microphone :  public AudioSource  {
          }
 
         // starts the processing
-        void begin(uint16_t sample_rate=44100, int pinNumber=GP26, int core=1, int adc = 0){
+        void begin(uint16_t sample_rate=44100, int pinNumber=GP26, int core=1 ){
             this->sample_rate = sample_rate;
-            adc_init();
-            // Select ADC input 0 (GPIO26)
-            adc_gpio_init(pinNumber);
-            adc_select_input(adc);
+            ai.sample_rate = sample_rate;
+            ai.channels = 1;
+            ai.bits_per_sample = sizeof(int16_t)*8;
 
-            // start caputre with timer on core 1
-            timeInUs = 1000000000 / sample_rate;
-            if (core==1){
-                //multicore_launch_core1(callback_timer_start);
-                thread.start(callback_timer_start, this);
-            } else {
-                // start timer on core 0
-                callback_timer_start(this);
+            // we determine the ADC
+            int adc = pinToADC(pinNumber);
+            if (adc>=0) {
+                adc_init();
+                // Select ADC input 0 (GPIO26)
+                adc_gpio_init(pinNumber);
+                adc_select_input(adc);
+                //free-running sampling mode.
+                adc_run(true);
+
+                if (core==1){
+                    //multicore_launch_core1(callback_timer_start);
+                    thread.start(callback_timer_start, this);
+                } else {
+                    // start timer on core 0
+                    callback_timer_start(this);
+                }
+                startMs = millis();
+                active = true;
             }
         }
 
         // stops the processing
         void end(){
             // stop timer
-            timer.end();
+            timer.stop();
             // clear existing data    
-            Queue<SingleBuffer<int16_t>*> tmp;
+            SingleBuffer<int16_t> *tmp;
             for (int j=0;j<filledBuffers.size();j++){
-                tmp = filledBuffers.pop();
-                tmp.reset();
+                filledBuffers.pop(tmp);
+                tmp->reset();
                 availableBuffers.push(tmp);
             }
 
             // reset actual write buffer
             if (actualWrite!=nullptr)
-                actualWrite.reset();
+                actualWrite->reset();
 
             // reset actual read buffer
             if (actualRead!=nullptr)
-                actualRead.reset();
+                actualRead->reset();
 
+            active = false;
         }   
 
         // copy the available data into the buffer
         virtual size_t readBytes(uint8_t *buffer, size_t length){
             int resultLen = 0;
-            if (actualRead==nullptr){
-                actualRead = filledBuffers.pop();
+            if (active){
+                if (getNextReadBuffer()) {
+                    resultLen = actualRead->readBytes(buffer, length);
+                }
             }
-            // get next buffer
-            if (actualRead.available()<=0){
-                // make the buffer available again
-                actualRead.reset();
-                availableBuffers.push(actualRead);
-                // get data from next fulled buffer
-                actualRead = filledBuffers.pop();
+            return resultLen;
+        }
+
+        // returns the data und the size in int16 entries
+        size_t data(int16_t* &result){
+            int resultLen = 0;
+            if (active){
+                if (getNextReadBuffer()) {
+                    resultLen = actualRead->data(result);
+                }
             }
-            resultLen = actualRead.readBytes(buffer, length);
+            return resultLen;
+        }
+
+        // we provide direct access to the read buffer 
+        SingleBuffer<int16_t> *buffer() {
+            return actualRead;
         }
 
         // writes a single sample
         void writeSample(int16_t value){
-            actualWrite->write(value);
+            if (active){
+                actualWrite->write(value);
+                sampleCount++;
+            }
         }
 
         // provides the sample rate
         uint16_t sampleRate(){
             return sample_rate;
         }
+
+        // determines the effective sample rate
+        double sampleRateEffective(){
+            unsigned long timeMs = millis() - startMs;;
+            return sampleCount * 1000.0 / timeMs;
+            startMs = millis();
+            sampleCount = 0;
+
+        }
+
+        // provide the max size of an individual buffer
+        uint16_t bufferSize() {
+            return buffer_size;
+        }
+
 
         // callback method which samples an individual value
         static bool callback_capture(repeating_timer_t *rt) {
@@ -590,7 +677,9 @@ class Microphone :  public AudioSource  {
         // callback method which starts the timer
         static void callback_timer_start(void *ptr) {
             Microphone *self = (Microphone *) ptr;
-            timer.start(callback_capture, self->timeInUs, US, this);
+            long timeInUs = 1000000.0 / (self->sample_rate + 3000);
+            // start capture with timer on core 1 in microsecondes
+            self->timer.start(callback_capture, timeInUs, US, self);
         }
 
         // callback meethod which is called when the actual write buffer is full
@@ -603,24 +692,66 @@ class Microphone :  public AudioSource  {
         void onWriteIsFull(){
             filledBuffers.push(actualWrite);
             if (availableBuffers.size()==0){
-                AudioLogger.error("Buffer overflow - ignoring oldest buffer values");
-                actualWrite = filledBuffers.pop();
-                actualWrite.reset();
+                AudioLogger::instance().error("Buffer overflow - ignoring oldest buffer values");
+                filledBuffers.pop(actualWrite);
+                actualWrite->reset();
             } else {
                 // switch to next empty buffer
-                actualWrite = availableBuffers.pop();
+                availableBuffers.pop(actualWrite);
             }
         }
 
+        TimerAlarmRepeating timer; // timer which triggers samples
 
     protected:
-        TimerAlarmRepeating timer;
         Thread thread; // start writer on processor 1
-        Queue<SingleBuffer<int16_t>*> availableBuffers(100, true, true);
-        Queue<SingleBuffer<int16_t>*> filledBuffers(100, true, true);
+        Queue<SingleBuffer<int16_t>*> availableBuffers = Queue<SingleBuffer<int16_t>*>(100, true, true);
+        Queue<SingleBuffer<int16_t>*> filledBuffers = Queue<SingleBuffer<int16_t>*>(100, true, true);
         SingleBuffer<int16_t>* actualWrite; // only accessed by writer processor
         SingleBuffer<int16_t>* actualRead; // only accessed by reader processor
         uint16_t sample_rate;
-        long timeInUs;
+        unsigned long startMs;
+        unsigned long sampleCount;
+        int buffer_size;
+        bool active = false;
+
+        // determine the ADC
+        int pinToADC(int pin){
+            switch(pin){
+                case 26:
+                    return 0;
+                case 27:
+                    return 1;
+                case 28:
+                    return 2;
+                default:
+                    AudioLogger::instance().error("Only GPIO26, GPIO27 and GPIO28 are supported");
+                    return -1;
+            }
+            return -1;
+        }
+
+        // make sure that we have data available - returns true if there is data available
+        bool getNextReadBuffer(){
+            bool result = false;
+            if (actualRead==nullptr){
+                filledBuffers.pop(actualRead);
+            }
+            // if everthing has been consumed
+            if (actualRead->available()<=0){
+                // make the buffer available again
+                actualRead->reset();
+                if (availableBuffers.size()>0){
+                    availableBuffers.push(actualRead);
+                    // get data from next fulled buffer
+                    filledBuffers.pop(actualRead);
+                    result = true;
+                }
+            } else {
+                // there is still some data left
+                result = true;
+            }
+            return result;
+        }
 
 };
