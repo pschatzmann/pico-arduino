@@ -17,7 +17,7 @@ set(ARDUINO_SKETCH_SOURCE  ${CURRENT_SRC} ${USB_SRC})
 set(ARDUINO_SKETCH_INCLUDES ${ARDUINO_USB_MIDI_PATH})
 set(ARDUINO_SKETCH_LIB "tinyusb_device" "tinyusb_board" "pico_fix_rp2040_usb_device_enumeration"  )
 
-set(CMAKE_C_FLAGS_DEBUG "-Og") 
+#set(CMAKE_C_FLAGS_DEBUG "-Og") 
 #add_compile_options(-DCFG_TUSB_DEBUG=3 -DCFG_TUSB_OS=OPT_OS_PICO)
 #add_compile_options(-DCFG_TUSB_OS=OPT_OS_PICO)
 

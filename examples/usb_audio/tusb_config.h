@@ -1,8 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2020 Ha Thach (tinyusb.org)
- * Copyright (c) 2020 Jerzy Kasenberg
+ * Copyright (c) 2019 Ha Thach (tinyusb.org)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,12 +45,16 @@ extern "C" {
 #define CFG_TUSB_RHPORT0_MODE       OPT_MODE_DEVICE
 #endif
 
-#ifndef CFG_TUSB_DEBUG
-// Can be set during compilation i.e.: make LOG=<value for CFG_TUSB_DEBUG> BOARD=<bsp>
-// Keep in mind that enabling logs when data is streaming can disrupt data flow.
-// It can be very helpful though when audio unit requests are tested/debugged.
-#define CFG_TUSB_DEBUG              2
+#ifndef CFG_TUSB_OS
+#define CFG_TUSB_OS                 OPT_OS_NONE
 #endif
+
+#ifndef CFG_TUSB_DEBUG
+#define CFG_TUSB_DEBUG              0
+#endif
+
+// CFG_TUSB_DEBUG is defined by compiler in DEBUG build
+// #define CFG_TUSB_DEBUG           0
 
 /* USB DMA on some MCUs can only access a specific SRAM region with restriction on alignment.
  * Tinyusb use follows macros to declare transferring memory so that they can be put
@@ -88,42 +91,27 @@ extern "C" {
 // AUDIO CLASS DRIVER CONFIGURATION
 //--------------------------------------------------------------------
 
-#ifndef AUDIO_SAMPLE_RATE
-#define AUDIO_SAMPLE_RATE                   48000
-#endif
-
-#define CFG_TUD_AUDIO_IN_PATH               (CFG_TUD_AUDIO)
-#define CFG_TUD_AUDIO_OUT_PATH              (CFG_TUD_AUDIO)
-
 // Audio format type
-#define CFG_TUD_AUDIO_FORMAT_TYPE_TX        AUDIO_FORMAT_TYPE_I
-#define CFG_TUD_AUDIO_FORMAT_TYPE_RX        AUDIO_FORMAT_TYPE_I
+#define CFG_TUD_AUDIO_USE_TX_FIFO 				1
+#define CFG_TUD_AUDIO_FORMAT_TYPE_TX 				AUDIO_FORMAT_TYPE_I
+#define CFG_TUD_AUDIO_FORMAT_TYPE_RX 				AUDIO_FORMAT_TYPE_UNDEFINED
 
 // Audio format type I specifications
-#define CFG_TUD_AUDIO_FORMAT_TYPE_I_TX      AUDIO_DATA_FORMAT_TYPE_I_PCM
-#define CFG_TUD_AUDIO_FORMAT_TYPE_I_RX      AUDIO_DATA_FORMAT_TYPE_I_PCM
-#define CFG_TUD_AUDIO_N_CHANNELS_TX         1
-#define CFG_TUD_AUDIO_N_BYTES_PER_SAMPLE_TX 2
-#define CFG_TUD_AUDIO_N_CHANNELS_RX         2
-#define CFG_TUD_AUDIO_N_BYTES_PER_SAMPLE_RX 2
-#define CFG_TUD_AUDIO_RX_ITEMSIZE           2
-#define CFG_TUD_AUDIO_ENABLE_FEEDBACK_EP    0
+#define CFG_TUD_AUDIO_FORMAT_TYPE_I_TX 				AUDIO_DATA_FORMAT_TYPE_I_PCM
+#define CFG_TUD_AUDIO_N_CHANNELS_TX 				1
+#define CFG_TUD_AUDIO_N_BYTES_PER_SAMPLE_TX			2
 
 // EP and buffer size - for isochronous EP´s, the buffer and EP size are equal (different sizes would not make sense)
-#define CFG_TUD_AUDIO_EPSIZE_IN           (CFG_TUD_AUDIO_IN_PATH * (48 + 1) * (CFG_TUD_AUDIO_N_BYTES_PER_SAMPLE_TX) * (CFG_TUD_AUDIO_N_CHANNELS_TX)) // 48 Samples (48 kHz) x 2 Bytes/Sample x n Channels
-#define CFG_TUD_AUDIO_TX_FIFO_COUNT       (CFG_TUD_AUDIO_IN_PATH * 1)
-#define CFG_TUD_AUDIO_TX_FIFO_SIZE        (CFG_TUD_AUDIO_IN_PATH ? ((CFG_TUD_AUDIO_EPSIZE_IN)) : 0)
-
-// EP and buffer size - for isochronous EP´s, the buffer and EP size are equal (different sizes would not make sense)
-#define CFG_TUD_AUDIO_EPSIZE_OUT          (CFG_TUD_AUDIO_OUT_PATH * ((48 + CFG_TUD_AUDIO_ENABLE_FEEDBACK_EP) * (CFG_TUD_AUDIO_N_BYTES_PER_SAMPLE_RX) * (CFG_TUD_AUDIO_N_CHANNELS_RX))) // N Samples (N kHz) x 2 Bytes/Sample x n Channels
-#define CFG_TUD_AUDIO_RX_FIFO_COUNT       (CFG_TUD_AUDIO_OUT_PATH * 1)
-#define CFG_TUD_AUDIO_RX_FIFO_SIZE        (CFG_TUD_AUDIO_OUT_PATH ? (3 * (CFG_TUD_AUDIO_EPSIZE_OUT / CFG_TUD_AUDIO_RX_FIFO_COUNT)) : 0)
+#define CFG_TUD_AUDIO_EPSIZE_IN                                       48*CFG_TUD_AUDIO_N_BYTES_PER_SAMPLE_TX*CFG_TUD_AUDIO_N_CHANNELS_TX    // 48 Samples (48 kHz) x 2 Bytes/Sample x 1 Channels
+#define CFG_TUD_AUDIO_TX_FIFO_SIZE                                    48*2                                                                  // 48 Samples (48 kHz) x 2 Bytes/Sample (1/2 word)
+//#define CFG_TUD_AUDIO_EPSIZE_IN                                       512/(CFG_TUD_AUDIO_N_BYTES_PER_SAMPLE_TX*CFG_TUD_AUDIO_N_CHANNELS_TX)    // 48 Samples (48 kHz) x 2 Bytes/Sample x 1 Channels
+//#define CFG_TUD_AUDIO_TX_FIFO_SIZE                                    512/2                                                                  // 48 Samples (48 kHz) x 2 Bytes/Sample (1/2 word)
 
 // Number of Standard AS Interface Descriptors (4.9.1) defined per audio function - this is required to be able to remember the current alternate settings of these interfaces - We restrict us here to have a constant number for all audio functions (which means this has to be the maximum number of AS interfaces an audio function has and a second audio function with less AS interfaces just wastes a few bytes)
-#define CFG_TUD_AUDIO_N_AS_INT                    1
+#define CFG_TUD_AUDIO_N_AS_INT 			          1
 
 // Size of control request buffer
-#define CFG_TUD_AUDIO_CTRL_BUF_SIZE                64
+#define CFG_TUD_AUDIO_CTRL_BUF_SIZE 				64
 
 #ifdef __cplusplus
 }

@@ -61,11 +61,6 @@ class USBMidi {
             active = false;
         }
 
-        // call this in your loop if begin was started on core 0
-        void doLoop() {
-            tud_task(); // tinyusb device task
-            led_blinking_task();
-        }
 
         void write(uint8_t channel, uint8_t cmd, uint8_t note, uint8_t velocity){
             semaphore().aquire();
@@ -280,6 +275,12 @@ class USBMidi {
             return true;
         }
 
+        // call this in your loop if begin was started on core 0
+        virtual void doLoop() {
+            tud_task(); // tinyusb device task
+            led_blinking_task();
+        }
+
         //--------------------------------------------------------------------+
         // BLINKING TASK
         //--------------------------------------------------------------------+
@@ -308,9 +309,6 @@ class USBMidi {
         void print(const char* str){
             board_uart_write(str, strlen(str));
         }
-
-
-        
 
 };
 
