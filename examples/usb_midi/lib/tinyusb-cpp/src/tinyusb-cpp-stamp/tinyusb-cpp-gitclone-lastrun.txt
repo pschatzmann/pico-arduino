@@ -1,3 +1,0 @@
-repository='https://github.com/pschatzmann/tinyusb-cpp.git'
-module=''
-tag='origin'
