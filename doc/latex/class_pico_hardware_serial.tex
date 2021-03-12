@@ -1,0 +1,156 @@
+\hypertarget{class_pico_hardware_serial}{}\doxysection{Pico\+Hardware\+Serial Class Reference}
+\label{class_pico_hardware_serial}\index{PicoHardwareSerial@{PicoHardwareSerial}}
+
+
+Serial Stream for a defined UART. By default we use the following pins\+: UART0 tx/rx = gp0/gp1; UART1 tx/rx = gp4/gp5;.  
+
+
+
+
+{\ttfamily \#include $<$Pico\+Hardware\+Serial.\+h$>$}
+
+Inheritance diagram for Pico\+Hardware\+Serial\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_pico_hardware_serial}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_adae764b532536a816faeeff68cb6f672}\label{class_pico_hardware_serial_adae764b532536a816faeeff68cb6f672}} 
+{\bfseries Pico\+Hardware\+Serial} (int uart\+\_\+no)
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a11723e92a764440c008bd5db3c79146a}\label{class_pico_hardware_serial_a11723e92a764440c008bd5db3c79146a}} 
+virtual void {\bfseries begin} (unsigned long baudrate=PICO\+\_\+\+DEFAULT\+\_\+\+UART\+\_\+\+BAUD\+\_\+\+RATE)
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_aa7d96526d9a917f290ef99a71c41be34}\label{class_pico_hardware_serial_aa7d96526d9a917f290ef99a71c41be34}} 
+virtual void {\bfseries begin} (unsigned long baudrate, uint16\+\_\+t config)
+\item 
+virtual void \mbox{\hyperlink{class_pico_hardware_serial_a849e723fe077c72a055b5bd276c3c249}{begin}} (unsigned long baudrate, uint32\+\_\+t config, int rx\+Pin=-\/1, int tx\+Pin=-\/1, bool invert=false, bool cts=false, bool rts=false)
+\begin{DoxyCompactList}\small\item\em Initialization to output to UART. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_ac2c3e93291a812d040e3ad0d9534e3a6}\label{class_pico_hardware_serial_ac2c3e93291a812d040e3ad0d9534e3a6}} 
+virtual void {\bfseries end} ()
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a4f54d45ef7bb26f9b003fa0ace9e423a}\label{class_pico_hardware_serial_a4f54d45ef7bb26f9b003fa0ace9e423a}} 
+virtual int {\bfseries available} (void)
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_ada443cd19bb0ab80477837202bbb0442}\label{class_pico_hardware_serial_ada443cd19bb0ab80477837202bbb0442}} 
+virtual int {\bfseries available\+For\+Write} (void)
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a3864ba8954b99b2ba7fee8c03ac4d15e}\label{class_pico_hardware_serial_a3864ba8954b99b2ba7fee8c03ac4d15e}} 
+virtual int {\bfseries peek} (void)
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a509fe67ad84c4b5b075f071904aa035d}\label{class_pico_hardware_serial_a509fe67ad84c4b5b075f071904aa035d}} 
+virtual int {\bfseries read} (void)
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a3a04443d047fcad4a322c406aa585f76}\label{class_pico_hardware_serial_a3a04443d047fcad4a322c406aa585f76}} 
+virtual size\+\_\+t {\bfseries write} (uint8\+\_\+t c)
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_aef9bde54275d9551ce8c5164aa4d8d3f}\label{class_pico_hardware_serial_aef9bde54275d9551ce8c5164aa4d8d3f}} 
+size\+\_\+t {\bfseries write} (const uint8\+\_\+t $\ast$buffer, size\+\_\+t size)
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a4d556f3668bebdca732584dbeb6ff2e6}\label{class_pico_hardware_serial_a4d556f3668bebdca732584dbeb6ff2e6}} 
+size\+\_\+t {\bfseries write} (const char $\ast$buffer, size\+\_\+t size)
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a0c2696acf5ceb94826bfa1c253f0d694}\label{class_pico_hardware_serial_a0c2696acf5ceb94826bfa1c253f0d694}} 
+size\+\_\+t {\bfseries write} (const char $\ast$s)
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_adc35e2368a8b1ca0ece6e02b7982ae1c}\label{class_pico_hardware_serial_adc35e2368a8b1ca0ece6e02b7982ae1c}} 
+size\+\_\+t {\bfseries write} (unsigned long n)
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a96babf654774b028a94721c18246dd81}\label{class_pico_hardware_serial_a96babf654774b028a94721c18246dd81}} 
+size\+\_\+t {\bfseries write} (long n)
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a3d358d7aa19fa81d3f0626dbe7bf563c}\label{class_pico_hardware_serial_a3d358d7aa19fa81d3f0626dbe7bf563c}} 
+size\+\_\+t {\bfseries write} (unsigned int n)
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a8faff99f7c32e74c2f7a4cb020125e08}\label{class_pico_hardware_serial_a8faff99f7c32e74c2f7a4cb020125e08}} 
+size\+\_\+t {\bfseries write} (int n)
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a410c9336c2d026b1923e29ae67f0e84a}\label{class_pico_hardware_serial_a410c9336c2d026b1923e29ae67f0e84a}} 
+uint32\+\_\+t {\bfseries baud\+Rate} ()
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_ae5449afdde3e60d716b8c8a26bd614a6}\label{class_pico_hardware_serial_ae5449afdde3e60d716b8c8a26bd614a6}} 
+virtual {\bfseries operator bool} ()
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_ac39c8dbf7a2d46ee7dee26e9a313ded3}\label{class_pico_hardware_serial_ac39c8dbf7a2d46ee7dee26e9a313ded3}} 
+virtual void {\bfseries flush} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a7643c8e1cca09affc2b46f33d6620712}\label{class_pico_hardware_serial_a7643c8e1cca09affc2b46f33d6620712}} 
+void {\bfseries read\+Buffer} ()
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a2b84c9b017da6511a492565b87a1af65}\label{class_pico_hardware_serial_a2b84c9b017da6511a492565b87a1af65}} 
+void {\bfseries set\+\_\+config} (uint32\+\_\+t config)
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a5f11c7b78cd9f16903d2f2d188289ef4}\label{class_pico_hardware_serial_a5f11c7b78cd9f16903d2f2d188289ef4}} 
+void {\bfseries setup\+Default\+Rx\+Tx\+Pins} ()
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a93bd13f9abf1c03a00a3594021a37e91}\label{class_pico_hardware_serial_a93bd13f9abf1c03a00a3594021a37e91}} 
+const char $\ast$ {\bfseries to\+Str} (int value)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_aca7f45e34e51e3e27c55900e8fdcfdeb}\label{class_pico_hardware_serial_aca7f45e34e51e3e27c55900e8fdcfdeb}} 
+Ring\+BufferN$<$ BUFFER\+\_\+\+SIZE $>$ {\bfseries buffer}
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a7f50f8713c3075462adf97e4914451da}\label{class_pico_hardware_serial_a7f50f8713c3075462adf97e4914451da}} 
+uart\+\_\+inst\+\_\+t $\ast$ {\bfseries uart}
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a3b97c13bc6d55db36dafbe01a139f21d}\label{class_pico_hardware_serial_a3b97c13bc6d55db36dafbe01a139f21d}} 
+uint {\bfseries baud\+\_\+rate}
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a6416d18b9cfb9b3fccd642c44b1711fe}\label{class_pico_hardware_serial_a6416d18b9cfb9b3fccd642c44b1711fe}} 
+int {\bfseries tx\+\_\+pin}
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a0c3183a5ef8339067028c692d39b7cd5}\label{class_pico_hardware_serial_a0c3183a5ef8339067028c692d39b7cd5}} 
+int {\bfseries rx\+\_\+pin}
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_a9884b20d4542eacf81abbab98b216b64}\label{class_pico_hardware_serial_a9884b20d4542eacf81abbab98b216b64}} 
+int {\bfseries uart\+\_\+no}
+\item 
+\mbox{\Hypertarget{class_pico_hardware_serial_ad2e0d65c8c98555453d88d07d205486d}\label{class_pico_hardware_serial_ad2e0d65c8c98555453d88d07d205486d}} 
+bool {\bfseries ok} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Serial Stream for a defined UART. By default we use the following pins\+: UART0 tx/rx = gp0/gp1; UART1 tx/rx = gp4/gp5;. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_pico_hardware_serial_a849e723fe077c72a055b5bd276c3c249}\label{class_pico_hardware_serial_a849e723fe077c72a055b5bd276c3c249}} 
+\index{PicoHardwareSerial@{PicoHardwareSerial}!begin@{begin}}
+\index{begin@{begin}!PicoHardwareSerial@{PicoHardwareSerial}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily virtual void Pico\+Hardware\+Serial\+::begin (\begin{DoxyParamCaption}\item[{unsigned long}]{baudrate,  }\item[{uint32\+\_\+t}]{config,  }\item[{int}]{rx\+Pin = {\ttfamily -\/1},  }\item[{int}]{tx\+Pin = {\ttfamily -\/1},  }\item[{bool}]{invert = {\ttfamily false},  }\item[{bool}]{cts = {\ttfamily false},  }\item[{bool}]{rts = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Initialization to output to UART. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em baudrate} & \\
+\hline
+{\em config} & \\
+\hline
+{\em rx\+Pin} & \\
+\hline
+{\em tx\+Pin} & \\
+\hline
+{\em invert} & \\
+\hline
+{\em cts} & \\
+\hline
+{\em rts} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Arduino/\+Arduino\+Core-\/\+Pico/cores/pico/Pico\+Hardware\+Serial.\+h\end{DoxyCompactItemize}

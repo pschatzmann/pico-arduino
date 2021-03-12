@@ -1,0 +1,139 @@
+\label{index_md_README}%
+\Hypertarget{index_md_README}%
+ On Friday I was receiving my Raspberry PI Pico and I had the opportunity to play around with it. Actually most of the time I spent reading the Manuals... The conclusion\+: interesting -\/ but a little bit too complicated -\/ So I was quite happy to read that Arduino plans to add an official support for this Microcontroller.
+
+However I did not want to wait for the official support to be available, so as a temporary solution, I decided to make my own Arduino API availale as a separate project.\hypertarget{index_autotoc_md1}{}\doxysection{Design goals}\label{index_autotoc_md1}
+
+\begin{DoxyItemize}
+\item Provide a full implementation of the Arduino API
+\item Provide additioal easy to use C++ classes for the functionaity which is specific to the Pico
+\item Keep the pico specific build process using cmake
+\item Provide examples
+\end{DoxyItemize}\hypertarget{index_autotoc_md2}{}\doxysection{Installation}\label{index_autotoc_md2}
+
+\begin{DoxyEnumerate}
+\item First you need to install the Pico C Framwork. Please \href{https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf}{\texttt{ follow the instructions}} and do not forget to define the PICO\+\_\+\+SDK\+\_\+\+PATH environment variable.
+\item Clone this project with
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git clone https://github.com/pschatzmann/pico-\/arduino}
+
+\end{DoxyCode}
+
+\begin{DoxyEnumerate}
+\item Define the environment PICO\+\_\+\+SDK\+\_\+\+ARDUINO\+\_\+\+PATH variable to point to the project location.
+\item Build the arduino library (optional). The project already contains the compiled library. However I would recommend to rebuild it from the source.
+\end{DoxyEnumerate}
+
+To build the arduino library go to the pico-\/arduino/\+Arduino subdirectory 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd pico-\/arduino/Arduino}
+
+\end{DoxyCode}
+ and execute the steps below\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mkdir build}
+\DoxyCodeLine{cd build install}
+\DoxyCodeLine{cmake ..}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+
+
+You can find the resulting library in the pico-\/arduino/lib directory.\hypertarget{index_autotoc_md3}{}\doxysection{Examples}\label{index_autotoc_md3}
+Let\textquotesingle{}s have a look at the blink example. It conisists of the source code blink.\+cpp 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#include "{}Arduino.h"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{// the setup function runs once when you press reset or power the board}
+\DoxyCodeLine{void setup() \{}
+\DoxyCodeLine{  pinMode(LED\_BUILTIN, OUTPUT);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{// the loop function runs over and over again forever}
+\DoxyCodeLine{void loop() \{}
+\DoxyCodeLine{  digitalWrite(LED\_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)}
+\DoxyCodeLine{  delay(1000);                       // wait for a second}
+\DoxyCodeLine{  digitalWrite(LED\_BUILTIN, LOW);    // turn the LED off by making the voltage LOW}
+\DoxyCodeLine{  delay(1000);                       // wait for a second}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ This looks like a standard Arduino sketch. Please note the following differences however\+:
+\begin{DoxyItemize}
+\item The sketch file name must end with .cpp and not .ino
+\item The {\ttfamily \#include \char`\"{}\+Arduino.\+h\char`\"{}} is mandatory
+\item You need to provide a CMake\+Lists.\+txt file
+\end{DoxyItemize}
+
+To build the example go to the pico-\/arduino/examples/blink directory and execute the build steps\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mkdir build}
+\DoxyCodeLine{cd build}
+\DoxyCodeLine{cmake ..}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+ The result can be found in the arduino/examples/blink/build directory.
+
+Here is the list of the provided examples
+
+
+\begin{DoxyItemize}
+\item \href{examples/hallo_world}{\texttt{ hallo\+\_\+world}}
+\item \href{examples/blink}{\texttt{ blink}}
+\item \href{examples/tone}{\texttt{ tone}}
+\end{DoxyItemize}
+
+The Pico has 2 processors, so here are the examples which use this Pico specific functionality\+:
+
+
+\begin{DoxyItemize}
+\item \href{examples/multi_processor}{\texttt{ multi\+\_\+processor}}
+\item \href{examples/multi_processor_fifo}{\texttt{ multi\+\_\+processor\+\_\+fifo}}
+\item \href{examples/queue}{\texttt{ queue}}
+\item \href{examples/semaphore}{\texttt{ semaphore}} .
+\end{DoxyItemize}
+
+And finally some other Pico specific functionality\+:
+
+
+\begin{DoxyItemize}
+\item \href{examples/blink_timer}{\texttt{ blink\+\_\+timer}}
+\end{DoxyItemize}\hypertarget{index_autotoc_md4}{}\doxysection{Documentation}\label{index_autotoc_md4}
+The generated \href{https://pschatzmann.github.io/pico-arduino/doc/html/}{\texttt{ Class documentation}} can be found in the doc folder\hypertarget{index_autotoc_md5}{}\doxysection{Pinout}\label{index_autotoc_md5}
+It helps to know the functions of the pins. Here is a copy of the pinout provided by the official \href{https://www.raspberrypi.org/documentation/pico/getting-started/}{\texttt{ Raspberry Pi Pico Documentation}}\+:
+
+
+
+If a method is requiring a pin you can provide the GPIO number as integer or use the corresponding GP name as given in the sheet above.
+
+The following calls are all identical\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{digitalWrite(25, HIGH);                      // turn the LED on using integer}
+\DoxyCodeLine{digitalWrite(GP25, HIGH);                    // the same with GP25 define}
+\DoxyCodeLine{digitalWrite(LED\_BUILTIN, HIGH);             // the same with Arduino defines }
+\DoxyCodeLine{digitalWrite(PICO\_DEFAULT\_LED\_PIN, HIGH);    // the same with Pico defines }
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md6}{}\doxysection{Deploying a compiled Sketch}\label{index_autotoc_md6}
+Deployment is very easy -\/ just press the button on your Pico while plugging it to your computer via USB. This will automatically mount the Pico as external drive (RPI-\/\+RP2). Finally you just need to copy the generated uf2 file from your build directory to the drive.
+
+That\textquotesingle{}s it!\hypertarget{index_autotoc_md7}{}\doxysection{Project Status}\label{index_autotoc_md7}
+
+\begin{DoxyItemize}
+\item Basic Arduino API (e.\+g. String, Serial...) -\/ done
+\item digital input/output API -\/ done
+\item analog input/output API (PWM) -\/ done
+\item Multiprocessor support\+: queue, semaphore -\/ done
+\item tone -\/ in progress
+\item PIO API class -\/ in progress
+\item Arduino SPI API -\/ open
+\item Arduino I2C API -\/ open
+\item I2S API using PIO -\/ open
+\item Software Serial using PIO -\/ open 
+\end{DoxyItemize}

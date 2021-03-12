@@ -1,0 +1,55 @@
+\hypertarget{class_semaphore}{}\doxysection{Semaphore Class Reference}
+\label{class_semaphore}\index{Semaphore@{Semaphore}}
+
+
+Pico \mbox{\hyperlink{class_semaphore}{Semaphore}} which might be useful if you use the 2 processors (e.\+g. with the \mbox{\hyperlink{class_thread}{Thread}} class)  
+
+
+
+
+{\ttfamily \#include $<$Pico\+Semaphore.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_semaphore_a6bc0580e79d62888bc9e29ae9697036d}\label{class_semaphore_a6bc0580e79d62888bc9e29ae9697036d}} 
+{\bfseries Semaphore} (int max\+Permits=1, int inital\+Permits=1)
+\item 
+\mbox{\Hypertarget{class_semaphore_a7b21d121df4080c9cdafbc90a5383620}\label{class_semaphore_a7b21d121df4080c9cdafbc90a5383620}} 
+int {\bfseries available} ()
+\item 
+\mbox{\Hypertarget{class_semaphore_af2b2684b880c78549bf5b89b3d135756}\label{class_semaphore_af2b2684b880c78549bf5b89b3d135756}} 
+void {\bfseries reset} (int permits=1)
+\item 
+\mbox{\Hypertarget{class_semaphore_a027147279b6be91a74296be03e98b5f4}\label{class_semaphore_a027147279b6be91a74296be03e98b5f4}} 
+bool {\bfseries aquire} (int64\+\_\+t timeout\+Ms=-\/1)
+\item 
+\mbox{\Hypertarget{class_semaphore_a8df11949af5c6fa22fd9bb1fac2e4fe6}\label{class_semaphore_a8df11949af5c6fa22fd9bb1fac2e4fe6}} 
+bool {\bfseries release} ()
+\item 
+\mbox{\Hypertarget{class_semaphore_a0ba008a098f05e3235eaf23e0064091b}\label{class_semaphore_a0ba008a098f05e3235eaf23e0064091b}} 
+bool {\bfseries up} ()
+\item 
+\mbox{\Hypertarget{class_semaphore_a7c80c14ed73f0075421aae94f43378d1}\label{class_semaphore_a7c80c14ed73f0075421aae94f43378d1}} 
+bool {\bfseries down} ()
+\item 
+\mbox{\Hypertarget{class_semaphore_a496aae0d0eceef9385c9dcae4c3d9b36}\label{class_semaphore_a496aae0d0eceef9385c9dcae4c3d9b36}} 
+bool {\bfseries wait} ()
+\item 
+\mbox{\Hypertarget{class_semaphore_a1c1944487968a6295b3af8268b286b08}\label{class_semaphore_a1c1944487968a6295b3af8268b286b08}} 
+bool {\bfseries signal} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_semaphore_af4aedb00c6f4a21f9fe20b85398d084e}\label{class_semaphore_af4aedb00c6f4a21f9fe20b85398d084e}} 
+semaphore\+\_\+t {\bfseries sem}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Pico \mbox{\hyperlink{class_semaphore}{Semaphore}} which might be useful if you use the 2 processors (e.\+g. with the \mbox{\hyperlink{class_thread}{Thread}} class) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Arduino/\+Arduino\+Core-\/\+Pico/cores/pico/Pico\+Semaphore.\+h\end{DoxyCompactItemize}

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pico-arduino: PicoGPIOFunction Class Reference</title>
+<title>Pico-Arduino: PicoGPIOFunction Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,9 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">pico-arduino
+   <div id="projectname">Pico-Arduino
    </div>
-   <div id="projectbrief">Arduino API for Rasperry PI Pico Board</div>
   </td>
  </tr>
  </tbody>
@@ -64,7 +63,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a>  </div>
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="class_pico_g_p_i_o_function-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">PicoGPIOFunction Class Reference</div>  </div>
 </div><!--header-->
@@ -89,6 +89,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setFunctionADC</b> (p
 <tr class="memitem:a2739ccb090c0abd427f48dd67c732d97"><td class="memItemLeft" align="right" valign="top"><a id="a2739ccb090c0abd427f48dd67c732d97"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>initADC</b> ()</td></tr>
 <tr class="separator:a2739ccb090c0abd427f48dd67c732d97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac99a4b9b45d63fdf7b48fefab517df34"><td class="memItemLeft" align="right" valign="top"><a id="ac99a4b9b45d63fdf7b48fefab517df34"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>readPWM</b> (int pinNumber, float scale=100.0)</td></tr>
+<tr class="separator:ac99a4b9b45d63fdf7b48fefab517df34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -105,7 +108,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>current_adc</b></td></
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The pico requires that the function of the pin is defined. In Arduino, there is no such concept: so we do this at the first call of the corresponding function: enum gpio_function { GPIO_FUNC_XIP = 0, GPIO_FUNC_SPI = 1, GPIO_FUNC_UART = 2, GPIO_FUNC_I2C = 3, GPIO_FUNC_PWM = 4, GPIO_FUNC_SIO = 5, GPIO_FUNC_PIO0 = 6, GPIO_FUNC_PIO1 = 7, GPIO_FUNC_GPCK = 8, GPIO_FUNC_USB = 9, GPIO_FUNC_NULL = 0xf, };. </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>ArduinoCore-Pico/cores/pico/<a class="el" href="_pico_g_p_i_o_function_8h_source.html">PicoGPIOFunction.h</a></li>
+<li>Arduino/ArduinoCore-Pico/cores/pico/<a class="el" href="_pico_g_p_i_o_function_8h_source.html">PicoGPIOFunction.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

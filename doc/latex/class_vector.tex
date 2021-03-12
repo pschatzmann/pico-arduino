@@ -1,0 +1,122 @@
+\hypertarget{class_vector}{}\doxysection{Vector$<$ T $>$ Class Template Reference}
+\label{class_vector}\index{Vector$<$ T $>$@{Vector$<$ T $>$}}
+
+
+\mbox{\hyperlink{class_vector}{Vector}} implementation which provides the most important methods as defined by std\+::vector. This is neither part of Pico nor of the Arduino framwork but nevertheless it is quite handy to have and most of the times quite better then dealing with raw c arrays.  
+
+
+
+
+{\ttfamily \#include $<$Vector.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_vector_1_1iterator}{iterator}}
+\begin{DoxyCompactList}\small\item\em Iterator for the \mbox{\hyperlink{class_vector}{Vector}} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_vector_a80fb9e23534842119c55405443143808}\label{class_vector_a80fb9e23534842119c55405443143808}} 
+{\bfseries Vector} (int len=20)
+\item 
+\mbox{\Hypertarget{class_vector_a432bc2ecba4ed3d6953bf59287a5ce9f}\label{class_vector_a432bc2ecba4ed3d6953bf59287a5ce9f}} 
+{\bfseries Vector} (int size, T value)
+\item 
+\mbox{\Hypertarget{class_vector_a0e2c6007f85230693f9dafd9e3155e4d}\label{class_vector_a0e2c6007f85230693f9dafd9e3155e4d}} 
+{\bfseries Vector} (\mbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \&copy\+From)
+\item 
+\mbox{\Hypertarget{class_vector_a9df2d5edfbdfe096c94d98065deef220}\label{class_vector_a9df2d5edfbdfe096c94d98065deef220}} 
+{\bfseries Vector} (T $\ast$from, T $\ast$to)
+\item 
+\mbox{\Hypertarget{class_vector_a32ad98b135472b0ebc5d6cb3ae5d0085}\label{class_vector_a32ad98b135472b0ebc5d6cb3ae5d0085}} 
+void {\bfseries clear} ()
+\item 
+\mbox{\Hypertarget{class_vector_ae42ac066dad3b8fbb96fd4539900ad98}\label{class_vector_ae42ac066dad3b8fbb96fd4539900ad98}} 
+int {\bfseries size} ()
+\item 
+\mbox{\Hypertarget{class_vector_abc020404c26eb6bf465cda91ad543c17}\label{class_vector_abc020404c26eb6bf465cda91ad543c17}} 
+bool {\bfseries empty} ()
+\item 
+\mbox{\Hypertarget{class_vector_abbe544017b11d7f74380aebc9594c437}\label{class_vector_abbe544017b11d7f74380aebc9594c437}} 
+void {\bfseries push\+\_\+back} (T value)
+\item 
+\mbox{\Hypertarget{class_vector_adcba035109febbe55cba2a25f8483ba6}\label{class_vector_adcba035109febbe55cba2a25f8483ba6}} 
+void {\bfseries pop\+\_\+back} ()
+\item 
+\mbox{\Hypertarget{class_vector_ad1dcda84909a367b24ac19e0e76ef3fb}\label{class_vector_ad1dcda84909a367b24ac19e0e76ef3fb}} 
+void {\bfseries assign} (\mbox{\hyperlink{class_vector_1_1iterator}{iterator}} v1, \mbox{\hyperlink{class_vector_1_1iterator}{iterator}} v2)
+\item 
+\mbox{\Hypertarget{class_vector_acaf1f29d4973ae98046a89179e9387c5}\label{class_vector_acaf1f29d4973ae98046a89179e9387c5}} 
+void {\bfseries assign} (size\+\_\+t number, T value)
+\item 
+\mbox{\Hypertarget{class_vector_adec1feebe274c863116248b7b5bdfc88}\label{class_vector_adec1feebe274c863116248b7b5bdfc88}} 
+void {\bfseries swap} (\mbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \&in)
+\item 
+\mbox{\Hypertarget{class_vector_a0faba9db7d6866f1d7f5cc10fa51f25f}\label{class_vector_a0faba9db7d6866f1d7f5cc10fa51f25f}} 
+T \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (int index)
+\item 
+\mbox{\Hypertarget{class_vector_a7a8c87a6895c1bb73fbb19116a510a4c}\label{class_vector_a7a8c87a6895c1bb73fbb19116a510a4c}} 
+\mbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \& {\bfseries operator=} (\mbox{\hyperlink{class_vector}{Vector}}$<$ T $>$ \&copy\+From)
+\item 
+\mbox{\Hypertarget{class_vector_afccf995d5527b674a5d715bd98160989}\label{class_vector_afccf995d5527b674a5d715bd98160989}} 
+T \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (const int index) const
+\item 
+\mbox{\Hypertarget{class_vector_a4c6692eb957a4fdc0a6a03b61afa71d2}\label{class_vector_a4c6692eb957a4fdc0a6a03b61afa71d2}} 
+bool {\bfseries resize} (int new\+Size, T value)
+\item 
+\mbox{\Hypertarget{class_vector_ad6454ce193263b8000d4c18cb0c3a0c8}\label{class_vector_ad6454ce193263b8000d4c18cb0c3a0c8}} 
+void {\bfseries shrink\+\_\+to\+\_\+fit} ()
+\item 
+\mbox{\Hypertarget{class_vector_aaabcab16c7653c13fcc267bcae48287d}\label{class_vector_aaabcab16c7653c13fcc267bcae48287d}} 
+int {\bfseries capacity} ()
+\item 
+\mbox{\Hypertarget{class_vector_aca3a3d99f7e3932adf7767e4b5e972f2}\label{class_vector_aca3a3d99f7e3932adf7767e4b5e972f2}} 
+bool {\bfseries resize} (int new\+Size)
+\item 
+\mbox{\Hypertarget{class_vector_a466e8c045ea10d62c28b689888e9fe5a}\label{class_vector_a466e8c045ea10d62c28b689888e9fe5a}} 
+\mbox{\hyperlink{class_vector_1_1iterator}{iterator}} {\bfseries begin} ()
+\item 
+\mbox{\Hypertarget{class_vector_a7bd4943333f47a49ce8145abcb43fbdc}\label{class_vector_a7bd4943333f47a49ce8145abcb43fbdc}} 
+T \& {\bfseries back} ()
+\item 
+\mbox{\Hypertarget{class_vector_ae288fa619188bff101d5300b8aaf9a90}\label{class_vector_ae288fa619188bff101d5300b8aaf9a90}} 
+\mbox{\hyperlink{class_vector_1_1iterator}{iterator}} {\bfseries end} ()
+\item 
+\mbox{\Hypertarget{class_vector_ace712b256f6a6a3f3a5f2b459dc1c819}\label{class_vector_ace712b256f6a6a3f3a5f2b459dc1c819}} 
+void {\bfseries erase} (\mbox{\hyperlink{class_vector_1_1iterator}{iterator}} it)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_vector_ad20c080ca20e759d69f1a8b04e6cb4ad}\label{class_vector_ad20c080ca20e759d69f1a8b04e6cb4ad}} 
+void {\bfseries resize\+\_\+internal} (int new\+Size, bool copy, bool shrink=false)
+\item 
+\mbox{\Hypertarget{class_vector_aaae81180b7adbc189906eef31d292136}\label{class_vector_aaae81180b7adbc189906eef31d292136}} 
+void {\bfseries cleanup} (T $\ast$data, int from, int to)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_vector_a43a8f4d365b530e969449beac479957c}\label{class_vector_a43a8f4d365b530e969449beac479957c}} 
+int {\bfseries buffer\+Len}
+\item 
+\mbox{\Hypertarget{class_vector_a9fa8a506b5480c8af31c33b9a0641a18}\label{class_vector_a9fa8a506b5480c8af31c33b9a0641a18}} 
+int {\bfseries len} = 0
+\item 
+\mbox{\Hypertarget{class_vector_a536da87a916c8bdf2565fa6d808337f2}\label{class_vector_a536da87a916c8bdf2565fa6d808337f2}} 
+T $\ast$ {\bfseries data} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Vector$<$ T $>$}
+
+\mbox{\hyperlink{class_vector}{Vector}} implementation which provides the most important methods as defined by std\+::vector. This is neither part of Pico nor of the Arduino framwork but nevertheless it is quite handy to have and most of the times quite better then dealing with raw c arrays. 
+
+by Phil Schatzmann 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Arduino/\+Arduino\+Core-\/\+Pico/cores/pico/Vector.\+h\end{DoxyCompactItemize}

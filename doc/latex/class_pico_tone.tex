@@ -1,0 +1,55 @@
+\hypertarget{class_pico_tone}{}\doxysection{Pico\+Tone Class Reference}
+\label{class_pico_tone}\index{PicoTone@{PicoTone}}
+
+
+We use the \mbox{\hyperlink{class_timer_alarm_repeating}{Timer\+Alarm\+Repeating}} to generate tones.  
+
+
+
+
+{\ttfamily \#include $<$Pico\+Tone.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_pico_tone_a6407d5bf844d272c4ab14730cab79254}\label{class_pico_tone_a6407d5bf844d272c4ab14730cab79254}} 
+void {\bfseries tone} (uint8\+\_\+t pin\+Number, unsigned int frequency)
+\item 
+\mbox{\Hypertarget{class_pico_tone_a42c9a4aaed2e8007e79c7afa2a1596fc}\label{class_pico_tone_a42c9a4aaed2e8007e79c7afa2a1596fc}} 
+void {\bfseries no\+Tone} ()
+\item 
+\mbox{\Hypertarget{class_pico_tone_a3104699f7724feae62f42423c44842dd}\label{class_pico_tone_a3104699f7724feae62f42423c44842dd}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{class_pico_tone}{Pico\+Tone}} \&other)
+\item 
+\mbox{\Hypertarget{class_pico_tone_a85a36311881b07778e2a6ed9d70b33d7}\label{class_pico_tone_a85a36311881b07778e2a6ed9d70b33d7}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{class_pico_tone}{Pico\+Tone}} \&other)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_pico_tone_a2f9718cae276af969e6b8180be6400a5}\label{class_pico_tone_a2f9718cae276af969e6b8180be6400a5}} 
+static bool {\bfseries generate\+\_\+sound\+\_\+callback} (repeating\+\_\+timer\+\_\+t $\ast$rt)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_pico_tone_adeae8a9a0d06234c424589c06db8fcd8}\label{class_pico_tone_adeae8a9a0d06234c424589c06db8fcd8}} 
+int {\bfseries pin}
+\item 
+\mbox{\Hypertarget{class_pico_tone_ab534e9499138f00275c46e63268a1755}\label{class_pico_tone_ab534e9499138f00275c46e63268a1755}} 
+bool {\bfseries state}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_pico_tone_a9554acb1e2073d7435332c9138dc1c04}\label{class_pico_tone_a9554acb1e2073d7435332c9138dc1c04}} 
+\mbox{\hyperlink{class_timer_alarm_repeating}{Timer\+Alarm\+Repeating}} {\bfseries alarm}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+We use the \mbox{\hyperlink{class_timer_alarm_repeating}{Timer\+Alarm\+Repeating}} to generate tones. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Arduino/\+Arduino\+Core-\/\+Pico/cores/pico/Pico\+Tone.\+h\end{DoxyCompactItemize}

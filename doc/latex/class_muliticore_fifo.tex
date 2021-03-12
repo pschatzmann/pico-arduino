@@ -1,0 +1,37 @@
+\hypertarget{class_muliticore_fifo}{}\doxysection{Muliticore\+Fifo Class Reference}
+\label{class_muliticore_fifo}\index{MuliticoreFifo@{MuliticoreFifo}}
+
+
+The RP2040 contains two FIFOs for passing data, messages or ordered events between the two cores. Each FIFO is 32 bits wide, and 8 entries deep. One of the FIFOs can only be written by core 0, and read by core 1. The other can only be written by core 1, and read by core 0.  
+
+
+
+
+{\ttfamily \#include $<$Pico\+Multicore\+Fifo.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_muliticore_fifo_acd30f37cc00feb46dcee3ee6b890611d}\label{class_muliticore_fifo_acd30f37cc00feb46dcee3ee6b890611d}} 
+bool {\bfseries push} (uint32\+\_\+t data, bool is\+\_\+blocking=true)
+\item 
+\mbox{\Hypertarget{class_muliticore_fifo_a22433cfa3251e9f43a5b8835ca435043}\label{class_muliticore_fifo_a22433cfa3251e9f43a5b8835ca435043}} 
+bool {\bfseries pop} (uint32\+\_\+t \&data, bool is\+\_\+blocking=true)
+\item 
+\mbox{\Hypertarget{class_muliticore_fifo_af0a84cebf6a04c4fc03fca5f900800fc}\label{class_muliticore_fifo_af0a84cebf6a04c4fc03fca5f900800fc}} 
+bool {\bfseries is\+Empty} ()
+\item 
+\mbox{\Hypertarget{class_muliticore_fifo_a5dcf698740117ace9d9e6a0bfb899b94}\label{class_muliticore_fifo_a5dcf698740117ace9d9e6a0bfb899b94}} 
+bool {\bfseries is\+Full} ()
+\item 
+\mbox{\Hypertarget{class_muliticore_fifo_a30018feefe7e11338874521be2df09aa}\label{class_muliticore_fifo_a30018feefe7e11338874521be2df09aa}} 
+void {\bfseries clear} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The RP2040 contains two FIFOs for passing data, messages or ordered events between the two cores. Each FIFO is 32 bits wide, and 8 entries deep. One of the FIFOs can only be written by core 0, and read by core 1. The other can only be written by core 1, and read by core 0. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Arduino/\+Arduino\+Core-\/\+Pico/cores/pico/Pico\+Multicore\+Fifo.\+h\end{DoxyCompactItemize}

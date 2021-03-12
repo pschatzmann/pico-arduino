@@ -1,0 +1,67 @@
+\hypertarget{class_p_i_o_manager}{}\doxysection{PIOManager Class Reference}
+\label{class_p_i_o_manager}\index{PIOManager@{PIOManager}}
+
+
+The PIO subsystem on RP2040 allows you to write small, simple programs for what are called PIO state machines, of which RP2040 has eight split across two PIO instances. A state machine is responsible for setting and reading one or more GPIOs, buffering data to or from the processor (or RP2040’s ultra-\/fast DMA subsystem), and notifying the processor, via IRQ or polling, when data or attention is needed.  
+
+
+
+
+{\ttfamily \#include $<$Pico\+PIOManager.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_p_i_o_manager_a1ea9d20df191b32fbda0d868d64e653e}\label{class_p_i_o_manager_a1ea9d20df191b32fbda0d868d64e653e}} 
+\mbox{\hyperlink{class_p_i_o_manager}{PIOManager}} {\bfseries pin} (int pin)
+\item 
+\mbox{\Hypertarget{class_p_i_o_manager_a12fe38ca9fc06d7c191fbf28e9b4841f}\label{class_p_i_o_manager_a12fe38ca9fc06d7c191fbf28e9b4841f}} 
+\mbox{\hyperlink{class_p_i_o_manager}{PIOManager}} {\bfseries program} (pio\+\_\+program\+\_\+t program)
+\item 
+\mbox{\Hypertarget{class_p_i_o_manager_a1d3c82af3ad1157ac83cce20a11f9fcb}\label{class_p_i_o_manager_a1d3c82af3ad1157ac83cce20a11f9fcb}} 
+\mbox{\hyperlink{class_p_i_o_manager}{PIOManager}} {\bfseries config} (pio\+\_\+sm\+\_\+config config)
+\item 
+\mbox{\Hypertarget{class_p_i_o_manager_a00dee46784601dbd4d0b87593a6b3677}\label{class_p_i_o_manager_a00dee46784601dbd4d0b87593a6b3677}} 
+\mbox{\hyperlink{class_p_i_o_manager}{PIOManager}} {\bfseries pio} (PIO pio)
+\item 
+\mbox{\Hypertarget{class_p_i_o_manager_a28f8060762fa7ad49d48174bdccf1755}\label{class_p_i_o_manager_a28f8060762fa7ad49d48174bdccf1755}} 
+\mbox{\hyperlink{class_p_i_o_manager}{PIOManager}} \& {\bfseries begin} ()
+\item 
+\mbox{\Hypertarget{class_p_i_o_manager_a2a0f73a8d777832c7a9b18b9fa202b0a}\label{class_p_i_o_manager_a2a0f73a8d777832c7a9b18b9fa202b0a}} 
+\mbox{\hyperlink{class_p_i_o_manager}{PIOManager}} \& {\bfseries setup} (uint64\+\_\+t hz, int pin, pio\+\_\+program\+\_\+t program, pio\+\_\+sm\+\_\+config config, PIO pio=pio0)
+\item 
+\mbox{\Hypertarget{class_p_i_o_manager_a6245e2a49ed06893eb7df2c5a9815fac}\label{class_p_i_o_manager_a6245e2a49ed06893eb7df2c5a9815fac}} 
+\mbox{\hyperlink{class_p_i_o_manager}{PIOManager}} {\bfseries set\+Frequency} (uint64\+\_\+t hz)
+\item 
+\mbox{\Hypertarget{class_p_i_o_manager_aa0d00a59f2a324bc46222a08011395fb}\label{class_p_i_o_manager_aa0d00a59f2a324bc46222a08011395fb}} 
+\mbox{\hyperlink{class_p_i_o_manager}{PIOManager}} \& {\bfseries start} ()
+\item 
+\mbox{\Hypertarget{class_p_i_o_manager_a9a02f3a503c13522e3acb387f39de23c}\label{class_p_i_o_manager_a9a02f3a503c13522e3acb387f39de23c}} 
+\mbox{\hyperlink{class_p_i_o_manager}{PIOManager}} \& {\bfseries stop} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_p_i_o_manager_a0fa62f0c9dd379a1be5d06cdb64ec533}\label{class_p_i_o_manager_a0fa62f0c9dd379a1be5d06cdb64ec533}} 
+PIO {\bfseries pio} = pio0
+\item 
+\mbox{\Hypertarget{class_p_i_o_manager_a40a1ee673057dec636a0a36821b3db73}\label{class_p_i_o_manager_a40a1ee673057dec636a0a36821b3db73}} 
+pio\+\_\+sm\+\_\+config {\bfseries config}
+\item 
+\mbox{\Hypertarget{class_p_i_o_manager_a92aeef2498a7e117d8c6115279729168}\label{class_p_i_o_manager_a92aeef2498a7e117d8c6115279729168}} 
+pio\+\_\+program\+\_\+t {\bfseries program}
+\item 
+\mbox{\Hypertarget{class_p_i_o_manager_a1f68ce09d4396416e7430b4da3aa29bd}\label{class_p_i_o_manager_a1f68ce09d4396416e7430b4da3aa29bd}} 
+uint {\bfseries state\+\_\+machine}
+\item 
+\mbox{\Hypertarget{class_p_i_o_manager_a476b482dbf2be46cf4166f8a517cacdd}\label{class_p_i_o_manager_a476b482dbf2be46cf4166f8a517cacdd}} 
+int {\bfseries pin}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The PIO subsystem on RP2040 allows you to write small, simple programs for what are called PIO state machines, of which RP2040 has eight split across two PIO instances. A state machine is responsible for setting and reading one or more GPIOs, buffering data to or from the processor (or RP2040’s ultra-\/fast DMA subsystem), and notifying the processor, via IRQ or polling, when data or attention is needed. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Arduino/\+Arduino\+Core-\/\+Pico/cores/pico/Pico\+PIOManager.\+h\end{DoxyCompactItemize}

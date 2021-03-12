@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pico-arduino: ArduinoCore-Pico/cores/pico/PicoHardwareSPI.h Source File</title>
+<title>Pico-Arduino: Arduino/ArduinoCore-Pico/cores/pico/PicoHardwareSPI.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,9 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">pico-arduino
+   <div id="projectname">Pico-Arduino
    </div>
-   <div id="projectbrief">Arduino API for Rasperry PI Pico Board</div>
   </td>
  </tr>
  </tbody>
@@ -62,7 +61,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_f348fea2a14a908b23471cc6cb54e013.html">ArduinoCore-Pico</a></li><li class="navelem"><a class="el" href="dir_928c59eaa02d2e1626bf364c74ade847.html">cores</a></li><li class="navelem"><a class="el" href="dir_adc2ca13ae9246445aa2f514e631694a.html">pico</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_a991eec27578c865874ede3d8ec657c2.html">Arduino</a></li><li class="navelem"><a class="el" href="dir_0efa8c010417c424802b303945c3c8a3.html">ArduinoCore-Pico</a></li><li class="navelem"><a class="el" href="dir_3d473c3ad07578879fd58d2180dd0d84.html">cores</a></li><li class="navelem"><a class="el" href="dir_7f554b765fbbe9d5846a865f3ec17636.html">pico</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -77,7 +76,7 @@ $(function() {
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;hardware/spi.h&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;hardware/irq.h&quot;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pico_hardware_s_p_i.html">PicoHardwareSPI</a> : <span class="keyword">public</span> <a class="code" href="classarduino_1_1_hardware_s_p_i.html">HardwareSPI</a> {</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pico_hardware_s_p_i.html">PicoHardwareSPI</a> : <span class="keyword">public</span> HardwareSPI {</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="class_pico_hardware_s_p_i.html">PicoHardwareSPI</a>(spi_inst_t *spi){</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            this-&gt;spi = spi;</div>
@@ -101,7 +100,7 @@ $(function() {
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            is_init = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a9e1ffce1882a65b407cd54d5583ca94d">   61</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#a9e1ffce1882a65b407cd54d5583ca94d">beginTransaction</a>(<a class="code" href="classarduino_1_1_s_p_i_settings.html">SPISettings</a> settings) {</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a9e1ffce1882a65b407cd54d5583ca94d">   61</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#a9e1ffce1882a65b407cd54d5583ca94d">beginTransaction</a>(SPISettings settings) {</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keywordflow">if</span> (last_settings != settings || !is_init){</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                spi_init (spi, settings.getClockFreq() );</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                is_init = <span class="keyword">true</span>;</div>
@@ -189,7 +188,7 @@ $(function() {
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        uint data_bits;</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="keywordtype">int</span> using_interrupt_no;</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        <span class="keywordtype">bool</span> is_init;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <a class="code" href="classarduino_1_1_s_p_i_settings.html">SPISettings</a> last_settings;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        SPISettings last_settings;</div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="comment">// SPI0_IRQ = 18, SPI1_IRQ = 19</span></div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <span class="keywordtype">int</span> getStandardInterrupt(){</div>
@@ -274,8 +273,6 @@ $(function() {
 <div class="ttc" id="aclass_pico_hardware_s_p_i_html_acbc94ab59b45b889c292fa418f731d14"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#acbc94ab59b45b889c292fa418f731d14">PicoHardwareSPI::begin</a></div><div class="ttdeci">virtual void begin()</div><div class="ttdoc">Initializes the SPI bus by setting SCK, MOSI, and SS to outputs, pulling SCK and MOSI low,...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:29</div></div>
 <div class="ttc" id="aclass_pico_hardware_s_p_i_html_ae15dbbe0614679be10ea1575821ab1bc"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#ae15dbbe0614679be10ea1575821ab1bc">PicoHardwareSPI::transfer16</a></div><div class="ttdeci">virtual uint16_t transfer16(uint16_t data)</div><div class="ttdoc">SPI transfer is based on a simultaneous send and receive of 2 bytes.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:122</div></div>
 <div class="ttc" id="aclass_pico_hardware_s_p_i_html_af8f00cebe2aa5d967a7cb921f9b80d15"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#af8f00cebe2aa5d967a7cb921f9b80d15">PicoHardwareSPI::endTransaction</a></div><div class="ttdeci">virtual void endTransaction(void)</div><div class="ttdoc">Stop using the SPI bus. Normally this is called after de-asserting the chip select,...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:97</div></div>
-<div class="ttc" id="aclassarduino_1_1_hardware_s_p_i_html"><div class="ttname"><a href="classarduino_1_1_hardware_s_p_i.html">arduino::HardwareSPI</a></div><div class="ttdef"><b>Definition:</b> HardwareSPI.h:105</div></div>
-<div class="ttc" id="aclassarduino_1_1_s_p_i_settings_html"><div class="ttname"><a href="classarduino_1_1_s_p_i_settings.html">arduino::SPISettings</a></div><div class="ttdef"><b>Definition:</b> HardwareSPI.h:37</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
