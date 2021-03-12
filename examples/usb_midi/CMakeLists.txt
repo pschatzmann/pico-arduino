@@ -52,7 +52,7 @@ include_directories(
 )
 
 # PICO Executable
-add_executable(usb_midi ${CMAKE_CURRENT_SOURCE_DIR}/usb_midi.cpp )
+add_executable(usb_midi ${CMAKE_CURRENT_SOURCE_DIR}/usb_midi.cpp ${CMAKE_CURRENT_SOURCE_DIR}/usb_main.cpp )
 
 pico_enable_stdio_usb(usb_midi 1)
 pico_enable_stdio_uart(usb_midi 0)
@@ -61,6 +61,7 @@ add_dependencies(usb_midi tinyusb-cpp)
 
 # Add pico_stdlib library which aggregates commonly used features
 target_link_libraries(usb_midi PRIVATE
+    ${ARDUINO_LIB}
     pico_stdio_uart 
     pico_stdlib 
     pico_runtime
@@ -71,6 +72,8 @@ target_link_libraries(usb_midi PRIVATE
     hardware_clocks
     hardware_spi
     hardware_pio
+    tinyusb_device
+    tinyusb_board
 )
 
 # create map/bin/hex/uf2 file in addition to ELF.

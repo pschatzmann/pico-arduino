@@ -1,4 +1,4 @@
-#include "USB.h"
+#include "USBMidi.h"
 
 // Invoked when received GET DEVICE DESCRIPTOR
 // Application return pointer to descriptor

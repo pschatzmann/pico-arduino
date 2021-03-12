@@ -1,5 +1,5 @@
 #include "Arduino.h"
-#include "midi/USBMidi.h"
+#include "USBMidi.h"
 
 USBMidi midi = USBMidi::instance();
 int note;

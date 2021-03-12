@@ -65,7 +65,6 @@ target_link_libraries("${ARDUINO_SKETCH_NAME}" PRIVATE
     hardware_spi
     hardware_pio
     ${ARDUINO_LIB}
-    ${SDFAT_LIB}
     ${ARDUINO_SKETCH_LIB}
 )
 
