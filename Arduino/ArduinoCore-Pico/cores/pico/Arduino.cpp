@@ -3,7 +3,6 @@
 #include "PicoLogger.h"
 #include "PicoHardwareSerial.h"
 #include "PicoTone.h"
-#include "AudioTools/AudioTools.h"
 
 // public data
 PicoDefaultSerial Serial;
@@ -14,7 +13,6 @@ PicoHardwareSPI SPI(spi0);
 PicoHardwareSPI SPI1(spi1);
 PicoGPIOFunction GPIOFunction;
 //PicoHardwareI2C Wire; // I2C 
-AudioLogCls AudioLogger;
 
 // local data
 static bool adc_init_flag = false;

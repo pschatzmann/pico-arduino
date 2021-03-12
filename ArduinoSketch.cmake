@@ -35,14 +35,6 @@ find_library(ARDUINO_LIB
     NO_CMAKE_SYSTEM_PATH
 )
 
-find_library(SDFAT_LIB  
-    NAMES "sdfat" 
-    PATHS "${PICO_SDK_ARDUINO_PATH}/lib"
-    NO_CMAKE_FIND_ROOT_PATH
-    NO_DEFAULT_PATH
-    NO_SYSTEM_ENVIRONMENT_PATH
-    NO_CMAKE_SYSTEM_PATH
-)
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}

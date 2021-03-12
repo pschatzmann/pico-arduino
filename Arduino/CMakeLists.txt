@@ -57,7 +57,6 @@ target_link_libraries(arduino
 
 #---------------------
 
-add_subdirectory("${PICO_SDK_ARDUINO_PATH}/Arduino/SdFat")
 #add_subdirectory("${PICO_SDK_ARDUINO_PATH}/Arduino/USB")
 ## Header only libraries
 #add_subdirectory("${PICO_SDK_ARDUINO_PATH}/Arduino/PicoI2S")
@@ -65,7 +64,7 @@ add_subdirectory("${PICO_SDK_ARDUINO_PATH}/Arduino/SdFat")
 
 #---------------------
 
-install(TARGETS arduino sdfat
+install(TARGETS arduino
     DESTINATION ${PICO_SDK_ARDUINO_PATH}/lib
 )
 

@@ -25,32 +25,55 @@
 
 #ifndef _TUSB_CONFIG_H_
 #define _TUSB_CONFIG_H_
+#include <stdint.h>
+#include <stdbool.h>
 
 #ifdef __cplusplus
-extern "C" {
+ extern "C" {
 #endif
+
+//--------------------------------------------------------------------
+// Global Callback Methods that we need to implement
+//--------------------------------------------------------------------
+void __setOnRxCallback(void (*fp)());
+
 
 //--------------------------------------------------------------------
 // COMMON CONFIGURATION
 //--------------------------------------------------------------------
 
-// defined by compiler flags for flexibility
+// defined by board.mk
 #ifndef CFG_TUSB_MCU
-#error CFG_TUSB_MCU must be defined
+  #error CFG_TUSB_MCU must be defined
 #endif
 
-#if CFG_TUSB_MCU == OPT_MCU_LPC43XX || CFG_TUSB_MCU == OPT_MCU_LPC18XX || CFG_TUSB_MCU == OPT_MCU_MIMXRT10XX
-#define CFG_TUSB_RHPORT0_MODE       (OPT_MODE_DEVICE | OPT_MODE_HIGH_SPEED)
+// RHPort number used for device can be defined by board.mk, default to port 0
+#ifndef BOARD_DEVICE_RHPORT_NUM
+  #define BOARD_DEVICE_RHPORT_NUM     0
+#endif
+
+// RHPort max operational speed can defined by board.mk
+// Default to Highspeed for MCU with internal HighSpeed PHY (can be port specific), otherwise FullSpeed
+#ifndef BOARD_DEVICE_RHPORT_SPEED
+  #if (CFG_TUSB_MCU == OPT_MCU_LPC18XX || CFG_TUSB_MCU == OPT_MCU_LPC43XX || CFG_TUSB_MCU == OPT_MCU_MIMXRT10XX || \
+       CFG_TUSB_MCU == OPT_MCU_NUC505  || CFG_TUSB_MCU == OPT_MCU_CXD56)
+    #define BOARD_DEVICE_RHPORT_SPEED   OPT_MODE_HIGH_SPEED
+  #else
+    #define BOARD_DEVICE_RHPORT_SPEED   OPT_MODE_FULL_SPEED
+  #endif
+#endif
+
+// Device mode with rhport and speed defined by board.mk
+#if   BOARD_DEVICE_RHPORT_NUM == 0
+  #define CFG_TUSB_RHPORT0_MODE     (OPT_MODE_DEVICE | BOARD_DEVICE_RHPORT_SPEED)
+#elif BOARD_DEVICE_RHPORT_NUM == 1
+  #define CFG_TUSB_RHPORT1_MODE     (OPT_MODE_DEVICE | BOARD_DEVICE_RHPORT_SPEED)
 #else
-#define CFG_TUSB_RHPORT0_MODE       OPT_MODE_DEVICE
+  #error "Incorrect RHPort configuration"
 #endif
 
 #ifndef CFG_TUSB_OS
-#define CFG_TUSB_OS                 OPT_OS_NONE
-#endif
-
-#ifndef CFG_TUSB_DEBUG
-#define CFG_TUSB_DEBUG              0
+#define CFG_TUSB_OS               OPT_OS_NONE
 #endif
 
 // CFG_TUSB_DEBUG is defined by compiler in DEBUG build
@@ -83,36 +106,15 @@ extern "C" {
 #define CFG_TUD_CDC               0
 #define CFG_TUD_MSC               0
 #define CFG_TUD_HID               0
-#define CFG_TUD_MIDI              0
-#define CFG_TUD_AUDIO             1
+#define CFG_TUD_MIDI              1
 #define CFG_TUD_VENDOR            0
 
-//--------------------------------------------------------------------
-// AUDIO CLASS DRIVER CONFIGURATION
-//--------------------------------------------------------------------
-
-// Audio format type
-#define CFG_TUD_AUDIO_USE_TX_FIFO 				1
-#define CFG_TUD_AUDIO_FORMAT_TYPE_TX 				AUDIO_FORMAT_TYPE_I
-#define CFG_TUD_AUDIO_FORMAT_TYPE_RX 				AUDIO_FORMAT_TYPE_UNDEFINED
-
-// Audio format type I specifications
-#define CFG_TUD_AUDIO_FORMAT_TYPE_I_TX 				AUDIO_DATA_FORMAT_TYPE_I_PCM
-#define CFG_TUD_AUDIO_N_CHANNELS_TX 				1
-#define CFG_TUD_AUDIO_N_BYTES_PER_SAMPLE_TX			2
-
-// EP and buffer size - for isochronous EP´s, the buffer and EP size are equal (different sizes would not make sense)
-#define CFG_TUD_AUDIO_EPSIZE_IN                                       48*CFG_TUD_AUDIO_N_BYTES_PER_SAMPLE_TX*CFG_TUD_AUDIO_N_CHANNELS_TX    // 48 Samples (48 kHz) x 2 Bytes/Sample x 1 Channels
-#define CFG_TUD_AUDIO_TX_FIFO_SIZE                                    48*2                                                                  // 48 Samples (48 kHz) x 2 Bytes/Sample (1/2 word)
-
-// Number of Standard AS Interface Descriptors (4.9.1) defined per audio function - this is required to be able to remember the current alternate settings of these interfaces - We restrict us here to have a constant number for all audio functions (which means this has to be the maximum number of AS interfaces an audio function has and a second audio function with less AS interfaces just wastes a few bytes)
-#define CFG_TUD_AUDIO_N_AS_INT 			          1
-
-// Size of control request buffer
-#define CFG_TUD_AUDIO_CTRL_BUF_SIZE 				64
+// MIDI FIFO size of TX and RX
+#define CFG_TUD_MIDI_RX_BUFSIZE   (TUD_OPT_HIGH_SPEED ? 512 : 64)
+#define CFG_TUD_MIDI_TX_BUFSIZE   (TUD_OPT_HIGH_SPEED ? 512 : 64)
 
 #ifdef __cplusplus
-}
+ }
 #endif
 
 #endif /* _TUSB_CONFIG_H_ */
