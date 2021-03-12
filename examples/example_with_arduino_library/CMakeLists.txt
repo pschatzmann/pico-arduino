@@ -1,75 +1,24 @@
-cmake_minimum_required(VERSION 3.12)
-
+cmake_minimum_required(VERSION 3.19.2)
 # PICO initialization
 set(PICO_SDK_PATH $ENV{PICO_SDK_PATH})
-include(${PICO_SDK_PATH}/external/pico_sdk_import.cmake)
-
-# define project settins
 set(PICO_SDK_ARDUINO_PATH $ENV{PICO_SDK_ARDUINO_PATH})
+set(ARDUINO_SKETCH_NAME "spektrum_example" )
 
-# Standard Sketch logic
-project(example_example_sketch)
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_CXX_STANDARD 17)
+include(${PICO_SDK_PATH}/external/pico_sdk_import.cmake)
+include(FetchContent)
 
-# initialize the Pico SDK
-pico_sdk_init()
+project("${ARDUINO_SKETCH_NAME}")
 
-# Define PICO for c++ Preprocessor 
-add_definitions(-DPICO -DARDUINO)
+## Download of spektrum_satellite library from Guthub
+FetchContent_Declare( spektrum_satellite GIT_REPOSITORY https://github.com/pschatzmann/SpektrumSatellite.git  GIT_TAG  master)
+FetchContent_MakeAvailable(spektrum_satellite)
 
-# We search for the Pico ARDUINO library
-find_library(ARDUINO_LIB  
-    NAMES "arduino" 
-    PATHS "${PICO_SDK_ARDUINO_PATH}/lib"
-    NO_CMAKE_FIND_ROOT_PATH
-    NO_DEFAULT_PATH
-    NO_SYSTEM_ENVIRONMENT_PATH
-    NO_CMAKE_SYSTEM_PATH
-)
-
-# Download Arduino Library
-execute_process(
-    COMMAND git clone https://github.com/pschatzmann/SpektrumSatellite.git
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-#    COMMAND_ERROR_IS_FATAL ANY
-)
-
-# Collect source files in variales
-file(GLOB SPEKTRUM_SRC ${CMAKE_CURRENT_SOURCE_DIR}/lib/SpektrumSatellite/src/*.cpp )
+## Define all Source files incl spektrum_satellite
+file(GLOB_RECURSE SDFAT_SRC CONFIGURE_DEPENDS "${spektrum_satellite_SOURCE_DIR}/src/*.cpp")
 file(GLOB CURRENT_SRC  ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp )
+set(ARDUINO_SKETCH_SOURCE ${CURRENT_SRC} ${SDFAT_SRC})
+set(ARDUINO_SKETCH_INCLUDES "${spektrum_satellite_SOURCE_DIR}/src/")
 
-# Define include directories
-include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/SpektrumSatellite/src
-    "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-API/api" 
-    "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-Pico/cores/pico"
-    "${PICO_SDK_ARDUINO_PATH}/Arduino"
-)
+include("${PICO_SDK_ARDUINO_PATH}/ArduinoSketch.cmake")
 
-
-# PICO executable
-add_executable(example_sketch ${CURRENT_SRC} ${SPEKTRUM_SRC} )
-pico_enable_stdio_usb(example_sketch 1)
-pico_enable_stdio_uart(example_sketch 0)
-
-# Add pico_stdlib library which aggregates commonly used features
-target_link_libraries(example_sketch PRIVATE
-    "${ARDUINO_LIB}"
-    pico_stdio_uart 
-    pico_stdio_usb 
-    pico_stdlib 
-    pico_runtime
-    pico_multicore 
-    pico_util 
-    hardware_pwm 
-    hardware_adc
-    hardware_clocks
-    hardware_spi
-    hardware_pio
-)
-
-# create map/bin/hex/uf2 file in addition to ELF.
-pico_add_extra_outputs(example_sketch)
 

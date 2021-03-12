@@ -80,13 +80,14 @@ Here is the list of the provided examples
 - [hallo_world](examples/hallo_world)
 - [blink](examples/blink)
 - [tone](examples/tone_melody)
+- [arduino_library](examples/example_with_arduino_library)
 
 The Pico has 2 processors, so here are the examples which use this Pico specific functionality:
 
 - [multi_processor](examples/multi_processor) 
 - [multi_processor_fifo](examples/multi_processor_fifo) 
 - [queue](examples/queue)
-- [semaphore](examples/semaphore) .
+- [semaphore](examples/semaphore) 
 
 And finally some other Pico specific functionality:
 
