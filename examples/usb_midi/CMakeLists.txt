@@ -20,15 +20,15 @@ project(usb_midi C CXX ASM)
 # initialize the Pico SDK
 pico_sdk_init()
 
-# Add tinyusb-cpp
-ExternalProject_Add(tinyusb-cpp
-    GIT_REPOSITORY "https://github.com/pschatzmann/tinyusb-cpp.git"
-    GIT_TAG main
-    PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/lib/tinyusb-cpp
-    CONFIGURE_COMMAND ""
-    BUILD_COMMAND ""
-    INSTALL_COMMAND ""
-)
+# # Add tinyusb-cpp
+# ExternalProject_Add(tinyusb-cpp
+#     GIT_REPOSITORY "https://github.com/pschatzmann/tinyusb-cpp.git"
+#     GIT_TAG main
+#     PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/lib/tinyusb-cpp
+#     CONFIGURE_COMMAND ""
+#     BUILD_COMMAND ""
+#     INSTALL_COMMAND ""
+# )
 
 
 # We search for the ARDUINO library
@@ -44,7 +44,7 @@ find_library(ARDUINO_LIB
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${TINYUSB_SDK_PATH}/src
-    ${CMAKE_CURRENT_SOURCE_DIR}/lib/tinyusb-cpp/src
+#    ${CMAKE_CURRENT_SOURCE_DIR}/lib/tinyusb-cpp/src
     ${ARDUINO_SKETCH_INCLUDES}
     "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-API/api" 
     "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-Pico/cores/pico"
