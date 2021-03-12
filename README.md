@@ -126,7 +126,7 @@ That's it!
 - digital input/output API - done
 - analog input/output API (PWM) - done
 - Multiprocessor support: queue, semaphore - done
-- tone - in progress
+- tone - done
 - PIO API class - in progress
 - Arduino SPI API - open
 - Arduino I2C API - open
