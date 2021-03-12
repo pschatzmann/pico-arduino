@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['arduinopicotone_31',['ArduinoPicoTone',['../class_arduino_pico_tone.html',1,'']]]
+  ['arduinopicotone_45',['ArduinoPicoTone',['../class_arduino_pico_tone.html',1,'']]]
 ];

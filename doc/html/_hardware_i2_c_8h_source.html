@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pico-arduino: ArduinoCore-API/api/HardwareI2C.h Source File</title>
+<title>Pico-Arduino: Arduino/ArduinoCore-API/api/HardwareI2C.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,9 +21,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">pico-arduino
+   <div id="projectname">Pico-Arduino
    </div>
-   <div id="projectbrief">Arduino API for Rasperry PI Pico Board</div>
   </td>
  </tr>
  </tbody>
@@ -62,7 +61,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_b074d1b1aa70f3c10763fb8f33d8f4cb.html">ArduinoCore-API</a></li><li class="navelem"><a class="el" href="dir_b6f1a12a6c71929bbf113e74a9b81305.html">api</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_a991eec27578c865874ede3d8ec657c2.html">Arduino</a></li><li class="navelem"><a class="el" href="dir_0f9ba69f9ffb40be1714dcb8a2e3292b.html">ArduinoCore-API</a></li><li class="navelem"><a class="el" href="dir_f7be477901d8721a3947eb7494242e96.html">api</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -98,25 +97,30 @@ $(function() {
 <div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classarduino_1_1_hardware_i2_c.html">   26</a></span>&#160;<span class="keyword">class </span><a class="code" href="classarduino_1_1_hardware_i2_c.html">HardwareI2C</a> : <span class="keyword">public</span> <a class="code" href="classarduino_1_1_stream.html">Stream</a></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> begin() = 0;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> begin(uint8_t address) = 0;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> end() = 0;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setClock(uint32_t freq) = 0;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> beginTransmission(uint8_t address) = 0;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">virtual</span> uint8_t endTransmission(<span class="keywordtype">bool</span> stopBit) = 0;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">virtual</span> uint8_t endTransmission(<span class="keywordtype">void</span>) = 0;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">size_t</span> requestFrom(uint8_t address, <span class="keywordtype">size_t</span> len, <span class="keywordtype">bool</span> stopBit) = 0;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">size_t</span> requestFrom(uint8_t address, <span class="keywordtype">size_t</span> len) = 0;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment">// bus master</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> begin() = 0;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">// slave</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> begin(uint8_t address) = 0;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> end() = 0;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setClock(uint32_t freq) = 0;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">// Begin a transmission to the I2C slave device with the given address</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> beginTransmission(uint8_t address) = 0;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">virtual</span> uint8_t endTransmission(<span class="keywordtype">bool</span> stopBit) = 0;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">virtual</span> uint8_t endTransmission(<span class="keywordtype">void</span>) = 0;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> onReceive(<span class="keywordtype">void</span>(*)(<span class="keywordtype">int</span>)) = 0;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> onRequest(<span class="keywordtype">void</span>(*)(<span class="keywordtype">void</span>)) = 0;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">//Used by the master to request bytes from a slave device   </span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">size_t</span> requestFrom(uint8_t address, <span class="keywordtype">size_t</span> len, <span class="keywordtype">bool</span> stopBit) = 0;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">//Used by the master to request bytes from a slave device</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">size_t</span> requestFrom(uint8_t address, <span class="keywordtype">size_t</span> len) = 0;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> onReceive(<span class="keywordtype">void</span>(*)(<span class="keywordtype">int</span>)) = 0;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> onRequest(<span class="keywordtype">void</span>(*)(<span class="keywordtype">void</span>)) = 0;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
 <div class="ttc" id="aclassarduino_1_1_hardware_i2_c_html"><div class="ttname"><a href="classarduino_1_1_hardware_i2_c.html">arduino::HardwareI2C</a></div><div class="ttdef"><b>Definition:</b> HardwareI2C.h:27</div></div>
 <div class="ttc" id="aclassarduino_1_1_stream_html"><div class="ttname"><a href="classarduino_1_1_stream.html">arduino::Stream</a></div><div class="ttdef"><b>Definition:</b> Stream.h:51</div></div>
 </div><!-- fragment --></div><!-- contents -->

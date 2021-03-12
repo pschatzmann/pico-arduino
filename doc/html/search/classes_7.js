@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['vector_51',['Vector',['../class_vector.html',1,'']]],
-  ['vector_3c_20map_3a_3amapentry_3c_20k_2c_20v_20_3e_20_3e_52',['Vector&lt; Map::MapEntry&lt; K, V &gt; &gt;',['../class_vector.html',1,'']]]
+  ['semaphore_70',['Semaphore',['../class_semaphore.html',1,'']]],
+  ['server_71',['Server',['../classarduino_1_1_server.html',1,'arduino']]],
+  ['softwareserial_72',['SoftwareSerial',['../class_software_serial.html',1,'']]],
+  ['spisettings_73',['SPISettings',['../classarduino_1_1_s_p_i_settings.html',1,'arduino']]],
+  ['stream_74',['Stream',['../classarduino_1_1_stream.html',1,'arduino']]]
 ];

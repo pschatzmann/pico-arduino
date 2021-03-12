@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['usinginterrupt_28',['usingInterrupt',['../class_pico_hardware_s_p_i.html#a9ce51701c2384a6e7a47d556ddc1c9a2',1,'PicoHardwareSPI']]]
+  ['semaphore_31',['Semaphore',['../class_semaphore.html',1,'']]],
+  ['server_32',['Server',['../classarduino_1_1_server.html',1,'arduino']]],
+  ['softwareserial_33',['SoftwareSerial',['../class_software_serial.html',1,'']]],
+  ['spisettings_34',['SPISettings',['../classarduino_1_1_s_p_i_settings.html',1,'arduino']]],
+  ['stream_35',['Stream',['../classarduino_1_1_stream.html',1,'arduino']]]
 ];
