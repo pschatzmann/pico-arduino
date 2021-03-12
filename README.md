@@ -79,7 +79,7 @@ Here is the list of the provided examples
 
 - [hallo_world](examples/hallo_world)
 - [blink](examples/blink)
-- [tone](examples/tone)
+- [tone](examples/tone_melody)
 
 The Pico has 2 processors, so here are the examples which use this Pico specific functionality:
 
