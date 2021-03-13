@@ -14,9 +14,9 @@ FetchContent_Declare( spektrum_satellite GIT_REPOSITORY https://github.com/pscha
 FetchContent_MakeAvailable(spektrum_satellite)
 
 ## Define all Source files incl spektrum_satellite
-file(GLOB_RECURSE SDFAT_SRC CONFIGURE_DEPENDS "${spektrum_satellite_SOURCE_DIR}/src/*.cpp")
+file(GLOB LIB_SRC "${spektrum_satellite_SOURCE_DIR}/src/*.cpp")
 file(GLOB CURRENT_SRC  ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp )
-set(ARDUINO_SKETCH_SOURCE ${CURRENT_SRC} ${SDFAT_SRC})
+set(ARDUINO_SKETCH_SOURCE ${CURRENT_SRC} ${LIB_SRC})
 set(ARDUINO_SKETCH_INCLUDES "${spektrum_satellite_SOURCE_DIR}/src/")
 
 include("${PICO_SDK_ARDUINO_PATH}/ArduinoSketch.cmake")
