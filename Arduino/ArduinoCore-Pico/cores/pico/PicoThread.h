@@ -3,14 +3,14 @@
 #include "pico/stdlib.h"
 #include "pico/multicore.h"
 
+
+typedef void (*ThreadCB)(void* arg);
+
 /**
  * @brief Adds support for running code on the second processor core (core1)
  * @author Phil Schatzmann
  * @copyright GPLv3
  */
-
-typedef void (*ThreadCB)(void* arg);
-
 
 class Thread {
     public:
@@ -22,7 +22,7 @@ class Thread {
             stop();
         }
 
-        // Run code on core 1 - we can pass a reference to an object which will be given to the callback as argument
+        /// Run code on core 1 - we can pass a reference to an object which will be given to the callback as argument
         bool start(ThreadCB callback, void* ptr=nullptr){
             bool result = false;
             // set arguments to callback
@@ -40,7 +40,7 @@ class Thread {
             return result;
         }
 
-        // resets the core
+        /// resets the core 1
         void stop() {
             multicore_reset_core1();
             started(false);   
@@ -51,7 +51,7 @@ class Thread {
         //     multicore_sleep_core1();
         // }
 
-        // check if the core1 has been started and is not stoped
+        /// check if the core1 has been started and is not stoped
         bool isRunning() {
             return started();
         }

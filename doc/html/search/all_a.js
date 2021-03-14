@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['raspberry_20pi_20pico_20_2d_20arduino_20api_30',['Raspberry PI Pico - Arduino API',['../index.html',1,'']]]
+  ['onreceive_24',['onReceive',['../class_pico_hardware_i2_c.html#aec8f2058d30ee68298b3445132501ce4',1,'PicoHardwareI2C']]],
+  ['onrequest_25',['onRequest',['../class_pico_hardware_i2_c.html#ab8898242a4bbe5171f1bc7bb68603fda',1,'PicoHardwareI2C']]]
 ];

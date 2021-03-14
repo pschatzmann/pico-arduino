@@ -7,21 +7,24 @@
 
 
 #include "Arduino.h"
+#include "Wire.h"
 #include "PluggableUSB.h"
 #include "PicoLogger.h"
 #include "PicoHardwareSerial.h"
 #include "PicoTone.h"
 #include "hardware/watchdog.h"
 
+
 // public data
 PicoDefaultSerial Serial;
 PicoHardwareSerial Serial1(0);
 PicoHardwareSerial Serial2(1); 
-PicoLogger Logger;    // Support for logging
 PicoHardwareSPI SPI(spi0);
 PicoHardwareSPI SPI1(spi1);
 PicoGPIOFunction GPIOFunction;
-//PicoHardwareI2C Wire; // I2C 
+PicoHardwareI2C Wire(i2c0, 160, GP2, GP3);  
+PicoHardwareI2C Wire1(i2c1, 160, GP4, GP5);  
+PicoLogger Logger;    // Support for logging
 
 // local data
 static bool adc_init_flag = false;

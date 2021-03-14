@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['udp_41',['UDP',['../classarduino_1_1_u_d_p.html',1,'arduino']]],
-  ['usinginterrupt_42',['usingInterrupt',['../class_pico_hardware_s_p_i.html#a9ce51701c2384a6e7a47d556ddc1c9a2',1,'PicoHardwareSPI']]]
+  ['raspberry_20pi_20pico_20_2d_20arduino_20api_40',['Raspberry PI Pico - Arduino API',['../index.html',1,'']]],
+  ['read_41',['read',['../class_pico_hardware_i2_c.html#a5604ec9a1e487d3cdae04754d038da7a',1,'PicoHardwareI2C']]],
+  ['requestfrom_42',['requestFrom',['../class_pico_hardware_i2_c.html#a6aa77439c4b584e649e8f8d0e35bb2a4',1,'PicoHardwareI2C::requestFrom(uint8_t address, size_t len, bool stopBit)'],['../class_pico_hardware_i2_c.html#afc8f3a0bc77b6843479d09d28bab1a49',1,'PicoHardwareI2C::requestFrom(uint8_t address, size_t len)']]]
 ];

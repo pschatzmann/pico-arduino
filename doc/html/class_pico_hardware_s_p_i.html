@@ -121,13 +121,16 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memdesc:a9ce51701c2384a6e7a47d556ddc1c9a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">If your program will perform SPI transactions within an interrupt, call this function to register the interrupt number or name with the SPI library. This allows SPI.beginTransaction() to prevent usage conflicts. Note that the interrupt specified in the call to <a class="el" href="class_pico_hardware_s_p_i.html#a9ce51701c2384a6e7a47d556ddc1c9a2" title="If your program will perform SPI transactions within an interrupt, call this function to register the...">usingInterrupt()</a> will be disabled on a call to <a class="el" href="class_pico_hardware_s_p_i.html#a9e1ffce1882a65b407cd54d5583ca94d" title="Initializes the SPI bus using the defined SPISettings.">beginTransaction()</a> and re-enabled in <a class="el" href="class_pico_hardware_s_p_i.html#af8f00cebe2aa5d967a7cb921f9b80d15" title="Stop using the SPI bus. Normally this is called after de-asserting the chip select,...">endTransaction()</a>.  <a href="class_pico_hardware_s_p_i.html#a9ce51701c2384a6e7a47d556ddc1c9a2">More...</a><br /></td></tr>
 <tr class="separator:a9ce51701c2384a6e7a47d556ddc1c9a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9bc505878ed86ec105d8b21143513b4"><td class="memItemLeft" align="right" valign="top"><a id="ab9bc505878ed86ec105d8b21143513b4"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>notUsingInterrupt</b> (int interruptNumber)</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_s_p_i.html#ab9bc505878ed86ec105d8b21143513b4">notUsingInterrupt</a> (int interruptNumber)</td></tr>
+<tr class="memdesc:ab9bc505878ed86ec105d8b21143513b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">If your program will perform SPI transactions within an interrupt, call this function to de-register the interrupt number. <br /></td></tr>
 <tr class="separator:ab9bc505878ed86ec105d8b21143513b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c18e800c76eb546b0c9308212778da4"><td class="memItemLeft" align="right" valign="top"><a id="a1c18e800c76eb546b0c9308212778da4"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>attachInterrupt</b> ()</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_s_p_i.html#a1c18e800c76eb546b0c9308212778da4">attachInterrupt</a> ()</td></tr>
+<tr class="memdesc:a1c18e800c76eb546b0c9308212778da4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the SPI interrupt: SPI0_IRQ = 18, SPI1_IRQ = 19. <br /></td></tr>
 <tr class="separator:a1c18e800c76eb546b0c9308212778da4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8eae40e524523328a6d6e1ac4293fe79"><td class="memItemLeft" align="right" valign="top"><a id="a8eae40e524523328a6d6e1ac4293fe79"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>detachInterrupt</b> ()</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_s_p_i.html#a8eae40e524523328a6d6e1ac4293fe79">detachInterrupt</a> ()</td></tr>
+<tr class="memdesc:a8eae40e524523328a6d6e1ac4293fe79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turns off the given interrupt: SPI0_IRQ = 18, SPI1_IRQ = 19. <br /></td></tr>
 <tr class="separator:a8eae40e524523328a6d6e1ac4293fe79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
@@ -135,6 +138,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:ad03c53ccda764f429685d302e6fa37bb"><td class="memItemLeft" align="right" valign="top"><a id="ad03c53ccda764f429685d302e6fa37bb"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>getStandardInterrupt</b> ()</td></tr>
 <tr class="separator:ad03c53ccda764f429685d302e6fa37bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9db45c34c0c7c0da0e23773a0c2d19ea"><td class="memItemLeft" align="right" valign="top"><a id="a9db45c34c0c7c0da0e23773a0c2d19ea"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setDataWidth</b> (int bits)</td></tr>
+<tr class="separator:a9db45c34c0c7c0da0e23773a0c2d19ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a874b58795293047ccb8bf4f73ade0a0a"><td class="memItemLeft" align="right" valign="top"><a id="a874b58795293047ccb8bf4f73ade0a0a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setFormat</b> ()</td></tr>
 <tr class="separator:a874b58795293047ccb8bf4f73ade0a0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,12 +153,12 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>toStr</b> (in
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a0c671cb7d7a9611c92c7446e227fdc32"><td class="memItemLeft" align="right" valign="top"><a id="a0c671cb7d7a9611c92c7446e227fdc32"></a>
+<a class="el" href="classarduino_1_1_s_p_i_settings.html">SPISettings</a>&#160;</td><td class="memItemRight" valign="bottom"><b>last_settings</b></td></tr>
+<tr class="separator:a0c671cb7d7a9611c92c7446e227fdc32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b7a02e04e12c5489162a663f0df872d"><td class="memItemLeft" align="right" valign="top"><a id="a2b7a02e04e12c5489162a663f0df872d"></a>
 spi_inst_t *&#160;</td><td class="memItemRight" valign="bottom"><b>spi</b></td></tr>
 <tr class="separator:a2b7a02e04e12c5489162a663f0df872d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7588d958b454fb57b101b83d4be9ff2c"><td class="memItemLeft" align="right" valign="top"><a id="a7588d958b454fb57b101b83d4be9ff2c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_transaction</b></td></tr>
-<tr class="separator:a7588d958b454fb57b101b83d4be9ff2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa14d79c62d8f90d0da670a25d45638ec"><td class="memItemLeft" align="right" valign="top"><a id="aa14d79c62d8f90d0da670a25d45638ec"></a>
 spi_cpol_t&#160;</td><td class="memItemRight" valign="bottom"><b>cpol</b></td></tr>
 <tr class="separator:aa14d79c62d8f90d0da670a25d45638ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,14 +175,19 @@ uint&#160;</td><td class="memItemRight" valign="bottom"><b>data_bits</b></td></t
 int&#160;</td><td class="memItemRight" valign="bottom"><b>using_interrupt_no</b></td></tr>
 <tr class="separator:a7fecb61be6d7f2013a925a8c2699641d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25dbe2ccc5a50ea90d7c031d14f9c0b5"><td class="memItemLeft" align="right" valign="top"><a id="a25dbe2ccc5a50ea90d7c031d14f9c0b5"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_init</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_init</b> = false</td></tr>
 <tr class="separator:a25dbe2ccc5a50ea90d7c031d14f9c0b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c671cb7d7a9611c92c7446e227fdc32"><td class="memItemLeft" align="right" valign="top"><a id="a0c671cb7d7a9611c92c7446e227fdc32"></a>
-<a class="el" href="classarduino_1_1_s_p_i_settings.html">SPISettings</a>&#160;</td><td class="memItemRight" valign="bottom"><b>last_settings</b></td></tr>
-<tr class="separator:a0c671cb7d7a9611c92c7446e227fdc32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f48675b32def75dfd39e094e77d3d10"><td class="memItemLeft" align="right" valign="top"><a id="a2f48675b32def75dfd39e094e77d3d10"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_slave</b></td></tr>
+<tr class="separator:a2f48675b32def75dfd39e094e77d3d10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7588d958b454fb57b101b83d4be9ff2c"><td class="memItemLeft" align="right" valign="top"><a id="a7588d958b454fb57b101b83d4be9ff2c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_transaction</b></td></tr>
+<tr class="separator:a7588d958b454fb57b101b83d4be9ff2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Arduino HardwareSPI interface using the Pico API. We use the following default pins spi0: pinRx = 16; pinTx = 19; pinCS = 17; pinSCK = 18; spi1: pinRx = 12; pinTx = 11; pinCS = 13; pinSCK = 10; On the master miso = pinRx and mosi = pinTx. </p>
+<dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>GPLv3 </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a2cf2c9f0e161cfc099e3c3120a6cee5d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2cf2c9f0e161cfc099e3c3120a6cee5d">&#9670;&nbsp;</a></span>begin()</h2>

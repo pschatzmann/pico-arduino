@@ -7,6 +7,10 @@
         "chrono": "cpp",
         "array": "cpp",
         "vertexarraystate": "cpp",
-        "program": "cpp"
+        "program": "cpp",
+        "*.tcc": "cpp",
+        "ostream": "cpp",
+        "functional": "cpp",
+        "istream": "cpp"
     }
 }

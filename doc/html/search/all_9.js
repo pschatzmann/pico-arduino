@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['queue_29',['Queue',['../class_queue.html',1,'']]]
+  ['notusinginterrupt_23',['notUsingInterrupt',['../class_pico_hardware_s_p_i.html#ab9bc505878ed86ec105d8b21143513b4',1,'PicoHardwareSPI']]]
 ];

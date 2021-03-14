@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['ipaddress_9',['IPAddress',['../classarduino_1_1_i_p_address.html',1,'arduino']]],
-  ['iterator_10',['iterator',['../class_vector_1_1iterator.html',1,'Vector&lt; T &gt;::iterator'],['../class_vector_3_01_map_1_1_map_entry_3_01_k_00_01_v_01_4_01_4_1_1iterator.html',1,'Vector&lt; Map::MapEntry&lt; K, V &gt; &gt;::iterator']]]
+  ['hardwarei2c_11',['HardwareI2C',['../classarduino_1_1_hardware_i2_c.html',1,'arduino']]],
+  ['hardwareserial_12',['HardwareSerial',['../classarduino_1_1_hardware_serial.html',1,'arduino']]],
+  ['hardwarespi_13',['HardwareSPI',['../classarduino_1_1_hardware_s_p_i.html',1,'arduino']]]
 ];

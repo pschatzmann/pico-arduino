@@ -48,6 +48,7 @@ target_link_libraries(arduino
     pico_multicore 
     pico_util 
     hardware_pwm 
+    hardware_i2c 
     hardware_adc
     hardware_clocks
     hardware_spi

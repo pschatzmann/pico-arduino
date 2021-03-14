@@ -32,8 +32,8 @@ class PicoLogger {
         }
 
         // checks if the logging is active
-        virtual bool isLogging(){
-            return log_stream_ptr!=nullptr;
+        virtual bool isLogging(LogLevel level = Info){
+            return log_stream_ptr!=nullptr && level >= log_level;
         }
 
         virtual void error(const char *str, const char* str1=nullptr, const char* str2=nullptr){
@@ -70,6 +70,13 @@ class PicoLogger {
                 }
             }
         }
+
+        const char* toStr(int value){
+            static char buffer[10];
+            itoa(value,buffer,10);
+            return (const char*)buffer;
+        }
+
 
     protected:
         Stream *log_stream_ptr;

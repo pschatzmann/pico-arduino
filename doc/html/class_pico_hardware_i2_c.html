@@ -71,7 +71,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Arduino I2C implementation using the Pico functionality.  
+<p>Arduino I2C implementation using the Pico functionality. In Arduino we can read and write individal characters wheresease in Pico the operations have to be done with arrays. We therefore create a read and write buffer to cache the operations.  
  <a href="class_pico_hardware_i2_c.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_pico_hardware_i2_c_8h_source.html">PicoHardwareI2C.h</a>&gt;</code></p>
@@ -89,56 +89,77 @@ Inheritance diagram for PicoHardwareI2C:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9fdf770011110f9d1a65e20889b6efb9"><td class="memItemLeft" align="right" valign="top"><a id="a9fdf770011110f9d1a65e20889b6efb9"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PicoHardwareI2C</b> (i2c_inst_t *i2c, int maxBufferSize=100, int rxPin, int txPin)</td></tr>
-<tr class="separator:a9fdf770011110f9d1a65e20889b6efb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1de257c70ac2818538ff7014929eeae2"><td class="memItemLeft" align="right" valign="top"><a id="a1de257c70ac2818538ff7014929eeae2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#a1de257c70ac2818538ff7014929eeae2">PicoHardwareI2C</a> (i2c_inst_t *i2c, int maxBufferSize, int sdaPin, int sclPin)</td></tr>
+<tr class="memdesc:a1de257c70ac2818538ff7014929eeae2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard Constructor for <a class="el" href="class_pico_hardware_i2_c.html" title="Arduino I2C implementation using the Pico functionality. In Arduino we can read and write individal c...">PicoHardwareI2C</a> class. <br /></td></tr>
+<tr class="separator:a1de257c70ac2818538ff7014929eeae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac03ee78746e3132d33af51755784744d"><td class="memItemLeft" align="right" valign="top"><a id="ac03ee78746e3132d33af51755784744d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#ac03ee78746e3132d33af51755784744d">~PicoHardwareI2C</a> ()</td></tr>
+<tr class="memdesc:ac03ee78746e3132d33af51755784744d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for <a class="el" href="class_pico_hardware_i2_c.html" title="Arduino I2C implementation using the Pico functionality. In Arduino we can read and write individal c...">PicoHardwareI2C</a> class. <br /></td></tr>
+<tr class="separator:ac03ee78746e3132d33af51755784744d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad61e875d456cd6284007d88f4e4ef8ba"><td class="memItemLeft" align="right" valign="top"><a id="ad61e875d456cd6284007d88f4e4ef8ba"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> ()</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#ad61e875d456cd6284007d88f4e4ef8ba">begin</a> ()</td></tr>
+<tr class="memdesc:ad61e875d456cd6284007d88f4e4ef8ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiate the Wire library and join the I2C bus as a master. This should normally be called only once. <br /></td></tr>
 <tr class="separator:ad61e875d456cd6284007d88f4e4ef8ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f49b0de32c5b8eaca2f9f184909c500"><td class="memItemLeft" align="right" valign="top"><a id="a7f49b0de32c5b8eaca2f9f184909c500"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> (uint8_t address)</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#a7f49b0de32c5b8eaca2f9f184909c500">begin</a> (uint8_t address)</td></tr>
+<tr class="memdesc:a7f49b0de32c5b8eaca2f9f184909c500"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiate the Wire library and join the I2C bus as a slave. This should normally be called only once. <br /></td></tr>
 <tr class="separator:a7f49b0de32c5b8eaca2f9f184909c500"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a378a28b589e511a1055cc1d59556a641"><td class="memItemLeft" align="right" valign="top"><a id="a378a28b589e511a1055cc1d59556a641"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> ()</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#a378a28b589e511a1055cc1d59556a641">end</a> ()</td></tr>
+<tr class="memdesc:a378a28b589e511a1055cc1d59556a641"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes the Wire Library. <br /></td></tr>
 <tr class="separator:a378a28b589e511a1055cc1d59556a641"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3f4f7914960c10a97954f633b382639"><td class="memItemLeft" align="right" valign="top"><a id="aa3f4f7914960c10a97954f633b382639"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setClock</b> (uint32_t baudrate)</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#aa3f4f7914960c10a97954f633b382639">setClock</a> (uint32_t baudrate)</td></tr>
+<tr class="memdesc:aa3f4f7914960c10a97954f633b382639"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function modifies the clock frequency for I2C communication. I2C slave devices have no minimum working clock frequency, however 100KHz is usually the baseline. <br /></td></tr>
 <tr class="separator:aa3f4f7914960c10a97954f633b382639"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b12d2bfa8a2f78ca0057c036fb6dce7"><td class="memItemLeft" align="right" valign="top"><a id="a0b12d2bfa8a2f78ca0057c036fb6dce7"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>beginTransmission</b> (uint8_t address)</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#a0b12d2bfa8a2f78ca0057c036fb6dce7">beginTransmission</a> (uint8_t address)</td></tr>
+<tr class="memdesc:a0b12d2bfa8a2f78ca0057c036fb6dce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin a transmission to the I2C slave device with the given address. Subsequently, queue bytes for transmission with the <a class="el" href="class_pico_hardware_i2_c.html#a2e9ec0ef82e6bae75422fe223dcf124f" title="Writes data from a slave device in response to a request from a master, or queues bytes for transmiss...">write()</a> function and transmit them by calling <a class="el" href="class_pico_hardware_i2_c.html#a965e05fc91f7a5072e1cc1093f6deb30" title="Ends a transmission to a slave device that was begun by beginTransmission() and transmits the bytes t...">endTransmission()</a>. <br /></td></tr>
 <tr class="separator:a0b12d2bfa8a2f78ca0057c036fb6dce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb4545868fe7ff2735cc8dd953d5b7ca"><td class="memItemLeft" align="right" valign="top"><a id="afb4545868fe7ff2735cc8dd953d5b7ca"></a>
-virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>endTransmission</b> (bool stopBit)</td></tr>
+virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#afb4545868fe7ff2735cc8dd953d5b7ca">endTransmission</a> (bool stopBit)</td></tr>
+<tr class="memdesc:afb4545868fe7ff2735cc8dd953d5b7ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends a transmission to a slave device that was begun by <a class="el" href="class_pico_hardware_i2_c.html#a0b12d2bfa8a2f78ca0057c036fb6dce7" title="Begin a transmission to the I2C slave device with the given address. Subsequently,...">beginTransmission()</a> and transmits the bytes that were queued by <a class="el" href="class_pico_hardware_i2_c.html#a2e9ec0ef82e6bae75422fe223dcf124f" title="Writes data from a slave device in response to a request from a master, or queues bytes for transmiss...">write()</a>. If true, <a class="el" href="class_pico_hardware_i2_c.html#a965e05fc91f7a5072e1cc1093f6deb30" title="Ends a transmission to a slave device that was begun by beginTransmission() and transmits the bytes t...">endTransmission()</a> sends a stop message after transmission, releasing the I2C bus. <br /></td></tr>
 <tr class="separator:afb4545868fe7ff2735cc8dd953d5b7ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a965e05fc91f7a5072e1cc1093f6deb30"><td class="memItemLeft" align="right" valign="top"><a id="a965e05fc91f7a5072e1cc1093f6deb30"></a>
-virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>endTransmission</b> (void)</td></tr>
+virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#a965e05fc91f7a5072e1cc1093f6deb30">endTransmission</a> (void)</td></tr>
+<tr class="memdesc:a965e05fc91f7a5072e1cc1093f6deb30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends a transmission to a slave device that was begun by <a class="el" href="class_pico_hardware_i2_c.html#a0b12d2bfa8a2f78ca0057c036fb6dce7" title="Begin a transmission to the I2C slave device with the given address. Subsequently,...">beginTransmission()</a> and transmits the bytes that were queued by <a class="el" href="class_pico_hardware_i2_c.html#a2e9ec0ef82e6bae75422fe223dcf124f" title="Writes data from a slave device in response to a request from a master, or queues bytes for transmiss...">write()</a>. <br /></td></tr>
 <tr class="separator:a965e05fc91f7a5072e1cc1093f6deb30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e9ec0ef82e6bae75422fe223dcf124f"><td class="memItemLeft" align="right" valign="top"><a id="a2e9ec0ef82e6bae75422fe223dcf124f"></a>
-virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (uint8_t c)</td></tr>
+virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#a2e9ec0ef82e6bae75422fe223dcf124f">write</a> (uint8_t c)</td></tr>
+<tr class="memdesc:a2e9ec0ef82e6bae75422fe223dcf124f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data from a slave device in response to a request from a master, or queues bytes for transmission from a master to slave device (in-between calls to <a class="el" href="class_pico_hardware_i2_c.html#a0b12d2bfa8a2f78ca0057c036fb6dce7" title="Begin a transmission to the I2C slave device with the given address. Subsequently,...">beginTransmission()</a> and <a class="el" href="class_pico_hardware_i2_c.html#a965e05fc91f7a5072e1cc1093f6deb30" title="Ends a transmission to a slave device that was begun by beginTransmission() and transmits the bytes t...">endTransmission()</a>). <br /></td></tr>
 <tr class="separator:a2e9ec0ef82e6bae75422fe223dcf124f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a170c76434d307a3d56fb059ac36d67"><td class="memItemLeft" align="right" valign="top"><a id="a4a170c76434d307a3d56fb059ac36d67"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (const char *buffer, size_t size)</td></tr>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#a4a170c76434d307a3d56fb059ac36d67">write</a> (const char *buffer, size_t size)</td></tr>
+<tr class="memdesc:a4a170c76434d307a3d56fb059ac36d67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data from a slave device in response to a request from a master, or queues bytes for transmission from a master to slave device (in-between calls to <a class="el" href="class_pico_hardware_i2_c.html#a0b12d2bfa8a2f78ca0057c036fb6dce7" title="Begin a transmission to the I2C slave device with the given address. Subsequently,...">beginTransmission()</a> and <a class="el" href="class_pico_hardware_i2_c.html#a965e05fc91f7a5072e1cc1093f6deb30" title="Ends a transmission to a slave device that was begun by beginTransmission() and transmits the bytes t...">endTransmission()</a>). <br /></td></tr>
 <tr class="separator:a4a170c76434d307a3d56fb059ac36d67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6aa77439c4b584e649e8f8d0e35bb2a4"><td class="memItemLeft" align="right" valign="top"><a id="a6aa77439c4b584e649e8f8d0e35bb2a4"></a>
-virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><b>requestFrom</b> (uint8_t address, size_t len, bool stopBit)</td></tr>
+virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#a6aa77439c4b584e649e8f8d0e35bb2a4">requestFrom</a> (uint8_t address, size_t len, bool stopBit)</td></tr>
+<tr class="memdesc:a6aa77439c4b584e649e8f8d0e35bb2a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by the master to request bytes from a slave device. The bytes may then be retrieved with the <a class="el" href="class_pico_hardware_i2_c.html#ad7177898195574f04e066aa972c64cc7" title="Returns the number of bytes available for retrieval with read(). This should be called on a master de...">available()</a> and <a class="el" href="class_pico_hardware_i2_c.html#a5604ec9a1e487d3cdae04754d038da7a" title="Reads a byte that was transmitted from a slave device to a master after a call to requestFrom() or wa...">read()</a> functions. <br /></td></tr>
 <tr class="separator:a6aa77439c4b584e649e8f8d0e35bb2a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc8f3a0bc77b6843479d09d28bab1a49"><td class="memItemLeft" align="right" valign="top"><a id="afc8f3a0bc77b6843479d09d28bab1a49"></a>
-virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><b>requestFrom</b> (uint8_t address, size_t len)</td></tr>
+virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#afc8f3a0bc77b6843479d09d28bab1a49">requestFrom</a> (uint8_t address, size_t len)</td></tr>
+<tr class="memdesc:afc8f3a0bc77b6843479d09d28bab1a49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by the master to request bytes from a slave device. The bytes may then be retrieved with the <a class="el" href="class_pico_hardware_i2_c.html#ad7177898195574f04e066aa972c64cc7" title="Returns the number of bytes available for retrieval with read(). This should be called on a master de...">available()</a> and <a class="el" href="class_pico_hardware_i2_c.html#a5604ec9a1e487d3cdae04754d038da7a" title="Reads a byte that was transmitted from a slave device to a master after a call to requestFrom() or wa...">read()</a> functions. <br /></td></tr>
 <tr class="separator:afc8f3a0bc77b6843479d09d28bab1a49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5604ec9a1e487d3cdae04754d038da7a"><td class="memItemLeft" align="right" valign="top"><a id="a5604ec9a1e487d3cdae04754d038da7a"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> ()</td></tr>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#a5604ec9a1e487d3cdae04754d038da7a">read</a> ()</td></tr>
+<tr class="memdesc:a5604ec9a1e487d3cdae04754d038da7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a byte that was transmitted from a slave device to a master after a call to <a class="el" href="class_pico_hardware_i2_c.html#a6aa77439c4b584e649e8f8d0e35bb2a4" title="Used by the master to request bytes from a slave device. The bytes may then be retrieved with the ava...">requestFrom()</a> or was transmitted from a master to a slave. <a class="el" href="class_pico_hardware_i2_c.html#a5604ec9a1e487d3cdae04754d038da7a" title="Reads a byte that was transmitted from a slave device to a master after a call to requestFrom() or wa...">read()</a> inherits from the Stream utility class. <br /></td></tr>
 <tr class="separator:a5604ec9a1e487d3cdae04754d038da7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad584541e149dae0a222de5e247ce9192"><td class="memItemLeft" align="right" valign="top"><a id="ad584541e149dae0a222de5e247ce9192"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>peek</b> ()</td></tr>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#ad584541e149dae0a222de5e247ce9192">peek</a> ()</td></tr>
+<tr class="memdesc:ad584541e149dae0a222de5e247ce9192"><td class="mdescLeft">&#160;</td><td class="mdescRight">Peeks current unread byte that was transmitted from a slave device to a master after a call to <a class="el" href="class_pico_hardware_i2_c.html#a6aa77439c4b584e649e8f8d0e35bb2a4" title="Used by the master to request bytes from a slave device. The bytes may then be retrieved with the ava...">requestFrom()</a> or was transmitted from a master to a slave. <a class="el" href="class_pico_hardware_i2_c.html#a5604ec9a1e487d3cdae04754d038da7a" title="Reads a byte that was transmitted from a slave device to a master after a call to requestFrom() or wa...">read()</a> inherits from the Stream utility class. <br /></td></tr>
 <tr class="separator:ad584541e149dae0a222de5e247ce9192"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7177898195574f04e066aa972c64cc7"><td class="memItemLeft" align="right" valign="top"><a id="ad7177898195574f04e066aa972c64cc7"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>available</b> ()</td></tr>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#ad7177898195574f04e066aa972c64cc7">available</a> ()</td></tr>
+<tr class="memdesc:ad7177898195574f04e066aa972c64cc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of bytes available for retrieval with <a class="el" href="class_pico_hardware_i2_c.html#a5604ec9a1e487d3cdae04754d038da7a" title="Reads a byte that was transmitted from a slave device to a master after a call to requestFrom() or wa...">read()</a>. This should be called on a master device after a call to <a class="el" href="class_pico_hardware_i2_c.html#a6aa77439c4b584e649e8f8d0e35bb2a4" title="Used by the master to request bytes from a slave device. The bytes may then be retrieved with the ava...">requestFrom()</a> or on a slave inside the <a class="el" href="class_pico_hardware_i2_c.html#aec8f2058d30ee68298b3445132501ce4" title="Registers a function to be called when a slave device receives a transmission from a master.">onReceive()</a> handler. <br /></td></tr>
 <tr class="separator:ad7177898195574f04e066aa972c64cc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec8f2058d30ee68298b3445132501ce4"><td class="memItemLeft" align="right" valign="top"><a id="aec8f2058d30ee68298b3445132501ce4"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onReceive</b> (void(*recieveHandler)(int))</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#aec8f2058d30ee68298b3445132501ce4">onReceive</a> (void(*recieveHandler)(int))</td></tr>
+<tr class="memdesc:aec8f2058d30ee68298b3445132501ce4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers a function to be called when a slave device receives a transmission from a master. <br /></td></tr>
 <tr class="separator:aec8f2058d30ee68298b3445132501ce4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8898242a4bbe5171f1bc7bb68603fda"><td class="memItemLeft" align="right" valign="top"><a id="ab8898242a4bbe5171f1bc7bb68603fda"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>onRequest</b> (void(*requestHandler)(void))</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#ab8898242a4bbe5171f1bc7bb68603fda">onRequest</a> (void(*requestHandler)(void))</td></tr>
+<tr class="memdesc:ab8898242a4bbe5171f1bc7bb68603fda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a function to be called when a master requests data from this slave device. <br /></td></tr>
 <tr class="separator:ab8898242a4bbe5171f1bc7bb68603fda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classarduino_1_1_stream"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classarduino_1_1_stream')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classarduino_1_1_stream.html">arduino::Stream</a></td></tr>
 <tr class="memitem:a851dd6dc74d52389de04f99648478db5 inherit pub_methods_classarduino_1_1_stream"><td class="memItemLeft" align="right" valign="top"><a id="a851dd6dc74d52389de04f99648478db5"></a>
@@ -304,12 +325,15 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>flush</b> ()<
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:a177106326131dce8c55103472507a4fc"><td class="memItemLeft" align="right" valign="top"><a id="a177106326131dce8c55103472507a4fc"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>flush</b> (bool <a class="el" href="class_pico_hardware_i2_c.html#a378a28b589e511a1055cc1d59556a641">end</a>=false)</td></tr>
+<tr class="separator:a177106326131dce8c55103472507a4fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45eb805d95924883517e1840164c6a4b"><td class="memItemLeft" align="right" valign="top"><a id="a45eb805d95924883517e1840164c6a4b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setupWriteBuffer</b> ()</td></tr>
 <tr class="separator:a45eb805d95924883517e1840164c6a4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb58707ec69290862761ff3caa11b501"><td class="memItemLeft" align="right" valign="top"><a id="abb58707ec69290862761ff3caa11b501"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>readBuffer</b> ()</td></tr>
-<tr class="separator:abb58707ec69290862761ff3caa11b501"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab272f3487c998b9ef85eccbb1d512a89"><td class="memItemLeft" align="right" valign="top"><a id="ab272f3487c998b9ef85eccbb1d512a89"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setupReadBuffer</b> ()</td></tr>
+<tr class="separator:ab272f3487c998b9ef85eccbb1d512a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classarduino_1_1_stream"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classarduino_1_1_stream')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classarduino_1_1_stream.html">arduino::Stream</a></td></tr>
 <tr class="memitem:a416a0ada5ed3c9d27f1e72c7d73f0aa1 inherit pro_methods_classarduino_1_1_stream"><td class="memItemLeft" align="right" valign="top"><a id="a416a0ada5ed3c9d27f1e72c7d73f0aa1"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>timedRead</b> ()</td></tr>
@@ -336,6 +360,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setWriteError</b> (in
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a1a88c67f148caeba6d138c0cd3ef490c"><td class="memItemLeft" align="right" valign="top"><a id="a1a88c67f148caeba6d138c0cd3ef490c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_slave_mode</b></td></tr>
+<tr class="separator:a1a88c67f148caeba6d138c0cd3ef490c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0661be8eb97091d18e3e4ce02a07d9c0"><td class="memItemLeft" align="right" valign="top"><a id="a0661be8eb97091d18e3e4ce02a07d9c0"></a>
 i2c_inst_t *&#160;</td><td class="memItemRight" valign="bottom"><b>i2c</b></td></tr>
 <tr class="separator:a0661be8eb97091d18e3e4ce02a07d9c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -345,9 +372,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>maxBufferSize</b></td>
 <tr class="memitem:a7bb02b35c68012e45e24bef916934c82"><td class="memItemLeft" align="right" valign="top"><a id="a7bb02b35c68012e45e24bef916934c82"></a>
 uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>transmission_address</b></td></tr>
 <tr class="separator:a7bb02b35c68012e45e24bef916934c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add34ee4bd818bbe41c9bbf9a10fbd30b"><td class="memItemLeft" align="right" valign="top"><a id="add34ee4bd818bbe41c9bbf9a10fbd30b"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>pos</b></td></tr>
-<tr class="separator:add34ee4bd818bbe41c9bbf9a10fbd30b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28e01d8f9704a2fe1a76c776ca14cca9"><td class="memItemLeft" align="right" valign="top"><a id="a28e01d8f9704a2fe1a76c776ca14cca9"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>write_pos</b></td></tr>
+<tr class="separator:a28e01d8f9704a2fe1a76c776ca14cca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e71cc40ab6a151cfb74f2877c1866b6"><td class="memItemLeft" align="right" valign="top"><a id="a1e71cc40ab6a151cfb74f2877c1866b6"></a>
 uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>write_buffer</b></td></tr>
 <tr class="separator:a1e71cc40ab6a151cfb74f2877c1866b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -369,9 +396,9 @@ uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>read_buffer</b><
 <tr class="memitem:a329f769ec3dacbb60ea94a6eecd2e2ee"><td class="memItemLeft" align="right" valign="top"><a id="a329f769ec3dacbb60ea94a6eecd2e2ee"></a>
 void(*&#160;</td><td class="memItemRight" valign="bottom"><b>recieveHandler</b> )(int)</td></tr>
 <tr class="separator:a329f769ec3dacbb60ea94a6eecd2e2ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d8e343152673c69fe251784bf2db08c"><td class="memItemLeft" align="right" valign="top"><a id="a0d8e343152673c69fe251784bf2db08c"></a>
-void(*&#160;</td><td class="memItemRight" valign="bottom"><b>requestHandler</b> )(void) bool flush(bool end)</td></tr>
-<tr class="separator:a0d8e343152673c69fe251784bf2db08c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcea572b93bb41cab41aa02adabbca03"><td class="memItemLeft" align="right" valign="top"><a id="afcea572b93bb41cab41aa02adabbca03"></a>
+void(*&#160;</td><td class="memItemRight" valign="bottom"><b>requestHandler</b> )(void)</td></tr>
+<tr class="separator:afcea572b93bb41cab41aa02adabbca03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classarduino_1_1_stream"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classarduino_1_1_stream')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classarduino_1_1_stream.html">arduino::Stream</a></td></tr>
 <tr class="memitem:a4b2dfb456a3030efc2b21a89d600907e inherit pro_attribs_classarduino_1_1_stream"><td class="memItemLeft" align="right" valign="top"><a id="a4b2dfb456a3030efc2b21a89d600907e"></a>
 unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>_timeout</b></td></tr>
@@ -381,7 +408,9 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>_startMillis
 <tr class="separator:ad06815f57494fab754daf9a80dd54f9e inherit pro_attribs_classarduino_1_1_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arduino I2C implementation using the Pico functionality. </p>
+<div class="textblock"><p>Arduino I2C implementation using the Pico functionality. In Arduino we can read and write individal characters wheresease in Pico the operations have to be done with arrays. We therefore create a read and write buffer to cache the operations. </p>
+<dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>GPLv3 </dd></dl>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>Arduino/ArduinoCore-Pico/cores/pico/<a class="el" href="_pico_hardware_i2_c_8h_source.html">PicoHardwareI2C.h</a></li>
 </ul>

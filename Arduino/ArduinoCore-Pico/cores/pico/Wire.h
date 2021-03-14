@@ -7,4 +7,6 @@
  * @author Phil Schatzmann
  * @copyright GPLv3
  */
-typedef PicoHardwareI2C Wire;
+
+extern PicoHardwareI2C Wire;
+extern PicoHardwareI2C Wire1;

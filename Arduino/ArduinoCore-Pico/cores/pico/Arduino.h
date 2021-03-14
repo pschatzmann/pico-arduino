@@ -11,13 +11,13 @@
 #endif
 
 #include <stdint.h>
+#include <stdlib.h>
 #include "pins_arduino.h"
 #include "ArduinoAPI.h"
 #include "PicoLogger.h"
 #include "PicoHardwareSerial.h"
 #include "PicoHardwareSPI.h"
 #include "PicoGPIOFunction.h"
-//#include "PicoHardwareI2C.h"
 #include "PicoTone.h"
 #include "PicoTimer.h"
 #include "PicoThread.h"
@@ -29,12 +29,17 @@
 #include "hardware/adc.h"
 #include "hardware/pwm.h"
 
-// global variables
+// Global variables
 extern PicoDefaultSerial Serial; // pico_stdio
 extern PicoHardwareSerial Serial1;
 extern PicoHardwareSerial Serial2; 
 extern PicoLogger Logger;   // Support for logging
 extern PicoGPIOFunction GPIOFunction;
+
 // Pico specific global methods
 // Provides the on board temperature in Celsius
 int getTemperature();
+// Some Arduino libraries rely on the following
+char *dtostrf (double __val, signed char __width, unsigned char __prec, char *__s);
+char *dtostre (double __val, char *__s, unsigned char __prec, unsigned char __flags);
+

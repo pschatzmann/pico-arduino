@@ -71,20 +71,25 @@ $(function() {
 <div class="title">Thread Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Adds support for running code on the second processor core (core1)  
+ <a href="class_thread.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_pico_thread_8h_source.html">PicoThread.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a240b663c75959f78879530a36cc24d76"><td class="memItemLeft" align="right" valign="top"><a id="a240b663c75959f78879530a36cc24d76"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>start</b> (ThreadCB callback, void *ptr=nullptr)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_thread.html#a240b663c75959f78879530a36cc24d76">start</a> (ThreadCB callback, void *ptr=nullptr)</td></tr>
+<tr class="memdesc:a240b663c75959f78879530a36cc24d76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run code on core 1 - we can pass a reference to an object which will be given to the callback as argument. <br /></td></tr>
 <tr class="separator:a240b663c75959f78879530a36cc24d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd50159ecd409936f454c2321f673616"><td class="memItemLeft" align="right" valign="top"><a id="abd50159ecd409936f454c2321f673616"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_thread.html#abd50159ecd409936f454c2321f673616">stop</a> ()</td></tr>
+<tr class="memdesc:abd50159ecd409936f454c2321f673616"><td class="mdescLeft">&#160;</td><td class="mdescRight">resets the core 1 <br /></td></tr>
 <tr class="separator:abd50159ecd409936f454c2321f673616"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33889b7bece21d4f5b984336725abce6"><td class="memItemLeft" align="right" valign="top"><a id="a33889b7bece21d4f5b984336725abce6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sleep</b> ()</td></tr>
-<tr class="separator:a33889b7bece21d4f5b984336725abce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab17a6bee5b20a1e32734b19a93314b7a"><td class="memItemLeft" align="right" valign="top"><a id="ab17a6bee5b20a1e32734b19a93314b7a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isRunning</b> ()</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_thread.html#ab17a6bee5b20a1e32734b19a93314b7a">isRunning</a> ()</td></tr>
+<tr class="memdesc:ab17a6bee5b20a1e32734b19a93314b7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if the core1 has been started and is not stoped <br /></td></tr>
 <tr class="separator:ab17a6bee5b20a1e32734b19a93314b7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
@@ -108,7 +113,11 @@ static void *&#160;</td><td class="memItemRight" valign="bottom"><b>staticPtr</b
 static ThreadCB&#160;</td><td class="memItemRight" valign="bottom"><b>staticCallback</b> (ThreadCB cb=nullptr)</td></tr>
 <tr class="separator:a060e3ff3c15033c17cb05ed6ba8a436b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Adds support for running code on the second processor core (core1) </p>
+<dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>GPLv3 </dd></dl>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>Arduino/ArduinoCore-Pico/cores/pico/<a class="el" href="_pico_thread_8h_source.html">PicoThread.h</a></li>
 </ul>
 </div><!-- contents -->

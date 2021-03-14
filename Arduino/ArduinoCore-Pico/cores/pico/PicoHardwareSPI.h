@@ -83,7 +83,7 @@ class PicoHardwareSPI : public HardwareSPI {
             // set baud rate and format on change of settings
             if (last_settings != settings){
                 SPIMode mode = settings.getDataMode();
-                Logger.info("spi_set_baudrate", toStr(settings.getClockFreq()));
+                Logger.info("spi_set_baudrate", Logger.toStr(settings.getClockFreq()));
                 spi_set_baudrate(spi, settings.getClockFreq());
 
                 switch (mode) {
@@ -185,16 +185,18 @@ class PicoHardwareSPI : public HardwareSPI {
          * @param interruptNumber 
          */
         virtual void usingInterrupt(int interruptNumber) {
-            Logger.info("usingInterrupt", toStr(interruptNumber));
+            Logger.info("usingInterrupt", Logger.toStr(interruptNumber));
             using_interrupt_no = interruptNumber;
         }
         
+        /// If your program will perform SPI transactions within an interrupt, call this function to de-register the interrupt number 
         virtual void notUsingInterrupt(int interruptNumber) {
-            Logger.info("notUsingInterrupt",toStr(interruptNumber));
+            Logger.info("notUsingInterrupt",Logger.toStr(interruptNumber));
             irq_set_enabled(interruptNumber, true);
             using_interrupt_no = 0;
         }
     
+        /// Enable the SPI interrupt: SPI0_IRQ = 18, SPI1_IRQ = 19
         virtual void attachInterrupt() {
             Logger.info("attachInterrupt");
             int interrupt = getStandardInterrupt();
@@ -203,6 +205,7 @@ class PicoHardwareSPI : public HardwareSPI {
             }
         }
         
+        /// Turns off the given interrupt: SPI0_IRQ = 18, SPI1_IRQ = 19
         virtual void detachInterrupt() {
             Logger.info("detachInterrupt");
             int interrupt = getStandardInterrupt();
@@ -292,19 +295,14 @@ class PicoHardwareSPI : public HardwareSPI {
 
             // display pin assignments
             if (Logger.isLogging()) {
-                Logger.info("pinRx is ", toStr(pinRx));
-                Logger.info("pinTx is ", toStr(pinTx));
-                Logger.info("pinSCK is ", toStr(pinSCK));
-                Logger.info("pinCS is ", toStr(pinCS));
+                Logger.info("pinRx is ", Logger.toStr(pinRx));
+                Logger.info("pinTx is ", Logger.toStr(pinTx));
+                Logger.info("pinSCK is ", Logger.toStr(pinSCK));
+                Logger.info("pinCS is ", Logger.toStr(pinCS));
             }
 
         }
         
-        const char* toStr(int value){
-            static char buffer[10];
-            itoa(value,buffer,10);
-            return (const char*)buffer;
-        }
 
     
 };
