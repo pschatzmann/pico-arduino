@@ -206,7 +206,7 @@ void printConfig(SdioConfig config) {
 //-----------------------------------------------------------------------------
 void setup() {
   Serial.begin(115200);
-  Logger.begin(Serial,PicoLogger::Debug);
+  Logger.begin(Serial,PicoLogger::Info);
 
   while (!Serial) {
     SysCall::yield();

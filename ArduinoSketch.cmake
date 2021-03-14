@@ -35,15 +35,13 @@ find_library(ARDUINO_LIB
     NO_CMAKE_SYSTEM_PATH
 )
 
-
 include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}
+    "${CMAKE_SOURCE_DIR}"
     ${ARDUINO_SKETCH_INCLUDES}
+    "${CMAKE_CURRENT_SOURCE_DIR}"
     "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-API/api" 
     "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-Pico/cores/pico"
-    "${PICO_SDK_ARDUINO_PATH}/Arduino/SdFat/src"
     "${PICO_SDK_ARDUINO_PATH}/Arduino"
-    ${USB_PATH}
 )
 
 # PICO

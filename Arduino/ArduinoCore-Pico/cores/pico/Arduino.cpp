@@ -11,6 +11,7 @@
 #include "PicoLogger.h"
 #include "PicoHardwareSerial.h"
 #include "PicoTone.h"
+#include "hardware/watchdog.h"
 
 // public data
 PicoDefaultSerial Serial;
@@ -127,11 +128,12 @@ void yield(void){
 //static PluggableUSB_ obj;
 PluggableUSB_::PluggableUSB_(){}
 
-
+// define Arduino setup(()) and loop()
 int main() {
     setup();
     while(true){
         loop();
+        watchdog_update();
     }
 }
 

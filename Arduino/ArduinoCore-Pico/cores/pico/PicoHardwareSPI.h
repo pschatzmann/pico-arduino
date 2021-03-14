@@ -65,6 +65,8 @@ class PicoHardwareSPI : public HardwareSPI {
          */
         virtual void beginTransaction(SPISettings settings) {
             Logger.debug("beginTransaction");
+            is_transaction = true;
+
             // initialize on first transction
             if (!is_init){
                 Logger.info("spi_init");
@@ -109,8 +111,7 @@ class PicoHardwareSPI : public HardwareSPI {
 
                 BitOrder order_arduino = settings.getBitOrder();
                 order = (order_arduino == LSBFIRST ) ?  SPI_LSB_FIRST : SPI_MSB_FIRST;
-                data_bits = 8;
-                setFormat();
+                data_bits = 0;
                 last_settings = settings;
             }
 
@@ -118,7 +119,6 @@ class PicoHardwareSPI : public HardwareSPI {
                 Logger.info("irq_set_enabled false");
                 irq_set_enabled(using_interrupt_no, false);
             }
-            is_transaction = true;
         }
 
         /**
@@ -143,6 +143,7 @@ class PicoHardwareSPI : public HardwareSPI {
          */
         virtual uint8_t transfer(uint8_t data) {
             Logger.debug("transfer");
+            setDataWidth(8);
             uint8_t array[1]={data};
             uint8_t arrayResult[1] = {0};
             spi_write_read_blocking(spi,  array, arrayResult, 1);
@@ -157,6 +158,7 @@ class PicoHardwareSPI : public HardwareSPI {
          */
         virtual uint16_t transfer16(uint16_t data){
             Logger.debug("transfer16");
+            setDataWidth(16);
             uint16_t result;
             spi_write16_read16_blocking(spi, &data, &result, 1);
             return result;
@@ -171,7 +173,8 @@ class PicoHardwareSPI : public HardwareSPI {
     
         virtual void transfer(void *array, size_t len) {
             Logger.debug("transfer (array)");
-             spi_write_read_blocking(spi,  (const uint8_t*) array, (uint8_t*) array, len);
+            setDataWidth(8);
+            spi_write_read_blocking(spi,  (const uint8_t*) array, (uint8_t*) array, len);
         }
         
         /**
@@ -209,9 +212,8 @@ class PicoHardwareSPI : public HardwareSPI {
         }
         
     protected:
+        SPISettings last_settings; // Arduino SPI settings
         spi_inst_t* spi;
-        bool is_transaction;
-        //transaction info
         spi_cpol_t cpol;
         spi_cpha_t cpha;
         spi_order_t order;
@@ -219,7 +221,7 @@ class PicoHardwareSPI : public HardwareSPI {
         int using_interrupt_no;
         bool is_init = false;
         bool is_slave;
-        SPISettings last_settings;
+        bool is_transaction;
 
         // SPI0_IRQ = 18, SPI1_IRQ = 19
         int getStandardInterrupt(){
@@ -230,6 +232,14 @@ class PicoHardwareSPI : public HardwareSPI {
                 interrupt = 19;
             }
             return interrupt;
+        }
+
+        // adjust data bits
+        void setDataWidth(int bits){
+            if (data_bits != bits){
+                data_bits = bits;
+                setFormat();
+            }
         }
 
         void setFormat(){

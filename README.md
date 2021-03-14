@@ -81,6 +81,7 @@ Here is the list of the provided examples
 - [blink](examples/blink)
 - [tone](examples/tone_melody)
 - [arduino_library](examples/example_with_arduino_library)
+- [SPI with SdFat](examples/sd_info)
 
 The Pico has 2 processors, so here are the examples which use this Pico specific functionality:
 
@@ -128,11 +129,11 @@ That's it!
 - analog input/output API (PWM) - done
 - Multiprocessor support: queue, semaphore - done
 - tone - done
-- PIO API class - in progress
-- Arduino SPI API - open
+- Arduino SPI API - done
+- PIO API class - done
+- Software Serial using PIO - in process
 - Arduino I2C API - open
 - I2S API using PIO - open
-- Software Serial using PIO - open
 
 
 
