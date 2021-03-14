@@ -122,7 +122,7 @@ $(function() {
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="comment">// set baud rate and format on change of settings</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordflow">if</span> (last_settings != settings){</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                SPIMode mode = settings.getDataMode();</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                Logger.info(<span class="stringliteral">&quot;spi_set_baudrate&quot;</span>, toStr(settings.getClockFreq()));</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                Logger.info(<span class="stringliteral">&quot;spi_set_baudrate&quot;</span>, Logger.toStr(settings.getClockFreq()));</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                spi_set_baudrate(spi, settings.getClockFreq());</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                <span class="keywordflow">switch</span> (mode) {</div>
@@ -194,12 +194,12 @@ $(function() {
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        }</div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        </div>
 <div class="line"><a name="l00187"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a9ce51701c2384a6e7a47d556ddc1c9a2">  187</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#a9ce51701c2384a6e7a47d556ddc1c9a2">usingInterrupt</a>(<span class="keywordtype">int</span> interruptNumber) {</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            Logger.info(<span class="stringliteral">&quot;usingInterrupt&quot;</span>, toStr(interruptNumber));</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            Logger.info(<span class="stringliteral">&quot;usingInterrupt&quot;</span>, Logger.toStr(interruptNumber));</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            using_interrupt_no = interruptNumber;</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        }</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        </div>
 <div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#ab9bc505878ed86ec105d8b21143513b4">  193</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#ab9bc505878ed86ec105d8b21143513b4">notUsingInterrupt</a>(<span class="keywordtype">int</span> interruptNumber) {</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            Logger.info(<span class="stringliteral">&quot;notUsingInterrupt&quot;</span>,toStr(interruptNumber));</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            Logger.info(<span class="stringliteral">&quot;notUsingInterrupt&quot;</span>,Logger.toStr(interruptNumber));</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            irq_set_enabled(interruptNumber, <span class="keyword">true</span>);</div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            using_interrupt_no = 0;</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        }</div>
@@ -301,22 +301,17 @@ $(function() {
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160; </div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;            <span class="comment">// display pin assignments</span></div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            <span class="keywordflow">if</span> (Logger.isLogging()) {</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                Logger.info(<span class="stringliteral">&quot;pinRx is &quot;</span>, toStr(pinRx));</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                Logger.info(<span class="stringliteral">&quot;pinTx is &quot;</span>, toStr(pinTx));</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                Logger.info(<span class="stringliteral">&quot;pinSCK is &quot;</span>, toStr(pinSCK));</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                Logger.info(<span class="stringliteral">&quot;pinCS is &quot;</span>, toStr(pinCS));</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                Logger.info(<span class="stringliteral">&quot;pinRx is &quot;</span>, Logger.toStr(pinRx));</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                Logger.info(<span class="stringliteral">&quot;pinTx is &quot;</span>, Logger.toStr(pinTx));</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                Logger.info(<span class="stringliteral">&quot;pinSCK is &quot;</span>, Logger.toStr(pinSCK));</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                Logger.info(<span class="stringliteral">&quot;pinCS is &quot;</span>, Logger.toStr(pinCS));</div>
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;            }</div>
 <div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160; </div>
 <div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        }</div>
 <div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        </div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span>* toStr(<span class="keywordtype">int</span> value){</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;            <span class="keyword">static</span> <span class="keywordtype">char</span> buffer[10];</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;            itoa(value,buffer,10);</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;            <span class="keywordflow">return</span> (<span class="keyword">const</span> <span class="keywordtype">char</span>*)buffer;</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        }</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160; </div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    </div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;};</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160; </div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    </div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;};</div>
 <div class="ttc" id="aclass_pico_hardware_s_p_i_html"><div class="ttname"><a href="class_pico_hardware_s_p_i.html">PicoHardwareSPI</a></div><div class="ttdoc">Arduino HardwareSPI interface using the Pico API. We use the following default pins spi0: pinRx = 16;...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:18</div></div>
 <div class="ttc" id="aclass_pico_hardware_s_p_i_html_a06fce877c8cc8d6a23505b6b867e3317"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a06fce877c8cc8d6a23505b6b867e3317">PicoHardwareSPI::end</a></div><div class="ttdeci">virtual void end()</div><div class="ttdoc">Disables the SPI bus (leaving pin modes unchanged).</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:55</div></div>
 <div class="ttc" id="aclass_pico_hardware_s_p_i_html_a1c18e800c76eb546b0c9308212778da4"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a1c18e800c76eb546b0c9308212778da4">PicoHardwareSPI::attachInterrupt</a></div><div class="ttdeci">virtual void attachInterrupt()</div><div class="ttdoc">Enable the SPI interrupt: SPI0_IRQ = 18, SPI1_IRQ = 19.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:200</div></div>

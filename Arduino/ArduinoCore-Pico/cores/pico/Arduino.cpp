@@ -77,7 +77,7 @@ PinStatus digitalRead(pin_size_t pinNumber) {
  * @param pinNumber 
  * @return int 
  */
-int analogRead(int pinNumber){
+int analogRead(pin_size_t pinNumber){
     // analog read
     if (pinNumber>=26 && pinNumber<=29){
         // ADC
@@ -115,15 +115,14 @@ void analogWrite(pin_size_t pinNumber, int value) {
 }
 
 
-void tone(uint8_t pinNumber, unsigned int frequency, unsigned long duration) {
+void tone(pin_size_t pinNumber, unsigned int frequency, unsigned long duration) {
     ArduinoPicoTone::tone(pinNumber, frequency, duration);
 }
 
-void noTone(uint8_t pinNumber) {    
+void noTone(pin_size_t pinNumber) {    
     ArduinoPicoTone::noTone(pinNumber);
 }
 
-// ls
 // actually does nothing
 void yield(void){
 }
