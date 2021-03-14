@@ -26,7 +26,7 @@ const uint8_t SD_CS_PIN = SDCARD_SS_PIN;
 #endif  // SDCARD_SS_PIN
 
 // Try to select the best SD card configuration.  16MHz ?
-#define SPEED_MHZ 10
+#define SPEED_MHZ 12
 #if HAS_SDIO_CLASS
 #define SD_CONFIG SdioConfig(FIFO_SDIO)
 #elif ENABLE_DEDICATED_SPI

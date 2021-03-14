@@ -27,4 +27,7 @@ On the master MISO = pinRx and MOSI = pinTx
 <img src="https://www.pschatzmann.ch/wp-content/uploads/2020/12/SD.jpeg" alt="SD Module">
 
 ## Configuration
-When I first tested the functionality, I wondered why the functionality did not work properly. It turned out that USE_SIMPLE_LITTLE_ENDIAN must not be set to 1!
+When I first tested the functionality, I wondered why the functionality did not work properly. 
+
+- It turned out that USE_SIMPLE_LITTLE_ENDIAN must not be set to 1. This is changed in the SdFatConfig.h
+- I also needed to lower the max speed from 16MHz to 12MHz.
