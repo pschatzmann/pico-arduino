@@ -25,13 +25,14 @@ const uint8_t SD_CS_PIN = SS;
 const uint8_t SD_CS_PIN = SDCARD_SS_PIN;
 #endif  // SDCARD_SS_PIN
 
-// Try to select the best SD card configuration.
+// Try to select the best SD card configuration.  16MHz ?
+#define SPEED_MHZ 10
 #if HAS_SDIO_CLASS
 #define SD_CONFIG SdioConfig(FIFO_SDIO)
 #elif ENABLE_DEDICATED_SPI
-#define SD_CONFIG SdSpiConfig(SD_CS_PIN, DEDICATED_SPI, SD_SCK_MHZ(16))
+#define SD_CONFIG SdSpiConfig(SD_CS_PIN, DEDICATED_SPI, SD_SCK_MHZ(SPEED_MHZ))
 #else  // HAS_SDIO_CLASS
-#define SD_CONFIG SdSpiConfig(SD_CS_PIN, SHARED_SPI, SD_SCK_MHZ(16))
+#define SD_CONFIG SdSpiConfig(SD_CS_PIN, SHARED_SPI, SD_SCK_MHZ(SPEED_MHZ))
 #endif  // HAS_SDIO_CLASS
 
 //------------------------------------------------------------------------------
@@ -204,11 +205,20 @@ void printConfig(SdioConfig config) {
 }
 //-----------------------------------------------------------------------------
 void setup() {
-  Serial.begin(9600);
-  // Wait for USB Serial
+  Serial.begin(115200);
+  Logger.begin(Serial,PicoLogger::Debug);
+
   while (!Serial) {
     SysCall::yield();
   }
+
+  for (int j=0;j<10;j++){
+    Serial.print(".");
+    delay(1000);
+  }
+  Serial.println();
+
+  // Wait for USB Serial
   cout << F("SdFat version: ") << SD_FAT_VERSION_STR << endl;
   printConfig(SD_CONFIG);
 

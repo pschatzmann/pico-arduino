@@ -6,6 +6,7 @@
         "hashtable": "cpp",
         "chrono": "cpp",
         "array": "cpp",
-        "vertexarraystate": "cpp"
+        "vertexarraystate": "cpp",
+        "program": "cpp"
     }
 }

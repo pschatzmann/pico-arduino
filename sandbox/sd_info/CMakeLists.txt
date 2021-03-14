@@ -17,6 +17,7 @@ FetchContent_MakeAvailable(sdfat)
 file(GLOB_RECURSE SDFAT_SRC CONFIGURE_DEPENDS "${sdfat_SOURCE_DIR}/src/*.cpp")
 set(ARDUINO_SKETCH_SOURCE "sd_info.cpp" ${SDFAT_SRC})
 set(ARDUINO_SKETCH_INCLUDES "${sdfat_SOURCE_DIR}/src/")
+set(ARDUINO_SKETCH_DEFINITIONS "-DENABLE_ARDUINO_FEATURES")
 
 include("${PICO_SDK_ARDUINO_PATH}/ArduinoSketch.cmake")
 

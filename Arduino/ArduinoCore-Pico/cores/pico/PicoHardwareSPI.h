@@ -39,8 +39,9 @@ class PicoHardwareSPI : public HardwareSPI {
          * @param pinCS 
          * @param pinSCK 
          */
-        virtual void begin(bool slave, int pinRx=-1, int pinTx=-1, int pinCS=-1, int pinSCK=-1) {
-            spi_set_slave(spi, slave);
+        virtual void begin(bool slave, int pinRx=-1, int pinTx=-1, int pinCS=-1, int pinSCK=-1) {            
+            Logger.info("begin");
+            is_slave = slave;
             setupPins(pinRx, pinTx, pinCS, pinSCK);
         }
         
@@ -49,6 +50,7 @@ class PicoHardwareSPI : public HardwareSPI {
          * 
          */
         virtual void end() {
+            Logger.info("end");
             spi_deinit(spi);
             is_init = false;
         }
@@ -59,34 +61,60 @@ class PicoHardwareSPI : public HardwareSPI {
          * @param settings 
          */
         virtual void beginTransaction(SPISettings settings) {
-            if (last_settings != settings || !is_init){
+            Logger.debug("beginTransaction");
+            // initialize on first transction
+            if (!is_init){
+                Logger.info("spi_init");
                 spi_init (spi, settings.getClockFreq() );
+
+                // Configure the SPI for master- or slave-mode operation. By default, spi_init() sets master-mode.
+                if (is_slave){
+                    spi_set_slave(spi, is_slave);
+                }
+
                 is_init = true;
+            }
+
+            // set baud rate and format on change of settings
+            if (last_settings != settings){
                 SPIMode mode = settings.getDataMode();
+                Logger.info("spi_set_baudrate", toStr(settings.getClockFreq()));
+                spi_set_baudrate(spi, settings.getClockFreq());
 
                 switch (mode) {
                     case SPI_MODE0:
+                        Logger.info("mode", "MODE0");                     
                         cpol=SPI_CPOL_0;cpha=SPI_CPHA_0;
                         break;
                     case SPI_MODE1:
+                        Logger.info("mode", "MODE0");                     
                         cpol=SPI_CPOL_0;cpha=SPI_CPHA_1;
                         break;
                     case SPI_MODE2:
+                        Logger.info("mode", "MODE0");                     
                         cpol=SPI_CPOL_1;cpha=SPI_CPHA_0;
                         break;
                     case SPI_MODE3:
+                        Logger.info("mode", "MODE0");                     
                         cpol=SPI_CPOL_1;cpha=SPI_CPHA_1;
                         break;
+                    default:
+                        Logger.error("Invalid Mode");                     
+                        break;
+
                 }
 
                 BitOrder order_arduino = settings.getBitOrder();
-                spi_order_t order = order_arduino == LSBFIRST ?  SPI_LSB_FIRST : SPI_MSB_FIRST;
+                order = (order_arduino == LSBFIRST ) ?  SPI_LSB_FIRST : SPI_MSB_FIRST;
                 data_bits = 8;
                 setFormat();
+                last_settings = settings;
             }
 
-            if (using_interrupt_no!=0)
+            if (using_interrupt_no!=0) {
+                Logger.info("irq_set_enabled false");
                 irq_set_enabled(using_interrupt_no, false);
+            }
             is_transaction = true;
         }
 
@@ -95,10 +123,13 @@ class PicoHardwareSPI : public HardwareSPI {
          * 
          */
         virtual void endTransaction(void) {
+            Logger.debug("endTransaction");
             is_transaction = false;
 
-            if (using_interrupt_no!=0)
+            if (using_interrupt_no!=0) {
+                Logger.info("irq_set_enabled true");
                 irq_set_enabled(using_interrupt_no, true);
+            }
         }
        
         /**
@@ -108,9 +139,11 @@ class PicoHardwareSPI : public HardwareSPI {
          * @return uint8_t data received
          */
         virtual uint8_t transfer(uint8_t data) {
+            Logger.debug("transfer");
             uint8_t array[1]={data};
-            transfer(array, 1);  
-            return array[0];          
+            uint8_t arrayResult[1] = {0};
+            spi_write_read_blocking(spi,  array, arrayResult, 1);
+            return arrayResult[0];          
         }
 
         /**
@@ -120,6 +153,7 @@ class PicoHardwareSPI : public HardwareSPI {
          * @return uint8_t data received
          */
         virtual uint16_t transfer16(uint16_t data){
+            Logger.debug("transfer16");
             uint16_t result;
             spi_write16_read16_blocking(spi, &data, &result, 1);
             return result;
@@ -133,6 +167,7 @@ class PicoHardwareSPI : public HardwareSPI {
          */
     
         virtual void transfer(void *array, size_t len) {
+            Logger.debug("transfer (array)");
              spi_write_read_blocking(spi,  (const uint8_t*) array, (uint8_t*) array, len);
         }
         
@@ -144,15 +179,18 @@ class PicoHardwareSPI : public HardwareSPI {
          * @param interruptNumber 
          */
         virtual void usingInterrupt(int interruptNumber) {
+            Logger.info("usingInterrupt", toStr(interruptNumber));
             using_interrupt_no = interruptNumber;
         }
         
         virtual void notUsingInterrupt(int interruptNumber) {
+            Logger.info("notUsingInterrupt",toStr(interruptNumber));
             irq_set_enabled(interruptNumber, true);
             using_interrupt_no = 0;
         }
     
         virtual void attachInterrupt() {
+            Logger.info("attachInterrupt");
             int interrupt = getStandardInterrupt();
             if(interrupt>0){
                 irq_set_enabled(interrupt, true);
@@ -160,6 +198,7 @@ class PicoHardwareSPI : public HardwareSPI {
         }
         
         virtual void detachInterrupt() {
+            Logger.info("detachInterrupt");
             int interrupt = getStandardInterrupt();
             if(interrupt>0){
                 irq_set_enabled(interrupt, false);
@@ -175,7 +214,8 @@ class PicoHardwareSPI : public HardwareSPI {
         spi_order_t order;
         uint data_bits;
         int using_interrupt_no;
-        bool is_init;
+        bool is_init = false;
+        bool is_slave;
         SPISettings last_settings;
 
         // SPI0_IRQ = 18, SPI1_IRQ = 19
@@ -190,11 +230,13 @@ class PicoHardwareSPI : public HardwareSPI {
         }
 
         void setFormat(){
+            Logger.info("spi_set_format");
             spi_set_format(spi, data_bits, cpol, cpha, order);
         }
 
         void setupPins(int pinRx=-1, int pinTx=-1, int pinCS=-1, int pinSCK=-1){
             if (spi == spi0){
+                Logger.info("setupPins for spi0");
                 if (pinRx==-1){
                     pinRx = 16;
                 }
@@ -208,6 +250,7 @@ class PicoHardwareSPI : public HardwareSPI {
                     pinSCK = 18;
                 }
             } else if (spi == spi1){
+                Logger.info("setupPins for spi1");
                 if (pinRx==-1){
                     pinRx = 12;
                 }
@@ -221,24 +264,25 @@ class PicoHardwareSPI : public HardwareSPI {
                     pinSCK = 10;
                 }
 
-                gpio_set_function(pinRx, GPIO_FUNC_SPI);
-                gpio_set_function(pinSCK, GPIO_FUNC_SPI);
-                gpio_set_function(pinTx, GPIO_FUNC_SPI);
-
-                // Chip select is active-low, so we'll initialise it to a driven-high state
-                gpio_init(pinCS);
-                gpio_set_dir(pinCS, GPIO_OUT);
-                gpio_put(pinCS, 1);
-
-                // display pin assignments
-                if (Logger.isLogging()) {
-                    Logger.info("pinRx is ", toStr(pinRx));
-                    Logger.info("pinTx is ", toStr(pinTx));
-                    Logger.info("pinSCK is ", toStr(pinSCK));
-                    Logger.info("pinCS is ", toStr(pinCS));
-                }
             } else {
                 Logger.error("Invalid SPI device");
+            }
+
+            gpio_set_function(pinRx, GPIO_FUNC_SPI);
+            gpio_set_function(pinSCK, GPIO_FUNC_SPI);
+            gpio_set_function(pinTx, GPIO_FUNC_SPI);
+
+            // Chip select is active-low, so we'll initialise it to a driven-high state
+            gpio_init(pinCS);
+            gpio_set_dir(pinCS, GPIO_OUT);
+            gpio_put(pinCS, 1);
+
+            // display pin assignments
+            if (Logger.isLogging()) {
+                Logger.info("pinRx is ", toStr(pinRx));
+                Logger.info("pinTx is ", toStr(pinTx));
+                Logger.info("pinSCK is ", toStr(pinSCK));
+                Logger.info("pinCS is ", toStr(pinCS));
             }
 
         }

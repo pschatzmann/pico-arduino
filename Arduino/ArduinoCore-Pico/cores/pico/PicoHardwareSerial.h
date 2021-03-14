@@ -37,9 +37,12 @@ class PicoDefaultSerial : public HardwareSerial {
         }
         virtual int peek(void) {
             readBuffer();
-             return buffer.peek();
+            return buffer.peek();
         }
         virtual int read(void){
+            // we might need to flush the current ouptut...
+            flush();
+            // try to refill the buffer
             readBuffer();
             return buffer.read_char();
         }
@@ -77,13 +80,18 @@ class PicoDefaultSerial : public HardwareSerial {
         RingBufferN<BUFFER_SIZE> buffer;
 
         void readBuffer() {
+            // refill buffer only if it is empty
             if (buffer.available()==0){
-                char c = getchar();
-                while(c!=EOF && buffer.availableForStore()>0){
+                // fill buffer as long as we have space
+                int c = getchar_timeout_us(1000);
+                while(c!=PICO_ERROR_TIMEOUT && buffer.availableForStore()>0){
                     buffer.store_char(c);
+                    c = getchar_timeout_us(1000);
                 }
             }
         }
+
+
 };
 
 /**
@@ -128,10 +136,12 @@ class PicoHardwareSerial : public HardwareSerial {
             stdio_uart_init_full(uart, baudrate, tx_pin, rx_pin);
             uart_set_hw_flow(uart, cts, rts);
             set_config(config);
+            open = true;
         }
 
         virtual void end(){
              uart_deinit(uart);
+             open = false;
         }
 
         virtual int available(void){
@@ -198,11 +208,12 @@ class PicoHardwareSerial : public HardwareSerial {
         using Print::print; // pull in write(str) and write(buf, size) from Print
         using Print::println; // pull in write(str) and write(buf, size) from Print
 
-        virtual operator bool() {
-            return ok;
-        }
 
         virtual void flush(void) {
+        };
+
+        virtual operator bool(){
+            return open;
         };
 
 
@@ -213,12 +224,13 @@ class PicoHardwareSerial : public HardwareSerial {
         int tx_pin;
         int rx_pin;
         int uart_no;
-        bool ok = false;
+        bool open = false;
 
         void readBuffer() {
+            // refill buffer only if it is empty
             if (buffer.available()==0){
-                char c = uart_getc(uart);
-                while(c!=0 && buffer.availableForStore()>0){
+                while(uart_is_readable(uart) && buffer.availableForStore()>0) {
+                    char c = uart_getc(uart);
                     buffer.store_char(c);
                 }
             }

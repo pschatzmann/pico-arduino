@@ -23,7 +23,7 @@ if (DEFINED ENV{PICO_SDK_ARDUINO_PATH} AND (NOT PICO_SDK_ARDUINO_PATH))
 endif ()
 
 # Define PICO for c++ Preprocessor 
-add_definitions(-DPICO -DARDUINO)
+add_definitions(-DPICO -DARDUINO ${ARDUINO_SKETCH_DEFINITIONS})
 
 # We search for the ARDUINO library
 find_library(ARDUINO_LIB  
