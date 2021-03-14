@@ -9,6 +9,8 @@ extern int64_t stop_tone_callback(alarm_id_t id, void *user_data);
 
 /**
  * @brief We use the TimerAlarmRepeating to generate tones.
+ * @author Phil Schatzmann
+ * @copyright GPLv3
  */
 class PicoTone {
     public:

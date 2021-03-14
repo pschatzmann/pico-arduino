@@ -10,7 +10,8 @@
  * which RP2040 has eight split across two PIO instances. A state machine is responsible for setting and reading one or
  * more GPIOs, buffering data to or from the processor (or RP2040’s ultra-fast DMA subsystem), and notifying the
  * processor, via IRQ or polling, when data or attention is needed
- * 
+ * @author Phil Schatzmann
+ * @copyright GPLv3
  */
 class PIOManager {
     public:

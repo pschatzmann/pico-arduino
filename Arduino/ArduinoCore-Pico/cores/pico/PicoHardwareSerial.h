@@ -12,7 +12,8 @@
 
 /**
  * @brief PicoDefaultSerial is using the pico default output. It is mapped to the Arduino Serial variable.
- * 
+ * @author Phil Schatzmann
+ * @copyright GPLv3
  */
 class PicoDefaultSerial : public HardwareSerial {
     public:

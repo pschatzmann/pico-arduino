@@ -4,6 +4,8 @@
 
 /**
  * @brief A simple Logger that writes messages dependent on the log level
+ * @author Phil Schatzmann
+ * @copyright GPLv3
  * 
  */
 

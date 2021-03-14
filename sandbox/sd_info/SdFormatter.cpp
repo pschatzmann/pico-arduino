@@ -153,6 +153,10 @@ void printConfig(SdioConfig config) {
 void setup() {
   char c;
   Serial.begin(9600);
+  for (int j=0;j<10;j++){
+    Serial.print(".");
+    delay(1000);
+  }
   // Wait for USB Serial
   while (!Serial) {
     SysCall::yield();

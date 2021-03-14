@@ -11,6 +11,9 @@
  * spi0:  pinRx = 16; pinTx = 19; pinCS = 17; pinSCK = 18;
  * spi1:  pinRx = 12; pinTx = 11; pinCS = 13; pinSCK = 10;
  * On the master miso = pinRx and mosi = pinTx
+ * 
+ * @author Phil Schatzmann
+ * @copyright GPLv3
  */
 class PicoHardwareSPI : public HardwareSPI {
     public:

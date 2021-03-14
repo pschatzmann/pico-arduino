@@ -6,8 +6,9 @@ extern "C" {
 }
 /**
  * @brief Construct a new Pico Queue object
- * 
  * @tparam T 
+ * @author Phil Schatzmann
+ * @copyright GPLv3
  */
 template <class T> 
 class Queue {

@@ -5,7 +5,8 @@
 
 /**
  * @brief Pico Semaphore which might be useful if you use the 2 processors (e.g. with the Thread class)
- * 
+ * @author Phil Schatzmann
+ * @copyright GPLv3
  */
 class Semaphore {
     public:

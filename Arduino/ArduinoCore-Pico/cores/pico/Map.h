@@ -4,10 +4,9 @@
 
 /**
  * @brief A simple key value map collection
- * 
+ * @author Phil Schatzmann
+ * @copyright GPLv3
  */
-
-
 
 template <class K, class V> 
 class Map {

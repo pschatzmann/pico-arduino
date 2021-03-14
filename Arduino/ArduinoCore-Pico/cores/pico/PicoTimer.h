@@ -9,7 +9,8 @@ enum TimeUnit {MS,US};
 
 /**
  * @brief Alarm functions for scheduling future execution.
- * 
+ * @author Phil Schatzmann
+ * @copyright GPLv3
  */
 
 class TimerAlarm {

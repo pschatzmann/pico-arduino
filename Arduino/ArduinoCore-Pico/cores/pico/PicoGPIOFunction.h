@@ -22,6 +22,9 @@
     GPIO_FUNC_USB = 9,
     GPIO_FUNC_NULL = 0xf,
 };
+
+ * @author Phil Schatzmann
+ * @copyright GPLv3
  */
 
 

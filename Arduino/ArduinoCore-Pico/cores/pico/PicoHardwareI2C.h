@@ -3,7 +3,8 @@
 
 /**
  * @brief Arduino I2C implementation using the Pico functionality 
- * 
+ * @author Phil Schatzmann
+ * @copyright GPLv3
  */
 class PicoHardwareI2C : public HardwareI2C {
     public:

@@ -1,3 +1,11 @@
+/**
+ * Arduino.cpp - Main implementation file for the PICO Arduino SDK
+ * @author Phil Schatzmann
+ * @copyright GPLv3
+ * 
+ */
+
+
 #include "Arduino.h"
 #include "PluggableUSB.h"
 #include "PicoLogger.h"
@@ -119,5 +127,12 @@ void yield(void){
 //static PluggableUSB_ obj;
 PluggableUSB_::PluggableUSB_(){}
 
+
+int main() {
+    setup();
+    while(true){
+        loop();
+    }
+}
 
 

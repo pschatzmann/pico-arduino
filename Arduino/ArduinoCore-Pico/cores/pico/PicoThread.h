@@ -5,7 +5,8 @@
 
 /**
  * @brief Adds support for running code on the second processor core (core1)
- * 
+ * @author Phil Schatzmann
+ * @copyright GPLv3
  */
 
 typedef void (*ThreadCB)(void* arg);

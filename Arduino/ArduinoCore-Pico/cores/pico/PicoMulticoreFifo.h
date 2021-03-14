@@ -7,7 +7,8 @@
  * @brief The RP2040 contains two FIFOs for passing data, messages or ordered events between the two cores. Each FIFO is 32
  * bits wide, and 8 entries deep. One of the FIFOs can only be written by core 0, and read by core 1. The other can only be
  * written by core 1, and read by core 0.
- * 
+ * @author Phil Schatzmann
+ * @copyright GPLv3
  */
 class MuliticoreFifo {
     public:

@@ -6,6 +6,8 @@
  * @brief Software Serial Arduino Stream which uses the Pico PIO.
  * 
  * Based on https://github.com/raspberrypi/pico-examples/tree/master/pio
+ * @author Phil Schatzmann
+ * @copyright GPLv3
  */
 
 class SoftwareSerial : public Stream {
