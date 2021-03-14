@@ -13,7 +13,7 @@ The Arduino HardwareSPI interface using the Pico API and we use the following de
 
 On the master MISO = pinRx and MOSI = pinTx
  
-## Connections
+## Connections for SD Module
 
  SD   | Pico              
 ------|-------------------
@@ -23,6 +23,8 @@ On the master MISO = pinRx and MOSI = pinTx
  MISO | SPI-RX (GPIO 16)  
  VCC  | VBUS (5V)         
  GND  | GND               
+
+<img src="https://www.pschatzmann.ch/wp-content/uploads/2020/12/SD.jpeg" alt="SD Module">
 
 ## Configuration
 When I first tested the functionality, I wondered why the functionality did not work properly. It turned out that USE_SIMPLE_LITTLE_ENDIAN must not be set to 1!
