@@ -32,9 +32,9 @@ cd pico-arduino/Arduino
 and execute the steps below:
 ```
 mkdir build
-cd build install
+cd build 
 cmake ..
-make
+make install
 ```
 
 
