@@ -36,8 +36,6 @@ cd build
 cmake ..
 make install
 ```
-This builds the libarduino.a library and installs it into the lib directory.
-
 
 You can find the resulting library in the pico-arduino/lib directory.
 
