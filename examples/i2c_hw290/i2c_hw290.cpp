@@ -34,9 +34,6 @@ THE SOFTWARE.
 #include "Arduino.h"
 #include "I2Cdev.h"
 #include "MPU6050.h"
-
-// Arduino Wire library is required if I2Cdev I2CDEV_ARDUINO_WIRE implementation
-// is used in I2Cdev.h
 #include "Wire.h"
 
 // class default I2C address is 0x68
@@ -46,16 +43,22 @@ THE SOFTWARE.
 MPU6050 accelgyro;
 //MPU6050 accelgyro(0x69); // <-- use for AD0 high
 
-int16_t ax, ay, az;
-int16_t gx, gy, gz;
 
 
 void setup() {
-    // join I2C bus (I2Cdev library doesn't do this automatically)
-    Wire.begin();
-
     // initialize serial communication
     Serial.begin(115200);
+    Logger.begin(Serial, PicoLogger::Warning);
+
+    // give some time to connect a terminal
+    for (int j=0;j<20;j++){
+        Serial.print(".");
+        delay(1000);
+    }
+
+
+    // join I2C bus (I2Cdev library doesn't do this automatically)
+    Wire.begin();
 
     // initialize device
     Serial.println("Initializing I2C devices...");
@@ -68,6 +71,8 @@ void setup() {
 }
 
 void loop() {
+    int16_t ax, ay, az;
+    int16_t gx, gy, gz;
     // read raw accel/gyro measurements from device
     accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
 

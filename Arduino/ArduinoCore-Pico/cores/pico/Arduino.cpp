@@ -22,8 +22,8 @@ PicoHardwareSerial Serial2(1);
 PicoHardwareSPI SPI(spi0);
 PicoHardwareSPI SPI1(spi1);
 PicoGPIOFunction GPIOFunction;
-PicoHardwareI2C Wire(i2c0, 160, GP2, GP3);  
-PicoHardwareI2C Wire1(i2c1, 160, GP4, GP5);  
+PicoHardwareI2C Wire(i2c0, 160, GP12, GP13);  
+PicoHardwareI2C Wire1(i2c1, 160, GP14, GP15);  
 PicoLogger Logger;    // Support for logging
 
 // local data

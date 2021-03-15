@@ -4,6 +4,7 @@
 #include "HardwareSerial.h"
 #include "RingBuffer.h"
 #include "pico/stdlib.h"
+#include "tusb.h"
 
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 512
@@ -73,7 +74,7 @@ class PicoDefaultSerial : public HardwareSerial {
         using Print::println; // pull in write(str) and write(buf, size) from Print
 
         virtual operator bool(){
-            return open;
+            return tud_cdc_connected();
         };
 
     protected:

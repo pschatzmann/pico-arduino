@@ -82,6 +82,7 @@ Here is the list of the provided examples
 - [tone](examples/tone_melody)
 - [arduino_library](examples/example_with_arduino_library)
 - [SPI with SdFat](examples/sd_info)
+- [I2C with HW290](examples/i2c_hw290)
 
 The Pico has 2 processors, so here are the examples which use this Pico specific functionality:
 
@@ -131,8 +132,8 @@ That's it!
 - tone - done
 - Arduino SPI API - done
 - PIO API class - done
+- Arduino I2C API - done
 - Software Serial using PIO - in process
-- Arduino I2C API - open
 - I2S API using PIO - open
 
 

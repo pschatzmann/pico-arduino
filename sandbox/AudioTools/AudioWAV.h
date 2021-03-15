@@ -6,11 +6,13 @@
 #define WAV_FORMAT_PCM 0x0001
 #define TAG(a, b, c, d) (((a) << 24) | ((b) << 16) | ((c) << 8) | (d))
 
+
+
 /**
  * @brief Parser for Wav header data
  * 
  */
-class WavHeader : public AudioInfoSource  {
+class WavHeader  {
     public:
         WavHeader(){
         };
@@ -98,8 +100,6 @@ class WavHeader : public AudioInfoSource  {
             logInfo();
             return;
         }
-
-
 
         // provides the AudioInfo
         AudioInfo &audioInfo() {
@@ -194,19 +194,20 @@ class WavHeader : public AudioInfoSource  {
  * constructor.
  * 
  */
-class WAVDecoder : public AudioInfoSource {
+class WAVDecoder  {
     public:
-        WAVDecoder(Stream &out_stream){
+        WAVDecoder(){
+        }
+
+        void begin(Stream &out_stream){
+            isFirst = true;
             this->out = &out_stream;
         }
     
-        WAVDecoder(AudioOut &out){
+        void begin(AudioOut &out){
+            isFirst = true;
             this->out = &out;
             this->audioTarget = &out;
-        }
-
-        void begin() {
-            isFirst = true;
         }
 
         AudioInfo &audioInfo() {
@@ -270,7 +271,25 @@ class WAVDecoder : public AudioInfoSource {
  */
 class WAVEncoder {
     public: 
-        WAVEncoder(Stream &out){
+
+        WAVEncoder(AudioInfo &ai) {
+            audioInfo = ai;
+        }
+
+        WAVEncoder(int input_channels=2, int input_sample_rate=44100, int input_bits_per_sample=16) {
+            audioInfo.channels = input_channels;
+            audioInfo.sample_rate = input_sample_rate;
+            audioInfo.bits_per_sample = input_bits_per_sample;
+            if (max_samples>0){
+                audioInfo.file_size = max_samples * audioInfo.bits_per_sample / 8 * audioInfo.channels;
+            }
+            writeRiffHeader();
+            writeFMT();
+            writeDataHeader();
+            return 0;
+        }
+
+        void begin(Stream &out){
             stream_ptr = &out;
         }
 
@@ -287,23 +306,6 @@ class WAVEncoder {
             this->max_samples = samples;
         }
 
-        virtual int begin(AudioInfo &ai) {
-            audioInfo = ai;
-        }
-
-        virtual int begin(int input_channels=2, int input_sample_rate=44100, int input_bits_per_sample=16) {
-            audioInfo.channels = input_channels;
-            audioInfo.sample_rate = input_sample_rate;
-            audioInfo.bits_per_sample = input_bits_per_sample;
-            if (max_samples>0){
-                audioInfo.file_size = max_samples * audioInfo.bits_per_sample / 8 * audioInfo.channels;
-            }
-            writeRiffHeader();
-            writeFMT();
-            writeDataHeader();
-            return 0;
-        }
-    
         virtual size_t write(void *in_ptr, size_t in_size){
             int32_t result = 0;
             if (audioInfo.file_size>0){
@@ -312,6 +314,10 @@ class WAVEncoder {
                 audioInfo.file_size -= write_size;
             }  
             return result;
+        }
+
+        void end(){
+            stream_ptr->flush();
         }
 
     protected:
