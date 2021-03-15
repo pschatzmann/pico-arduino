@@ -1,7 +1,7 @@
 ## Raspberry PI Pico - Arduino API
 
-On Friday I was receiving my Raspberry PI Pico and I had the opportunity to play around with it. Actually most of the time I spent reading the Manuals...
-The conclusion: interesting - but a little bit too complicated - So I was quite happy to read that Arduino plans to add an official support for this Microcontroller. 
+Recently I was receiving my Raspberry PI Pico and I had the opportunity to play around with it. Actually most of the time I spent reading the Manuals...
+The conclusion: interesting - but a little bit too complicated. So I was quite happy to read that Arduino plans to add an official support for this Microcontroller. 
 
 However I did not want to wait for the official support to be available, so as a temporary solution, I decided to make my own Arduino API availale as a separate project. 
 
@@ -10,6 +10,7 @@ However I did not want to wait for the official support to be available, so as a
 - Provide a full implementation of the Arduino API
 - Provide additioal easy to use C++ classes for the functionaity which is specific to the Pico
 - Keep the pico specific build process using cmake
+- Support of existing Arduino Libraries
 - Provide examples 
 
 ## Installation
@@ -78,7 +79,7 @@ Here is the list of the provided examples
 - [hallo_world](examples/hallo_world)
 - [blink](examples/blink)
 - [tone](examples/tone_melody)
-- [arduino_library](examples/example_with_arduino_library)
+- [Using an Arduino library](examples/example_with_arduino_library)
 - [SPI with SdFat](examples/sd_info)
 - [I2C with HW290](examples/i2c_hw290)
 
@@ -92,6 +93,7 @@ The Pico has 2 processors, so here are the examples which use this Pico specific
 And finally some other Pico specific functionality:
 
 - [blink_timer](examples/blink_timer)
+- [software_serial](examples/software_serial)
 
 ## Documentation
 
@@ -123,15 +125,15 @@ That's it!
 
 ## Project Status
 
-- Basic Arduino API (e.g. String, Serial...) - done
-- digital input/output API - done
-- analog input/output API (PWM) - done
-- Multiprocessor support: queue, semaphore - done
-- tone - done
-- Arduino SPI API - done
-- PIO API class - done
-- Arduino I2C API - done
-- Software Serial using PIO - in process
+- Basic Arduino API (e.g. String, Serial...) - completed
+- digital input/output API - completed
+- analog input/output API (PWM) - completed
+- Multiprocessor support: queue, semaphore - completed
+- tone - completed
+- Arduino SPI API - completed
+- PIO API class - completed
+- Arduino I2C API - completed
+- Software Serial using PIO - completed
 - I2S API using PIO - open
 
 
