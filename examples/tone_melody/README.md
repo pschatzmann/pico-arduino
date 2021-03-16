@@ -3,7 +3,7 @@ We just demo the functionality with the same tone_melodiy sketch which is also p
 
 ## Connections 
 
-I was using a Piezo Electric Elements to test the sound generation
+I was using a Piezo Electric Element to test the sound generation
 
 | Piezo  | Pico              
 |--------|--------
