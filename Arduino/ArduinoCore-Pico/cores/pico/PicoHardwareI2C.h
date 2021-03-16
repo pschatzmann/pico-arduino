@@ -1,7 +1,9 @@
 #pragma once
 #include "HardwareI2C.h"
 #include "hardware/i2c.h"
-
+#include "hardware/gpio.h"
+#include "PicoLogger.h"
+#include <algorithm>    // std::max
 
 /**
  * @brief Arduino I2C implementation using the Pico functionality.
@@ -250,7 +252,7 @@ class PicoHardwareI2C : public HardwareI2C {
       void  setupReadBuffer(int len){
         if (read_buffer==nullptr){
           // setup buffer only if needed
-          maxBufferSize = max(len, maxBufferSize);
+          maxBufferSize = std::max(len, maxBufferSize);
           if (Logger.isLogging(PicoLogger::Info)) {
             Logger.info("setupReadBuffer: ",Logger.toStr(maxBufferSize));
           }
