@@ -5,10 +5,10 @@ We just demo the functionality with the same tone_melodiy sketch which is also p
 
 I was using a Piezo Electric Elements to test the sound generation
 
- Piezo  | Pico              
---------|------------------------
- -      | GND 
- +      | GP 8 
+| Piezo  | Pico              
+|--------|--------
+|  +     | GP 8 
+|  -     | GND 
 
 <img src="https://www.pschatzmann.ch/wp-content/uploads/2021/01/piezo.jpeg" alt="piezo element">
 
