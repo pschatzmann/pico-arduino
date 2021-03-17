@@ -82,7 +82,7 @@ Here is the list of the provided examples
 - [Using an Arduino library](examples/example_with_arduino_library)
 - [SPI with SdFat](examples/sd_info)
 - [I2C with HW290](examples/i2c_hw290)
-- [hall_world_serial](examples/hall_world_serial)
+- [hallo_world_serial](examples/hallo_world_serial)
 
 The Pico has 2 processors, so here are the examples which use this Pico specific functionality:
 
