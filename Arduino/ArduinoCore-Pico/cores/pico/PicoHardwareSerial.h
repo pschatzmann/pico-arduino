@@ -193,22 +193,6 @@ class PicoHardwareSerial : public HardwareSerial {
             return write((uint8_t*) s, strlen(s));
         }
 
-        inline size_t write(unsigned long n){
-            return write((uint8_t) n);
-        }
-
-        inline size_t write(long n){
-            return write((uint8_t) n);
-        }
-
-        inline size_t write(unsigned int n) {
-            return write((uint8_t) n);
-        }
-
-        inline size_t write(int n){
-            return write((uint8_t) n);
-        }
-
         uint32_t baudRate(){
             return baud_rate;
         }
