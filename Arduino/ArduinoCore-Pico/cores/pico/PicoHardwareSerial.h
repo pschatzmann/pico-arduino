@@ -4,6 +4,7 @@
 #include "HardwareSerial.h"
 #include "RingBuffer.h"
 #include "pico/stdlib.h"
+#include "hardware/uart.h"
 #include "tusb.h"
 
 #ifndef BUFFER_SIZE
@@ -23,15 +24,15 @@ class PicoDefaultSerial : public HardwareSerial {
 
         virtual void begin(unsigned long baudrate=PICO_DEFAULT_UART_BAUD_RATE) {
             stdio_init_all();
-            open = true;
+            is_open = true;
         };
         virtual void begin(unsigned long baudrate, uint16_t config){
             stdio_init_all();
-            open = true;
+            is_open = true;
 
         }
         virtual void end() {
-            open = false;
+            is_open = false;
         }
         virtual int available(void){
             readBuffer();
@@ -74,11 +75,11 @@ class PicoDefaultSerial : public HardwareSerial {
         using Print::println; // pull in write(str) and write(buf, size) from Print
 
         virtual operator bool(){
-            return tud_cdc_connected();
+            return tud_cdc_connected() && is_open;
         };
 
     protected:
-        bool open;
+        bool is_open;
         RingBufferN<BUFFER_SIZE> buffer;
 
         void readBuffer() {
@@ -130,12 +131,12 @@ class PicoHardwareSerial : public HardwareSerial {
          * @param rts 
          */
 
-        virtual void begin(unsigned long baudrate, uint32_t config, int rxPin=-1, int txPin=-1, bool invert=false, bool cts=false, bool rts=false) {
+        virtual void begin(unsigned long baudrate, uint32_t config, pin_size_t rxPin=-1, pin_size_t txPin=-1, bool invert=false, bool cts=false, bool rts=false) {
             Logger.info("begin", toStr(baudrate));
             rx_pin = rxPin;
             tx_pin = txPin;
+            uart_init(uart, baudrate);
             setupDefaultRxTxPins();
-            stdio_uart_init_full(uart, baudrate, tx_pin, rx_pin);
             uart_set_hw_flow(uart, cts, rts);
             set_config(config);
             open = true;
@@ -239,6 +240,7 @@ class PicoHardwareSerial : public HardwareSerial {
         }
 
         void set_config(uint32_t config){
+            Logger.info("set_config");
             //data, parity, and stop bits
             switch(config){
             case SERIAL_5N1:
@@ -251,6 +253,7 @@ class PicoHardwareSerial : public HardwareSerial {
                 uart_set_format(uart, 7, 1,UART_PARITY_NONE);
                 break;
             case SERIAL_8N1:
+                Logger.info("SERIAL_8N1 - UART_PARITY_NONE");
                 uart_set_format(uart, 8, 1,UART_PARITY_NONE);
                 break;
             case SERIAL_5N2:
@@ -317,6 +320,7 @@ class PicoHardwareSerial : public HardwareSerial {
         }
 
         void setupDefaultRxTxPins(){
+            Logger.info("setupDefaultRxTxPins");
             // we use different pins for uart0 and uar1. We assign values only if it has not been defined in setup
             if (uart_no==0){
                 if (rx_pin==-1) {
@@ -336,13 +340,15 @@ class PicoHardwareSerial : public HardwareSerial {
             // display pin assignments
             if (Logger.isLogging()) {
                 Logger.info("Using UART: ", toStr(uart_no));
-                Logger.info("rxPin is ", toStr(rx_pin));
                 Logger.info("txPin is ", toStr(tx_pin));
+                Logger.info("rxPin is ", toStr(rx_pin));
             }
-            if (tx_pin!=-1)
+            if (tx_pin!=-1) {
                 gpio_set_function(tx_pin, GPIO_FUNC_UART);
-            if (rx_pin!=-1)
+            }
+            if (rx_pin!=-1){
                 gpio_set_function(rx_pin, GPIO_FUNC_UART);
+            }
 
         }
 
@@ -353,18 +359,3 @@ class PicoHardwareSerial : public HardwareSerial {
         }
 };
 
-// #if !defined(TINYUSB_HOST_LINKED) && !defined(TINYUSB_DEVICE_LINKED)
-// /**
-//  * @brief Output class which uses USB
-//  * 
-//  */
-// class PicoUSBSerial : public PicoDefaultSerial {
-//     PicoUSBSerial(){
-//         stdio_usb_init();
-//     }
-
-//     // this does not do anything
-//     irtual void begin() {
-//     }
-// };
-// #endif

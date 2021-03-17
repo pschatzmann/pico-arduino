@@ -41,7 +41,7 @@ include_directories(
 add_library(arduino ${ARD_DIR_LIST} ${ARD_DIR_EXT_LIST} )
 
 target_link_libraries(arduino
-    pico_stdio_uart 
+#    pico_stdio_uart 
     pico_stdio_usb 
     pico_stdlib 
     pico_runtime

@@ -27,20 +27,30 @@ struct AudioInfo {
 class WAVEncoder {
     public: 
 
-        WAVEncoder(int input_channels=2, int input_sample_rate=44100, int input_bits_per_sample=16) {
+        WAVEncoder(int input_channels=2, int input_sample_rate=44100, int input_bits_per_sample=16, int maxSamples=0) {
             audioInfo.channels = input_channels;
             audioInfo.sample_rate = input_sample_rate;
             audioInfo.bits_per_sample = input_bits_per_sample;
+            setFileSize();
             if (max_samples>0){
                 audioInfo.file_size = max_samples * audioInfo.bits_per_sample / 8 * audioInfo.channels;
+                streaming = false;
+            } else {
+                audioInfo.file_size = 0xffffffff;
+                streaming = true;
             }
-            writeRiffHeader();
-            writeFMT();
-            writeDataHeader();
         }
 
         void begin(Stream &out){
             stream_ptr = &out;
+            writeRiffHeader();
+            writeFMT();
+            writeDataHeader();
+            stream_ptr->flush();
+        }
+
+        void setSampleRate(int rate){
+            audioInfo.sample_rate = rate;
         }
 
         void setDataFormat(uint16_t format = WAV_FORMAT_PCM) {
@@ -58,11 +68,13 @@ class WAVEncoder {
 
         virtual size_t write(void *in_ptr, size_t in_size){
             int32_t result = 0;
-            if (audioInfo.file_size>0){
+            if (streaming){
+                result = stream_ptr->write((uint8_t*)in_ptr, in_size);
+            }  else if (audioInfo.file_size>0){
                 size_t write_size = min((size_t)in_size,(size_t)audioInfo.file_size);
                 result = stream_ptr->write((uint8_t*)in_ptr, write_size);
                 audioInfo.file_size -= write_size;
-            }  
+            }
             return result;
         }
 
@@ -74,6 +86,7 @@ class WAVEncoder {
         Stream* stream_ptr;
         AudioInfo audioInfo;
         uint32_t max_samples;
+        bool streaming;
 
         void writeRiffHeader(){
             stream_ptr->write("RIFF",4);

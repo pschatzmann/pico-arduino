@@ -47,11 +47,11 @@ include_directories(
 # PICO
 add_executable(${ARDUINO_SKETCH_NAME} ${HEADER_LIST} ${ARDUINO_SKETCH_SOURCE} )
 pico_enable_stdio_usb("${ARDUINO_SKETCH_NAME}" 1)
-pico_enable_stdio_uart("${ARDUINO_SKETCH_NAME}" 0)
+#pico_enable_stdio_uart("${ARDUINO_SKETCH_NAME}" 0)
 
 # Add pico_stdlib library which aggregates commonly used features
 target_link_libraries("${ARDUINO_SKETCH_NAME}" PRIVATE
-    pico_stdio_uart 
+#    pico_stdio_uart 
     pico_stdio_usb 
     pico_stdlib 
     pico_runtime
