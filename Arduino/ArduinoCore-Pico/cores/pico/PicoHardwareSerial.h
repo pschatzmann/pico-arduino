@@ -11,6 +11,7 @@
 #define BUFFER_SIZE 512
 #endif
 
+static inline bool tud_cdc_connected (void);
 
 /**
  * @brief PicoDefaultSerial is using the pico default output. It is mapped to the Arduino Serial variable.

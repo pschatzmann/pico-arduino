@@ -8,6 +8,7 @@ void setup(){
 }
 
 void loop(){
+    Serial.print("test-");
     Serial.println("Hallo world");
     delay(1000);
 }

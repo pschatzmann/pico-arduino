@@ -20,17 +20,6 @@ project(usb_midi C CXX ASM)
 # initialize the Pico SDK
 pico_sdk_init()
 
-# # Add tinyusb-cpp
-# ExternalProject_Add(tinyusb-cpp
-#     GIT_REPOSITORY "https://github.com/pschatzmann/tinyusb-cpp.git"
-#     GIT_TAG main
-#     PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/lib/tinyusb-cpp
-#     CONFIGURE_COMMAND ""
-#     BUILD_COMMAND ""
-#     INSTALL_COMMAND ""
-# )
-
-
 # We search for the ARDUINO library
 find_library(ARDUINO_LIB  
     NAMES "arduino" 
@@ -55,14 +44,11 @@ include_directories(
 add_executable(usb_midi ${CMAKE_CURRENT_SOURCE_DIR}/usb_midi.cpp ${CMAKE_CURRENT_SOURCE_DIR}/usb_main.cpp )
 
 pico_enable_stdio_usb(usb_midi 1)
-pico_enable_stdio_uart(usb_midi 0)
-
-add_dependencies(usb_midi tinyusb-cpp)
 
 # Add pico_stdlib library which aggregates commonly used features
 target_link_libraries(usb_midi PRIVATE
     ${ARDUINO_LIB}
-    pico_stdio_uart 
+    pico_stdio_usb 
     pico_stdlib 
     pico_runtime
     pico_multicore 
@@ -74,6 +60,7 @@ target_link_libraries(usb_midi PRIVATE
     hardware_pio
     tinyusb_device
     tinyusb_board
+
 )
 
 # create map/bin/hex/uf2 file in addition to ELF.

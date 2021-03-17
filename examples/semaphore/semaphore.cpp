@@ -12,7 +12,7 @@ void increment() {
     semaphore.release();
 }
 
-void methodOn2ndProcessor(){
+void methodOn2ndProcessor(void*ptr){
     while(true){
         increment();
     }

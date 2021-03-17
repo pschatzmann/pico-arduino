@@ -3,7 +3,7 @@
 Thread thread;
 MuliticoreFifo fifo;
 
-void methodOn2ndProcessor(){
+void methodOn2ndProcessor(void *ptr){
   while(true){
     uint32_t data;
     fifo.pop(data);

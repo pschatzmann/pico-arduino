@@ -4,7 +4,7 @@
 Queue<long> queue(100, true, true);
 Thread thread;
 
-void methodOn2ndProcessor(){
+void methodOn2ndProcessor(void*ptr){
   long data;
   // we just pop data from the queue and print it to the console
   while(true){

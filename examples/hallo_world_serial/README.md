@@ -3,8 +3,8 @@ We just print the test Hallo World every second to the USB console and to Serial
 
 By default we use the following pins: 
 
-- UART0 tx/rx = gp0/gp1; 
-- UART1 tx/rx = gp4/gp5; 
+- Serial1: UART0 tx (GP0) / rx (GP1)  
+- Serial2: UART1 tx (GP4) / rx (GP5) 
 
 In the example we show how to redefine the pins to use GP12 and GP13.
 

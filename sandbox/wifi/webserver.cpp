@@ -49,7 +49,11 @@ void setup()
     delay(50);
   }
   // initialize serial for ESP module
-  Serial1.begin(115200);
+  //Serial1.begin(115200);
+  int rx = GP13;
+  int tx = GP12;
+  Serial1.begin(115200, SERIAL_8N1, rx, tx);
+
   // initialize ESP module
   WiFi.init(&Serial1);
 
