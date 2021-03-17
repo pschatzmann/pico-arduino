@@ -5,13 +5,21 @@
 #include "RingBuffer.h"
 #include "pico/stdlib.h"
 #include "hardware/uart.h"
-#include "tusb.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <tusb.h>
 
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 512
 #endif
 
-static inline bool tud_cdc_connected (void);
+#ifndef READ_WAIT_US 
+#define READ_WAIT_US 100000
+#endif
+
+extern "C" {
+static bool tud_cdc_connected (void);
+}
 
 /**
  * @brief PicoDefaultSerial is using the pico default output. It is mapped to the Arduino Serial variable.
@@ -149,10 +157,8 @@ class PicoHardwareSerial : public HardwareSerial {
         }
 
         virtual int available(void){
-            if (buffer.available()>0){
-                return buffer.available();
-            }
-            return uart_is_readable(uart);
+            readBuffer(true);
+            return buffer.available();
         }
 
         virtual int availableForWrite(void){
@@ -176,7 +182,6 @@ class PicoHardwareSerial : public HardwareSerial {
 
         inline size_t write(const uint8_t *buffer, size_t size) {
             uart_write_blocking(uart, buffer, size);
-            flush();
             return size;
         }
 
@@ -230,10 +235,11 @@ class PicoHardwareSerial : public HardwareSerial {
         int uart_no;
         bool open = false;
 
-        void readBuffer() {
-            // refill buffer only if it is empty
-            if (buffer.available()==0){
-                while(uart_is_readable(uart) && buffer.availableForStore()>0) {
+        // filles the read buffer
+        void readBuffer(bool refill=false) {
+            // refill buffer only when requested or when it is empty
+            if (refill || buffer.available()==0){
+                while(buffer.availableForStore()>0 && uart_is_readable_within_us(uart, READ_WAIT_US)) {
                     char c = uart_getc(uart);
                     buffer.store_char(c);
                 }
