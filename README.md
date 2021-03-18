@@ -76,14 +76,14 @@ The result can be found in the arduino/examples/blink/build directory.
 
 Here is the list of the provided examples
 
-- [hallo_world](examples/hallo_world)
 - [blink](examples/blink)
+- [hallo_world](examples/hallo_world)
 - [tone](examples/tone_melody)
 - [Using an Arduino library](examples/example_with_arduino_library)
 - [SPI with SdFat](examples/sd_info)
 - [I2C with HW290](examples/i2c_hw290)
 - [hallo_world_serial](examples/hallo_world_serial)
-- [Bluetooth with a hc-05](examples/hc_05)
+- [Bluetooth with a HC-05](examples/hc_05)
 
 The Pico has 2 processors, so here are the examples which use this Pico specific functionality:
 
