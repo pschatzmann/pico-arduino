@@ -1,6 +1,6 @@
 
 #include "Arduino.h"
-#include "SoftwareSerial/SoftwareSerial.h"
+#include "SoftwareSerial.h"
 
 SoftwareSerial SofwareSerial;
 int tx_pin = GP21;
