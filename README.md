@@ -96,9 +96,6 @@ Here is some other Pico specific functionality:
 - [blink_timer](examples/blink_timer)
 - [software_serial](examples/software_serial)
 
-And finally to demonstrate the sound processing capabilities I provide
-
-- [mic_to_sd](examples/mic_to/sd) 
 
 ## Documentation
 
