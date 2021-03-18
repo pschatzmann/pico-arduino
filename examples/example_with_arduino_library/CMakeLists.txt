@@ -9,7 +9,7 @@ include(FetchContent)
 
 project("${ARDUINO_SKETCH_NAME}")
 
-## Download of spektrum_satellite library from Guthub
+## Download of spektrum_satellite Arduino library from Guthub
 FetchContent_Declare( spektrum_satellite GIT_REPOSITORY https://github.com/pschatzmann/SpektrumSatellite.git  GIT_TAG  master)
 FetchContent_MakeAvailable(spektrum_satellite)
 

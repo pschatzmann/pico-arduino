@@ -8,14 +8,14 @@ int tx = GP14;
 
 // Arduino setup executed once 
 void setup() {
-    // set up Serial on USB for logiing
+    // set up Serial on USB for logging and wait for the user to connect
     Serial.begin(115200);
     while(!Serial){
         delay(100);
     }
     Serial.println("setup...");
 
-    // use the changed communication baud rate for hc05
+    // use the default communication baud rate for the HC05
     SerialS.begin(9600, tx, rx);
     Serial.print("We are in Data Mode: ready for processing data...");
 
