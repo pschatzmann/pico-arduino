@@ -83,6 +83,7 @@ Here is the list of the provided examples
 - [SPI with SdFat](examples/sd_info)
 - [I2C with HW290](examples/i2c_hw290)
 - [hallo_world_serial](examples/hallo_world_serial)
+- [Bluetooth with a hc-05](examples/hc_05)
 
 The Pico has 2 processors, so here are the examples which use this Pico specific functionality:
 

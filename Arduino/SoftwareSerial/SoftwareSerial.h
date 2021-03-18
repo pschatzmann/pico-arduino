@@ -59,6 +59,9 @@ class SoftwareSerial : public Stream {
             return 1;
         }
 
+        using Print::write; // pull in write(str) and write(buf, size) from Print
+        using Print::print; // pull in write(str) and write(buf, size) from Print
+        using Print::println; // pull in write(str) and write(buf, size) from Print
 
     protected:
         PIO pio;
