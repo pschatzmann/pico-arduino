@@ -18,13 +18,13 @@ static bool tud_cdc_connected (void);
 }
 
 /**
- * @brief PicoDefaultSerial is using the pico default output. It is mapped to the Arduino Serial variable.
+ * @brief PicoUSBSerial is using the pico USB output. It is mapped to the Arduino Serial variable.
  * @author Phil Schatzmann
  * @copyright GPLv3
  */
-class PicoDefaultSerial : public HardwareSerial {
+class PicoSerialUSB : public HardwareSerial {
     public:
-        PicoDefaultSerial(){
+        PicoSerialUSB(){
         }
 
         virtual void begin(unsigned long baudrate=PICO_DEFAULT_UART_BAUD_RATE) {
@@ -106,12 +106,12 @@ class PicoDefaultSerial : public HardwareSerial {
  * @brief Serial Stream for a defined UART. By default we use the following pins: UART0 tx/rx = gp0/gp1; UART1 tx/rx = gp4/gp5; 
  * 
  */
-class PicoHardwareSerial : public HardwareSerial {
+class PicoSerialUART : public HardwareSerial {
     public:
-        PicoHardwareSerial(){
+        PicoSerialUART(){
         }
 
-        PicoHardwareSerial(int uart_no) {
+        PicoSerialUART(int uart_no) {
             this->uart_no = uart_no;
             this->uart = uart_no == 0 ? uart0 : uart1;
         }

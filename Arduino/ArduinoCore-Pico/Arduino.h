@@ -31,9 +31,9 @@
 #include "hardware/pwm.h"
 
 // Global variables
-extern PicoDefaultSerial Serial; // pico_stdio
-extern PicoHardwareSerial Serial1;
-extern PicoHardwareSerial Serial2; 
+extern PicoSerialUSB Serial; // pico_stdio
+extern PicoSerialUART Serial1;
+extern PicoSerialUART Serial2; 
 extern PicoLogger Logger;   // Support for logging
 extern PicoGPIOFunction GPIOFunction;
 

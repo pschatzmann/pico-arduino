@@ -17,9 +17,9 @@
 
 
 // public data
-PicoDefaultSerial Serial;
-PicoHardwareSerial Serial1(0);
-PicoHardwareSerial Serial2(1); 
+PicoSerialUSB Serial;
+PicoSerialUART Serial1(0);
+PicoSerialUART Serial2(1); 
 PicoHardwareSPI SPI(spi0);
 PicoHardwareSPI SPI1(spi1);
 PicoGPIOFunction GPIOFunction;
