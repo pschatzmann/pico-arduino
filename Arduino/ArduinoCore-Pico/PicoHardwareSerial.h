@@ -206,8 +206,12 @@ class PicoHardwareSerial : public HardwareSerial {
 
         inline size_t println(const char * buffer) {
             size_t result = print(buffer);
-            result += write((uint8_t*)"\r\n", 2);
+            result += println();
             return result;
+        }
+
+        inline size_t println() {
+            return write((uint8_t*)"\r\n", 2);
         }
 
         inline size_t write(const char * s){

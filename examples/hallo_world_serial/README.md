@@ -1,5 +1,5 @@
 
-We just print the test Hallo World every second to the USB console and to Serial1 and Serail2
+We just print the test Hallo World every second to the USB console and to Serial1 and Serial2
 
 By default we use the following pins: 
 
