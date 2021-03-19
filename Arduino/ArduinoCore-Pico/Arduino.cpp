@@ -97,7 +97,12 @@ int analogRead(pin_size_t pinNumber){
 
 // reads the on board temparature
 int getTemperature(){
-    GPIOFunction.initADC();
+    if (!adc_init_flag)
+    {
+        adc_init_flag=true;
+        adc_init();
+        adc_set_temp_sensor_enabled(true);
+    }
     //Input 4 is the onboard temperature sensor
     adc_select_input(4);
     int value = adc_read();
