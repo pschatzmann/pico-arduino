@@ -35,11 +35,11 @@ Here is the list of the provided examples
 
 - [blink](blink)
 - [hallo_world](hallo_world)
+- [hallo_world_serial](hallo_world_serial)
 - [tone](tone_melody)
 - [Using an Arduino library](example_with_arduino_library)
 - [SPI with SdFat](sd_info)
 - [I2C with HW290](i2c_hw290)
-- [hallo_world_serial](hallo_world_serial)
 - [Bluetooth with a HC-05](hc_05)
 - [Wifi with a ESP01](esp01)
 
