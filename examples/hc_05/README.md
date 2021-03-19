@@ -1,6 +1,7 @@
 
-The Pico does not support any wireless communication, but we can use a good old HC-05 to Bluetooth-enable the Pico.
+The Pico does not provide any wireless communication, but we can use a good old HC-05 to Bluetooth-enable the Pico.
 The HC-05 uses simple serial communication and because we can use any GPIO pin we prefer to use SoftwareSerial.
+
 This module uses 3.3V logic - so this is fitting quite nicely!
 
 ## Connections 

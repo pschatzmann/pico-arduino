@@ -5,6 +5,7 @@ Fortunately we can use a ESP01 module to get Wifi together with the following li
 I needed to apply some chnages so that it is compatible with the latest version of the Arduino Framwork. It can be found in the wifiesp subdirectory.
 
 The ESP01 was a pain with the regular 5V Arduino Boards because of the 3.3V logic - but for the Pico it seems to be a perfect fit.
+The examples are working both by using the regular HardwareSerial or with the SoftwareSerial.
 
 ## Connections 
 
@@ -13,8 +14,8 @@ The ESP01 was a pain with the regular 5V Arduino Boards because of the 3.3V logi
 |  3V3   | 3V3 (OUT) 
 |  RST   |  
 |  EN    |  
-|  TX    | RX GP1 
-|  RX    | TX GP0 
+|  TX    | RX GP9 
+|  RX    | TX GP8 
 |  IO0   |  
 |  IO2   |  
 |  GND   | GND 

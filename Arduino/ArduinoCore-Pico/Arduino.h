@@ -12,6 +12,7 @@
 
 #include <stdint.h>
 #include <stdlib.h>
+#include <stdarg.h>     /* va_list, va_start, va_arg, va_end */
 #include "pins_arduino.h"
 #include "ArduinoAPI.h"
 #include "PicoLogger.h"

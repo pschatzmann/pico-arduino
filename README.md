@@ -43,60 +43,7 @@ You can find the resulting library in the pico-arduino/lib directory.
 
 ## Examples
 
-Let's have a look at the blink example. It conisists of the source code blink.cpp
-```
-#include "Arduino.h"
-
-// the setup function runs once when you press reset or power the board
-void setup() {
-  pinMode(LED_BUILTIN, OUTPUT);
-}
-
-// the loop function runs over and over again forever
-void loop() {
-  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(1000);                       // wait for a second
-  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
-  delay(1000);                       // wait for a second
-}
-```
-This looks like a standard Arduino sketch. Please note the following differences however:
-- The sketch file name must end with .cpp and not .ino
-- The ```#include "Arduino.h"``` is mandatory
-- You need to provide a CMakeLists.txt file
-
-To build the example go to the pico-arduino/examples/blink directory and execute the build steps:
-```
-mkdir build
-cd build
-cmake ..
-make
-```
-The result can be found in the arduino/examples/blink/build directory.
-
-Here is the list of the provided examples
-
-- [blink](examples/blink)
-- [hallo_world](examples/hallo_world)
-- [tone](examples/tone_melody)
-- [Using an Arduino library](examples/example_with_arduino_library)
-- [SPI with SdFat](examples/sd_info)
-- [I2C with HW290](examples/i2c_hw290)
-- [hallo_world_serial](examples/hallo_world_serial)
-- [Bluetooth with a HC-05](examples/hc_05)
-
-The Pico has 2 processors, so here are the examples which use this Pico specific functionality:
-
-- [multi_processor](examples/multi_processor) 
-- [multi_processor_fifo](examples/multi_processor_fifo) 
-- [queue](examples/queue)
-- [semaphore](examples/semaphore) 
-
-Here is some other Pico specific functionality:
-
-- [blink_timer](examples/blink_timer)
-- [software_serial](examples/software_serial)
-
+Details can be found in the [examples directory](examples/README.md)
 
 ## Documentation
 
@@ -139,5 +86,19 @@ That's it!
 - Software Serial using PIO - completed
 - I2S API using PIO - open
 
+## Change History
+
+- __v0.1__ Initial Version with Baisic Functionality
+- __v0.2__ SPI Support & error corrections
+- __v0.3__ I2C Support & error corrections
+- __v0.4__ Software Serial & error corrections
+- __v0.5__ Error corrections, cleanup and more examples
+     - HardwareSerial: Corrected slow print and println
+     - analogWrite correction provided by Duke Dylan
+     - Moved examples documentation into examples folder
+     - Examples for HC-05 and ESP01
+     - This release contains the following __Breaking Changes__
+        - Changed signature of SoftwareSerial.begin() by switching the tx and rx sequence to be consistent with HardwareSerial
+        - Removed unnecessary subfolders in ArduinoCore-Pico 
 
 

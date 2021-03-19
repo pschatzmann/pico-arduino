@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loglevel_17',['LogLevel',['../class_pico_logger.html#af15ec27beaed81a34725f0f50589be18',1,'PicoLogger']]]
+  ['udp_15',['UDP',['../classarduino_1_1_u_d_p.html',1,'arduino']]]
 ];

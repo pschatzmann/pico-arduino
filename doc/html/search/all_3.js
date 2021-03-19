@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['detachinterrupt_7',['detachInterrupt',['../class_pico_hardware_s_p_i.html#a8eae40e524523328a6d6e1ac4293fe79',1,'PicoHardwareSPI']]]
+  ['multitarget_5',['MultiTarget',['../structarduino_1_1_stream_1_1_multi_target.html',1,'arduino::Stream']]]
 ];

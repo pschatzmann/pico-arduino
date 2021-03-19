@@ -13,6 +13,7 @@
 #include "PicoHardwareSerial.h"
 #include "PicoTone.h"
 #include "hardware/watchdog.h"
+#include "hardware/clocks.h"
 
 
 // public data
@@ -110,7 +111,22 @@ void analogReference(uint8_t mode){
 
 // writes PWM
 void analogWrite(pin_size_t pinNumber, int value) {
+    static bool inited = false;
+
     GPIOFunction.setFunction(pinNumber, GPIO_FUNC_PWM);
+    if (!inited){
+        // Figure out which slice we just connected to the pin
+        uint slice_num = pwm_gpio_to_slice_num(PICO_DEFAULT_LED_PIN);
+        // Get some sensible defaults for the slice configuration. By default, the
+        // counter is allowed to wrap over its maximum range (0 to 2**16-1)
+        pwm_config config = pwm_get_default_config();
+        // Set divider, reduces counter clock to sysclock/this value
+        pwm_config_set_clkdiv(&config, clk_sys / 4.f);
+        // Load the configuration into our PWM slice, and set it running.
+        pwm_init(slice_num, &config, true);
+        inited = true;
+    }
+
     pwm_set_gpio_level(pinNumber, value);
 }
 

@@ -33,10 +33,9 @@ find_library(ARDUINO_LIB
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${TINYUSB_SDK_PATH}/src
-#    ${CMAKE_CURRENT_SOURCE_DIR}/lib/tinyusb-cpp/src
     ${ARDUINO_SKETCH_INCLUDES}
     "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-API/api" 
-    "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-Pico/cores/pico"
+    "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-Pico"
     "${PICO_SDK_ARDUINO_PATH}/Arduino"
 )
 

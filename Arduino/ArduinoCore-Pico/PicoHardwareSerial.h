@@ -14,7 +14,7 @@
 #endif
 
 #ifndef READ_WAIT_US 
-#define READ_WAIT_US 100000
+#define READ_WAIT_US 100
 #endif
 
 extern "C" {
@@ -121,26 +121,26 @@ class PicoHardwareSerial : public HardwareSerial {
         }
 
         virtual void begin(unsigned long baudrate=PICO_DEFAULT_UART_BAUD_RATE) {
-            begin(baudrate, SERIAL_8N1);
+            begin(baudrate, -1, -1, SERIAL_8N1);
         }
 
         virtual void begin(unsigned long baudrate, uint16_t config) {
-            begin(baudrate, config);
+            begin(baudrate, -1, -1, config);
         }
 
         /**
          * @brief Initialization to output to UART
          * 
          * @param baudrate 
-         * @param config 
          * @param rxPin 
          * @param txPin 
+         * @param config 
          * @param invert 
          * @param cts 
          * @param rts 
          */
 
-        virtual void begin(unsigned long baudrate, uint32_t config, pin_size_t rxPin=-1, pin_size_t txPin=-1, bool invert=false, bool cts=false, bool rts=false) {
+        virtual void begin(unsigned long baudrate, int rxPin, int txPin, uint32_t config=SERIAL_8N1,  bool invert=false, bool cts=false, bool rts=false) {
             Logger.info("begin", toStr(baudrate));
             rx_pin = rxPin;
             tx_pin = txPin;
@@ -148,6 +148,14 @@ class PicoHardwareSerial : public HardwareSerial {
             setupDefaultRxTxPins();
             uart_set_hw_flow(uart, cts, rts);
             set_config(config);
+            uart_set_translate_crlf(uart, false);
+            uart_set_fifo_enabled(uart, true);
+
+            uint rate_effective = uart_set_baudrate(uart,baudrate);
+            if (Logger.isLogging(PicoLogger::Info)) {
+                Logger.info("baud_rate requested:",toStr(baudrate));
+                Logger.info("baud_rate effective:",toStr(rate_effective));
+            }
             open = true;
         }
 
@@ -157,7 +165,7 @@ class PicoHardwareSerial : public HardwareSerial {
         }
 
         virtual int available(void){
-            readBuffer(true);
+            readBuffer();
             return buffer.available();
         }
 
@@ -176,8 +184,11 @@ class PicoHardwareSerial : public HardwareSerial {
         }
 
         virtual size_t write(uint8_t c) {
-             uart_putc(uart, c);
-             return 1;
+             bool ok = uart_is_writable (uart);
+             if (ok){
+                uart_putc(uart, c);
+             }
+             return ok ? 1 : 0;
         }
 
         inline size_t write(const uint8_t *buffer, size_t size) {
@@ -187,6 +198,16 @@ class PicoHardwareSerial : public HardwareSerial {
 
         inline size_t write(const char * buffer, size_t size) {
             return write((uint8_t*) buffer, size);
+        }
+
+        inline size_t print(const char * buffer) {
+            return write((uint8_t*) buffer, strlen(buffer));
+        }
+
+        inline size_t println(const char * buffer) {
+            size_t result = print(buffer);
+            result += write((uint8_t*)"\r\n", 2);
+            return result;
         }
 
         inline size_t write(const char * s){
@@ -223,9 +244,11 @@ class PicoHardwareSerial : public HardwareSerial {
         void readBuffer(bool refill=false) {
             // refill buffer only when requested or when it is empty
             if (refill || buffer.available()==0){
-                while(buffer.availableForStore()>0 && uart_is_readable_within_us(uart, READ_WAIT_US)) {
-                    char c = uart_getc(uart);
-                    buffer.store_char(c);
+                if (uart_is_readable_within_us(uart, READ_WAIT_US)) {
+                    while(buffer.availableForStore()>0 && uart_is_readable(uart) ) {
+                        char c = uart_getc(uart);
+                        buffer.store_char(c);
+                    }
                 }
             }
         }

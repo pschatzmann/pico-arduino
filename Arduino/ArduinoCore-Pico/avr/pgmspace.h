@@ -6,3 +6,6 @@
  */
 
 #include "deprecated-avr-comp/avr/pgmspace.h"
+
+// add some missing functions which are not provided by the Arduino framework
+#define vsnprintf_P vsnprintf 

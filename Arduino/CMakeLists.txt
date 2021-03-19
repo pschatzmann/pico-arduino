@@ -30,12 +30,12 @@ pico_sdk_init()
 #---------------------
 # Arduino PICO Implementation
 file(GLOB ARD_DIR_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/ArduinoCore-API/api/*.cpp" )
-file(GLOB ARD_DIR_EXT_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/ArduinoCore-Pico/cores/pico/*.cpp" )
+file(GLOB ARD_DIR_EXT_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/ArduinoCore-Pico/*.cpp" )
 
 include_directories( 
     "${PICO_SDK_ARDUINO_PATH}/Arduino"
     "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-API/api" 
-    "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-Pico/cores/pico"
+    "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-Pico"
 )
 
 add_library(arduino ${ARD_DIR_LIST} ${ARD_DIR_EXT_LIST} )

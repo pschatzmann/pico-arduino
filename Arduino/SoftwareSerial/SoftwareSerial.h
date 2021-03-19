@@ -18,7 +18,7 @@ class SoftwareSerial : public Stream {
             this->sm_tx = stateMachineTxIndex;
         }
 
-        void begin(uint baud=9800, int txPin=-1, int rxPin=-1){
+        void begin(uint baud=9800, int rxPin=-1, int txPin=-1 ){
             this->baud = baud;
 
             if (rxPin >=0 ){

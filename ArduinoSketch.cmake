@@ -40,7 +40,7 @@ include_directories(
     ${ARDUINO_SKETCH_INCLUDES}
     "${CMAKE_CURRENT_SOURCE_DIR}"
     "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-API/api" 
-    "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-Pico/cores/pico"
+    "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-Pico"
     "${PICO_SDK_ARDUINO_PATH}/Arduino"
 )
 

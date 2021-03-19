@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['map_69',['Map',['../class_map.html',1,'']]],
-  ['mapentry_70',['MapEntry',['../struct_map_1_1_map_entry.html',1,'Map']]],
-  ['mapentry_3c_20k_2c_20v_20_3e_71',['MapEntry&lt; K, V &gt;',['../struct_map_1_1_map_entry.html',1,'Map']]],
-  ['muliticorefifo_72',['MuliticoreFifo',['../class_muliticore_fifo.html',1,'']]],
-  ['multitarget_73',['MultiTarget',['../structarduino_1_1_stream_1_1_multi_target.html',1,'arduino::Stream']]]
+  ['pluggableusb_5f_22',['PluggableUSB_',['../classarduino_1_1_pluggable_u_s_b__.html',1,'arduino']]],
+  ['pluggableusbmodule_23',['PluggableUSBModule',['../classarduino_1_1_pluggable_u_s_b_module.html',1,'arduino']]],
+  ['print_24',['Print',['../classarduino_1_1_print.html',1,'arduino']]],
+  ['printable_25',['Printable',['../classarduino_1_1_printable.html',1,'arduino']]]
 ];
