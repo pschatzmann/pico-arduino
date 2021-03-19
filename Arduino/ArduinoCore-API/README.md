@@ -29,7 +29,8 @@ Example command:
 tar --exclude='*.git*' -cjhvf $yourcore-$version.tar.bz2 $yourcore/
 ```
 
-### Arduino Emulator
+### Pico
 
 I used a copy of V1.2.0 from https://github.com/arduino/ArduinoCore-API. Unfortunatly I could not use this project as a git submodule because the String.h class is causing that the compilation is failing on non case sentsitive file systems - so I had to rename String.h and String.cpp to WString.h and WString.cpp!
 
+There were also clashes with other libraries for RingBuffer so I renamed the include to RingBufferN and commented out the typedef

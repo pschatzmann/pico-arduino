@@ -9,7 +9,7 @@ include(FetchContent)
 
 project("${ARDUINO_SKETCH_NAME}")
 
-## Download of liquidcristal from Guthub
+## Download of Arduino Library from Guthub
 FetchContent_Declare( liquidcristal GIT_REPOSITORY https://github.com/johnrickman/LiquidCrystal_I2C.git GIT_TAG  master)
 FetchContent_MakeAvailable(liquidcristal)
 

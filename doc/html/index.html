@@ -67,7 +67,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_README"></a> Recently I was receiving my Raspberry PI Pico and I had the opportunity to play around with it. Actually most of the time I spent reading the Manuals... The conclusion: interesting - but a little bit too complicated. So I was quite happy to read that Arduino plans to add an official support for this Microcontroller.</p>
 <p>However I did not want to wait for the official support to be available, so as a temporary solution, I decided to make my own Arduino API availale as a separate project.</p>
-<h1><a class="anchor" id="autotoc_md1"></a>
+<h1><a class="anchor" id="autotoc_md3"></a>
 Design goals</h1>
 <ul>
 <li>Provide a full implementation of the Arduino API</li>
@@ -76,7 +76,7 @@ Design goals</h1>
 <li>Support of existing Arduino Libraries</li>
 <li>Provide examples</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Installation</h1>
 <ol type="1">
 <li>First you need to install the Pico C Framwork. Please <a href="https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf">follow the instructions</a> and do not forget to define the PICO_SDK_PATH environment variable.</li>
@@ -93,13 +93,13 @@ Installation</h1>
 <div class="line">cmake ..</div>
 <div class="line">make install</div>
 </div><!-- fragment --><p>You can find the resulting library in the pico-arduino/lib directory.</p>
-<h1><a class="anchor" id="autotoc_md3"></a>
+<h1><a class="anchor" id="autotoc_md5"></a>
 Examples</h1>
 <p>Details can be found in the examples directory</p>
-<h1><a class="anchor" id="autotoc_md4"></a>
+<h1><a class="anchor" id="autotoc_md6"></a>
 Documentation</h1>
 <p>The generated <a href="https://pschatzmann.github.io/pico-arduino/doc/html/">Class documentation</a> can be found in the doc folder</p>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h1><a class="anchor" id="autotoc_md7"></a>
 Pinout</h1>
 <p>It helps to know the functions of the pins. Here is a copy of the pinout provided by the official <a href="https://www.raspberrypi.org/documentation/pico/getting-started/">Raspberry Pi Pico Documentation</a>:</p>
 <p><img src="https://www.raspberrypi.org/documentation/pico/getting-started/static/15243f1ffd3b8ee646a1708bf4c0e866/Pico-R3-Pinout.svg" alt="Raspberry Pi Pico pin out diagram" style="pointer-events: none;" class="inline"/></p>
@@ -109,44 +109,13 @@ Pinout</h1>
 <div class="line">digitalWrite(GP25, HIGH);                    // the same with GP25 define</div>
 <div class="line">digitalWrite(LED_BUILTIN, HIGH);             // the same with Arduino defines </div>
 <div class="line">digitalWrite(PICO_DEFAULT_LED_PIN, HIGH);    // the same with Pico defines </div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md6"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
 Deploying a compiled Sketch</h1>
 <p>Deployment is very easy - just press the button on your Pico while plugging it to your computer via USB. This will automatically mount the Pico as external drive (RPI-RP2). Finally you just need to copy the generated uf2 file from your build directory to the drive.</p>
 <p>That's it!</p>
-<h1><a class="anchor" id="autotoc_md7"></a>
-Project Status</h1>
-<ul>
-<li>Basic Arduino API (e.g. String, Serial...) - completed</li>
-<li>digital input/output API - completed</li>
-<li>analog input/output API (PWM) - completed</li>
-<li>Multiprocessor support: queue, semaphore - completed</li>
-<li>tone - completed</li>
-<li>Arduino SPI API - completed</li>
-<li>PIO API class - completed</li>
-<li>Arduino I2C API - completed</li>
-<li>Software Serial using PIO - completed</li>
-<li>I2S API using PIO - open</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md8"></a>
-Change History</h1>
-<ul>
-<li><b>v0.1</b> Initial Version with Baisic Functionality</li>
-<li><b>v0.2</b> SPI Support &amp; error corrections</li>
-<li><b>v0.3</b> I2C Support &amp; error corrections</li>
-<li><b>v0.4</b> Software Serial &amp; error corrections</li>
-<li><b>v0.5</b> Error corrections, cleanup and more examples<ul>
-<li>HardwareSerial: Corrected Delays in print and println</li>
-<li>analogWrite correction provided by Duke Dylan</li>
-<li>Moved examples documentation into examples folder</li>
-<li>Examples for HC-05 and ESP01</li>
-<li>This release contains the following <b>Breaking Changes</b><ul>
-<li>Changed signature of SoftwareSerial.begin() by switching the tx and rx sequence to be consistent with HardwareSerial</li>
-<li>Removed subfolders in ArduinoCore-Pico folder </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<h1><a class="anchor" id="autotoc_md9"></a>
+Project Status / Change History</h1>
+<p><a class="el" href="md_history.html">The project status and change history can be found here</a> </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->

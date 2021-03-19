@@ -56,8 +56,10 @@ class RingBufferN
     inline bool isEmpty() const { return (_numElems == 0); }
 };
 
-typedef RingBufferN<SERIAL_BUFFER_SIZE> RingBuffer;
-
+// Commente out because of Conflict with ESP01 library
+#ifndef RINGBUFFER_TYPEDEF_OFF
+  typedef RingBufferN<SERIAL_BUFFER_SIZE> RingBuffer;
+#endif
 
 template <int N>
 RingBufferN<N>::RingBufferN( void )

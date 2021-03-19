@@ -1,4 +1,3 @@
-#include "Arduino.h"
 /*
  WiFiEsp example: WebServer
 
@@ -12,6 +11,7 @@
  For more details see: http://yaab-arduino.blogspot.com/p/wifiesp.html
 */
 
+#include "Arduino.h"
 #include "WiFiEsp.h"
 #include "SoftwareSerial.h"
 
@@ -26,7 +26,7 @@ const int baud = 115200; // Standard Baud rate of most HC01 modules
 
 WiFiEspServer server(80);
 SoftwareSerial SerialS;
-RingBufferESP buf(8);
+RingBuffer buf(8);
 
 void printWifiStatus()
 {
