@@ -14,7 +14,7 @@
 #endif
 
 #ifndef READ_WAIT_US 
-#define READ_WAIT_US 100
+#define READ_WAIT_US 10
 #endif
 
 extern "C" {
@@ -183,6 +183,10 @@ class PicoHardwareSerial : public HardwareSerial {
             return buffer.read_char();
         }
 
+        using Print::write; // pull in write(str) and write(buf, size) from Print
+        using Print::print; // pull in write(str) and write(buf, size) from Print
+        using Print::println; // pull in write(str) and write(buf, size) from Print
+
         virtual size_t write(uint8_t c) {
              bool ok = uart_is_writable (uart);
              if (ok){
@@ -191,42 +195,15 @@ class PicoHardwareSerial : public HardwareSerial {
              return ok ? 1 : 0;
         }
 
-        inline size_t write(const uint8_t *buffer, size_t size) {
+        virtual size_t write(const uint8_t *buffer, size_t size){
             uart_write_blocking(uart, buffer, size);
             return size;
-        }
-
-        inline size_t write(const char * buffer, size_t size) {
-            return write((uint8_t*) buffer, size);
-        }
-
-        inline size_t print(const char * buffer) {
-            return write((uint8_t*) buffer, strlen(buffer));
-        }
-
-        inline size_t println(const char * buffer) {
-            size_t result = print(buffer);
-            result += println();
-            return result;
-        }
-
-        inline size_t println() {
-            return write((uint8_t*)"\r\n", 2);
-        }
-
-        inline size_t write(const char * s){
-            return write((uint8_t*) s, strlen(s));
         }
 
         uint32_t baudRate(){
             return baud_rate;
         }
         
-        using Print::write; // pull in write(str) and write(buf, size) from Print
-        using Print::print; // pull in write(str) and write(buf, size) from Print
-        using Print::println; // pull in write(str) and write(buf, size) from Print
-
-
         virtual void flush(void) {
         };
 
