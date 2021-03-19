@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ipaddress_4',['IPAddress',['../classarduino_1_1_i_p_address.html',1,'arduino']]]
+  ['client_6',['Client',['../classarduino_1_1_client.html',1,'arduino']]]
 ];

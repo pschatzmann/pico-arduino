@@ -1,21 +1,27 @@
 var indexSectionsWithContent =
 {
-  0: "chimprsu",
-  1: "chimpsu",
-  2: "pr"
+  0: "abcdehilmnopqrstuvw~",
+  1: "achimpqstuv",
+  2: "abdeinoprstuw~",
+  3: "l",
+  4: "pr"
 };
 
 var indexSectionNames =
 {
   0: "all",
   1: "classes",
-  2: "pages"
+  2: "functions",
+  3: "enums",
+  4: "pages"
 };
 
 var indexSectionLabels =
 {
   0: "All",
   1: "Classes",
-  2: "Pages"
+  2: "Functions",
+  3: "Enumerations",
+  4: "Pages"
 };
 

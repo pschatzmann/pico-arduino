@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Pico-Arduino: Arduino/ArduinoCore-Pico/cores/pico/PicoGPIOFunction.h Source File</title>
+<title>Pico-Arduino: Arduino/ArduinoCore-Pico/PicoGPIOFunction.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,7 +61,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_a991eec27578c865874ede3d8ec657c2.html">Arduino</a></li><li class="navelem"><a class="el" href="dir_0efa8c010417c424802b303945c3c8a3.html">ArduinoCore-Pico</a></li><li class="navelem"><a class="el" href="dir_3d473c3ad07578879fd58d2180dd0d84.html">cores</a></li><li class="navelem"><a class="el" href="dir_7f554b765fbbe9d5846a865f3ec17636.html">pico</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_a991eec27578c865874ede3d8ec657c2.html">Arduino</a></li><li class="navelem"><a class="el" href="dir_0efa8c010417c424802b303945c3c8a3.html">ArduinoCore-Pico</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -115,42 +115,45 @@ $(function() {
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            }        </div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="comment">// calls adc_init() if necessary</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">void</span> initADC(){</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="comment">// calls adc_init() if necessary - returns true if it has been intialized (the first time)</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">bool</span> initADC(){</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="comment">// init if necessary</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">if</span> (adc_init_flag){</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                adc_init();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                adc_init_flag = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="comment">// reads a pwm value</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordtype">int</span> readPWM(<span class="keywordtype">int</span> pinNumber, <span class="keywordtype">float</span> scale=100.0){</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;             uint slice_num = pwm_gpio_to_slice_num(pinNumber);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            <span class="comment">// Count once for every 100 cycles the PWM B input is high</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            pwm_config cfg = pwm_get_default_config();</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            pwm_config_set_clkdiv_mode(&amp;cfg, PWM_DIV_B_HIGH);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            pwm_config_set_clkdiv(&amp;cfg, 100);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            pwm_init(slice_num, &amp;cfg, <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            gpio_set_function(pinNumber, GPIO_FUNC_PWM);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            pwm_set_enabled(slice_num, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            sleep_ms(10);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            pwm_set_enabled(slice_num, <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="keywordtype">float</span> counting_rate = clock_get_hz(clk_sys) / 100;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keywordtype">float</span> max_possible_count = counting_rate * 0.01;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            <span class="keywordtype">int</span> result = pwm_get_counter(slice_num) / max_possible_count * scale;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        uint8_t* pinInfo;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordtype">bool</span> adc_init_flag;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordtype">int</span> current_adc;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;};</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordtype">bool</span> result = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">if</span> (adc_init_flag){</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                adc_init();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                adc_init_flag = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                result = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="comment">// reads a pwm value</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordtype">int</span> readPWM(<span class="keywordtype">int</span> pinNumber, <span class="keywordtype">float</span> scale=100.0){</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;             uint slice_num = pwm_gpio_to_slice_num(pinNumber);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="comment">// Count once for every 100 cycles the PWM B input is high</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            pwm_config cfg = pwm_get_default_config();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            pwm_config_set_clkdiv_mode(&amp;cfg, PWM_DIV_B_HIGH);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            pwm_config_set_clkdiv(&amp;cfg, 100);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            pwm_init(slice_num, &amp;cfg, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            gpio_set_function(pinNumber, GPIO_FUNC_PWM);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            pwm_set_enabled(slice_num, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            sleep_ms(10);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            pwm_set_enabled(slice_num, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="keywordtype">float</span> counting_rate = clock_get_hz(clk_sys) / 100;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keywordtype">float</span> max_possible_count = counting_rate * 0.01;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keywordtype">int</span> result = pwm_get_counter(slice_num) / max_possible_count * scale;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        uint8_t* pinInfo;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordtype">bool</span> adc_init_flag;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordtype">int</span> current_adc;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;};</div>
 <div class="ttc" id="aclass_pico_g_p_i_o_function_html"><div class="ttname"><a href="class_pico_g_p_i_o_function.html">PicoGPIOFunction</a></div><div class="ttdoc">The pico requires that the function of the pin is defined. In Arduino, there is no such concept: so w...</div><div class="ttdef"><b>Definition:</b> PicoGPIOFunction.h:31</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

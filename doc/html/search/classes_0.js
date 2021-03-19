@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['client_17',['Client',['../classarduino_1_1_client.html',1,'arduino']]]
+  ['arduinopicotone_63',['ArduinoPicoTone',['../class_arduino_pico_tone.html',1,'']]]
 ];
