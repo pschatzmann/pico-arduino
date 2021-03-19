@@ -106,7 +106,10 @@ int getTemperature(){
     //Input 4 is the onboard temperature sensor
     adc_select_input(4);
     int value = adc_read();
-    int temperature = 27 - (value - 0.706)/0.001721;
+    //T = 27 - (ADC_Voltage - 0.706)/0.001721
+    //The ADC_Voltage is equal to adc_read() * 3.3 / (1<<12)
+    const float conversion_factor = 3.3f / (1<<12);
+    int temperature = 27 - (value * conversion_factor - 0.706)/0.001721;
     return temperature;
 }
 
