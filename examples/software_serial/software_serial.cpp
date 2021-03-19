@@ -12,7 +12,7 @@ void setup(){
     delay(10000);
 
     // start
-    SofwareSerial.begin(baud, tx_pin, rx_pin);
+    SofwareSerial.begin(baud, rx_pin, tx_pin);
     SofwareSerial.println("press any key to start...");
     while(SofwareSerial.read()==-1) {
         delay(100);
