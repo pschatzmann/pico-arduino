@@ -6,13 +6,6 @@ The WiFiEsp library is very similar to the Arduino [WiFi](http://www.arduino.cc/
 
 Supports ESP SDK version 1.1.1 and above (AT version 0.25 and above).
 
-## Changes 
-
-This is a slightly adapted version of the [WiFiEsp](https://github.com/bportaluri/WiFiEsp) library. The original version is not compatible with the latest version of the Arduino framwork, so I needed to adapt it to resolve the compile errors. 
-
-- renamed RingBuffer to RingBufferESP
-- corrected the include <avr/pgmspace.h> which is obviosly only relevant for AVR boards
-- finally I also needed to increase the timeouts from 1000 to 2000 ms
 
 ## Features
 
