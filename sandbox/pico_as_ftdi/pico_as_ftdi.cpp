@@ -1,8 +1,12 @@
 #include "Arduino.h"
+
+
+#ifdef USE_SOFTSERIAL
 #include "SoftwareSerial.h"
+SoftwareSerial SerialS;
+#endif
 
 enum Mode {Simple, ESP01_DATA, ESP01_FASH};
-//SoftwareSerial SerialS;
 const int rx_pin = GP13;
 const int tx_pin = GP12;
 const int baud = 115200;
@@ -32,8 +36,6 @@ void setupMode() {
             digitalWrite(gpio0_pin, HIGH);    
             break;
 
-        break;
-
     }
 }
 
@@ -47,9 +49,16 @@ void setup() {
     Serial.println("Connected...");
     Serial.setTimeout(100);
     // Seril speed is critical !
+#ifdef USE_SOFTSERIAL
+    SerialS.begin(baud, rx_pin, tx_pin);
+    SerialS.setTimeout(100);
+    altDest = &SerialS;
+
+#else
     Serial1.begin(baud, rx_pin, tx_pin);
     Serial1.setTimeout(100);
     altDest = &Serial1;
+#endif
 }
 
 void copy() {

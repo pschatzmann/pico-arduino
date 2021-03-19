@@ -13,10 +13,6 @@
 #define BUFFER_SIZE 512
 #endif
 
-#ifndef READ_WAIT_US 
-#define READ_WAIT_US 10
-#endif
-
 extern "C" {
 static bool tud_cdc_connected (void);
 }
@@ -32,11 +28,11 @@ class PicoDefaultSerial : public HardwareSerial {
         }
 
         virtual void begin(unsigned long baudrate=PICO_DEFAULT_UART_BAUD_RATE) {
-            stdio_init_all();
+            stdio_usb_init ();
             is_open = true;
         };
         virtual void begin(unsigned long baudrate, uint16_t config){
-            stdio_init_all();
+            stdio_usb_init ();
             is_open = true;
 
         }
@@ -228,15 +224,9 @@ class PicoHardwareSerial : public HardwareSerial {
         void readBuffer(bool refill=false) {
             // refill buffer only when requested or when it is empty
             if (refill || buffer.available()==0){
-                if (uart_is_readable_within_us(uart, READ_WAIT_US)) {
-                    while(buffer.availableForStore()>0 && uart_is_readable(uart) ) {
-#ifdef ARDUINO_PICO_EXPERIMENTAL                        
-                        char c = uart_get_hw(uart)->dr;
-#else
-                        char c = uart_getc(uart);
-#endif
-                        buffer.store_char(c);
-                    }
+                while(buffer.availableForStore()>0 && uart_is_readable(uart) ) {
+                    char c = uart_get_hw(uart)->dr;
+                    buffer.store_char(c);
                 }
             }
         }

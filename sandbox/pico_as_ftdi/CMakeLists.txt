@@ -7,8 +7,9 @@ include(FetchContent)
 # define project settins
 set(PICO_SDK_ARDUINO_PATH $ENV{PICO_SDK_ARDUINO_PATH})
 set(ARDUINO_SKETCH_NAME "pico_as_ftdi" )
-
 set(ARDUINO_SKETCH_SOURCE pico_as_ftdi.cpp  )
+#set(ARDUINO_SKETCH_DEFINITIONS "-DARDUINO_PICO_EXPERIMENTAL" "-DUSE_SOFTSERIAL" )  
+set(ARDUINO_SKETCH_DEFINITIONS "-DARDUINO_PICO_EXPERIMENTAL" )  
 
 # Standard Sketch logic
 project("${ARDUINO_SKETCH_NAME}")
