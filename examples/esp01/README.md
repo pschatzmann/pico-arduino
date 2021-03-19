@@ -3,14 +3,13 @@ The major weak spot of the Pico compared to the ESP32 is the missing Wifi functi
 The ESP01 was a pain with the regular 5V Arduino Boards because of the 3.3V logic - but for the Pico it seems to be a perfect fit.
 The examples are working both by using the regular HardwareSerial or with the SoftwareSerial.
 
+## WiFiEsp 
+
 Fortunately we can use a ESP01 module to get Wifi together with the following library: https://github.com/bportaluri/WiFiEsp.git. 
 
-## wifiesp 
-
-This is a slightly adapted version of the [WiFiEsp](https://github.com/bportaluri/WiFiEsp) library. The original version is not compatible with the latest version of the Arduino framwork, so I needed to adapt it to resolve the compile errors. 
+I included a slightly adapted version of the [WiFiEsp](https://github.com/bportaluri/WiFiEsp) library. The original version is not compatible with the latest version of the Arduino framwork, so I needed to adapt it to resolve the compile errors. 
 
 - renamed RingBuffer to RingBufferESP
-
 
 ## Connections 
 
@@ -18,7 +17,7 @@ This is a slightly adapted version of the [WiFiEsp](https://github.com/bportalur
 |--------|-----------
 |  3V3   | 3V3 (OUT) 
 |  RST   |  
-|  EN    |  
+|  EN    | 3V3 
 |  TX    | RX GP9 
 |  RX    | TX GP8 
 |  IO0   |  
