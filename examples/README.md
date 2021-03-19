@@ -33,25 +33,25 @@ The result can be found in the arduino/examples/blink/build directory.
 
 Here is the list of the provided examples
 
-- [blink](examples/blink)
-- [hallo_world](examples/hallo_world)
-- [tone](examples/tone_melody)
-- [Using an Arduino library](examples/example_with_arduino_library)
-- [SPI with SdFat](examples/sd_info)
-- [I2C with HW290](examples/i2c_hw290)
-- [hallo_world_serial](examples/hallo_world_serial)
-- [Bluetooth with a HC-05](examples/hc_05)
-- [Wifi with a ESP01](examples/esp01)
+- [blink](blink)
+- [hallo_world](hallo_world)
+- [tone](tone_melody)
+- [Using an Arduino library](example_with_arduino_library)
+- [SPI with SdFat](sd_info)
+- [I2C with HW290](i2c_hw290)
+- [hallo_world_serial](hallo_world_serial)
+- [Bluetooth with a HC-05](hc_05)
+- [Wifi with a ESP01](esp01)
 
 The Pico has 2 processors, so here are the examples which use this Pico specific functionality:
 
-- [multi_processor](examples/multi_processor) 
-- [multi_processor_fifo](examples/multi_processor_fifo) 
-- [queue](examples/queue)
-- [semaphore](examples/semaphore) 
+- [multi_processor](multi_processor) 
+- [multi_processor_fifo](multi_processor_fifo) 
+- [queue](queue)
+- [semaphore](semaphore) 
 
 Here is some other Pico specific functionality:
 
-- [blink_timer](examples/blink_timer)
-- [software_serial](examples/software_serial)
+- [blink_timer](blink_timer)
+- [software_serial](software_serial)
 
