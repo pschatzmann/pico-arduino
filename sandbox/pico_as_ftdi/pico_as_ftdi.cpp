@@ -2,15 +2,16 @@
 #include "SoftwareSerial.h"
 
 enum Mode {Simple, ESP01_DATA, ESP01_FASH};
-SoftwareSerial SerialS;
-const int rx_pin = GP9;
-const int tx_pin = GP8;
+//SoftwareSerial SerialS;
+const int rx_pin = GP13;
+const int tx_pin = GP12;
 const int baud = 115200;
 Mode mode = ESP01_DATA;
 // ESP01 pins
 //const int rst_pin = GP20;
 const int en_pin = GP18;
 const int gpio0_pin = GP18;
+Stream *altDest;
 
 void setupMode() {
     switch(mode){
@@ -44,15 +45,18 @@ void setup() {
         delay(100);
     }
     Serial.println("Connected...");
+    Serial.setTimeout(100);
     // Seril speed is critical !
-    Serial2.begin(baud, rx_pin, tx_pin);
+    Serial1.begin(baud, rx_pin, tx_pin);
+    Serial1.setTimeout(100);
+    altDest = &Serial1;
 }
 
 void copy() {
     static char buffer[512];
     // Serial1 -> Serial
-    if (Serial2.available()>0){
-        int len = Serial2.readBytes(buffer,512);
+    if (altDest->available()>0){
+        int len = altDest->readBytes(buffer,512);
         Serial.write(buffer,len);
         Serial.flush();
     }
@@ -60,8 +64,8 @@ void copy() {
     // Serial -> Serial1
     if (Serial.available()>0){
         int len = Serial.readBytes(buffer,512);
-        Serial2.write(buffer,len);
-        Serial2.flush();
+        altDest->write(buffer,len);
+        altDest->flush();
     }
 }
 

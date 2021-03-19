@@ -141,7 +141,7 @@ class PicoHardwareSerial : public HardwareSerial {
          */
 
         virtual void begin(unsigned long baudrate, int rxPin, int txPin, uint32_t config=SERIAL_8N1,  bool invert=false, bool cts=false, bool rts=false) {
-            Logger.info("begin", toStr(baudrate));
+            Logger.info("PicoHardwareSerial::begin", toStr(baudrate));
             rx_pin = rxPin;
             tx_pin = txPin;
             uart_init(uart, baudrate);
@@ -152,14 +152,17 @@ class PicoHardwareSerial : public HardwareSerial {
             uart_set_fifo_enabled(uart, true);
 
             uint rate_effective = uart_set_baudrate(uart,baudrate);
+            open = uart_is_enabled(uart);
             if (Logger.isLogging(PicoLogger::Info)) {
                 Logger.info("baud_rate requested:",toStr(baudrate));
                 Logger.info("baud_rate effective:",toStr(rate_effective));
+                Logger.info("uart_is_enabled:", open ?  "true" :  "false");
             }
-            open = true;
+            
         }
 
         virtual void end(){
+             Logger.info("PicoHardwareSerial::end ",toStr(uart_no));
              uart_deinit(uart);
              open = false;
         }
@@ -227,7 +230,11 @@ class PicoHardwareSerial : public HardwareSerial {
             if (refill || buffer.available()==0){
                 if (uart_is_readable_within_us(uart, READ_WAIT_US)) {
                     while(buffer.availableForStore()>0 && uart_is_readable(uart) ) {
+#ifdef ARDUINO_PICO_EXPERIMENTAL                        
+                        char c = uart_get_hw(uart)->dr;
+#else
                         char c = uart_getc(uart);
+#endif
                         buffer.store_char(c);
                     }
                 }

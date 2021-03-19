@@ -95,8 +95,8 @@ int analogRead(pin_size_t pinNumber){
     return -1;
 }
 
-// reads the on board temparature
-int getTemperature(){
+// reads the on board temparature in C 
+int temperature(){
     if (!adc_init_flag)
     {
         adc_init_flag=true;
@@ -111,6 +111,11 @@ int getTemperature(){
     const float conversion_factor = 3.3f / (1<<12);
     int temperature = 27 - (value * conversion_factor - 0.706)/0.001721;
     return temperature;
+}
+
+// reads the on board temparature in F for your Amerian friends
+int temperatureF(){
+    return (static_cast<float>(temperature()) * 9.0/5.0) + 32;
 }
 
 void analogReference(uint8_t mode){

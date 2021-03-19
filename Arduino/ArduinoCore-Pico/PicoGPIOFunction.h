@@ -66,13 +66,16 @@ class PicoGPIOFunction {
             }        
         }
 
-        // calls adc_init() if necessary
-        void initADC(){
+        // calls adc_init() if necessary - returns true if it has been intialized (the first time)
+        bool initADC(){
             // init if necessary
+            bool result = false;
             if (adc_init_flag){
                 adc_init();
                 adc_init_flag = true;
+                result = true;
             }
+            return result;
         }
 
         // reads a pwm value

@@ -1,0 +1,3 @@
+## Overview
+The Pico provides a built in temperture sensor.
+We just print out the temperature readings...

@@ -39,7 +39,10 @@ extern PicoGPIOFunction GPIOFunction;
 
 // Pico specific global methods
 // Provides the on board temperature in Celsius
-int getTemperature();
+int temperature();
+// Temperature in Fahrenheit for our friends in Belize, Paulau, the Cayman Islands and the Bahamas
+int temperatureF();
+
 // Some Arduino libraries rely on the following
 char *dtostrf (double __val, signed char __width, unsigned char __prec, char *__s);
 char *dtostre (double __val, char *__s, unsigned char __prec, unsigned char __flags);

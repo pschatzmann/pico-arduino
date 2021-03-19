@@ -54,4 +54,5 @@ Here is some other Pico specific functionality:
 
 - [blink_timer](blink_timer)
 - [software_serial](software_serial)
+- [temperature_sensor](temperature_sensor)
 
