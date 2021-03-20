@@ -27,26 +27,37 @@ class PicoSerialUSB : public HardwareSerial {
         PicoSerialUSB(){
         }
 
-        virtual void begin(unsigned long baudrate=PICO_DEFAULT_UART_BAUD_RATE) {
+        // opens the processing - calling the pico stdio_usb_init
+        void begin() {
             stdio_usb_init ();
             is_open = true;
         };
-        virtual void begin(unsigned long baudrate, uint16_t config){
-            stdio_usb_init ();
-            is_open = true;
 
+        //needed because Stadnard Arduino requires this all but parameter has no impact on USB 
+        virtual void begin(unsigned long baudrate) {
+            begin();
+        };
+
+        // needed because Stadnard Arduino requires this all but both parameters have no impact on USB
+        virtual void begin(unsigned long baudrate, uint16_t config){
+            begin();
         }
+
+        // deactivates the output to USB
         virtual void end() {
             is_open = false;
         }
+
         virtual int available(void){
             readBuffer();
             return buffer.available();
         }
+
         virtual int peek(void) {
             readBuffer();
             return buffer.peek();
         }
+
         virtual int read(void){
             // we might need to flush the current ouptut...
             flush();
@@ -59,22 +70,26 @@ class PicoSerialUSB : public HardwareSerial {
              stdio_flush();
         }
 
+        // provide implmentation of standard Arduino output of single character
         virtual size_t write(uint8_t c) {
             size_t len = putchar(c);
+#ifndef PICO_ARDUINO_NO_FLUSH
             stdio_flush();
+#endif
             return len;
         }
 
-        virtual int println(){
-            return println("");
+        // provide implmentation of standard Arduino output of multiple characters
+        virtual size_t write(const uint8_t *buffer, size_t size){
+            int result;
+            for (size_t j=0;j<size;j++){
+                result += putchar(buffer[j]);
+            }
+            stdio_flush();
+            return result;
         }
 
-        virtual int println(char const* str){
-            int len = printf("%s\n",str);
-            flush();
-            return len;
-        }
-
+        // Pull in default implementations 
         using Print::write; // pull in write(str) and write(buf, size) from Print
         using Print::print; // pull in write(str) and write(buf, size) from Print
         using Print::println; // pull in write(str) and write(buf, size) from Print
@@ -91,10 +106,11 @@ class PicoSerialUSB : public HardwareSerial {
             // refill buffer only if it is empty
             if (buffer.available()==0){
                 // fill buffer as long as we have space
-                int c = getchar_timeout_us(1000);
+                int wait_time = 1000;
+                int c = getchar_timeout_us(wait_time);
                 while(c!=PICO_ERROR_TIMEOUT && buffer.availableForStore()>0){
                     buffer.store_char(c);
-                    c = getchar_timeout_us(1000);
+                    c = getchar_timeout_us(wait_time);
                 }
             }
         }

@@ -16,19 +16,18 @@
 #include "hardware/clocks.h"
 
 
-// public data
+// Standard Arduino global variables
 PicoSerialUSB Serial;
 PicoSerialUART Serial1(0);
 PicoSerialUART Serial2(1); 
 PicoHardwareSPI SPI(spi0);
 PicoHardwareSPI SPI1(spi1);
-PicoGPIOFunction GPIOFunction;
 PicoHardwareI2C Wire(i2c0, 160, GP12, GP13);  
 PicoHardwareI2C Wire1(i2c1, 160, GP14, GP15);  
-PicoLogger Logger;    // Support for logging
 
-// local data
-static bool adc_init_flag = false;
+//Pico Framework global variables 
+PicoGPIOFunction GPIOFunction;
+PicoLogger Logger;    // Support for logging
 
 
 // sleep ms milliseconds
@@ -79,10 +78,12 @@ PinStatus digitalRead(pin_size_t pinNumber) {
  * @return int 
  */
 int analogRead(pin_size_t pinNumber){
+    Logger.debug("analogRead");
     // analog read
     if (pinNumber>=26 && pinNumber<=29){
         // ADC
         GPIOFunction.setFunctionADC(pinNumber);
+        Logger.debug("adc_read");
         return adc_read();
     } else {
         if (pwm_gpio_to_channel(pinNumber) == PWM_CHAN_B){
@@ -97,12 +98,11 @@ int analogRead(pin_size_t pinNumber){
 
 // reads the on board temparature in C 
 int temperature(){
-    if (!adc_init_flag)
-    {
-        adc_init_flag=true;
-        adc_init();
-        adc_set_temp_sensor_enabled(true);
-    }
+    // init ADC only if it has not been set up yet
+    GPIOFunction.initADC();
+    // this is just setting some flags - so it does not hurt to call this redundantly
+    adc_set_temp_sensor_enabled(true);
+
     //Input 4 is the onboard temperature sensor
     adc_select_input(4);
     int value = 0;
@@ -123,7 +123,7 @@ int temperatureF(){
 }
 
 void analogReference(uint8_t mode){
-
+    Logger.error("analogReference not implemented!");
 }
 
 // writes PWM

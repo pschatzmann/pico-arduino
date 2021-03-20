@@ -8,11 +8,11 @@ In Pico Arduino we have predefined the following objects:
  - PicoHardwareI2C Wire1(i2c1, 160, GP14, GP15);  
 
 
-We access the HW-290 with the help of the https://github.com/ElectronicCats/mpu6050.git Arduino library.
+We can access the HW-290 with the help of the https://github.com/ElectronicCats/mpu6050.git Arduino library.
 
 ## Connections 
 
-The advantage of I2c is that it only needs 2 connections: a data and a clock line:
+The advantage of I2c compared to SPI is, that it only needs 2 connections: a data and a clock line. But it comes at the cost of lower transmission speeds.
 
  HW-290 | Pico              
 --------|------------------------

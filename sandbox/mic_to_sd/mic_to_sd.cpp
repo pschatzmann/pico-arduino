@@ -3,13 +3,13 @@
 #include "library/WavEncoder.h"
 #include "library/WavFile.h"
 
-const int sampling_rate = 20000;
+const int sampling_rate = 20; //20000;
 const int num_channels = 1;
 const int bits_per_sample = sizeof(int16_t) * 8;
 const int buffer_count = 10;
-const int buffer_lengh = 1024;
+const int buffer_length = 1024;
 const int save_every_n_min = 1;
-const pin_size_t mic_pin = 10;
+const pin_size_t mic_pin = 27;
 
 Queue<int16_t*> emptyBuffers(buffer_count, true, true);
 Queue<int16_t*> filledBuffers(buffer_count, true, true);
@@ -27,11 +27,11 @@ uint64_t sample_count;
 // read a sample from the microphone into the buffer
 bool microphoneRead(repeating_timer_t *rt) {
     // we keep the following data between the calls
-    static int pos = buffer_lengh;
+    static int pos = buffer_length;
     static int16_t *buffer;
 
     // when the buffer is full get new buffer
-    if (pos==buffer_lengh){
+    if (pos==buffer_length){
         //Serial.println("using next buffer");
         // make data available to write to SD card
         if (buffer!=nullptr){
@@ -61,8 +61,24 @@ uint64_t measuredSamplingRate() {
 // callback for logic which is processed on processor 1
 void writeDataThread(void*) {
     Serial.println("writeDataThread started");
+    while(true) {
+        // get next data to write
+        int16_t *data;
+        if (filledBuffers.pop(data)){
+            for (int j=0;j<buffer_length;j++){
+                Serial.println(data[j]);
+            }
+            // make the buffer available again
+            emptyBuffers.push(data);
+        }
+    }
+}
+
+// callback for logic which is processed on processor 1
+void writeDataThread1(void*) {
+    Serial.println("writeDataThread started");
     int32_t timeout = 0;
-    File file;
+    File32 file;
     while(true) {
         // create a new file every 10 minutes
         if (millis()>timeout){
@@ -81,12 +97,13 @@ void writeDataThread(void*) {
         if (filledBuffers.pop(data)){
             Serial.print(".");
             // write the data to the sd drive
-            wavEncoder.write(data, buffer_lengh * sizeof(int16_t));   
+            wavEncoder.write(data, buffer_length* sizeof(int16_t));   
             // make the buffer available again
             emptyBuffers.push(data);
         }
     }
 }
+
 
 // Setup Sound processing
 void setup(){
@@ -95,10 +112,11 @@ void setup(){
         delay(50);
     }
     Serial.println("setup...");
+    Logger.begin(Serial,PicoLogger::Error);
 
     // allocate buffers
     for (int j=0;j<buffer_count;j++) {
-        int16_t* new_buffer = new int16_t[buffer_lengh];
+        int16_t* new_buffer = new int16_t[buffer_length];
         emptyBuffers.push(new_buffer);
     }
 

@@ -7,8 +7,8 @@ However I did not want to wait for the official support to be available, so as a
 
 ## Design goals
 
-- Provide a full implementation of the Arduino API
-- Provide additioal easy to use C++ classes for the functionaity which is specific to the Pico
+- Provide a full implementation of the Arduino API 
+- Provide additional easy to use C++ classes for the functionaity which is specific to the Pico
 - Keep the pico specific build process using cmake
 - Support of existing Arduino Libraries
 - Provide examples 
@@ -42,11 +42,11 @@ You can find the resulting library in the pico-arduino/lib directory.
 
 ## Examples
 
-Details can be found in the [examples directory](examples/README.md)
+Details can be found in the [examples directory](examples)
 
 ## Documentation
 
-The generated [Class documentation](https://pschatzmann.github.io/pico-arduino/doc/html/) can be found in the doc folder
+The generated [Class Documentation](https://pschatzmann.github.io/pico-arduino/doc/html/) can be found in the doc folder
 
 ## Pinout
 
@@ -54,7 +54,7 @@ It helps to know the functions of the pins. Here is a copy of the pinout provide
 
 <img src="https://www.raspberrypi.org/documentation/pico/getting-started/static/15243f1ffd3b8ee646a1708bf4c0e866/Pico-R3-Pinout.svg" alt="Raspberry Pi Pico pin out diagram">
 
-If a method is requiring a pin you can provide the GPIO number as integer or use the corresponding GP name as given in the sheet above.
+If a method is requiring a pin, you can provide the GPIO number as integer or use the corresponding GP name as given in the sheet above.
 
 The following calls are all identical:
 

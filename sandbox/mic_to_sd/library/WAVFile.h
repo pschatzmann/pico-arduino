@@ -8,20 +8,22 @@
  * @brief A simple class to manage the WAV file names and assign new numbers
  */
 
+#define SD_CONFIG SdSpiConfig(SD_CS_PIN, SHARED_SPI, SPI_CLOCK)
+
 class WAVFile {
     public:
         WAVFile(){
         }
 
         void begin() {
-            if (!sd.begin(SS, SD_SCK_MHZ(12))){
+            if (!sd.begin(SS, SD_SCK_MHZ(1))){
                 Serial.println("sd.begin() failed!");
             }
             fileCount = findMaxFileIndex();
         }
 
         // get a new non existing file name
-        File getNextFile() {
+        File32 &getNextFile() {
             file.close();
             sprintf(fileName, "/SN_%d.wav", ++fileCount);
             if (!file.open(fileName, O_RDWR | O_CREAT | O_TRUNC)){
@@ -35,16 +37,16 @@ class WAVFile {
         }
 
     protected:
-        SdFat sd;
-        File file;
+        SdFat32 sd;
+        File32 file;
         int fileCount;
         char fileName[80];
 
         // we want to make sure that we generate new file names so we get the max assigned number
         int findMaxFileIndex() {
             int result = 0;
-            File file;
-            File dir;
+            File32 file;
+            File32 dir;
             if (dir.open("/")){
                 while (file.openNext(&dir, O_RDONLY)) {
                     const char * name = file.name();

@@ -41,6 +41,7 @@ class PicoGPIOFunction {
         bool setFunction(pin_size_t pinNumber, gpio_function func){
             bool updated = false;
             if (pinInfo[pinNumber]!=func){
+                Logger.info("gpio_set_function",Logger.toStr(pinNumber));
                 gpio_set_function(pinNumber, func);
                 updated = true;
             }
@@ -49,11 +50,13 @@ class PicoGPIOFunction {
 
         // ADC has a similar functionality but no gpio_function type
         void setFunctionADC(pin_size_t pinNumber) {
+            Logger.debug("setFunctionADC");
             // init if necessary
             initADC();
 
             // setup pin for adc
             if (pinInfo[pinNumber] != GPIO_FUNC_ADC){
+                Logger.info("adc_gpio_init",Logger.toStr(pinNumber));
                 adc_gpio_init(pinNumber);
                 pinInfo[pinNumber] = GPIO_FUNC_ADC;
             }
@@ -61,6 +64,7 @@ class PicoGPIOFunction {
             // switch adc if necessary
             int adc = pinNumber - 26;
             if (current_adc != adc){
+                Logger.info("adc_select_input",Logger.toStr(adc));
                 adc_select_input((id_t)adc);
                 current_adc = adc;
             }        
@@ -70,7 +74,8 @@ class PicoGPIOFunction {
         bool initADC(){
             // init if necessary
             bool result = false;
-            if (adc_init_flag){
+            if (!adc_init_flag){
+                Logger.info("adc_init");
                 adc_init();
                 adc_init_flag = true;
                 result = true;
