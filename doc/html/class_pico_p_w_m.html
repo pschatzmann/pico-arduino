@@ -71,6 +71,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>This is an even more powerfull PWM API where we can specify a user defined input range and the cycle frequency in hz.  
+ <a href="class_pico_p_w_m.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_pico_p_w_m_8h_source.html">PicoPWM.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -78,9 +81,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4474bc1330f166071c693fee1ebf84e7"><td class="memItemLeft" align="right" valign="top"><a id="a4474bc1330f166071c693fee1ebf84e7"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>PicoPWM</b> (uint64_t frequency, uint64_t maxValue)</td></tr>
 <tr class="separator:a4474bc1330f166071c693fee1ebf84e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3078ccf1518bd7371a6e4dc9156b275a"><td class="memItemLeft" align="right" valign="top"><a id="a3078ccf1518bd7371a6e4dc9156b275a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> (pin_size_t pin)</td></tr>
-<tr class="separator:a3078ccf1518bd7371a6e4dc9156b275a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9936897354ee31c734227e31e35e5873"><td class="memItemLeft" align="right" valign="top"><a id="a9936897354ee31c734227e31e35e5873"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> (pin_size_t pin, uint64_t initalValue=0)</td></tr>
+<tr class="separator:a9936897354ee31c734227e31e35e5873"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cc25d863102a78c330b5b03efbf9902"><td class="memItemLeft" align="right" valign="top"><a id="a2cc25d863102a78c330b5b03efbf9902"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> (pin_size_t pin)</td></tr>
 <tr class="separator:a2cc25d863102a78c330b5b03efbf9902"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,9 +111,13 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a07ec6e8199e025800b915093c250a56b"><td class="memItemLeft" align="right" valign="top"><a id="a07ec6e8199e025800b915093c250a56b"></a>
 int64_t&#160;</td><td class="memItemRight" valign="bottom"><b>max_value</b></td></tr>
 <tr class="separator:a07ec6e8199e025800b915093c250a56b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6f71a7a19929b31bb65261c0f467673"><td class="memItemLeft" align="right" valign="top"><a id="aa6f71a7a19929b31bb65261c0f467673"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>period_nano_sec</b></td></tr>
+<tr class="separator:aa6f71a7a19929b31bb65261c0f467673"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>An even more powerfull PWM API where we can specify a user defined input range and the cycle frequency in hz. </p><dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
+<div class="textblock"><p>This is an even more powerfull PWM API where we can specify a user defined input range and the cycle frequency in hz. </p>
+<dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>GPLv3 </dd></dl>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>Arduino/ArduinoCore-Pico/<a class="el" href="_pico_p_w_m_8h_source.html">PicoPWM.h</a></li>

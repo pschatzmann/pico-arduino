@@ -71,260 +71,261 @@ $(function() {
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;HardwareSPI.h&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;pico/stdlib.h&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;hardware/spi.h&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;hardware/irq.h&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pico_hardware_s_p_i.html">PicoHardwareSPI</a> : <span class="keyword">public</span> <a class="code" href="classarduino_1_1_hardware_s_p_i.html">HardwareSPI</a> {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="class_pico_hardware_s_p_i.html">PicoHardwareSPI</a>(spi_inst_t *spi){</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            this-&gt;spi = spi;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        }</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        ~<a class="code" href="class_pico_hardware_s_p_i.html">PicoHardwareSPI</a>(){</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <a class="code" href="class_pico_hardware_s_p_i.html#a06fce877c8cc8d6a23505b6b867e3317">end</a>();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        }</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#acbc94ab59b45b889c292fa418f731d14">   32</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#acbc94ab59b45b889c292fa418f731d14">begin</a>() {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <a class="code" href="class_pico_hardware_s_p_i.html#acbc94ab59b45b889c292fa418f731d14">begin</a>(<span class="keyword">false</span>, -1,-1,-1,-1);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        };</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a2cf2c9f0e161cfc099e3c3120a6cee5d">   45</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#a2cf2c9f0e161cfc099e3c3120a6cee5d">begin</a>(<span class="keywordtype">bool</span> slave, <span class="keywordtype">int</span> pinRx=-1, <span class="keywordtype">int</span> pinTx=-1, <span class="keywordtype">int</span> pinCS=-1, <span class="keywordtype">int</span> pinSCK=-1) {            </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            Logger.info(<span class="stringliteral">&quot;begin&quot;</span>);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            is_slave = slave;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            setupPins(pinRx, pinTx, pinCS, pinSCK);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        </div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a06fce877c8cc8d6a23505b6b867e3317">   55</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#a06fce877c8cc8d6a23505b6b867e3317">end</a>() {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            Logger.info(<span class="stringliteral">&quot;end&quot;</span>);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            spi_deinit(spi);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            is_init = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a9e1ffce1882a65b407cd54d5583ca94d">   66</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#a9e1ffce1882a65b407cd54d5583ca94d">beginTransaction</a>(<a class="code" href="classarduino_1_1_s_p_i_settings.html">SPISettings</a> settings) {</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            Logger.debug(<span class="stringliteral">&quot;beginTransaction&quot;</span>);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            is_transaction = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="comment">// initialize on first transction</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">if</span> (!is_init){</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                Logger.info(<span class="stringliteral">&quot;spi_init&quot;</span>);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                spi_init (spi, settings.getClockFreq() );</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                <span class="comment">// Configure the SPI for master- or slave-mode operation. By default, spi_init() sets master-mode.</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="keywordflow">if</span> (is_slave){</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                    spi_set_slave(spi, is_slave);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                is_init = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="comment">// set baud rate and format on change of settings</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordflow">if</span> (last_settings != settings){</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                SPIMode mode = settings.getDataMode();</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                Logger.info(<span class="stringliteral">&quot;spi_set_baudrate&quot;</span>, Logger.toStr(settings.getClockFreq()));</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                spi_set_baudrate(spi, settings.getClockFreq());</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                <span class="keywordflow">switch</span> (mode) {</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                    <span class="keywordflow">case</span> SPI_MODE0:</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                        Logger.info(<span class="stringliteral">&quot;mode&quot;</span>, <span class="stringliteral">&quot;MODE0&quot;</span>);                     </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                        cpol=SPI_CPOL_0;cpha=SPI_CPHA_0;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                    <span class="keywordflow">case</span> SPI_MODE1:</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                        Logger.info(<span class="stringliteral">&quot;mode&quot;</span>, <span class="stringliteral">&quot;MODE0&quot;</span>);                     </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                        cpol=SPI_CPOL_0;cpha=SPI_CPHA_1;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                    <span class="keywordflow">case</span> SPI_MODE2:</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                        Logger.info(<span class="stringliteral">&quot;mode&quot;</span>, <span class="stringliteral">&quot;MODE0&quot;</span>);                     </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                        cpol=SPI_CPOL_1;cpha=SPI_CPHA_0;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                    <span class="keywordflow">case</span> SPI_MODE3:</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                        Logger.info(<span class="stringliteral">&quot;mode&quot;</span>, <span class="stringliteral">&quot;MODE0&quot;</span>);                     </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                        cpol=SPI_CPOL_1;cpha=SPI_CPHA_1;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                    <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                        Logger.error(<span class="stringliteral">&quot;Invalid Mode&quot;</span>);                     </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                }</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                BitOrder order_arduino = settings.getBitOrder();</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                order = (order_arduino == LSBFIRST ) ?  SPI_LSB_FIRST : SPI_MSB_FIRST;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                data_bits = 0;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                last_settings = settings;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            }</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            <span class="keywordflow">if</span> (using_interrupt_no!=0) {</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                Logger.info(<span class="stringliteral">&quot;irq_set_enabled false&quot;</span>);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                irq_set_enabled(using_interrupt_no, <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            }</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        }</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#af8f00cebe2aa5d967a7cb921f9b80d15">  128</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#af8f00cebe2aa5d967a7cb921f9b80d15">endTransaction</a>(<span class="keywordtype">void</span>) {</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            Logger.debug(<span class="stringliteral">&quot;endTransaction&quot;</span>);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            is_transaction = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            <span class="keywordflow">if</span> (using_interrupt_no!=0) {</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                Logger.info(<span class="stringliteral">&quot;irq_set_enabled true&quot;</span>);</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                irq_set_enabled(using_interrupt_no, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            }</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        }</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;       </div>
-<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a86f6206c11379c70c75818a124214c1b">  144</a></span>&#160;        <span class="keyword">virtual</span> uint8_t <a class="code" href="class_pico_hardware_s_p_i.html#a86f6206c11379c70c75818a124214c1b">transfer</a>(uint8_t data) {</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            Logger.debug(<span class="stringliteral">&quot;transfer&quot;</span>);</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            setDataWidth(8);</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            uint8_t array[1]={data};</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            uint8_t arrayResult[1] = {0};</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            spi_write_read_blocking(spi,  array, arrayResult, 1);</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            <span class="keywordflow">return</span> arrayResult[0];          </div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        }</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
-<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#ae15dbbe0614679be10ea1575821ab1bc">  159</a></span>&#160;        <span class="keyword">virtual</span> uint16_t <a class="code" href="class_pico_hardware_s_p_i.html#ae15dbbe0614679be10ea1575821ab1bc">transfer16</a>(uint16_t data){</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            Logger.debug(<span class="stringliteral">&quot;transfer16&quot;</span>);</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            setDataWidth(16);</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            uint16_t result;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            spi_write16_read16_blocking(spi, &amp;data, &amp;result, 1);</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        }</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    </div>
-<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a82dd8e9e81dfbd7cc5c5eaa9547c058a">  174</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#a82dd8e9e81dfbd7cc5c5eaa9547c058a">transfer</a>(<span class="keywordtype">void</span> *array, <span class="keywordtype">size_t</span> len) {</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            Logger.debug(<span class="stringliteral">&quot;transfer (array)&quot;</span>);</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            setDataWidth(8);</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            spi_write_read_blocking(spi,  (<span class="keyword">const</span> uint8_t*) array, (uint8_t*) array, len);</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        }</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        </div>
-<div class="line"><a name="l00187"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a9ce51701c2384a6e7a47d556ddc1c9a2">  187</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#a9ce51701c2384a6e7a47d556ddc1c9a2">usingInterrupt</a>(<span class="keywordtype">int</span> interruptNumber) {</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            Logger.info(<span class="stringliteral">&quot;usingInterrupt&quot;</span>, Logger.toStr(interruptNumber));</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            using_interrupt_no = interruptNumber;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        }</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        </div>
-<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#ab9bc505878ed86ec105d8b21143513b4">  193</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#ab9bc505878ed86ec105d8b21143513b4">notUsingInterrupt</a>(<span class="keywordtype">int</span> interruptNumber) {</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            Logger.info(<span class="stringliteral">&quot;notUsingInterrupt&quot;</span>,Logger.toStr(interruptNumber));</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            irq_set_enabled(interruptNumber, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            using_interrupt_no = 0;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        }</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    </div>
-<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a1c18e800c76eb546b0c9308212778da4">  200</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#a1c18e800c76eb546b0c9308212778da4">attachInterrupt</a>() {</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            Logger.info(<span class="stringliteral">&quot;attachInterrupt&quot;</span>);</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            <span class="keywordtype">int</span> interrupt = getStandardInterrupt();</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            <span class="keywordflow">if</span>(interrupt&gt;0){</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                irq_set_enabled(interrupt, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            }</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        }</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        </div>
-<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a8eae40e524523328a6d6e1ac4293fe79">  209</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#a8eae40e524523328a6d6e1ac4293fe79">detachInterrupt</a>() {</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            Logger.info(<span class="stringliteral">&quot;detachInterrupt&quot;</span>);</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            <span class="keywordtype">int</span> interrupt = getStandardInterrupt();</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            <span class="keywordflow">if</span>(interrupt&gt;0){</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                irq_set_enabled(interrupt, <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            }</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        }</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        </div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        <a class="code" href="classarduino_1_1_s_p_i_settings.html">SPISettings</a> last_settings; <span class="comment">// Arduino SPI settings</span></div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        spi_inst_t* spi;</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        spi_cpol_t cpol;</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        spi_cpha_t cpha;</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        spi_order_t order;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        uint data_bits;</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        <span class="keywordtype">int</span> using_interrupt_no;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <span class="keywordtype">bool</span> is_init = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        <span class="keywordtype">bool</span> is_slave;</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <span class="keywordtype">bool</span> is_transaction;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160; </div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        <span class="comment">// SPI0_IRQ = 18, SPI1_IRQ = 19</span></div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="keywordtype">int</span> getStandardInterrupt(){</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            <span class="keywordtype">int</span> interrupt;</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            <span class="keywordflow">if</span> (spi == spi0){</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                interrupt = 18;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (spi == spi0){</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                interrupt = 19;</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            }</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            <span class="keywordflow">return</span> interrupt;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        }</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <span class="comment">// adjust data bits</span></div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        <span class="keywordtype">void</span> setDataWidth(<span class="keywordtype">int</span> bits){</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <span class="keywordflow">if</span> (data_bits != bits){</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                data_bits = bits;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                setFormat();</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;            }</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        }</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        <span class="keywordtype">void</span> setFormat(){</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            Logger.info(<span class="stringliteral">&quot;spi_set_format&quot;</span>);</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            spi_set_format(spi, data_bits, cpol, cpha, order);</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        }</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        <span class="keywordtype">void</span> setupPins(<span class="keywordtype">int</span> pinRx=-1, <span class="keywordtype">int</span> pinTx=-1, <span class="keywordtype">int</span> pinCS=-1, <span class="keywordtype">int</span> pinSCK=-1){</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;            <span class="keywordflow">if</span> (spi == spi0){</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                Logger.info(<span class="stringliteral">&quot;setupPins for spi0&quot;</span>);</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                <span class="keywordflow">if</span> (pinRx==-1){</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                    pinRx = 16;</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;                }</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;                <span class="keywordflow">if</span> (pinTx==-1){</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                    pinTx = 19;</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                }</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                <span class="keywordflow">if</span> (pinCS==-1){</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                    pinCS = 17;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                }</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                <span class="keywordflow">if</span> (pinSCK==-1){</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                    pinSCK = 18;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                }</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (spi == spi1){</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                Logger.info(<span class="stringliteral">&quot;setupPins for spi1&quot;</span>);</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                <span class="keywordflow">if</span> (pinRx==-1){</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                    pinRx = 12;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                }</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                <span class="keywordflow">if</span> (pinTx==-1){</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                    pinTx = 11;</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                }</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                <span class="keywordflow">if</span> (pinCS==-1){</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                    pinCS = 13;</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;                }</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;                <span class="keywordflow">if</span> (pinSCK==-1){</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                    pinSCK = 10;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                }</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160; </div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                Logger.error(<span class="stringliteral">&quot;Invalid SPI device&quot;</span>);</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            }</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160; </div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            gpio_set_function(pinRx, GPIO_FUNC_SPI);</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;            gpio_set_function(pinSCK, GPIO_FUNC_SPI);</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            gpio_set_function(pinTx, GPIO_FUNC_SPI);</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; </div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            <span class="comment">// Chip select is active-low, so we&#39;ll initialise it to a driven-high state</span></div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            gpio_init(pinCS);</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            gpio_set_dir(pinCS, GPIO_OUT);</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;            gpio_put(pinCS, 1);</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160; </div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;            <span class="comment">// display pin assignments</span></div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            <span class="keywordflow">if</span> (Logger.isLogging()) {</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                Logger.info(<span class="stringliteral">&quot;pinRx is &quot;</span>, Logger.toStr(pinRx));</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                Logger.info(<span class="stringliteral">&quot;pinTx is &quot;</span>, Logger.toStr(pinTx));</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                Logger.info(<span class="stringliteral">&quot;pinSCK is &quot;</span>, Logger.toStr(pinSCK));</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                Logger.info(<span class="stringliteral">&quot;pinCS is &quot;</span>, Logger.toStr(pinCS));</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;            }</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160; </div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        }</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        </div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160; </div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    </div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;};</div>
-<div class="ttc" id="aclass_pico_hardware_s_p_i_html"><div class="ttname"><a href="class_pico_hardware_s_p_i.html">PicoHardwareSPI</a></div><div class="ttdoc">Arduino HardwareSPI interface using the Pico API. We use the following default pins spi0: pinRx = 16;...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:18</div></div>
-<div class="ttc" id="aclass_pico_hardware_s_p_i_html_a06fce877c8cc8d6a23505b6b867e3317"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a06fce877c8cc8d6a23505b6b867e3317">PicoHardwareSPI::end</a></div><div class="ttdeci">virtual void end()</div><div class="ttdoc">Disables the SPI bus (leaving pin modes unchanged).</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:55</div></div>
-<div class="ttc" id="aclass_pico_hardware_s_p_i_html_a1c18e800c76eb546b0c9308212778da4"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a1c18e800c76eb546b0c9308212778da4">PicoHardwareSPI::attachInterrupt</a></div><div class="ttdeci">virtual void attachInterrupt()</div><div class="ttdoc">Enable the SPI interrupt: SPI0_IRQ = 18, SPI1_IRQ = 19.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:200</div></div>
-<div class="ttc" id="aclass_pico_hardware_s_p_i_html_a2cf2c9f0e161cfc099e3c3120a6cee5d"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a2cf2c9f0e161cfc099e3c3120a6cee5d">PicoHardwareSPI::begin</a></div><div class="ttdeci">virtual void begin(bool slave, int pinRx=-1, int pinTx=-1, int pinCS=-1, int pinSCK=-1)</div><div class="ttdoc">Initializes the SPI bus by setting SCK, MOSI, and SS to outputs, pulling SCK and MOSI low,...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:45</div></div>
-<div class="ttc" id="aclass_pico_hardware_s_p_i_html_a82dd8e9e81dfbd7cc5c5eaa9547c058a"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a82dd8e9e81dfbd7cc5c5eaa9547c058a">PicoHardwareSPI::transfer</a></div><div class="ttdeci">virtual void transfer(void *array, size_t len)</div><div class="ttdoc">SPI transfer is based on a simultaneous send and receive of len bytes.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:174</div></div>
-<div class="ttc" id="aclass_pico_hardware_s_p_i_html_a86f6206c11379c70c75818a124214c1b"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a86f6206c11379c70c75818a124214c1b">PicoHardwareSPI::transfer</a></div><div class="ttdeci">virtual uint8_t transfer(uint8_t data)</div><div class="ttdoc">SPI transfer is based on a simultaneous send and receive of 1 byte.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:144</div></div>
-<div class="ttc" id="aclass_pico_hardware_s_p_i_html_a8eae40e524523328a6d6e1ac4293fe79"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a8eae40e524523328a6d6e1ac4293fe79">PicoHardwareSPI::detachInterrupt</a></div><div class="ttdeci">virtual void detachInterrupt()</div><div class="ttdoc">Turns off the given interrupt: SPI0_IRQ = 18, SPI1_IRQ = 19.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:209</div></div>
-<div class="ttc" id="aclass_pico_hardware_s_p_i_html_a9ce51701c2384a6e7a47d556ddc1c9a2"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a9ce51701c2384a6e7a47d556ddc1c9a2">PicoHardwareSPI::usingInterrupt</a></div><div class="ttdeci">virtual void usingInterrupt(int interruptNumber)</div><div class="ttdoc">If your program will perform SPI transactions within an interrupt, call this function to register the...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:187</div></div>
-<div class="ttc" id="aclass_pico_hardware_s_p_i_html_a9e1ffce1882a65b407cd54d5583ca94d"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a9e1ffce1882a65b407cd54d5583ca94d">PicoHardwareSPI::beginTransaction</a></div><div class="ttdeci">virtual void beginTransaction(SPISettings settings)</div><div class="ttdoc">Initializes the SPI bus using the defined SPISettings.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:66</div></div>
-<div class="ttc" id="aclass_pico_hardware_s_p_i_html_ab9bc505878ed86ec105d8b21143513b4"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#ab9bc505878ed86ec105d8b21143513b4">PicoHardwareSPI::notUsingInterrupt</a></div><div class="ttdeci">virtual void notUsingInterrupt(int interruptNumber)</div><div class="ttdoc">If your program will perform SPI transactions within an interrupt, call this function to de-register ...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:193</div></div>
-<div class="ttc" id="aclass_pico_hardware_s_p_i_html_acbc94ab59b45b889c292fa418f731d14"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#acbc94ab59b45b889c292fa418f731d14">PicoHardwareSPI::begin</a></div><div class="ttdeci">virtual void begin()</div><div class="ttdoc">Initializes the SPI bus by setting SCK, MOSI, and SS to outputs, pulling SCK and MOSI low,...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:32</div></div>
-<div class="ttc" id="aclass_pico_hardware_s_p_i_html_ae15dbbe0614679be10ea1575821ab1bc"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#ae15dbbe0614679be10ea1575821ab1bc">PicoHardwareSPI::transfer16</a></div><div class="ttdeci">virtual uint16_t transfer16(uint16_t data)</div><div class="ttdoc">SPI transfer is based on a simultaneous send and receive of 2 bytes.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:159</div></div>
-<div class="ttc" id="aclass_pico_hardware_s_p_i_html_af8f00cebe2aa5d967a7cb921f9b80d15"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#af8f00cebe2aa5d967a7cb921f9b80d15">PicoHardwareSPI::endTransaction</a></div><div class="ttdeci">virtual void endTransaction(void)</div><div class="ttdoc">Stop using the SPI bus. Normally this is called after de-asserting the chip select,...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:128</div></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;pins_arduino.h&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;HardwareSPI.h&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;pico/stdlib.h&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;hardware/spi.h&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;hardware/irq.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pico_hardware_s_p_i.html">PicoHardwareSPI</a> : <span class="keyword">public</span> <a class="code" href="classarduino_1_1_hardware_s_p_i.html">HardwareSPI</a> {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="class_pico_hardware_s_p_i.html">PicoHardwareSPI</a>(spi_inst_t *spi){</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            this-&gt;spi = spi;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        ~<a class="code" href="class_pico_hardware_s_p_i.html">PicoHardwareSPI</a>(){</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <a class="code" href="class_pico_hardware_s_p_i.html#a06fce877c8cc8d6a23505b6b867e3317">end</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#acbc94ab59b45b889c292fa418f731d14">   33</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#acbc94ab59b45b889c292fa418f731d14">begin</a>() {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <a class="code" href="class_pico_hardware_s_p_i.html#acbc94ab59b45b889c292fa418f731d14">begin</a>(<span class="keyword">false</span>, -1,-1,-1,-1);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        };</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a2cf2c9f0e161cfc099e3c3120a6cee5d">   46</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#a2cf2c9f0e161cfc099e3c3120a6cee5d">begin</a>(<span class="keywordtype">bool</span> slave, <span class="keywordtype">int</span> pinRx=-1, <span class="keywordtype">int</span> pinTx=-1, <span class="keywordtype">int</span> pinCS=-1, <span class="keywordtype">int</span> pinSCK=-1) {            </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            Logger.info(<span class="stringliteral">&quot;begin&quot;</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            is_slave = slave;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            setupPins(pinRx, pinTx, pinCS, pinSCK);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a06fce877c8cc8d6a23505b6b867e3317">   56</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#a06fce877c8cc8d6a23505b6b867e3317">end</a>() {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            Logger.info(<span class="stringliteral">&quot;end&quot;</span>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            spi_deinit(spi);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            is_init = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a9e1ffce1882a65b407cd54d5583ca94d">   67</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#a9e1ffce1882a65b407cd54d5583ca94d">beginTransaction</a>(<a class="code" href="classarduino_1_1_s_p_i_settings.html">SPISettings</a> settings) {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            Logger.debug(<span class="stringliteral">&quot;beginTransaction&quot;</span>);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            is_transaction = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="comment">// initialize on first transction</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">if</span> (!is_init){</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                Logger.info(<span class="stringliteral">&quot;spi_init&quot;</span>);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                spi_init (spi, settings.getClockFreq() );</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="comment">// Configure the SPI for master- or slave-mode operation. By default, spi_init() sets master-mode.</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <span class="keywordflow">if</span> (is_slave){</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                    spi_set_slave(spi, is_slave);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                is_init = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="comment">// set baud rate and format on change of settings</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="keywordflow">if</span> (last_settings != settings){</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                SPIMode mode = settings.getDataMode();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                Logger.info(<span class="stringliteral">&quot;spi_set_baudrate&quot;</span>, Logger.toStr(settings.getClockFreq()));</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                spi_set_baudrate(spi, settings.getClockFreq());</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="keywordflow">switch</span> (mode) {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                    <span class="keywordflow">case</span> SPI_MODE0:</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                        Logger.info(<span class="stringliteral">&quot;mode&quot;</span>, <span class="stringliteral">&quot;MODE0&quot;</span>);                     </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                        cpol=SPI_CPOL_0;cpha=SPI_CPHA_0;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                    <span class="keywordflow">case</span> SPI_MODE1:</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                        Logger.info(<span class="stringliteral">&quot;mode&quot;</span>, <span class="stringliteral">&quot;MODE0&quot;</span>);                     </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                        cpol=SPI_CPOL_0;cpha=SPI_CPHA_1;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                    <span class="keywordflow">case</span> SPI_MODE2:</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                        Logger.info(<span class="stringliteral">&quot;mode&quot;</span>, <span class="stringliteral">&quot;MODE0&quot;</span>);                     </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                        cpol=SPI_CPOL_1;cpha=SPI_CPHA_0;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                    <span class="keywordflow">case</span> SPI_MODE3:</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                        Logger.info(<span class="stringliteral">&quot;mode&quot;</span>, <span class="stringliteral">&quot;MODE0&quot;</span>);                     </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                        cpol=SPI_CPOL_1;cpha=SPI_CPHA_1;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                    <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                        Logger.error(<span class="stringliteral">&quot;Invalid Mode&quot;</span>);                     </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                }</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                BitOrder order_arduino = settings.getBitOrder();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                order = (order_arduino == LSBFIRST ) ?  SPI_LSB_FIRST : SPI_MSB_FIRST;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                data_bits = 0;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                last_settings = settings;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            <span class="keywordflow">if</span> (using_interrupt_no!=0) {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                Logger.info(<span class="stringliteral">&quot;irq_set_enabled false&quot;</span>);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                irq_set_enabled(using_interrupt_no, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        }</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#af8f00cebe2aa5d967a7cb921f9b80d15">  129</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#af8f00cebe2aa5d967a7cb921f9b80d15">endTransaction</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            Logger.debug(<span class="stringliteral">&quot;endTransaction&quot;</span>);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            is_transaction = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            <span class="keywordflow">if</span> (using_interrupt_no!=0) {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                Logger.info(<span class="stringliteral">&quot;irq_set_enabled true&quot;</span>);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                irq_set_enabled(using_interrupt_no, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            }</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;       </div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a86f6206c11379c70c75818a124214c1b">  145</a></span>&#160;        <span class="keyword">virtual</span> uint8_t <a class="code" href="class_pico_hardware_s_p_i.html#a86f6206c11379c70c75818a124214c1b">transfer</a>(uint8_t data) {</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            Logger.debug(<span class="stringliteral">&quot;transfer&quot;</span>);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            setDataWidth(8);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            uint8_t array[1]={data};</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            uint8_t arrayResult[1] = {0};</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            spi_write_read_blocking(spi,  array, arrayResult, 1);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            <span class="keywordflow">return</span> arrayResult[0];          </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        }</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#ae15dbbe0614679be10ea1575821ab1bc">  160</a></span>&#160;        <span class="keyword">virtual</span> uint16_t <a class="code" href="class_pico_hardware_s_p_i.html#ae15dbbe0614679be10ea1575821ab1bc">transfer16</a>(uint16_t data){</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            Logger.debug(<span class="stringliteral">&quot;transfer16&quot;</span>);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            setDataWidth(16);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            uint16_t result;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            spi_write16_read16_blocking(spi, &amp;data, &amp;result, 1);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        }</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    </div>
+<div class="line"><a name="l00175"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a82dd8e9e81dfbd7cc5c5eaa9547c058a">  175</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#a82dd8e9e81dfbd7cc5c5eaa9547c058a">transfer</a>(<span class="keywordtype">void</span> *array, <span class="keywordtype">size_t</span> len) {</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            Logger.debug(<span class="stringliteral">&quot;transfer (array)&quot;</span>);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            setDataWidth(8);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            spi_write_read_blocking(spi,  (<span class="keyword">const</span> uint8_t*) array, (uint8_t*) array, len);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        }</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        </div>
+<div class="line"><a name="l00188"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a9ce51701c2384a6e7a47d556ddc1c9a2">  188</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#a9ce51701c2384a6e7a47d556ddc1c9a2">usingInterrupt</a>(<span class="keywordtype">int</span> interruptNumber) {</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            Logger.info(<span class="stringliteral">&quot;usingInterrupt&quot;</span>, Logger.toStr(interruptNumber));</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            using_interrupt_no = interruptNumber;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        }</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        </div>
+<div class="line"><a name="l00194"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#ab9bc505878ed86ec105d8b21143513b4">  194</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#ab9bc505878ed86ec105d8b21143513b4">notUsingInterrupt</a>(<span class="keywordtype">int</span> interruptNumber) {</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            Logger.info(<span class="stringliteral">&quot;notUsingInterrupt&quot;</span>,Logger.toStr(interruptNumber));</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            irq_set_enabled(interruptNumber, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            using_interrupt_no = 0;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        }</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    </div>
+<div class="line"><a name="l00201"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a1c18e800c76eb546b0c9308212778da4">  201</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#a1c18e800c76eb546b0c9308212778da4">attachInterrupt</a>() {</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            Logger.info(<span class="stringliteral">&quot;attachInterrupt&quot;</span>);</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            <span class="keywordtype">int</span> interrupt = getStandardInterrupt();</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <span class="keywordflow">if</span>(interrupt&gt;0){</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                irq_set_enabled(interrupt, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            }</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        }</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        </div>
+<div class="line"><a name="l00210"></a><span class="lineno"><a class="line" href="class_pico_hardware_s_p_i.html#a8eae40e524523328a6d6e1ac4293fe79">  210</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_hardware_s_p_i.html#a8eae40e524523328a6d6e1ac4293fe79">detachInterrupt</a>() {</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            Logger.info(<span class="stringliteral">&quot;detachInterrupt&quot;</span>);</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            <span class="keywordtype">int</span> interrupt = getStandardInterrupt();</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            <span class="keywordflow">if</span>(interrupt&gt;0){</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                irq_set_enabled(interrupt, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;            }</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        }</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        <a class="code" href="classarduino_1_1_s_p_i_settings.html">SPISettings</a> last_settings; <span class="comment">// Arduino SPI settings</span></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        spi_inst_t* spi;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        spi_cpol_t cpol;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        spi_cpha_t cpha;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        spi_order_t order;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        uint data_bits;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <span class="keywordtype">int</span> using_interrupt_no;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        <span class="keywordtype">bool</span> is_init = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <span class="keywordtype">bool</span> is_slave;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        <span class="keywordtype">bool</span> is_transaction;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="comment">// SPI0_IRQ = 18, SPI1_IRQ = 19</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        <span class="keywordtype">int</span> getStandardInterrupt(){</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            <span class="keywordtype">int</span> interrupt;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;            <span class="keywordflow">if</span> (spi == spi0){</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                interrupt = 18;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (spi == spi0){</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                interrupt = 19;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            }</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            <span class="keywordflow">return</span> interrupt;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        }</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160; </div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        <span class="comment">// adjust data bits</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <span class="keywordtype">void</span> setDataWidth(<span class="keywordtype">int</span> bits){</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            <span class="keywordflow">if</span> (data_bits != bits){</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                data_bits = bits;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                setFormat();</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;            }</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        }</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160; </div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        <span class="keywordtype">void</span> setFormat(){</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            Logger.info(<span class="stringliteral">&quot;spi_set_format&quot;</span>);</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;            spi_set_format(spi, data_bits, cpol, cpha, order);</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        }</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160; </div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <span class="keywordtype">void</span> setupPins(<span class="keywordtype">int</span> pinRx=-1, <span class="keywordtype">int</span> pinTx=-1, <span class="keywordtype">int</span> pinCS=-1, <span class="keywordtype">int</span> pinSCK=-1){</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;            <span class="keywordflow">if</span> (spi == spi0){</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                Logger.info(<span class="stringliteral">&quot;setupPins for spi0&quot;</span>);</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                <span class="keywordflow">if</span> (pinRx==-1){</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;                    pinRx = SPI_RX;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;                }</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                <span class="keywordflow">if</span> (pinTx==-1){</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                    pinTx = SPI_TX;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                }</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                <span class="keywordflow">if</span> (pinCS==-1){</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                    pinCS = SPI_CS;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                }</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                <span class="keywordflow">if</span> (pinSCK==-1){</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                    pinSCK = SPI_SCK;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                }</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (spi == spi1){</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                Logger.info(<span class="stringliteral">&quot;setupPins for spi1&quot;</span>);</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                <span class="keywordflow">if</span> (pinRx==-1){</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                    pinRx = SPI1_RX;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                }</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                <span class="keywordflow">if</span> (pinTx==-1){</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                    pinTx = SPI1_TX;</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                }</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                <span class="keywordflow">if</span> (pinCS==-1){</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;                    pinCS = SPI1_CS;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;                }</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                <span class="keywordflow">if</span> (pinSCK==-1){</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                    pinSCK = SPI1_SCK;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;                }</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160; </div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;                Logger.error(<span class="stringliteral">&quot;Invalid SPI device&quot;</span>);</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            }</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160; </div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;            gpio_set_function(pinRx, GPIO_FUNC_SPI);</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            gpio_set_function(pinSCK, GPIO_FUNC_SPI);</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            gpio_set_function(pinTx, GPIO_FUNC_SPI);</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160; </div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            <span class="comment">// Chip select is active-low, so we&#39;ll initialise it to a driven-high state</span></div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            gpio_init(pinCS);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;            gpio_set_dir(pinCS, GPIO_OUT);</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            gpio_put(pinCS, 1);</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160; </div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            <span class="comment">// display pin assignments</span></div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            <span class="keywordflow">if</span> (Logger.isLogging()) {</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                Logger.info(<span class="stringliteral">&quot;pinRx is &quot;</span>, Logger.toStr(pinRx));</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                Logger.info(<span class="stringliteral">&quot;pinTx is &quot;</span>, Logger.toStr(pinTx));</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                Logger.info(<span class="stringliteral">&quot;pinSCK is &quot;</span>, Logger.toStr(pinSCK));</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                Logger.info(<span class="stringliteral">&quot;pinCS is &quot;</span>, Logger.toStr(pinCS));</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;            }</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160; </div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        }</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        </div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160; </div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    </div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;};</div>
+<div class="ttc" id="aclass_pico_hardware_s_p_i_html"><div class="ttname"><a href="class_pico_hardware_s_p_i.html">PicoHardwareSPI</a></div><div class="ttdoc">Arduino HardwareSPI interface using the Pico API. We use the following default pins spi0: pinRx = 16;...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:19</div></div>
+<div class="ttc" id="aclass_pico_hardware_s_p_i_html_a06fce877c8cc8d6a23505b6b867e3317"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a06fce877c8cc8d6a23505b6b867e3317">PicoHardwareSPI::end</a></div><div class="ttdeci">virtual void end()</div><div class="ttdoc">Disables the SPI bus (leaving pin modes unchanged).</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:56</div></div>
+<div class="ttc" id="aclass_pico_hardware_s_p_i_html_a1c18e800c76eb546b0c9308212778da4"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a1c18e800c76eb546b0c9308212778da4">PicoHardwareSPI::attachInterrupt</a></div><div class="ttdeci">virtual void attachInterrupt()</div><div class="ttdoc">Enable the SPI interrupt: SPI0_IRQ = 18, SPI1_IRQ = 19.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:201</div></div>
+<div class="ttc" id="aclass_pico_hardware_s_p_i_html_a2cf2c9f0e161cfc099e3c3120a6cee5d"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a2cf2c9f0e161cfc099e3c3120a6cee5d">PicoHardwareSPI::begin</a></div><div class="ttdeci">virtual void begin(bool slave, int pinRx=-1, int pinTx=-1, int pinCS=-1, int pinSCK=-1)</div><div class="ttdoc">Initializes the SPI bus by setting SCK, MOSI, and SS to outputs, pulling SCK and MOSI low,...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:46</div></div>
+<div class="ttc" id="aclass_pico_hardware_s_p_i_html_a82dd8e9e81dfbd7cc5c5eaa9547c058a"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a82dd8e9e81dfbd7cc5c5eaa9547c058a">PicoHardwareSPI::transfer</a></div><div class="ttdeci">virtual void transfer(void *array, size_t len)</div><div class="ttdoc">SPI transfer is based on a simultaneous send and receive of len bytes.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:175</div></div>
+<div class="ttc" id="aclass_pico_hardware_s_p_i_html_a86f6206c11379c70c75818a124214c1b"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a86f6206c11379c70c75818a124214c1b">PicoHardwareSPI::transfer</a></div><div class="ttdeci">virtual uint8_t transfer(uint8_t data)</div><div class="ttdoc">SPI transfer is based on a simultaneous send and receive of 1 byte.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:145</div></div>
+<div class="ttc" id="aclass_pico_hardware_s_p_i_html_a8eae40e524523328a6d6e1ac4293fe79"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a8eae40e524523328a6d6e1ac4293fe79">PicoHardwareSPI::detachInterrupt</a></div><div class="ttdeci">virtual void detachInterrupt()</div><div class="ttdoc">Turns off the given interrupt: SPI0_IRQ = 18, SPI1_IRQ = 19.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:210</div></div>
+<div class="ttc" id="aclass_pico_hardware_s_p_i_html_a9ce51701c2384a6e7a47d556ddc1c9a2"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a9ce51701c2384a6e7a47d556ddc1c9a2">PicoHardwareSPI::usingInterrupt</a></div><div class="ttdeci">virtual void usingInterrupt(int interruptNumber)</div><div class="ttdoc">If your program will perform SPI transactions within an interrupt, call this function to register the...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:188</div></div>
+<div class="ttc" id="aclass_pico_hardware_s_p_i_html_a9e1ffce1882a65b407cd54d5583ca94d"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#a9e1ffce1882a65b407cd54d5583ca94d">PicoHardwareSPI::beginTransaction</a></div><div class="ttdeci">virtual void beginTransaction(SPISettings settings)</div><div class="ttdoc">Initializes the SPI bus using the defined SPISettings.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:67</div></div>
+<div class="ttc" id="aclass_pico_hardware_s_p_i_html_ab9bc505878ed86ec105d8b21143513b4"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#ab9bc505878ed86ec105d8b21143513b4">PicoHardwareSPI::notUsingInterrupt</a></div><div class="ttdeci">virtual void notUsingInterrupt(int interruptNumber)</div><div class="ttdoc">If your program will perform SPI transactions within an interrupt, call this function to de-register ...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:194</div></div>
+<div class="ttc" id="aclass_pico_hardware_s_p_i_html_acbc94ab59b45b889c292fa418f731d14"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#acbc94ab59b45b889c292fa418f731d14">PicoHardwareSPI::begin</a></div><div class="ttdeci">virtual void begin()</div><div class="ttdoc">Initializes the SPI bus by setting SCK, MOSI, and SS to outputs, pulling SCK and MOSI low,...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:33</div></div>
+<div class="ttc" id="aclass_pico_hardware_s_p_i_html_ae15dbbe0614679be10ea1575821ab1bc"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#ae15dbbe0614679be10ea1575821ab1bc">PicoHardwareSPI::transfer16</a></div><div class="ttdeci">virtual uint16_t transfer16(uint16_t data)</div><div class="ttdoc">SPI transfer is based on a simultaneous send and receive of 2 bytes.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:160</div></div>
+<div class="ttc" id="aclass_pico_hardware_s_p_i_html_af8f00cebe2aa5d967a7cb921f9b80d15"><div class="ttname"><a href="class_pico_hardware_s_p_i.html#af8f00cebe2aa5d967a7cb921f9b80d15">PicoHardwareSPI::endTransaction</a></div><div class="ttdeci">virtual void endTransaction(void)</div><div class="ttdoc">Stop using the SPI bus. Normally this is called after de-asserting the chip select,...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:129</div></div>
 <div class="ttc" id="aclassarduino_1_1_hardware_s_p_i_html"><div class="ttname"><a href="classarduino_1_1_hardware_s_p_i.html">arduino::HardwareSPI</a></div><div class="ttdef"><b>Definition:</b> HardwareSPI.h:105</div></div>
 <div class="ttc" id="aclassarduino_1_1_s_p_i_settings_html"><div class="ttname"><a href="classarduino_1_1_s_p_i_settings.html">arduino::SPISettings</a></div><div class="ttdef"><b>Definition:</b> HardwareSPI.h:37</div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -5,16 +5,16 @@ USBMidi midi = USBMidi::instance();
 int note;
 
 void setup() {
-    Serial.begin();
+    Serial1.begin();
     midi.begin();
-    Serial.println("setup ended");
+    Serial1.println("setup ended");
 }
 
 void loop() {
     midi.noteOff(note);
     note = 58 + rand() % 14;
-    Serial.print("playing note ");
-    Serial.println(note);
+    Serial1.print("playing note ");
+    Serial1.println(note);
     midi.noteOn(note);
     delay(1000);
 }

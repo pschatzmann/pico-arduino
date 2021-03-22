@@ -70,11 +70,6 @@ $(function() {
 <div class="title">PicoLogger Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>A simple Logger that writes messages dependent on the log level.  
- <a href="class_pico_logger.html#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="_pico_logger_8h_source.html">PicoLogger.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -83,14 +78,14 @@ Public Types</h2></td></tr>
 , <b>Warning</b>
 , <b>Error</b>
  }</td></tr>
-<tr class="memdesc:af15ec27beaed81a34725f0f50589be18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supported log levels. <br /></td></tr>
+<tr class="memdesc:af15ec27beaed81a34725f0f50589be18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supported log levels. You can change the default log level with the help of the PICO_LOG_LEVEL define. <br /></td></tr>
 <tr class="separator:af15ec27beaed81a34725f0f50589be18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a32e7e3f1f21aea5ab7934b44ff59a931"><td class="memItemLeft" align="right" valign="top"><a id="a32e7e3f1f21aea5ab7934b44ff59a931"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> (<a class="el" href="classarduino_1_1_stream.html">Stream</a> &amp;out, <a class="el" href="class_pico_logger.html#af15ec27beaed81a34725f0f50589be18">LogLevel</a> level=Error)</td></tr>
-<tr class="separator:a32e7e3f1f21aea5ab7934b44ff59a931"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4188baac3df07a564485919aa37c7dcc"><td class="memItemLeft" align="right" valign="top"><a id="a4188baac3df07a564485919aa37c7dcc"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> (<a class="el" href="classarduino_1_1_stream.html">Stream</a> &amp;out, <a class="el" href="class_pico_logger.html#af15ec27beaed81a34725f0f50589be18">LogLevel</a> level=PICO_LOG_LEVEL)</td></tr>
+<tr class="separator:a4188baac3df07a564485919aa37c7dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadc33b92f32997942b0943f3964f283c"><td class="memItemLeft" align="right" valign="top"><a id="aadc33b92f32997942b0943f3964f283c"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isLogging</b> (<a class="el" href="class_pico_logger.html#af15ec27beaed81a34725f0f50589be18">LogLevel</a> level=Info)</td></tr>
 <tr class="separator:aadc33b92f32997942b0943f3964f283c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,11 +117,7 @@ Protected Attributes</h2></td></tr>
 <a class="el" href="class_pico_logger.html#af15ec27beaed81a34725f0f50589be18">LogLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><b>log_level</b></td></tr>
 <tr class="separator:a24872b4967cf29c7c5b29ee6d60b1bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A simple Logger that writes messages dependent on the log level. </p>
-<dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd>GPLv3 </dd></dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>Arduino/ArduinoCore-Pico/<a class="el" href="_pico_logger_8h_source.html">PicoLogger.h</a></li>
 </ul>
 </div><!-- contents -->

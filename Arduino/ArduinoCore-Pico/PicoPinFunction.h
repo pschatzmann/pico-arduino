@@ -18,6 +18,9 @@
 
 enum PinFunction {PIN_FUNC_UNDEFINED, PIN_FUNC_GPIO, PIN_FUNC_ADC, PIN_FUNC_PWM};
 
+/**
+ * @brief Information about an the status and the Arduino PinMode of an individual pin
+ */
 struct PinInfo {
     PinFunction pin_function;
     PinMode pinMode;

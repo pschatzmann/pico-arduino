@@ -43,7 +43,7 @@ class PicoHardwareI2C : public HardwareI2C {
       }
 
       /// Initiate the Wire library and join the I2C bus as a master. This should normally be called only once.
-      void begin(int sdaPin=-1, int sclPin=-1) {
+      virtual void begin(int sdaPin, int sclPin) {
         Logger.info("begin");
         setupPins(sdaPin, sclPin);
         i2c_init(i2c, 100000);
@@ -53,7 +53,7 @@ class PicoHardwareI2C : public HardwareI2C {
       }
 
       /// Initiate the Wire library and join the I2C bus as a slave. This should normally be called only once.
-      void begin(uint8_t address, int sdaPin=-1, int sclPin=-1) {
+      virtual void begin(uint8_t address, int sdaPin, int sclPin) {
         if (Logger.isLogging(PicoLogger::Info))  Logger.info("begin",Logger.toStr(address));
         setupPins(sdaPin,sclPin);
         transmission_address = address;

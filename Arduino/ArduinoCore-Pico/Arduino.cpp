@@ -20,7 +20,9 @@
 
 
 // Standard Arduino global variables
+#if !defined(TINYUSB_HOST_LINKED) && !defined(TINYUSB_DEVICE_LINKED)
 PicoSerialUSB Serial;
+#endif
 PicoSerialUART Serial1(0);
 PicoSerialUART Serial2(1); 
 PicoHardwareSPI SPI(spi0);

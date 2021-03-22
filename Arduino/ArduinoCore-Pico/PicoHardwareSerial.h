@@ -14,6 +14,8 @@
 #define BUFFER_SIZE 512
 #endif
 
+#if !defined(TINYUSB_HOST_LINKED) && !defined(TINYUSB_DEVICE_LINKED)
+
 extern "C" {
 static bool tud_cdc_connected (void);
 }
@@ -116,8 +118,9 @@ class PicoSerialUSB : public HardwareSerial {
             }
         }
 
-
 };
+
+#endif
 
 /**
  * @brief Serial Stream for a defined UART. By default we use the following pins: UART0 tx/rx = gp0/gp1; UART1 tx/rx = gp4/gp5; 

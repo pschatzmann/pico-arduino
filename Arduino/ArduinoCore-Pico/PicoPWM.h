@@ -9,7 +9,7 @@
 #include "PicoPinFunction.h"
 
 /**
- * The Raspberry Pico has 8 controllable PWM slices with each 2 channels, wo we can control up to 16 pwm devices at the same time!
+ * @brief The Raspberry Pico has 8 controllable PWM slices with each 2 channels, wo we can control up to 16 pwm devices at the same time!
  * This is Simple Basic PWM API where we specifiy the periods and duty cyle in Nanoseconds. 
  * @author Phil Schatzmann
  * @copyright GPLv3
@@ -132,7 +132,7 @@ class PicoPWMNano {
 
 
 /**
- * An even more powerfull PWM API where we can specify a user defined input range and the cycle frequency in hz.
+ * @brief This is an even more powerfull PWM API where we can specify a user defined input range and the cycle frequency in hz.
  * @author Phil Schatzmann
  * @copyright GPLv3
  */

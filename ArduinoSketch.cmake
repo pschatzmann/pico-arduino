@@ -56,7 +56,6 @@ pico_enable_stdio_usb("${ARDUINO_SKETCH_NAME}" 1)
 
 # Add pico_stdlib library which aggregates commonly used features
 target_link_libraries("${ARDUINO_SKETCH_NAME}" PRIVATE
-#    pico_stdio_uart 
     pico_stdio_usb 
     pico_stdlib 
     pico_runtime
@@ -68,7 +67,6 @@ target_link_libraries("${ARDUINO_SKETCH_NAME}" PRIVATE
     hardware_spi
     hardware_i2c
     hardware_pio
-#    ${ARDUINO_LIB}
     ${ARDUINO_SKETCH_LIB}
 )
 

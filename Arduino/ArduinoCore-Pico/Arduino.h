@@ -31,7 +31,9 @@
 #include "hardware/pwm.h"
 
 // Global variables
+#if !defined(TINYUSB_HOST_LINKED) && !defined(TINYUSB_DEVICE_LINKED)
 extern PicoSerialUSB Serial; // pico_stdio
+#endif
 extern PicoSerialUART Serial1;
 extern PicoSerialUART Serial2; 
 extern PicoLogger Logger;   // Support for logging
