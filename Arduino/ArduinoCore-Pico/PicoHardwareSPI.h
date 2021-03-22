@@ -1,5 +1,6 @@
 #pragma once
 
+#include "pins_arduino.h"
 #include "HardwareSPI.h"
 #include "pico/stdlib.h"
 #include "hardware/spi.h"
@@ -254,30 +255,30 @@ class PicoHardwareSPI : public HardwareSPI {
             if (spi == spi0){
                 Logger.info("setupPins for spi0");
                 if (pinRx==-1){
-                    pinRx = 16;
+                    pinRx = SPI_RX;
                 }
                 if (pinTx==-1){
-                    pinTx = 19;
+                    pinTx = SPI_TX;
                 }
                 if (pinCS==-1){
-                    pinCS = 17;
+                    pinCS = SPI_CS;
                 }
                 if (pinSCK==-1){
-                    pinSCK = 18;
+                    pinSCK = SPI_SCK;
                 }
             } else if (spi == spi1){
                 Logger.info("setupPins for spi1");
                 if (pinRx==-1){
-                    pinRx = 12;
+                    pinRx = SPI1_RX;
                 }
                 if (pinTx==-1){
-                    pinTx = 11;
+                    pinTx = SPI1_TX;
                 }
                 if (pinCS==-1){
-                    pinCS = 13;
+                    pinCS = SPI1_CS;
                 }
                 if (pinSCK==-1){
-                    pinSCK = 10;
+                    pinSCK = SPI1_SCK;
                 }
 
             } else {

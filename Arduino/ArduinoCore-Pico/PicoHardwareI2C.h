@@ -3,6 +3,7 @@
 #include "hardware/i2c.h"
 #include "hardware/gpio.h"
 #include "PicoLogger.h"
+#include "pins_arduino.h"
 #include <algorithm>    // std::max
 
 /**

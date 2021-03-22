@@ -18,14 +18,15 @@
 #define PICO_ARDUINO_PWM_FREQUENCY 490
 #endif
 
+
 // Standard Arduino global variables
 PicoSerialUSB Serial;
 PicoSerialUART Serial1(0);
 PicoSerialUART Serial2(1); 
 PicoHardwareSPI SPI(spi0);
 PicoHardwareSPI SPI1(spi1);
-PicoHardwareI2C Wire(i2c0, 160, GP12, GP13);  
-PicoHardwareI2C Wire1(i2c1, 160, GP14, GP15);  
+PicoHardwareI2C Wire(i2c0, 160, I2C_SDA, I2C_SCL);  
+PicoHardwareI2C Wire1(i2c1, 160, I2C1_SDA, I2C1_SCL);  
 
 //Pico Framework global variables 
 PicoPinFunction PinFunction = PicoPinFunction::instance();

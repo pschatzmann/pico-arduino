@@ -44,14 +44,10 @@ include_directories(
     "${PICO_SDK_ARDUINO_PATH}/Arduino"
 )
 
-# Arduino PICO Implementation
-file(GLOB ARD_DIR_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/ArduinoCore-API/api/*.cpp" )
-file(GLOB ARD_DIR_EXT_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/ArduinoCore-Pico/*.cpp" )
-
-
 # PICO
-add_executable(${ARDUINO_SKETCH_NAME} ${HEADER_LIST} ${ARDUINO_SKETCH_SOURCE} ${ARD_DIR_LIST} ${ARD_DIR_EXT_LIST})
+add_executable(${ARDUINO_SKETCH_NAME} ${HEADER_LIST} ${ARDUINO_SKETCH_SOURCE} )
 pico_enable_stdio_usb("${ARDUINO_SKETCH_NAME}" 1)
+#pico_enable_stdio_uart("${ARDUINO_SKETCH_NAME}" 0)
 
 # Add pico_stdlib library which aggregates commonly used features
 target_link_libraries("${ARDUINO_SKETCH_NAME}" PRIVATE
@@ -68,7 +64,7 @@ target_link_libraries("${ARDUINO_SKETCH_NAME}" PRIVATE
     hardware_i2c
     hardware_pio
     ${ARDUINO_LIB}
-#    ${ARDUINO_SKETCH_LIB}
+    ${ARDUINO_SKETCH_LIB}
 )
 
 # create map/bin/hex/uf2 file in addition to ELF.

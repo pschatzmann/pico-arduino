@@ -23,22 +23,7 @@ However I did not want to wait for the official support to be available, so as a
 git clone https://github.com/pschatzmann/pico-arduino
 ```
 3. Define the environment PICO_SDK_ARDUINO_PATH variable to point to the project location.
-4. Build the arduino library (optional). 
-The project already contains the compiled library. However I would recommend to rebuild it from the source.
 
-To build the arduino library go to the pico-arduino/Arduino subdirectory 
-```
-cd pico-arduino/Arduino
-```
-and execute the steps below:
-```
-mkdir build
-cd build 
-cmake ..
-make install
-```
-
-You can find the resulting library in the pico-arduino/lib directory.
 
 ## Examples
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "pins_arduino.h"
 #include "Stream.h"
 #include "HardwareSerial.h"
 #include "RingBufferN.h"
@@ -332,17 +333,17 @@ class PicoSerialUART : public HardwareSerial {
             // we use different pins for uart0 and uar1. We assign values only if it has not been defined in setup
             if (uart_no==0){
                 if (rx_pin==-1) {
-                    rx_pin = 1;
+                    rx_pin = SERIAL1_RX;
                 }
                 if (tx_pin==-1){
-                    tx_pin = 0;
+                    tx_pin = SERIAL1_TX;
                 }
             } else {
                 if (rx_pin==-1){
-                    rx_pin = 5;
+                    rx_pin = SERIAL2_RX;
                 }
                 if (tx_pin==-1){
-                    tx_pin = 4;
+                    tx_pin = SERIAL2_TX;
                 }
             }
             // display pin assignments

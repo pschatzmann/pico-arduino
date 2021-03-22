@@ -35,4 +35,80 @@
 #define GP29 29
 
 // Some applications expect on the Arduino SPI SS
+#ifndef SS
 #define SS 17
+#endif
+// Serial Stream for a defined UART. By default we use the following pins: UART0 tx/rx = gp0/gp1; UART1 tx/rx = gp4/gp5; 
+
+
+#ifndef SERIAL1_TX
+#define SERIAL1_TX 0
+#endif
+
+#ifndef SERIAL1_RX
+#define SERIAL1_RX 1
+#endif
+
+#ifndef SERIAL2_TX
+#define SERIAL2_TX 4
+#endif
+
+#ifndef SERIAL2_RX
+#define SERIAL2_RX 5
+#endif
+
+// PicoHardwareI2C Wire(i2c0, 160, GP12, GP13);  
+// PicoHardwareI2C Wire1(i2c1, 160, GP14, GP15);  
+
+#ifndef I2C_SDA
+#define I2C_SDA 12
+#endif
+
+#ifndef I2C_SCL
+#define I2C_SCL 13
+#endif
+
+#ifndef I2C1_SDA
+#define I2C1_SDA 14
+#endif
+
+#ifndef I2C1_SCL
+#define I2C1_SCL 15
+#endif
+
+//  spi0:  pinRx = 16; pinTx = 19; pinCS = 17; pinSCK = 18;
+//  spi1:  pinRx = 12; pinTx = 11; pinCS = 13; pinSCK = 10;
+#ifndef SPI_RX
+#define SPI_RX 16
+#endif
+
+#ifndef SPI_TX
+#define SPI_TX 19
+#endif
+
+#ifndef SPI_CS
+#define SPI_CS 17
+#endif
+
+#ifndef SPI_SCK
+#define SPI_SCK 18
+#endif
+
+#ifndef SPI1_RX
+#define SPI1_RX 12
+#endif
+
+#ifndef SPI1_TX
+#define SPI1_TX 11
+#endif
+
+#ifndef SPI1_CS
+#define SPI1_CS 13
+#endif
+
+#ifndef SPI1_SCK
+#define SPI1_SCK 10
+#endif
+
+
+
