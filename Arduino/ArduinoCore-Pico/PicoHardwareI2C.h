@@ -22,10 +22,8 @@ class PicoHardwareI2C : public HardwareI2C {
       PicoHardwareI2C(i2c_inst_t *i2c, int maxBufferSize, int sdaPin, int sclPin){
           this->i2c = i2c;
           this->maxBufferSize = maxBufferSize;
-          gpio_set_function(sdaPin, GPIO_FUNC_I2C);
-          gpio_set_function(sclPin, GPIO_FUNC_I2C);
-          gpio_pull_up(sdaPin);
-          gpio_pull_up(sclPin);
+          sda_pin = sdaPin;
+          scl_pin = sclPin;
       }
 
       /// Destructor for PicoHardwareI2C class
@@ -35,7 +33,18 @@ class PicoHardwareI2C : public HardwareI2C {
 
       /// Initiate the Wire library and join the I2C bus as a master. This should normally be called only once.
       virtual void begin() {
+        begin(-1, -1);
+      }
+
+      /// Initiate the Wire library and join the I2C bus as a slave. This should normally be called only once.
+      virtual void begin(uint8_t address) {
+        begin(address, -1, -1);
+      }
+
+      /// Initiate the Wire library and join the I2C bus as a master. This should normally be called only once.
+      void begin(int sdaPin=-1, int sclPin=-1) {
         Logger.info("begin");
+        setupPins(sdaPin, sclPin);
         i2c_init(i2c, 100000);
         i2c_set_slave_mode(i2c, false, 0);
         is_slave_mode = false;
@@ -43,8 +52,9 @@ class PicoHardwareI2C : public HardwareI2C {
       }
 
       /// Initiate the Wire library and join the I2C bus as a slave. This should normally be called only once.
-      virtual void begin(uint8_t address) {
+      void begin(uint8_t address, int sdaPin=-1, int sclPin=-1) {
         if (Logger.isLogging(PicoLogger::Info))  Logger.info("begin",Logger.toStr(address));
+        setupPins(sdaPin,sclPin);
         transmission_address = address;
         i2c_init(i2c, 100000);
         i2c_set_slave_mode(i2c, true, address);
@@ -214,6 +224,27 @@ class PicoHardwareI2C : public HardwareI2C {
       // handler
       void(*recieveHandler)(int);
       void(*requestHandler)(void);
+
+      // pins 
+      int sda_pin;
+      int scl_pin;
+      bool pin_is_setup = false;
+
+      void setupPins(int sda, int scl){
+        if (!pin_is_setup) {
+          if (sda>=0){
+            sda_pin = sda;
+          }
+          if (scl>=0){
+            scl_pin = scl;
+          }
+          gpio_set_function(sda_pin, GPIO_FUNC_I2C);
+          gpio_set_function(scl_pin, GPIO_FUNC_I2C);
+          gpio_pull_up(sda_pin);
+          gpio_pull_up(scl_pin);
+
+        }
+      }
 
 
       int flush(bool stop=false) {
