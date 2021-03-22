@@ -55,7 +55,7 @@ The Pico has 2 processors, so here are the examples which use this Pico specific
 
 Here is some other Pico specific functionality:
 
-- [wm_pico](wm_pico)
+- [wm_pico](pwm_pico)
 - [blink_timer](blink_timer)
 - [software_serial](software_serial)
 - [temperature_sensor](temperature_sensor)
