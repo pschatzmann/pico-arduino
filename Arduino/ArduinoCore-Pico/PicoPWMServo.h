@@ -3,13 +3,21 @@
 #include "PicoPWM.h"
 
 // the shortest pulse sent to a servo  
+#ifndef MIN_PULSE_WIDTH
 #define MIN_PULSE_WIDTH       544
+#endif
 // the longest pulse sent to a servo 
+#ifndef MAX_PULSE_WIDTH
 #define MAX_PULSE_WIDTH      2400
+#endif
 // default pulse width when servo is attached
+#ifndef DEFAULT_PULSE_WIDTH
 #define DEFAULT_PULSE_WIDTH  1500
-// minumim time to refresh servos in microseconds 
+#endif
+// minumim time to refresh servos in microseconds
+#ifndef REFRESH_INTERVAL 
 #define REFRESH_INTERVAL    20000
+#endif
 // minimum in degrees
 #define MIN_DEGREES             0
 // maximum in degrees

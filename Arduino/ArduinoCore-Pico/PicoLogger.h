@@ -9,10 +9,14 @@
  * 
  */
 
+#ifndef PICO_LOG_LEVEL
+#define PICO_LOG_LEVEL Error
+#endif
+
 class PicoLogger {
     public:
         /**
-         * @brief Supported log levels
+         * @brief Supported log levels. You can change the default log level with the help of the PICO_LOG_LEVEL define.
          * 
          */
         enum LogLevel { 
@@ -26,7 +30,7 @@ class PicoLogger {
         ~PicoLogger(){}
 
         // activate the logging
-        virtual void begin(Stream& out, LogLevel level=Error){
+        virtual void begin(Stream& out, LogLevel level=PICO_LOG_LEVEL){
             this->log_stream_ptr = &out;
             this->log_level = level;
         }
