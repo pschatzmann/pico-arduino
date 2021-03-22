@@ -9,7 +9,7 @@ To test the functionality I was using a small GH-S37A servo.
 |----------|-----------
 |  red     | 3V3 (OUT) 
 |  black   | GND 
-|  white   | GP9
+|  white   | GP15
 
 <img src="https://www.pschatzmann.ch/wp-content/uploads/2021/03/servo.jpeg" alt="gh-s37A">
 

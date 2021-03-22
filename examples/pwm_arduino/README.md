@@ -9,7 +9,7 @@ The default frequency is defined by PICO_ARDUINO_PWM_FREQUENCY and set to 490 hz
 | LED      | Pico              
 |----------|-----------
 |  -       | GND 
-|  Signal  | GP9
+|  Signal  | GP15
 
 
 
