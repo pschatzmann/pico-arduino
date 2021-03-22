@@ -71,7 +71,7 @@ $(function() {
 Design goals</h1>
 <ul>
 <li>Provide a full implementation of the Arduino API</li>
-<li>Provide additioal easy to use C++ classes for the functionaity which is specific to the Pico</li>
+<li>Provide additional easy to use C++ classes for the functionaity which is specific to the Pico</li>
 <li>Keep the pico specific build process using cmake</li>
 <li>Support of existing Arduino Libraries</li>
 <li>Provide examples</li>
@@ -95,15 +95,15 @@ Installation</h1>
 </div><!-- fragment --><p>You can find the resulting library in the pico-arduino/lib directory.</p>
 <h1><a class="anchor" id="autotoc_md5"></a>
 Examples</h1>
-<p>Details can be found in the examples directory</p>
+<p>Details can be found in the [examples directory](examples)</p>
 <h1><a class="anchor" id="autotoc_md6"></a>
 Documentation</h1>
-<p>The generated <a href="https://pschatzmann.github.io/pico-arduino/doc/html/">Class documentation</a> can be found in the doc folder</p>
+<p>The generated <a href="https://pschatzmann.github.io/pico-arduino/doc/html/">Class Documentation</a> can be found in the doc folder</p>
 <h1><a class="anchor" id="autotoc_md7"></a>
 Pinout</h1>
 <p>It helps to know the functions of the pins. Here is a copy of the pinout provided by the official <a href="https://www.raspberrypi.org/documentation/pico/getting-started/">Raspberry Pi Pico Documentation</a>:</p>
 <p><img src="https://www.raspberrypi.org/documentation/pico/getting-started/static/15243f1ffd3b8ee646a1708bf4c0e866/Pico-R3-Pinout.svg" alt="Raspberry Pi Pico pin out diagram" style="pointer-events: none;" class="inline"/></p>
-<p>If a method is requiring a pin you can provide the GPIO number as integer or use the corresponding GP name as given in the sheet above.</p>
+<p>If a method is requiring a pin, you can provide the GPIO number as integer or use the corresponding GP name as given in the sheet above.</p>
 <p>The following calls are all identical:</p>
 <div class="fragment"><div class="line">digitalWrite(25, HIGH);                      // turn the LED on using integer</div>
 <div class="line">digitalWrite(GP25, HIGH);                    // the same with GP25 define</div>

@@ -83,7 +83,7 @@ $(function() {
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;PicoLogger.h&quot;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;PicoHardwareSerial.h&quot;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;PicoHardwareSPI.h&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;PicoGPIOFunction.h&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;PicoPinFunction.h&quot;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;PicoTone.h&quot;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;PicoTimer.h&quot;</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;PicoThread.h&quot;</span></div>
@@ -100,7 +100,7 @@ $(function() {
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_pico_serial_u_a_r_t.html">PicoSerialUART</a> Serial1;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_pico_serial_u_a_r_t.html">PicoSerialUART</a> Serial2; </div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_pico_logger.html">PicoLogger</a> Logger;   <span class="comment">// Support for logging</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_pico_g_p_i_o_function.html">PicoGPIOFunction</a> GPIOFunction;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_pico_pin_function.html">PicoPinFunction</a> PinFunction;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">// Pico specific global methods</span></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">// Provides the on board temperature in Celsius</span></div>
@@ -111,8 +111,8 @@ $(function() {
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">// Some Arduino libraries rely on the following</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">char</span> *dtostrf (<span class="keywordtype">double</span> __val, <span class="keywordtype">signed</span> <span class="keywordtype">char</span> __width, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> __prec, <span class="keywordtype">char</span> *__s);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">char</span> *dtostre (<span class="keywordtype">double</span> __val, <span class="keywordtype">char</span> *__s, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> __prec, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> __flags);</div>
-<div class="ttc" id="aclass_pico_g_p_i_o_function_html"><div class="ttname"><a href="class_pico_g_p_i_o_function.html">PicoGPIOFunction</a></div><div class="ttdoc">The pico requires that the function of the pin is defined. In Arduino, there is no such concept: so w...</div><div class="ttdef"><b>Definition:</b> PicoGPIOFunction.h:31</div></div>
 <div class="ttc" id="aclass_pico_logger_html"><div class="ttname"><a href="class_pico_logger.html">PicoLogger</a></div><div class="ttdoc">A simple Logger that writes messages dependent on the log level.</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:12</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html"><div class="ttname"><a href="class_pico_pin_function.html">PicoPinFunction</a></div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:27</div></div>
 <div class="ttc" id="aclass_pico_serial_u_a_r_t_html"><div class="ttname"><a href="class_pico_serial_u_a_r_t.html">PicoSerialUART</a></div><div class="ttdoc">Serial Stream for a defined UART. By default we use the following pins: UART0 tx/rx = gp0/gp1; UART1 ...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSerial.h:125</div></div>
 <div class="ttc" id="aclass_pico_serial_u_s_b_html"><div class="ttname"><a href="class_pico_serial_u_s_b.html">PicoSerialUSB</a></div><div class="ttdoc">PicoUSBSerial is using the pico USB output. It is mapped to the Arduino Serial variable.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSerial.h:25</div></div>
 </div><!-- fragment --></div><!-- contents -->

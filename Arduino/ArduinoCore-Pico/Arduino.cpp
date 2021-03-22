@@ -1,11 +1,9 @@
 /**
- * Arduino.cpp - Main implementation file for the PICO Arduino SDK
+ * Arduino.cpp - Main implementation file for the PICO Arduino SDK.
  * @author Phil Schatzmann
  * @copyright GPLv3
  * 
  */
-
-
 #include "Arduino.h"
 #include "Wire.h"
 #include "PluggableUSB.h"
@@ -14,7 +12,11 @@
 #include "PicoTone.h"
 #include "hardware/watchdog.h"
 #include "hardware/clocks.h"
+#include "PicoPWM.h"
 
+#ifndef PICO_ARDUINO_PWM_FREQUENCY
+#define PICO_ARDUINO_PWM_FREQUENCY 490
+#endif
 
 // Standard Arduino global variables
 PicoSerialUSB Serial;
@@ -26,9 +28,9 @@ PicoHardwareI2C Wire(i2c0, 160, GP12, GP13);
 PicoHardwareI2C Wire1(i2c1, 160, GP14, GP15);  
 
 //Pico Framework global variables 
-PicoGPIOFunction GPIOFunction;
+PicoPinFunction PinFunction = PicoPinFunction::instance();
 PicoLogger Logger;    // Support for logging
-
+PicoPWM ArduionPwm(PICO_ARDUINO_PWM_FREQUENCY, 255); // pwm support
 
 // sleep ms milliseconds
 void delay(unsigned long ms){
@@ -53,23 +55,20 @@ unsigned long micros(void) {
 }
 
 void pinMode(pin_size_t pinNumber, PinMode pinMode){
-    gpio_init(pinNumber);
-    gpio_set_dir(pinNumber, pinMode==OUTPUT ? GPIO_OUT:  GPIO_IN);
-    if (pinMode==INPUT_PULLUP)
-        gpio_pull_up(pinNumber);
-    if (pinMode==INPUT_PULLDOWN)
-        gpio_pull_down(pinNumber);
+    // register function and mode
+    PinFunction.setPinMode(pinNumber, pinMode);
 }
 
 void digitalWrite(pin_size_t pinNumber, PinStatus status) {
+    PinFunction.usePin(pinNumber, PIN_FUNC_GPIO);
     gpio_put(pinNumber, status==0 ? LOW : HIGH);
 }
 
 PinStatus digitalRead(pin_size_t pinNumber) {
+    PinFunction.usePin(pinNumber, PIN_FUNC_GPIO);
     int value = gpio_get(pinNumber);
     return value==0 ? LOW : HIGH;
 }
-
 
 /**
  * @brief User ADC inputs are on 0-3 (GPIO 26-29), the temperature sensor is on input 4.
@@ -82,16 +81,10 @@ int analogRead(pin_size_t pinNumber){
     // analog read
     if (pinNumber>=26 && pinNumber<=29){
         // ADC
-        GPIOFunction.setFunctionADC(pinNumber);
-        Logger.debug("adc_read");
+        PinFunction.usePin(pinNumber, PIN_FUNC_ADC);
         return adc_read();
     } else {
-        if (pwm_gpio_to_channel(pinNumber) == PWM_CHAN_B){
-            return GPIOFunction.readPWM(pinNumber, 100.0);
-        } else {
-            Logger.error("Invalid analog pin (expected values 26-29) :", String(pinNumber).c_str());
-            Logger.error("pwm is expected on PWM_CHAN_B - currently used pin:", String(pinNumber).c_str());
-        }
+        Logger.error("Analog read is only supported on GPIO 26-29 and not on GPIO", String(pinNumber).c_str());
     }
     return -1;
 }
@@ -99,12 +92,12 @@ int analogRead(pin_size_t pinNumber){
 // reads the on board temparature in C 
 int temperature(){
     // init ADC only if it has not been set up yet
-    GPIOFunction.initADC();
+    PinFunction.initADC();
     // this is just setting some flags - so it does not hurt to call this redundantly
     adc_set_temp_sensor_enabled(true);
 
-    //Input 4 is the onboard temperature sensor
-    adc_select_input(4);
+    //Input 4 is the onboard temperature sensor - operation only if there is a change
+    PinFunction.adcSelect(4);
     int value = 0;
     for (uint8_t i = 0; i < 30 ;i++)
     {
@@ -122,36 +115,23 @@ int temperatureF(){
     return (static_cast<float>(temperature()) * 9.0/5.0) + 32;
 }
 
+// Not implemented for the Pico
 void analogReference(uint8_t mode){
     Logger.error("analogReference not implemented!");
 }
 
-// writes PWM
+// Writes an analog value (PWM wave) to a pin. The value needs to be between 0 and 255
 void analogWrite(pin_size_t pinNumber, int value) {
-    static bool inited = false;
-
-    GPIOFunction.setFunction(pinNumber, GPIO_FUNC_PWM);
-    if (!inited){
-        // Figure out which slice we just connected to the pin
-        uint slice_num = pwm_gpio_to_slice_num(PICO_DEFAULT_LED_PIN);
-        // Get some sensible defaults for the slice configuration. By default, the
-        // counter is allowed to wrap over its maximum range (0 to 2**16-1)
-        pwm_config config = pwm_get_default_config();
-        // Set divider, reduces counter clock to sysclock/this value
-        pwm_config_set_clkdiv(&config, clk_sys / 4.f);
-        // Load the configuration into our PWM slice, and set it running.
-        pwm_init(slice_num, &config, true);
-        inited = true;
-    }
-
-    pwm_set_gpio_level(pinNumber, value);
+    ArduionPwm.begin(pinNumber);
+    ArduionPwm.write(pinNumber, (float)value);
 }
 
-
+// Plays a tone
 void tone(pin_size_t pinNumber, unsigned int frequency, unsigned long duration) {
     ArduinoPicoTone::tone(pinNumber, frequency, duration);
 }
 
+// stops a tone
 void noTone(pin_size_t pinNumber) {    
     ArduinoPicoTone::noTone(pinNumber);
 }

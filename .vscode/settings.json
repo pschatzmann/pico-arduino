@@ -25,6 +25,8 @@
         "mixinvector": "cpp",
         "types": "cpp",
         "valuestack": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "limits": "cpp",
+        "random": "cpp"
     }
 }

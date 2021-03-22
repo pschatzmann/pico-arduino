@@ -31,13 +31,15 @@ make
 ```
 The result can be found in the arduino/examples/blink/build directory.
 
-Here is the list of the provided examples
+Here is the list of the provided examples using the Arduino functionality
 
 - [blink](blink)
 - [hallo_world](hallo_world)
 - [hallo_world_serial](hallo_world_serial)
 - [tone](tone_melody)
 - [analog_read](analog_read)
+- [pwm_arduino](pwm_arduino)
+- [pwm_servo](pwm_servo)
 - [Using an Arduino library](example_with_arduino_library)
 - [SPI with SdFat](sd_info)
 - [I2C with HW290](i2c_hw290)
@@ -53,6 +55,7 @@ The Pico has 2 processors, so here are the examples which use this Pico specific
 
 Here is some other Pico specific functionality:
 
+- [wm_pico](wm_pico)
 - [blink_timer](blink_timer)
 - [software_serial](software_serial)
 - [temperature_sensor](temperature_sensor)
