@@ -14,19 +14,23 @@
  * @author Phil Schatzmann
  * @copyright GPLv3
  */
+
+#ifndef PWM_MAX_NUMER
 #define PWM_MAX_NUMER 65535
+#endif
 
 class PicoPWMNano {
     public:
         // Constructor: Defines the length of a full cycle in nanoseconds (mio of seconds)
         PicoPWMNano(uint64_t periodNanoSeconds){
+            Logger.debug("PicoPWMNano");
             period_nano_sec = periodNanoSeconds;
             // the maximum number that the pwm_config_set_wrap & and pwm_set_chan_level supports is 65535
             rangeDivider = (1.0 * period_nano_sec) / PWM_MAX_NUMER;
         }
 
         // setup a pin for pwm write
-        void begin(pin_size_t pin){
+        void begin(pin_size_t pin, uint64_t initialDutyCyleNanoSeconds=0){
             Logger.debug("PicoPWMNano::begin");
             if (setupConfig()){
                 Logger.debug("gpio_set_function");
@@ -36,6 +40,7 @@ class PicoPWMNano {
                 // uint8_t channel = pwm_gpio_to_channel(pinNumber);
                 Logger.debug("pwm_init");
                 pwm_init(slice_num, &config, true);
+                setDutyCycle(pin, initialDutyCyleNanoSeconds);
             }
         }
 
@@ -83,12 +88,13 @@ class PicoPWMNano {
         pwm_config config;
         float rangeDivider; // values must be <= 65535
         PicoPinFunction pinFunction = PicoPinFunction::instance();
+        bool is_config_done = false;
 
-        // provides the configuration
+        // provides the configuration - returns true if we have a new configuration
         bool setupConfig(){
-            static bool new_setup = false;
-            if (!new_setup) {
+            if (!is_config_done) {
                 Logger.debug("PicoPWMNano::setupConfig");
+                is_config_done = true;
                 config = pwm_get_default_config();
 
                 uint32_t freq =	clock_get_hz(clk_sys);
@@ -96,7 +102,7 @@ class PicoPWMNano {
                 // divider for a full cycle
                 float divider = dividerClock / PWM_MAX_NUMER;
                 // this should actually be identical with PWM_MAX_NUMER
-                uint16_t wrap = period_nano_sec / rangeDivider ;
+                uint16_t wrap = PWM_MAX_NUMER ;
 
                 if (Logger.isLogging(PicoLogger::Debug)){
                     char str[80];
@@ -116,10 +122,10 @@ class PicoPWMNano {
         
                 // Set divider, reduces counter clock to sysclock/this value
                 pwm_config_set_clkdiv(&config, divider);
-                pwm_config_set_wrap(&config, period_nano_sec);
-                new_setup = true;
+                pwm_config_set_wrap(&config, wrap);
+                return true;
             }
-            return new_setup;
+            return false;
         }
       
 };
@@ -133,8 +139,9 @@ class PicoPWMNano {
 class PicoPWM {
     public:
         PicoPWM(uint64_t frequency, uint64_t maxValue){
-            uint64_t period = 1000000000l / frequency;
-            nano = new PicoPWMNano(period);
+            // convert frequency to period 
+            period_nano_sec = 1000000000l / frequency;
+            nano = new PicoPWMNano(period_nano_sec);
             max_value = maxValue;
         }
 
@@ -142,8 +149,8 @@ class PicoPWM {
             delete nano;
          }
 
-        void begin(pin_size_t pin){
-            nano->begin(pin);
+        void begin(pin_size_t pin, uint64_t initalValue=0){
+            nano->begin(pin, initalValue);
         }
 
         // sets the pin to low
@@ -169,9 +176,10 @@ class PicoPWM {
     protected:
         PicoPWMNano *nano;
         int64_t max_value;
+        uint64_t period_nano_sec;
 
         uint64_t valueToDutyCycle(uint64_t value){
-            return map(value,0, max_value, 0, nano->period());
+            return map(value, 0, max_value, 0, period_nano_sec);
         }
 
 

@@ -2,15 +2,15 @@
 #include "Arduino.h"
 #include "PicoPWM.h"
 
-//Initializing LED Pin
+//Initializing pwm
 const int led_pin = GP15;
-const int frequencyHz = 122549;
-const float maxValue = 100.0;
+const int frequencyHz = 490;
+const int maxValue = 255;
 PicoPWM pwm(frequencyHz, maxValue);
 
 
 void setup() {
-//  Serial.begin();
+  Serial.begin();
 //  while(!Serial);
 //  Logger.begin(Serial,PicoLogger::Debug);
   //Declaring LED pin as output
@@ -22,11 +22,11 @@ void loop() {
   for(int i=0; i<maxValue; i++){
     Serial.println(i);
     pwm.write(led_pin, i);
-    delay(10);
+    delay(5);
   }
   for(int i=maxValue; i>0; i--){
     Serial.println(i);
     pwm.write(led_pin, i);
-    delay(10);
+    delay(5);
   }
 }

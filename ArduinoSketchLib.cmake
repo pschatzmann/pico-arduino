@@ -2,6 +2,7 @@
 #  Generic makefile for Arduino Sketches you need to set the following parameters
 #  - ARDUINO_SKETCH_NAME
 #  - PICO_SDK_ARDUINO_PATH
+#  We use the pre-built arduino library which must have been installed before. 
 
 ###
 set(CMAKE_C_STANDARD 11)

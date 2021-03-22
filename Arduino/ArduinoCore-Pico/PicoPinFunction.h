@@ -63,9 +63,9 @@ class PicoPinFunction {
 
         // setup Pico pin init function bysed on functionality
         void usePin(pin_size_t pinNumber, PinFunction pinFunction){
-            Logger.debug("PicoGPIOFunction::usePin", Logger.toStr(pinNumber));
+            //Logger.debug("PicoGPIOFunction::usePin", Logger.toStr(pinNumber));
             PinInfo *info = & (pinInfo[pinNumber]);
-            Logger.debug("is_setup:", pinInfo[pinNumber].is_setup ? "true" : "false");
+            //Logger.debug("is_setup:", pinInfo[pinNumber].is_setup ? "true" : "false");
             if (!info->is_setup) {
                 Logger.debug("PicoGPIOFunction::usePin");
                 // just define the function

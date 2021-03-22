@@ -15,9 +15,6 @@ int pos = 0;    // variable to store the servo position
 
 void setup() {
   Serial.begin();
-  while(!Serial);
-  Logger.begin(Serial,PicoLogger::Debug);
-
   myservo.attach(servo_pin);  // attaches the servo on pin 9 to the servo object
 }
 

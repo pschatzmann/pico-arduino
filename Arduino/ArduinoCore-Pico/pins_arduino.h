@@ -38,8 +38,12 @@
 #ifndef SS
 #define SS 17
 #endif
-// Serial Stream for a defined UART. By default we use the following pins: UART0 tx/rx = gp0/gp1; UART1 tx/rx = gp4/gp5; 
 
+
+// The following defines are use by the arduino-pico framwork and can be redefined if necessary
+
+// ----
+// Serial1: UART0 tx/rx = gp0/gp1; 
 
 #ifndef SERIAL1_TX
 #define SERIAL1_TX 0
@@ -49,6 +53,8 @@
 #define SERIAL1_RX 1
 #endif
 
+// Serial2: UART1 tx/rx = gp4/gp5; 
+
 #ifndef SERIAL2_TX
 #define SERIAL2_TX 4
 #endif
@@ -57,8 +63,8 @@
 #define SERIAL2_RX 5
 #endif
 
+// ----
 // PicoHardwareI2C Wire(i2c0, 160, GP12, GP13);  
-// PicoHardwareI2C Wire1(i2c1, 160, GP14, GP15);  
 
 #ifndef I2C_SDA
 #define I2C_SDA 12
@@ -68,6 +74,7 @@
 #define I2C_SCL 13
 #endif
 
+// PicoHardwareI2C Wire1(i2c1, 160, GP14, GP15);  
 #ifndef I2C1_SDA
 #define I2C1_SDA 14
 #endif
@@ -76,8 +83,9 @@
 #define I2C1_SCL 15
 #endif
 
+// ----
 //  spi0:  pinRx = 16; pinTx = 19; pinCS = 17; pinSCK = 18;
-//  spi1:  pinRx = 12; pinTx = 11; pinCS = 13; pinSCK = 10;
+
 #ifndef SPI_RX
 #define SPI_RX 16
 #endif
@@ -94,6 +102,7 @@
 #define SPI_SCK 18
 #endif
 
+//  spi1:  pinRx = 12; pinTx = 11; pinCS = 13; pinSCK = 10;
 #ifndef SPI1_RX
 #define SPI1_RX 12
 #endif

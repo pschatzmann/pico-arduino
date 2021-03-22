@@ -6,7 +6,7 @@ include(${PICO_SDK_PATH}/external/pico_sdk_import.cmake)
 # define project settins
 set(PICO_SDK_ARDUINO_PATH $ENV{PICO_SDK_ARDUINO_PATH})
 set(ARDUINO_SKETCH_NAME "pwm_arduino" )
-set(ARDUINO_SKETCH_SOURCE "pwm.cpp" )
+set(ARDUINO_SKETCH_SOURCE "pwm_arduino.cpp" )
 
 # Standard Sketch logic
 project("${ARDUINO_SKETCH_NAME}")

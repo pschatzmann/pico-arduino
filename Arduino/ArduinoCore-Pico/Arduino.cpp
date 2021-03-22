@@ -124,7 +124,11 @@ void analogReference(uint8_t mode){
 // Writes an analog value (PWM wave) to a pin. The value needs to be between 0 and 255
 void analogWrite(pin_size_t pinNumber, int value) {
     ArduionPwm.begin(pinNumber);
-    ArduionPwm.write(pinNumber, (float)value);
+    uint64_t val64 = 0;
+    if (value>0){
+        val64 = value;
+    }
+    ArduionPwm.write(pinNumber, val64);
 }
 
 // Plays a tone
