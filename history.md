@@ -25,4 +25,8 @@
      - This release contains the following __Breaking Changes__
         - Changed signature of SoftwareSerial.begin() by switching the tx and rx sequence to be consistent with HardwareSerial
         - Removed unnecessary subfolders in ArduinoCore-Pico 
-
+_ __v0.6__ PWM, error corrections and additional examples.
+     - Provide easy to use PicoPWM class which is used by Arduino analogWrite
+     - Implement Servo class with examples
+     - Removed libarduino: all sources are complied as part of the sketch, so that we can overwrite default defines 
+     - Example how to change default pins in cmake 
