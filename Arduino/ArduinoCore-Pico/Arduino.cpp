@@ -14,10 +14,6 @@
 #include "hardware/clocks.h"
 #include "PicoPWM.h"
 
-#ifndef PICO_ARDUINO_PWM_FREQUENCY
-#define PICO_ARDUINO_PWM_FREQUENCY 490
-#endif
-
 
 // Standard Arduino global variables
 #if !defined(TINYUSB_HOST_LINKED) && !defined(TINYUSB_DEVICE_LINKED)

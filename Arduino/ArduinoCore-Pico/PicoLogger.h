@@ -27,7 +27,6 @@ class PicoLogger {
         };
 
         PicoLogger(){}
-        ~PicoLogger(){}
 
         /// activate the logging
         virtual void begin(Stream& out, LogLevel level=PICO_LOG_LEVEL){

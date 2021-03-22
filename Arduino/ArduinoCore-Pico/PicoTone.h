@@ -21,7 +21,7 @@ class PicoTone {
             noTone();
         }
 
-        static  bool generate_sound_callback(repeating_timer_t *rt){
+        static bool generate_sound_callback(repeating_timer_t *rt){
             PicoTone *pt = (PicoTone*)rt->user_data;
             pt->state = !pt->state; // toggle state
             digitalWrite(pt->pin, pt->state); 

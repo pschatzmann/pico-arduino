@@ -48,3 +48,7 @@ int temperatureF();
 // Some Arduino libraries rely on the following
 char *dtostrf (double __val, signed char __width, unsigned char __prec, char *__s);
 char *dtostre (double __val, char *__s, unsigned char __prec, unsigned char __flags);
+
+#ifndef PICO_ARDUINO_PWM_FREQUENCY
+#define PICO_ARDUINO_PWM_FREQUENCY 490
+#endif

@@ -24,7 +24,8 @@
 #define MAX_DEGREES           180l
 
 /**
- * @brief We provide an alternative Pico implementation for the Servo class which is compatible with the Arduino Server library.
+ * @brief We provide an alternative Pico implementation for the Servo class which is compatible with 
+ * the Arduino Servo library.
  * 
  */
 
@@ -55,14 +56,14 @@ public:
     attach(pin);
   }
 
-  // stops the generation of signals
+  /// stops the generation of signals
   void detach() {
     is_attached = false;
     if (pwm!=nullptr)
       pwm->end(pin);
   }
 
-  // if value is < 200 its treated as an angle, otherwise as pulse width in microseconds  
+  /// if value is < 200 its treated as an angle, otherwise as pulse width in microseconds  
   void write(int value) {
     int pulse_width_ms = value;
     if (value<200){
@@ -71,7 +72,7 @@ public:
     writeMicroseconds(pulse_width_ms);
   }    
 
-  // Write pulse width in microseconds 
+  /// Write pulse width in microseconds 
   void writeMicroseconds(int value) {
     pwm_value = value;
     if (pwm!=nullptr) {
@@ -80,15 +81,17 @@ public:
     }
   }
 
-  // returns current pulse width as an angle between 0 and 180 degrees
+  /// returns current pulse width as an angle between 0 and 180 degrees
   int read() {
       return map(pwm_value, MIN_PULSE_WIDTH, MAX_PULSE_WIDTH, MIN_DEGREES,MAX_DEGREES);
-  }                       
-   // returns current pulse width in microseconds for this servo (was read_us() in first release) 
+  }  
+
+  /// returns current pulse width in microseconds for this servo (was read_us() in first release) 
   int readMicroseconds() {
       return pwm_value;
-  }           
-  // return true if this servo is attached, otherwise false 
+  }    
+
+  /// return true if this servo is attached, otherwise false 
   bool attached() {
       return is_attached;
   }

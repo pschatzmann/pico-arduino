@@ -24,6 +24,7 @@ class TimerAlarm {
             stop();
         }
 
+        /// starts the execution of the callback method after the indicated time
         void start(alarm_callback_t callback,  uint64_t time, TimeUnit unit = MS, void *user_data=nullptr,  bool fire_if_past=true){
             switch(unit){
                 case MS:
@@ -37,6 +38,7 @@ class TimerAlarm {
             }
         }
 
+        /// stops the execution 
         bool stop(){
             return alarm_pool_cancel_alarm(ap, alarm_id);
         }
@@ -62,6 +64,7 @@ class TimerAlarmRepeating {
             stop();
         }
 
+        /// starts the repeated exection of the callback methods in the indicate period
         bool start(repeating_timer_callback_t callback, uint64_t time, TimeUnit unit = MS, void *user_data=nullptr){
             bool result = false;
             switch(unit){
@@ -75,6 +78,7 @@ class TimerAlarmRepeating {
             return result;
         }
 
+        /// stops the execution
         bool stop(){
             return cancel_repeating_timer(&timer);
         }

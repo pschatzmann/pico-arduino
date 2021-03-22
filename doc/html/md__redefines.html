@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Pico-Arduino: Member List</title>
+<title>Pico-Arduino: Defines</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -60,21 +60,52 @@ $(function() {
 </div>
 
 </div><!-- top -->
-<div class="header">
+<div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">TimerAlarmRepeating Member List</div>  </div>
+<div class="title">Defines </div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>This is the complete list of members for <a class="el" href="class_timer_alarm_repeating.html">TimerAlarmRepeating</a>, including all inherited members.</p>
-<table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>ap</b> (defined in <a class="el" href="class_timer_alarm_repeating.html">TimerAlarmRepeating</a>)</td><td class="entry"><a class="el" href="class_timer_alarm_repeating.html">TimerAlarmRepeating</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_timer_alarm_repeating.html#a85d740a9ed702418574f92de8372306d">start</a>(repeating_timer_callback_t callback, uint64_t time, TimeUnit unit=MS, void *user_data=nullptr)</td><td class="entry"><a class="el" href="class_timer_alarm_repeating.html">TimerAlarmRepeating</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_timer_alarm_repeating.html#a59a49e928144e223f4caea422f20f148">stop</a>()</td><td class="entry"><a class="el" href="class_timer_alarm_repeating.html">TimerAlarmRepeating</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>timer</b> (defined in <a class="el" href="class_timer_alarm_repeating.html">TimerAlarmRepeating</a>)</td><td class="entry"><a class="el" href="class_timer_alarm_repeating.html">TimerAlarmRepeating</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>TimerAlarmRepeating</b>() (defined in <a class="el" href="class_timer_alarm_repeating.html">TimerAlarmRepeating</a>)</td><td class="entry"><a class="el" href="class_timer_alarm_repeating.html">TimerAlarmRepeating</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>~TimerAlarmRepeating</b>() (defined in <a class="el" href="class_timer_alarm_repeating.html">TimerAlarmRepeating</a>)</td><td class="entry"><a class="el" href="class_timer_alarm_repeating.html">TimerAlarmRepeating</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-</table></div><!-- contents -->
+<div class="textblock"><p>You can overwrite the default settings for the following defines with the help of cmake e.g. you can define alternative pins for Serial1 with: </p><div class="fragment"><div class="line">set(ARDUINO_SKETCH_DEFINITIONS &quot;-DSERIAL1_TX=12&quot; &quot;-DSERIAL1_RX=13&quot;)</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md11"></a>
+Pins</h1>
+<div class="fragment"><div class="line">#define SS 17</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
+Serial</h2>
+<div class="fragment"><div class="line">#define SERIAL1_TX 0</div>
+<div class="line">#define SERIAL1_RX 1</div>
+<div class="line">#define SERIAL2_TX 4</div>
+<div class="line">#define SERIAL2_RX 5</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md13"></a>
+I2C</h2>
+<div class="fragment"><div class="line">#define I2C_SDA 12</div>
+<div class="line">#define I2C_SCL 13</div>
+<div class="line">#define I2C1_SDA 14</div>
+<div class="line">#define I2C1_SCL 15</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md14"></a>
+SPI</h2>
+<div class="fragment"><div class="line">#define SPI_RX 16</div>
+<div class="line">#define SPI_TX 19</div>
+<div class="line">#define SPI_CS 17</div>
+<div class="line">#define SPI_SCK 18</div>
+<div class="line">#define SPI1_RX 12</div>
+<div class="line">#define SPI1_TX 11</div>
+<div class="line">#define SPI1_CS 13</div>
+<div class="line">#define SPI1_SCK 10</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md15"></a>
+Logging</h1>
+<div class="fragment"><div class="line">#define PICO_LOG_LEVEL Error</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md16"></a>
+Servo</h1>
+<div class="fragment"><div class="line">#define MIN_PULSE_WIDTH       544</div>
+<div class="line">#define MAX_PULSE_WIDTH      2400</div>
+<div class="line">#define DEFAULT_PULSE_WIDTH  1500</div>
+<div class="line">#define REFRESH_INTERVAL    20000</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md17"></a>
+PWM</h1>
+<div class="fragment"><div class="line">#define PWM_MAX_NUMER 65535</div>
+<div class="line">#define PICO_ARDUINO_PWM_FREQUENCY 490</div>
+</div><!-- fragment --> </div></div><!-- contents -->
+</div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
