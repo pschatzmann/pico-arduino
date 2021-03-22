@@ -105,6 +105,14 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#a7f49b0de32c5b8eaca2f9f184909c500">begin</a> (uint8_t address)</td></tr>
 <tr class="memdesc:a7f49b0de32c5b8eaca2f9f184909c500"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiate the Wire library and join the I2C bus as a slave. This should normally be called only once. <br /></td></tr>
 <tr class="separator:a7f49b0de32c5b8eaca2f9f184909c500"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af18f8b99cc7f6c1cdee4096204f46e1b"><td class="memItemLeft" align="right" valign="top"><a id="af18f8b99cc7f6c1cdee4096204f46e1b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#af18f8b99cc7f6c1cdee4096204f46e1b">begin</a> (int sdaPin=-1, int sclPin=-1)</td></tr>
+<tr class="memdesc:af18f8b99cc7f6c1cdee4096204f46e1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiate the Wire library and join the I2C bus as a master. This should normally be called only once. <br /></td></tr>
+<tr class="separator:af18f8b99cc7f6c1cdee4096204f46e1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a241a19b208f141df6485a501f7335e02"><td class="memItemLeft" align="right" valign="top"><a id="a241a19b208f141df6485a501f7335e02"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#a241a19b208f141df6485a501f7335e02">begin</a> (uint8_t address, int sdaPin=-1, int sclPin=-1)</td></tr>
+<tr class="memdesc:a241a19b208f141df6485a501f7335e02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiate the Wire library and join the I2C bus as a slave. This should normally be called only once. <br /></td></tr>
+<tr class="separator:a241a19b208f141df6485a501f7335e02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a378a28b589e511a1055cc1d59556a641"><td class="memItemLeft" align="right" valign="top"><a id="a378a28b589e511a1055cc1d59556a641"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_hardware_i2_c.html#a378a28b589e511a1055cc1d59556a641">end</a> ()</td></tr>
 <tr class="memdesc:a378a28b589e511a1055cc1d59556a641"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes the Wire Library. <br /></td></tr>
@@ -325,6 +333,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>flush</b> ()<
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:a4c3987834d9728d359be9ab0b0946ed3"><td class="memItemLeft" align="right" valign="top"><a id="a4c3987834d9728d359be9ab0b0946ed3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setupPins</b> (int sda, int scl)</td></tr>
+<tr class="separator:a4c3987834d9728d359be9ab0b0946ed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3051deeb586e7afc704163113fdddb7a"><td class="memItemLeft" align="right" valign="top"><a id="a3051deeb586e7afc704163113fdddb7a"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>flush</b> (bool stop=false)</td></tr>
 <tr class="separator:a3051deeb586e7afc704163113fdddb7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -399,6 +410,15 @@ void(*&#160;</td><td class="memItemRight" valign="bottom"><b>recieveHandler</b> 
 <tr class="memitem:afcea572b93bb41cab41aa02adabbca03"><td class="memItemLeft" align="right" valign="top"><a id="afcea572b93bb41cab41aa02adabbca03"></a>
 void(*&#160;</td><td class="memItemRight" valign="bottom"><b>requestHandler</b> )(void)</td></tr>
 <tr class="separator:afcea572b93bb41cab41aa02adabbca03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91b47905ba167334adbda0af959992c1"><td class="memItemLeft" align="right" valign="top"><a id="a91b47905ba167334adbda0af959992c1"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>sda_pin</b></td></tr>
+<tr class="separator:a91b47905ba167334adbda0af959992c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c5389ec4a406f6be7bfd37262f1a213"><td class="memItemLeft" align="right" valign="top"><a id="a6c5389ec4a406f6be7bfd37262f1a213"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>scl_pin</b></td></tr>
+<tr class="separator:a6c5389ec4a406f6be7bfd37262f1a213"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabfbfdc11c0fb8f1cf36d8e416e0e8b6"><td class="memItemLeft" align="right" valign="top"><a id="aabfbfdc11c0fb8f1cf36d8e416e0e8b6"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>pin_is_setup</b> = false</td></tr>
+<tr class="separator:aabfbfdc11c0fb8f1cf36d8e416e0e8b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classarduino_1_1_stream"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classarduino_1_1_stream')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classarduino_1_1_stream.html">arduino::Stream</a></td></tr>
 <tr class="memitem:a4b2dfb456a3030efc2b21a89d600907e inherit pro_attribs_classarduino_1_1_stream"><td class="memItemLeft" align="right" valign="top"><a id="a4b2dfb456a3030efc2b21a89d600907e"></a>
 unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>_timeout</b></td></tr>
