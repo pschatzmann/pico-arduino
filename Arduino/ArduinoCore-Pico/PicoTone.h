@@ -67,7 +67,7 @@ class ArduinoPicoTone {
             return 0;
         }
 
-        // static interface which supports multipe pins concurrently
+        /// static interface which supports multipe pins concurrently
         static void tone(uint8_t pinNumber, unsigned int frequency, int duration) {
             PicoTone ptone = pinMap().get(pinNumber);
             if (ptone==empyTone()){
@@ -78,7 +78,7 @@ class ArduinoPicoTone {
             add_alarm_in_ms(duration, stop_tone_callback, &ptone , false);
         }
 
-        // static interface which supports multipe pins
+        /// static interface which supports multipe pins
         static void noTone(uint8_t pinNumber) {
             // find the actual PicoTone with the pin number
             PicoTone ptone = pinMap().get(pinNumber);
@@ -92,7 +92,7 @@ class ArduinoPicoTone {
             return EMPTY_TONE;
         }
 
-        // for static interface
+        /// for static interface
         static  Map<int, PicoTone> pinMap(){
             static Map<int, PicoTone> ArduinoPicoTonePinMap(empyTone()); 
             return ArduinoPicoTonePinMap;

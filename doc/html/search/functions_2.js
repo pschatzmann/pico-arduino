@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['detachinterrupt_114',['detachInterrupt',['../class_pico_hardware_s_p_i.html#a8eae40e524523328a6d6e1ac4293fe79',1,'PicoHardwareSPI']]]
+  ['clear_137',['clear',['../class_pico_pin_function.html#aceb05df306ae0203730bbdbcddbd55e3',1,'PicoPinFunction']]]
 ];

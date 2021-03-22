@@ -91,9 +91,17 @@ Change History</h1>
 <li>Examples for HC-05 and ESP01</li>
 <li>This release contains the following <b>Breaking Changes</b><ul>
 <li>Changed signature of SoftwareSerial.begin() by switching the tx and rx sequence to be consistent with HardwareSerial</li>
-<li>Removed unnecessary subfolders in ArduinoCore-Pico </li>
+<li>Removed unnecessary subfolders in ArduinoCore-Pico</li>
 </ul>
 </li>
+</ul>
+</li>
+<li><b>v0.6</b> PWM, error corrections and additional examples.<ul>
+<li>Provide easy to use <a class="el" href="class_pico_p_w_m.html" title="This is an even more powerfull PWM API where we can specify a user defined input range and the cycle ...">PicoPWM</a> class which is used by Arduino analogWrite</li>
+<li>Implement <a class="el" href="class_servo.html" title="We provide an alternative Pico implementation for the Servo class which is compatible with the Arduin...">Servo</a> class with examples</li>
+<li>Removed libarduino: all sources are complied as part of the sketch, so that we can overwrite default defines</li>
+<li>Example how to change default pins in cmake</li>
+<li>provide termperature() and temperatureF() method to read the built in temperature sensor </li>
 </ul>
 </li>
 </ul>

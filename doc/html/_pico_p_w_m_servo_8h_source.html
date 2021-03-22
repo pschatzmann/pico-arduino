@@ -108,7 +108,7 @@ $(function() {
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;       pwm = <span class="keyword">new</span> <a class="code" href="class_pico_p_w_m_nano.html">PicoPWMNano</a>(REFRESH_INTERVAL * 1000);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">if</span> (pwm!=<span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;      pwm-&gt;begin(pin);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;      pwm-&gt;<a class="code" href="class_pico_p_w_m_nano.html#a042ac218ecb0d014020af202d133facf">begin</a>(pin);</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    this-&gt;is_attached = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    this-&gt;pin = pin;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  }  </div>
@@ -123,7 +123,7 @@ $(function() {
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keywordtype">void</span> detach() {</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    is_attached = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">if</span> (pwm!=<span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      pwm-&gt;end(pin);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      pwm-&gt;<a class="code" href="class_pico_p_w_m_nano.html#ab2f8e9259fb23c43e0e39b9d41747fb1">end</a>(pin);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  }</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <span class="comment">// if value is &lt; 200 its treated as an angle, otherwise as pulse width in microseconds  </span></div>
@@ -140,7 +140,7 @@ $(function() {
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    pwm_value = value;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">if</span> (pwm!=<span class="keyword">nullptr</span>) {</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      <span class="comment">// convert value to nanoseconds</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      pwm-&gt;setDutyCycle(pin, value * 1000);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      pwm-&gt;<a class="code" href="class_pico_p_w_m_nano.html#ad4ad99e4594cc4d0065040720f989dd5">setDutyCycle</a>(pin, value * 1000);</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  }</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
@@ -166,7 +166,10 @@ $(function() {
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;   <span class="keywordtype">int</span> pin;</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;};</div>
-<div class="ttc" id="aclass_pico_p_w_m_nano_html"><div class="ttname"><a href="class_pico_p_w_m_nano.html">PicoPWMNano</a></div><div class="ttdef"><b>Definition:</b> PicoPWM.h:22</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_nano_html"><div class="ttname"><a href="class_pico_p_w_m_nano.html">PicoPWMNano</a></div><div class="ttdoc">The Raspberry Pico has 8 controllable PWM slices with each 2 channels, so we can control up to 16 pwm...</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:24</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_nano_html_a042ac218ecb0d014020af202d133facf"><div class="ttname"><a href="class_pico_p_w_m_nano.html#a042ac218ecb0d014020af202d133facf">PicoPWMNano::begin</a></div><div class="ttdeci">void begin(pin_size_t pin, uint64_t initialDutyCyleNanoSeconds=0)</div><div class="ttdoc">setup a pin for pwm write</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:35</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_nano_html_ab2f8e9259fb23c43e0e39b9d41747fb1"><div class="ttname"><a href="class_pico_p_w_m_nano.html#ab2f8e9259fb23c43e0e39b9d41747fb1">PicoPWMNano::end</a></div><div class="ttdeci">void end(pin_size_t pin)</div><div class="ttdoc">sets the pin to low</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:50</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_nano_html_ad4ad99e4594cc4d0065040720f989dd5"><div class="ttname"><a href="class_pico_p_w_m_nano.html#ad4ad99e4594cc4d0065040720f989dd5">PicoPWMNano::setDutyCycle</a></div><div class="ttdeci">void setDutyCycle(pin_size_t pin, uint64_t dutyCyleNanoSeconds)</div><div class="ttdoc">Defines the active period is nanoseconds.</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:57</div></div>
 <div class="ttc" id="aclass_servo_html"><div class="ttname"><a href="class_servo.html">Servo</a></div><div class="ttdoc">We provide an alternative Pico implementation for the Servo class which is compatible with the Arduin...</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:31</div></div>
 <div class="ttc" id="aclass_servo_html_ae8d8a8e190a6144364e21678d2137a79"><div class="ttname"><a href="class_servo.html#ae8d8a8e190a6144364e21678d2137a79">Servo::attach</a></div><div class="ttdeci">void attach(int pin, int min, int max)</div><div class="ttdoc">as above but also sets min and max values for writes.</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:52</div></div>
 <div class="ttc" id="aclass_servo_html_aea34a630b13ec42e2700eec53ae0a382"><div class="ttname"><a href="class_servo.html#aea34a630b13ec42e2700eec53ae0a382">Servo::attach</a></div><div class="ttdeci">void attach(int pin)</div><div class="ttdoc">attach the given pin to the next free channel, sets pinMode, returns channel number or 0 if failure</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:41</div></div>

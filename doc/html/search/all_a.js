@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['onreceive_25',['onReceive',['../class_pico_hardware_i2_c.html#aec8f2058d30ee68298b3445132501ce4',1,'PicoHardwareI2C']]],
-  ['onrequest_26',['onRequest',['../class_pico_hardware_i2_c.html#ab8898242a4bbe5171f1bc7bb68603fda',1,'PicoHardwareI2C']]]
+  ['notone_35',['noTone',['../class_arduino_pico_tone.html#aafdfe50f76dde9d94738bde5505ac71d',1,'ArduinoPicoTone']]],
+  ['notusinginterrupt_36',['notUsingInterrupt',['../class_pico_hardware_s_p_i.html#ab9bc505878ed86ec105d8b21143513b4',1,'PicoHardwareSPI']]]
 ];

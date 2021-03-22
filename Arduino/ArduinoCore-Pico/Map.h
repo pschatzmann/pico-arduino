@@ -11,6 +11,13 @@
 template <class K, class V> 
 class Map {
     protected:
+
+        /**
+         * @brief Key/Value
+         * 
+         * @tparam KM 
+         * @tparam VM 
+         */
         template <class KM, class VM> 
         struct MapEntry {
             VM value;

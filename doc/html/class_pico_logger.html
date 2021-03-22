@@ -70,6 +70,11 @@ $(function() {
 <div class="title">PicoLogger Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A simple Logger that writes messages dependent on the log level.  
+ <a href="class_pico_logger.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_pico_logger_8h_source.html">PicoLogger.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -84,25 +89,35 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4188baac3df07a564485919aa37c7dcc"><td class="memItemLeft" align="right" valign="top"><a id="a4188baac3df07a564485919aa37c7dcc"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> (<a class="el" href="classarduino_1_1_stream.html">Stream</a> &amp;out, <a class="el" href="class_pico_logger.html#af15ec27beaed81a34725f0f50589be18">LogLevel</a> level=PICO_LOG_LEVEL)</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_logger.html#a4188baac3df07a564485919aa37c7dcc">begin</a> (<a class="el" href="classarduino_1_1_stream.html">Stream</a> &amp;out, <a class="el" href="class_pico_logger.html#af15ec27beaed81a34725f0f50589be18">LogLevel</a> level=PICO_LOG_LEVEL)</td></tr>
+<tr class="memdesc:a4188baac3df07a564485919aa37c7dcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">activate the logging <br /></td></tr>
 <tr class="separator:a4188baac3df07a564485919aa37c7dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadc33b92f32997942b0943f3964f283c"><td class="memItemLeft" align="right" valign="top"><a id="aadc33b92f32997942b0943f3964f283c"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>isLogging</b> (<a class="el" href="class_pico_logger.html#af15ec27beaed81a34725f0f50589be18">LogLevel</a> level=Info)</td></tr>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_logger.html#aadc33b92f32997942b0943f3964f283c">isLogging</a> (<a class="el" href="class_pico_logger.html#af15ec27beaed81a34725f0f50589be18">LogLevel</a> level=Info)</td></tr>
+<tr class="memdesc:aadc33b92f32997942b0943f3964f283c"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the logging is active <br /></td></tr>
 <tr class="separator:aadc33b92f32997942b0943f3964f283c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4dcc8759e80fb78c3553297e5fde99fe"><td class="memItemLeft" align="right" valign="top"><a id="a4dcc8759e80fb78c3553297e5fde99fe"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>error</b> (const char *str, const char *str1=nullptr, const char *str2=nullptr)</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_logger.html#a4dcc8759e80fb78c3553297e5fde99fe">error</a> (const char *str, const char *str1=nullptr, const char *str2=nullptr)</td></tr>
+<tr class="memdesc:a4dcc8759e80fb78c3553297e5fde99fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">logs an error <br /></td></tr>
 <tr class="separator:a4dcc8759e80fb78c3553297e5fde99fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d506705cf2297e66ea30ca4a0d96e55"><td class="memItemLeft" align="right" valign="top"><a id="a7d506705cf2297e66ea30ca4a0d96e55"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>info</b> (const char *str, const char *str1=nullptr, const char *str2=nullptr)</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_logger.html#a7d506705cf2297e66ea30ca4a0d96e55">info</a> (const char *str, const char *str1=nullptr, const char *str2=nullptr)</td></tr>
+<tr class="memdesc:a7d506705cf2297e66ea30ca4a0d96e55"><td class="mdescLeft">&#160;</td><td class="mdescRight">logs an info message <br  />
+ <br /></td></tr>
 <tr class="separator:a7d506705cf2297e66ea30ca4a0d96e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2415f6c7f951c557df36e09b80f5650c"><td class="memItemLeft" align="right" valign="top"><a id="a2415f6c7f951c557df36e09b80f5650c"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>warning</b> (const char *str, const char *str1=nullptr, const char *str2=nullptr)</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_logger.html#a2415f6c7f951c557df36e09b80f5650c">warning</a> (const char *str, const char *str1=nullptr, const char *str2=nullptr)</td></tr>
+<tr class="memdesc:a2415f6c7f951c557df36e09b80f5650c"><td class="mdescLeft">&#160;</td><td class="mdescRight">logs an warning <br  />
+ <br /></td></tr>
 <tr class="separator:a2415f6c7f951c557df36e09b80f5650c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc449e888e7102d342c904379fb7d10e"><td class="memItemLeft" align="right" valign="top"><a id="adc449e888e7102d342c904379fb7d10e"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>debug</b> (const char *str, const char *str1=nullptr, const char *str2=nullptr)</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a> (const char *str, const char *str1=nullptr, const char *str2=nullptr)</td></tr>
+<tr class="memdesc:adc449e888e7102d342c904379fb7d10e"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes an debug message <br  />
+ <br /></td></tr>
 <tr class="separator:adc449e888e7102d342c904379fb7d10e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99b80ba4c3ebe7b51da62b57ed92ffb5"><td class="memItemLeft" align="right" valign="top"><a id="a99b80ba4c3ebe7b51da62b57ed92ffb5"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>log</b> (<a class="el" href="class_pico_logger.html#af15ec27beaed81a34725f0f50589be18">LogLevel</a> current_level, const char *str, const char *str1=nullptr, const char *str2=nullptr)</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_logger.html#a99b80ba4c3ebe7b51da62b57ed92ffb5">log</a> (<a class="el" href="class_pico_logger.html#af15ec27beaed81a34725f0f50589be18">LogLevel</a> current_level, const char *str, const char *str1=nullptr, const char *str2=nullptr)</td></tr>
+<tr class="memdesc:a99b80ba4c3ebe7b51da62b57ed92ffb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">write an message to the log <br /></td></tr>
 <tr class="separator:a99b80ba4c3ebe7b51da62b57ed92ffb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86db5badaaeb6aaf1bc366bccc86f0fa"><td class="memItemLeft" align="right" valign="top"><a id="a86db5badaaeb6aaf1bc366bccc86f0fa"></a>
 const char *&#160;</td><td class="memItemRight" valign="bottom"><b>toStr</b> (int value)</td></tr>
@@ -117,7 +132,11 @@ Protected Attributes</h2></td></tr>
 <a class="el" href="class_pico_logger.html#af15ec27beaed81a34725f0f50589be18">LogLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><b>log_level</b></td></tr>
 <tr class="separator:a24872b4967cf29c7c5b29ee6d60b1bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A simple Logger that writes messages dependent on the log level. </p>
+<dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>GPLv3 </dd></dl>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>Arduino/ArduinoCore-Pico/<a class="el" href="_pico_logger_8h_source.html">PicoLogger.h</a></li>
 </ul>
 </div><!-- contents -->

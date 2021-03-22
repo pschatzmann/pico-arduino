@@ -97,9 +97,9 @@ $(function() {
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                multicore_launch_core1(callback_handler);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                started(<span class="keyword">true</span>);</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                result = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                Logger.info(<span class="stringliteral">&quot;Thread started on core1&quot;</span>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#a7d506705cf2297e66ea30ca4a0d96e55">info</a>(<span class="stringliteral">&quot;Thread started on core1&quot;</span>);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                Logger.info(<span class="stringliteral">&quot;Thread not started - because one is already active&quot;</span>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#a7d506705cf2297e66ea30ca4a0d96e55">info</a>(<span class="stringliteral">&quot;Thread not started - because one is already active&quot;</span>);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            }</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keywordflow">return</span> result;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        }</div>
@@ -149,6 +149,7 @@ $(function() {
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;};</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="ttc" id="aclass_pico_logger_html_a7d506705cf2297e66ea30ca4a0d96e55"><div class="ttname"><a href="class_pico_logger.html#a7d506705cf2297e66ea30ca4a0d96e55">PicoLogger::info</a></div><div class="ttdeci">virtual void info(const char *str, const char *str1=nullptr, const char *str2=nullptr)</div><div class="ttdoc">logs an info message</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:49</div></div>
 <div class="ttc" id="aclass_thread_html"><div class="ttname"><a href="class_thread.html">Thread</a></div><div class="ttdoc">Adds support for running code on the second processor core (core1)</div><div class="ttdef"><b>Definition:</b> PicoThread.h:15</div></div>
 <div class="ttc" id="aclass_thread_html_a240b663c75959f78879530a36cc24d76"><div class="ttname"><a href="class_thread.html#a240b663c75959f78879530a36cc24d76">Thread::start</a></div><div class="ttdeci">bool start(ThreadCB callback, void *ptr=nullptr)</div><div class="ttdoc">Run code on core 1 - we can pass a reference to an object which will be given to the callback as argu...</div><div class="ttdef"><b>Definition:</b> PicoThread.h:26</div></div>
 <div class="ttc" id="aclass_thread_html_ab17a6bee5b20a1e32734b19a93314b7a"><div class="ttname"><a href="class_thread.html#ab17a6bee5b20a1e32734b19a93314b7a">Thread::isRunning</a></div><div class="ttdeci">bool isRunning()</div><div class="ttdoc">check if the core1 has been started and is not stoped</div><div class="ttdef"><b>Definition:</b> PicoThread.h:55</div></div>

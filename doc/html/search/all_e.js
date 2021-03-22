@@ -1,12 +1,6 @@
 var searchData=
 [
-  ['semaphore_48',['Semaphore',['../class_semaphore.html',1,'']]],
-  ['server_49',['Server',['../classarduino_1_1_server.html',1,'arduino']]],
-  ['servo_50',['Servo',['../class_servo.html',1,'']]],
-  ['setclock_51',['setClock',['../class_pico_hardware_i2_c.html#aa3f4f7914960c10a97954f633b382639',1,'PicoHardwareI2C']]],
-  ['softwareserial_52',['SoftwareSerial',['../class_software_serial.html',1,'']]],
-  ['spisettings_53',['SPISettings',['../classarduino_1_1_s_p_i_settings.html',1,'arduino']]],
-  ['start_54',['start',['../class_thread.html#a240b663c75959f78879530a36cc24d76',1,'Thread']]],
-  ['stop_55',['stop',['../class_thread.html#abd50159ecd409936f454c2321f673616',1,'Thread']]],
-  ['stream_56',['Stream',['../classarduino_1_1_stream.html',1,'arduino']]]
+  ['raspberry_20pi_20pico_20_2d_20arduino_20api_59',['Raspberry PI Pico - Arduino API',['../index.html',1,'']]],
+  ['read_60',['read',['../class_pico_hardware_i2_c.html#a5604ec9a1e487d3cdae04754d038da7a',1,'PicoHardwareI2C']]],
+  ['requestfrom_61',['requestFrom',['../class_pico_hardware_i2_c.html#a6aa77439c4b584e649e8f8d0e35bb2a4',1,'PicoHardwareI2C::requestFrom(uint8_t address, size_t len, bool stopBit)'],['../class_pico_hardware_i2_c.html#afc8f3a0bc77b6843479d09d28bab1a49',1,'PicoHardwareI2C::requestFrom(uint8_t address, size_t len)']]]
 ];

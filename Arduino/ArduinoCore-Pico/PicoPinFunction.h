@@ -8,13 +8,6 @@
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
 
-/**
- * @brief The pico requires that the function of the pin is defined. In Arduino, there is no such concept: so we do this at the first call of the 
- * corresponding function.
-
- * @author Phil Schatzmann
- * @copyright GPLv3
- */
 
 enum PinFunction {PIN_FUNC_UNDEFINED, PIN_FUNC_GPIO, PIN_FUNC_ADC, PIN_FUNC_PWM};
 
@@ -27,6 +20,14 @@ struct PinInfo {
     bool is_setup = false;
 };
 
+/**
+ * @brief The pico requires that the function of the pin is defined. In Arduino, there is no such concept: so we do this at the first call of the 
+ * corresponding function.
+
+ * @author Phil Schatzmann
+ * @copyright GPLv3
+ */
+
 class PicoPinFunction {
     public:
         static PicoPinFunction &instance(){
@@ -37,7 +38,7 @@ class PicoPinFunction {
             return *inst_ptr;
         }
 
-        // defines the actual Arduino PinMode
+        /// defines the actual Arduino PinMode
         bool setPinMode(pin_size_t pinNumber, PinMode pinMode=INPUT){
             Logger.debug("PicoGPIOFunction::PinMode");
             bool changed = false;
@@ -50,21 +51,24 @@ class PicoPinFunction {
             return changed;
         }
 
+        /// checks if the pin has been defined as input
         bool isInput(pin_size_t pinNumber){
             return pinInfo[pinNumber].pinMode==INPUT;
         }
 
+        /// checks if the pin has been defined as output
         bool isOutput(pin_size_t pinNumber){
             return pinInfo[pinNumber].pinMode==OUTPUT;
         }
 
+        /// set gpio function to GPIO_FUNC_NULL 
         void clear(pin_size_t pinNumber){
             Logger.debug("clear");
             gpio_set_function(pinNumber, GPIO_FUNC_NULL);
             pinInfo[pinNumber].is_setup = false;
         }
 
-        // setup Pico pin init function bysed on functionality
+        /// setup Pico pin init function bysed on functionality
         void usePin(pin_size_t pinNumber, PinFunction pinFunction){
             //Logger.debug("PicoGPIOFunction::usePin", Logger.toStr(pinNumber));
             PinInfo *info = & (pinInfo[pinNumber]);
@@ -106,7 +110,7 @@ class PicoPinFunction {
 
         }
 
-        // select the ADC if it has been changed
+        /// select the ADC if it has been changed
         bool adcSelect(int adc){
             bool changed = false;
             if (current_adc != adc){
@@ -118,7 +122,7 @@ class PicoPinFunction {
             return changed;                   
         }
 
-        // calls adc_init() if necessary - returns true if it has been intialized (the first time)
+        /// calls adc_init() if necessary - returns true if it has been intialized (the first time)
         bool initADC(){
             // init if necessary
             bool result = false;
@@ -131,17 +135,12 @@ class PicoPinFunction {
             return result;
         }
 
-        void setPwmConfig(pwm_config config){
-            this->pwmconfig = config;
-        }
-
     protected:
         PinInfo* pinInfo;
         bool adc_init_flag;
         int current_adc;
-        pwm_config pwmconfig;
 
-
+        /// protected constructor because this is a singleton
         PicoPinFunction(int maxPins=40){
             Logger.debug("PicoGPIOFunction");
             pinInfo = new PinInfo[maxPins];

@@ -8,20 +8,22 @@
 #include "hardware/clocks.h"
 #include "PicoPinFunction.h"
 
-/**
- * @brief The Raspberry Pico has 8 controllable PWM slices with each 2 channels, wo we can control up to 16 pwm devices at the same time!
- * This is Simple Basic PWM API where we specifiy the periods and duty cyle in Nanoseconds. 
- * @author Phil Schatzmann
- * @copyright GPLv3
- */
 
 #ifndef PWM_MAX_NUMER
 #define PWM_MAX_NUMER 65535
 #endif
 
+/**
+ * @brief The Raspberry Pico has 8 controllable PWM slices with each 2 channels, so we can control up to 16 pwm devices at the same time!
+ * 
+ * This is Simple Basic PWM API where we specifiy the periods and duty cyle in Nanoseconds. 
+ * @author Phil Schatzmann
+ * @copyright GPLv3
+ */
+
 class PicoPWMNano {
     public:
-        // Constructor: Defines the length of a full cycle in nanoseconds (mio of seconds)
+        /// Constructor: Defines the length of a full cycle in nanoseconds (mio of seconds)
         PicoPWMNano(uint64_t periodNanoSeconds){
             Logger.debug("PicoPWMNano");
             period_nano_sec = periodNanoSeconds;
@@ -29,7 +31,7 @@ class PicoPWMNano {
             rangeDivider = (1.0 * period_nano_sec) / PWM_MAX_NUMER;
         }
 
-        // setup a pin for pwm write
+        /// setup a pin for pwm write
         void begin(pin_size_t pin, uint64_t initialDutyCyleNanoSeconds=0){
             Logger.debug("PicoPWMNano::begin");
             if (setupConfig()){
@@ -44,14 +46,14 @@ class PicoPWMNano {
             }
         }
 
-        // sets the pin to low
+        /// sets the pin to low
         void end(pin_size_t pin){
             Logger.debug("PicoPWMNano::end");
             setDutyCycle(pin, 0);
             PinFunction.clear(pin);
         }
 
-        // Defines the active period is nanoseconds
+        /// Defines the active period is nanoseconds
         void setDutyCycle(pin_size_t pin, uint64_t dutyCyleNanoSeconds){
             uint slice_num = pwm_gpio_to_slice_num(pin);
             uint channel = pwm_gpio_to_channel(pin);
@@ -67,17 +69,17 @@ class PicoPWMNano {
             pwm_set_chan_level(slice_num, channel, value);
         }
 
-        // converts the indicated period is nanoseconds to hz 
+        /// converts the indicated period is nanoseconds to hz 
         uint64_t frequency(uint64_t periodNanoSeconds){
             return 1000000000l / period_nano_sec;
         }
 
-        // converts the PWM period to hz
+        /// converts the PWM period to hz
         uint64_t frequency(){
             return frequency(period_nano_sec);
         }
 
-        // provides the full cycle period in nanoseconds
+        /// provides the full cycle period in nanoseconds
         uint64_t period() {
             return period_nano_sec;
         }
@@ -90,7 +92,7 @@ class PicoPWMNano {
         PicoPinFunction pinFunction = PicoPinFunction::instance();
         bool is_config_done = false;
 
-        // provides the configuration - returns true if we have a new configuration
+        /// provides the configuration - returns true if we have a new configuration
         bool setupConfig(){
             if (!is_config_done) {
                 Logger.debug("PicoPWMNano::setupConfig");
@@ -138,6 +140,7 @@ class PicoPWMNano {
  */
 class PicoPWM {
     public:
+        /// Default constructor
         PicoPWM(uint64_t frequency, uint64_t maxValue){
             // convert frequency to period 
             period_nano_sec = 1000000000l / frequency;
@@ -145,30 +148,32 @@ class PicoPWM {
             max_value = maxValue;
         }
 
+        /// Destructor
         ~PicoPWM(){
             delete nano;
          }
 
+        /// setup a pin for pwm write
         void begin(pin_size_t pin, uint64_t initalValue=0){
             nano->begin(pin, initalValue);
         }
 
-        // sets the pin to low
+        /// sets the pin to low
         void end(pin_size_t pin){
             nano->end(pin);
         }
 
-        // Defines the active period is nanoseconds
+        /// Defines the active period is nanoseconds
         void write(pin_size_t pin, uint64_t value){
             nano->setDutyCycle(pin, valueToDutyCycle(value));
         }
 
-        // provides the full cycle period in nanoseconds
+        /// provides the full cycle period in nanoseconds
         uint64_t period() {
             return nano->period();
         }
 
-        // converts the PWM period to hz
+        /// converts the PWM period to hz
         uint64_t frequency(){
             return nano->frequency();
         }
@@ -178,6 +183,7 @@ class PicoPWM {
         int64_t max_value;
         uint64_t period_nano_sec;
 
+        /// converts an input value to the duty cycle in nanosec
         uint64_t valueToDutyCycle(uint64_t value){
             return map(value, 0, max_value, 0, period_nano_sec);
         }

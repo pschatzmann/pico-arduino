@@ -2,17 +2,17 @@
 
 #include "Stream.h"
 
+
+#ifndef PICO_LOG_LEVEL
+#define PICO_LOG_LEVEL Error
+#endif
+
 /**
  * @brief A simple Logger that writes messages dependent on the log level
  * @author Phil Schatzmann
  * @copyright GPLv3
  * 
  */
-
-#ifndef PICO_LOG_LEVEL
-#define PICO_LOG_LEVEL Error
-#endif
-
 class PicoLogger {
     public:
         /**
@@ -29,34 +29,38 @@ class PicoLogger {
         PicoLogger(){}
         ~PicoLogger(){}
 
-        // activate the logging
+        /// activate the logging
         virtual void begin(Stream& out, LogLevel level=PICO_LOG_LEVEL){
             this->log_stream_ptr = &out;
             this->log_level = level;
         }
 
-        // checks if the logging is active
+        /// checks if the logging is active
         virtual bool isLogging(LogLevel level = Info){
             return log_stream_ptr!=nullptr && level >= log_level;
         }
 
+        /// logs an error
         virtual void error(const char *str, const char* str1=nullptr, const char* str2=nullptr){
             log(Error, str, str1, str2);
         }
             
+        /// logs an info message    
         virtual void info(const char *str, const char* str1=nullptr, const char* str2=nullptr){
             log(Info, str, str1, str2);
         }
 
+        /// logs an warning    
         virtual void warning(const char *str, const char* str1=nullptr, const char* str2=nullptr){
             log(Warning, str, str1, str2);
         }
 
+        /// writes an debug message    
         virtual void debug(const char *str, const char* str1=nullptr, const char* str2=nullptr){
             log(Debug, str, str1, str2);
         }
 
-        // write an message to the log
+        /// write an message to the log
         virtual void log(LogLevel current_level, const char *str, const char* str1=nullptr, const char* str2=nullptr){
             if (log_stream_ptr!=nullptr){
                 if (current_level >= log_level){

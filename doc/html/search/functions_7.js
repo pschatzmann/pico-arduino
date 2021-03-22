@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['peek_122',['peek',['../class_pico_hardware_i2_c.html#ad584541e149dae0a222de5e247ce9192',1,'PicoHardwareI2C']]],
-  ['picohardwarei2c_123',['PicoHardwareI2C',['../class_pico_hardware_i2_c.html#a1de257c70ac2818538ff7014929eeae2',1,'PicoHardwareI2C']]]
+  ['log_151',['log',['../class_pico_logger.html#a99b80ba4c3ebe7b51da62b57ed92ffb5',1,'PicoLogger']]]
 ];
