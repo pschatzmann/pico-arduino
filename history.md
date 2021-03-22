@@ -30,3 +30,4 @@
      - Implement Servo class with examples
      - Removed libarduino: all sources are complied as part of the sketch, so that we can overwrite default defines 
      - Example how to change default pins in cmake 
+     - provide termperature() and temperatureF() method to read the built in temperature sensor
