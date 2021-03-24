@@ -40,6 +40,7 @@ Here is the list of the provided examples using the Arduino functionality
 - [tone](tone_melody)
 - [analog_read](analog_read)
 - [pwm_arduino](pwm_arduino)
+- [pwm_arduino_read](pwm_arduino_read)
 - [pwm_servo](pwm_servo)
 - [Using an Arduino library](example_with_arduino_library)
 - [SPI with SdFat](sd_info)
