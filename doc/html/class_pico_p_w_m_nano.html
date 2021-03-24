@@ -63,7 +63,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_pico_p_w_m_nano-members.html">List of all members</a>  </div>
@@ -72,7 +71,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>The Raspberry Pico has 8 controllable PWM slices with each 2 channels, so we can control up to 16 pwm devices at the same time!  
+<p>Basic PWM API based on the input and output in nano seconds The Raspberry Pico has 8 controllable PWM slices with each 2 channels, so we can control up to 16 pwm devices at the same time! This is Simple Basic PWM API where we specifiy the periods and duty cyle in Nanoseconds.  
  <a href="class_pico_p_w_m_nano.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_pico_p_w_m_8h_source.html">PicoPWM.h</a>&gt;</code></p>
@@ -103,25 +102,14 @@ uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#a8f5cd2d1d4af51c77546d01f1f150034">measureDutyCyclePercent</a> (uint gpio)</td></tr>
 <tr class="memdesc:a8f5cd2d1d4af51c77546d01f1f150034"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides the duty cycle in percent <br /></td></tr>
 <tr class="separator:a8f5cd2d1d4af51c77546d01f1f150034"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87ca06275b791a859552f23da91a475b"><td class="memItemLeft" align="right" valign="top"><a id="a87ca06275b791a859552f23da91a475b"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#a87ca06275b791a859552f23da91a475b">measurePeriod</a> (uint gpio)</td></tr>
-<tr class="memdesc:a87ca06275b791a859552f23da91a475b"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides the duty cycle in percent <br /></td></tr>
-<tr class="separator:a87ca06275b791a859552f23da91a475b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c2283ea783d73e1f29edd49646d687f"><td class="memItemLeft" align="right" valign="top"><a id="a5c2283ea783d73e1f29edd49646d687f"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#a5c2283ea783d73e1f29edd49646d687f">frequency</a> ()</td></tr>
 <tr class="memdesc:a5c2283ea783d73e1f29edd49646d687f"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts the PWM period to hz for the PWM output <br /></td></tr>
 <tr class="separator:a5c2283ea783d73e1f29edd49646d687f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f64a5e42e0561086d46db591b2e241e"><td class="memItemLeft" align="right" valign="top"><a id="a6f64a5e42e0561086d46db591b2e241e"></a>
 uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#a6f64a5e42e0561086d46db591b2e241e">period</a> ()</td></tr>
-<tr class="memdesc:a6f64a5e42e0561086d46db591b2e241e"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides the full cycle period in nanoseconds for the PWM output <br /></td></tr>
+<tr class="memdesc:a6f64a5e42e0561086d46db591b2e241e"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides the full cycle period in nanoseconds <br /></td></tr>
 <tr class="separator:a6f64a5e42e0561086d46db591b2e241e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:aeb840be454021d634504077537f5dd23"><td class="memItemLeft" align="right" valign="top"><a id="aeb840be454021d634504077537f5dd23"></a>
-static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#aeb840be454021d634504077537f5dd23">frequency</a> (uint64_t periodNanoSeconds)</td></tr>
-<tr class="memdesc:aeb840be454021d634504077537f5dd23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility function: converts the indicated period is nanoseconds to hz. <br /></td></tr>
-<tr class="separator:aeb840be454021d634504077537f5dd23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -148,8 +136,8 @@ PinMode&#160;</td><td class="memItemRight" valign="bottom"><b>pin_mode</b></td><
 <tr class="separator:aa6e1ef4d0fe974104270a8b90f4cf7b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The Raspberry Pico has 8 controllable PWM slices with each 2 channels, so we can control up to 16 pwm devices at the same time! </p>
-<p>This is Simple Basic PWM API where we specifiy the periods and duty cyle in Nanoseconds. </p><dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
+<div class="textblock"><p>Basic PWM API based on the input and output in nano seconds The Raspberry Pico has 8 controllable PWM slices with each 2 channels, so we can control up to 16 pwm devices at the same time! This is Simple Basic PWM API where we specifiy the periods and duty cyle in Nanoseconds. </p>
+<dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>GPLv3 </dd></dl>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>Arduino/ArduinoCore-Pico/<a class="el" href="_pico_p_w_m_8h_source.html">PicoPWM.h</a></li>
