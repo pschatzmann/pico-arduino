@@ -350,8 +350,8 @@ class PicoPWMReader : public PinSetup {
 };
 
 /**
- * @brief The Raspberry Pico has 8 controllable PWM slices with each 2 channels, so we can control up to 16 pwm devices at the same time!
- * 
+ * @brief Basic PWM API based on the input and output in nano seconds
+ * The Raspberry Pico has 8 controllable PWM slices with each 2 channels, so we can control up to 16 pwm devices at the same time!
  * This is Simple Basic PWM API where we specifiy the periods and duty cyle in Nanoseconds. 
  * @author Phil Schatzmann
  * @copyright GPLv3
@@ -417,30 +417,15 @@ class PicoPWMNano {
             return result;
         }
 
-        /// provides the duty cycle in percent
-        float measurePeriod(uint gpio) {
-            float result = 0;
-            if (isInput(gpio)) {
-                result = reader->period();
-            }
-            return result;
-        }
-
         /// converts the PWM period to hz for the PWM output
         float frequency(){
             return writer->frequency();
         }
 
-        /// provides the full cycle period in nanoseconds for the PWM output
+        /// provides the full cycle period in nanoseconds 
         uint64_t period() {
             return  writer->period();
         }
-
-        /// Utility function: converts the indicated period is nanoseconds to hz 
-        static float frequency(uint64_t periodNanoSeconds){
-            return 1000000000.0 / periodNanoSeconds;
-        }
-
 
     protected:
         PicoPinFunction  pin_function = PicoPinFunction::instance();
@@ -508,12 +493,12 @@ class PicoPWM {
             return 100.0 * read(pin) / max_value;
         }
 
-        /// provides the full cycle period in nanoseconds
+        /// Provides the full cycle period in nanoseconds
         uint64_t period() {
             return nano->period();
         }
 
-        /// converts the PWM period to hz
+        /// Provides the frequncy in hz which was specified in the constructor
         uint64_t frequency(){
             return nano->frequency();
         }
