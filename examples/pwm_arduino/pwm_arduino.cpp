@@ -3,7 +3,7 @@
 #include "PicoPWM.h"
 
 //Initializing LED Pin
-int led_pin = GP15;
+int led_pin = LED_BUILTIN;
 const int maxValue = 255;
 
 void setup() {

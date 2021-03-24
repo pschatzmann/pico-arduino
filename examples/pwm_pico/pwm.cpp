@@ -3,7 +3,7 @@
 #include "PicoPWM.h"
 
 //Initializing pwm
-const int led_pin = GP15;
+const int led_pin = LED_BUILTIN;
 const int frequencyHz = 490;
 const int maxValue = 255;
 PicoPWM pwm(frequencyHz, maxValue);

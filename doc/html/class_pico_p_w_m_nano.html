@@ -63,6 +63,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_pico_p_w_m_nano-members.html">List of all members</a>  </div>
@@ -82,55 +83,69 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#aab43f7ce6ba7d8189f3e1d96eeeddd9a">PicoPWMNano</a> (uint64_t periodNanoSeconds)</td></tr>
 <tr class="memdesc:aab43f7ce6ba7d8189f3e1d96eeeddd9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Defines the length of a full cycle in nanoseconds (mio of seconds) <br /></td></tr>
 <tr class="separator:aab43f7ce6ba7d8189f3e1d96eeeddd9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a042ac218ecb0d014020af202d133facf"><td class="memItemLeft" align="right" valign="top"><a id="a042ac218ecb0d014020af202d133facf"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#a042ac218ecb0d014020af202d133facf">begin</a> (pin_size_t pin, uint64_t initialDutyCyleNanoSeconds=0)</td></tr>
-<tr class="memdesc:a042ac218ecb0d014020af202d133facf"><td class="mdescLeft">&#160;</td><td class="mdescRight">setup a pin for pwm write <br /></td></tr>
-<tr class="separator:a042ac218ecb0d014020af202d133facf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2f8e9259fb23c43e0e39b9d41747fb1"><td class="memItemLeft" align="right" valign="top"><a id="ab2f8e9259fb23c43e0e39b9d41747fb1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#ab2f8e9259fb23c43e0e39b9d41747fb1">end</a> (pin_size_t pin)</td></tr>
-<tr class="memdesc:ab2f8e9259fb23c43e0e39b9d41747fb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the pin to low <br /></td></tr>
-<tr class="separator:ab2f8e9259fb23c43e0e39b9d41747fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4ad99e4594cc4d0065040720f989dd5"><td class="memItemLeft" align="right" valign="top"><a id="ad4ad99e4594cc4d0065040720f989dd5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#ad4ad99e4594cc4d0065040720f989dd5">setDutyCycle</a> (pin_size_t pin, uint64_t dutyCyleNanoSeconds)</td></tr>
-<tr class="memdesc:ad4ad99e4594cc4d0065040720f989dd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the active period is nanoseconds. <br /></td></tr>
-<tr class="separator:ad4ad99e4594cc4d0065040720f989dd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30ee932272c6ad12e9362c5923ed5f35"><td class="memItemLeft" align="right" valign="top"><a id="a30ee932272c6ad12e9362c5923ed5f35"></a>
-uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#a30ee932272c6ad12e9362c5923ed5f35">frequency</a> (uint64_t periodNanoSeconds)</td></tr>
-<tr class="memdesc:a30ee932272c6ad12e9362c5923ed5f35"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts the indicated period is nanoseconds to hz <br /></td></tr>
-<tr class="separator:a30ee932272c6ad12e9362c5923ed5f35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a036d0fca293c21b4294c46d24d91a6d8"><td class="memItemLeft" align="right" valign="top"><a id="a036d0fca293c21b4294c46d24d91a6d8"></a>
-uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#a036d0fca293c21b4294c46d24d91a6d8">frequency</a> ()</td></tr>
-<tr class="memdesc:a036d0fca293c21b4294c46d24d91a6d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts the PWM period to hz <br /></td></tr>
-<tr class="separator:a036d0fca293c21b4294c46d24d91a6d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb6ba2022f8097ea50beceafa1e917c6"><td class="memItemLeft" align="right" valign="top"><a id="aeb6ba2022f8097ea50beceafa1e917c6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#aeb6ba2022f8097ea50beceafa1e917c6">begin</a> (pin_size_t gpio, uint64_t initialDutyCyleNanoSeconds=0, PinMode pinMode=OUTPUT)</td></tr>
+<tr class="memdesc:aeb6ba2022f8097ea50beceafa1e917c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">setup the pin mode only if necessary <br /></td></tr>
+<tr class="separator:aeb6ba2022f8097ea50beceafa1e917c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef45e7deb7b44bfbe0af911847553945"><td class="memItemLeft" align="right" valign="top"><a id="aef45e7deb7b44bfbe0af911847553945"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#aef45e7deb7b44bfbe0af911847553945">end</a> (pin_size_t gpio)</td></tr>
+<tr class="memdesc:aef45e7deb7b44bfbe0af911847553945"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the output pins to low <br /></td></tr>
+<tr class="separator:aef45e7deb7b44bfbe0af911847553945"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a83fd88f0dd5d104c58e6a65bf1aab1"><td class="memItemLeft" align="right" valign="top"><a id="a9a83fd88f0dd5d104c58e6a65bf1aab1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#a9a83fd88f0dd5d104c58e6a65bf1aab1">setDutyCycle</a> (pin_size_t gpio, uint64_t dutyCyleNanoSeconds)</td></tr>
+<tr class="memdesc:a9a83fd88f0dd5d104c58e6a65bf1aab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the active period is nanoseconds. <br /></td></tr>
+<tr class="separator:a9a83fd88f0dd5d104c58e6a65bf1aab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c6c8b71631254ba470a7fe6d3b9c1c7"><td class="memItemLeft" align="right" valign="top"><a id="a4c6c8b71631254ba470a7fe6d3b9c1c7"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#a4c6c8b71631254ba470a7fe6d3b9c1c7">measureDutyCycle</a> (uint gpio)</td></tr>
+<tr class="memdesc:a4c6c8b71631254ba470a7fe6d3b9c1c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">measures the duty cycle in nanoseconds - only the PWM B pins can be used as inputs! <br /></td></tr>
+<tr class="separator:a4c6c8b71631254ba470a7fe6d3b9c1c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f5cd2d1d4af51c77546d01f1f150034"><td class="memItemLeft" align="right" valign="top"><a id="a8f5cd2d1d4af51c77546d01f1f150034"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#a8f5cd2d1d4af51c77546d01f1f150034">measureDutyCyclePercent</a> (uint gpio)</td></tr>
+<tr class="memdesc:a8f5cd2d1d4af51c77546d01f1f150034"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides the duty cycle in percent <br /></td></tr>
+<tr class="separator:a8f5cd2d1d4af51c77546d01f1f150034"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87ca06275b791a859552f23da91a475b"><td class="memItemLeft" align="right" valign="top"><a id="a87ca06275b791a859552f23da91a475b"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#a87ca06275b791a859552f23da91a475b">measurePeriod</a> (uint gpio)</td></tr>
+<tr class="memdesc:a87ca06275b791a859552f23da91a475b"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides the duty cycle in percent <br /></td></tr>
+<tr class="separator:a87ca06275b791a859552f23da91a475b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c2283ea783d73e1f29edd49646d687f"><td class="memItemLeft" align="right" valign="top"><a id="a5c2283ea783d73e1f29edd49646d687f"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#a5c2283ea783d73e1f29edd49646d687f">frequency</a> ()</td></tr>
+<tr class="memdesc:a5c2283ea783d73e1f29edd49646d687f"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts the PWM period to hz for the PWM output <br /></td></tr>
+<tr class="separator:a5c2283ea783d73e1f29edd49646d687f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f64a5e42e0561086d46db591b2e241e"><td class="memItemLeft" align="right" valign="top"><a id="a6f64a5e42e0561086d46db591b2e241e"></a>
 uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#a6f64a5e42e0561086d46db591b2e241e">period</a> ()</td></tr>
-<tr class="memdesc:a6f64a5e42e0561086d46db591b2e241e"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides the full cycle period in nanoseconds <br /></td></tr>
+<tr class="memdesc:a6f64a5e42e0561086d46db591b2e241e"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides the full cycle period in nanoseconds for the PWM output <br /></td></tr>
 <tr class="separator:a6f64a5e42e0561086d46db591b2e241e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aeb840be454021d634504077537f5dd23"><td class="memItemLeft" align="right" valign="top"><a id="aeb840be454021d634504077537f5dd23"></a>
+static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#aeb840be454021d634504077537f5dd23">frequency</a> (uint64_t periodNanoSeconds)</td></tr>
+<tr class="memdesc:aeb840be454021d634504077537f5dd23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility function: converts the indicated period is nanoseconds to hz. <br /></td></tr>
+<tr class="separator:aeb840be454021d634504077537f5dd23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ae2da62f75f03fe4ecafdd57ccd9940a6"><td class="memItemLeft" align="right" valign="top"><a id="ae2da62f75f03fe4ecafdd57ccd9940a6"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m_nano.html#ae2da62f75f03fe4ecafdd57ccd9940a6">setupConfig</a> ()</td></tr>
-<tr class="memdesc:ae2da62f75f03fe4ecafdd57ccd9940a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides the configuration - returns true if we have a new configuration <br /></td></tr>
-<tr class="separator:ae2da62f75f03fe4ecafdd57ccd9940a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22a16f354e15c91dfae97110fcee2b94"><td class="memItemLeft" align="right" valign="top"><a id="a22a16f354e15c91dfae97110fcee2b94"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isOutput</b> (pin_size_t gpio)</td></tr>
+<tr class="separator:a22a16f354e15c91dfae97110fcee2b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af63fe027574027243aa8d3123816490f"><td class="memItemLeft" align="right" valign="top"><a id="af63fe027574027243aa8d3123816490f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isInput</b> (pin_size_t gpio)</td></tr>
+<tr class="separator:af63fe027574027243aa8d3123816490f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a59198624ae8ae575658dcb604231c332"><td class="memItemLeft" align="right" valign="top"><a id="a59198624ae8ae575658dcb604231c332"></a>
-uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>period_nano_sec</b></td></tr>
-<tr class="separator:a59198624ae8ae575658dcb604231c332"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81e2cf811be24784c13262e40bd2f93f"><td class="memItemLeft" align="right" valign="top"><a id="a81e2cf811be24784c13262e40bd2f93f"></a>
-pwm_config&#160;</td><td class="memItemRight" valign="bottom"><b>config</b></td></tr>
-<tr class="separator:a81e2cf811be24784c13262e40bd2f93f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35381d7a8c292a9fb532c9280b4233a8"><td class="memItemLeft" align="right" valign="top"><a id="a35381d7a8c292a9fb532c9280b4233a8"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>rangeDivider</b></td></tr>
-<tr class="separator:a35381d7a8c292a9fb532c9280b4233a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b7711316a46bf2a825ab2874e7a68ae"><td class="memItemLeft" align="right" valign="top"><a id="a1b7711316a46bf2a825ab2874e7a68ae"></a>
-<a class="el" href="class_pico_pin_function.html">PicoPinFunction</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pinFunction</b> = PicoPinFunction::instance()</td></tr>
-<tr class="separator:a1b7711316a46bf2a825ab2874e7a68ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e8a42d1df2a0f7e12fd92af94712bc8"><td class="memItemLeft" align="right" valign="top"><a id="a1e8a42d1df2a0f7e12fd92af94712bc8"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_config_done</b> = false</td></tr>
-<tr class="separator:a1e8a42d1df2a0f7e12fd92af94712bc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06863db6d5a772c314f1b8931dc1eec3"><td class="memItemLeft" align="right" valign="top"><a id="a06863db6d5a772c314f1b8931dc1eec3"></a>
+<a class="el" href="class_pico_pin_function.html">PicoPinFunction</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pin_function</b> = PicoPinFunction::instance()</td></tr>
+<tr class="separator:a06863db6d5a772c314f1b8931dc1eec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f9c0f0f75ddd1ef208e1c4f53ef2b9f"><td class="memItemLeft" align="right" valign="top"><a id="a7f9c0f0f75ddd1ef208e1c4f53ef2b9f"></a>
+PinMode&#160;</td><td class="memItemRight" valign="bottom"><b>pin_mode</b></td></tr>
+<tr class="separator:a7f9c0f0f75ddd1ef208e1c4f53ef2b9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2775edbd62c0434608309009b3620b6"><td class="memItemLeft" align="right" valign="top"><a id="ab2775edbd62c0434608309009b3620b6"></a>
+<a class="el" href="class_pico_p_w_m_writer.html">PicoPWMWriter</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>writer</b></td></tr>
+<tr class="separator:ab2775edbd62c0434608309009b3620b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6e1ef4d0fe974104270a8b90f4cf7b8"><td class="memItemLeft" align="right" valign="top"><a id="aa6e1ef4d0fe974104270a8b90f4cf7b8"></a>
+<a class="el" href="class_pico_p_w_m_reader.html">PicoPWMReader</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>reader</b></td></tr>
+<tr class="separator:aa6e1ef4d0fe974104270a8b90f4cf7b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The Raspberry Pico has 8 controllable PWM slices with each 2 channels, so we can control up to 16 pwm devices at the same time! </p>

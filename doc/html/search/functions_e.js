@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['up_196',['up',['../class_semaphore.html#a0ba008a098f05e3235eaf23e0064091b',1,'Semaphore']]],
-  ['usepin_197',['usePin',['../class_pico_pin_function.html#a3556f79bd638642544d1b0e2aa98724b',1,'PicoPinFunction']]],
-  ['usinginterrupt_198',['usingInterrupt',['../class_pico_hardware_s_p_i.html#a9ce51701c2384a6e7a47d556ddc1c9a2',1,'PicoHardwareSPI']]]
+  ['tone_225',['tone',['../class_arduino_pico_tone.html#a914cd2c8ecfdba2a3cace51bb0d22c59',1,'ArduinoPicoTone']]],
+  ['transfer_226',['transfer',['../class_pico_hardware_s_p_i.html#a86f6206c11379c70c75818a124214c1b',1,'PicoHardwareSPI::transfer(uint8_t data)'],['../class_pico_hardware_s_p_i.html#a82dd8e9e81dfbd7cc5c5eaa9547c058a',1,'PicoHardwareSPI::transfer(void *array, size_t len)']]],
+  ['transfer16_227',['transfer16',['../class_pico_hardware_s_p_i.html#ae15dbbe0614679be10ea1575821ab1bc',1,'PicoHardwareSPI']]]
 ];

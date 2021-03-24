@@ -30,6 +30,8 @@ PicoHardwareI2C Wire1(i2c1, 160, I2C1_SDA, I2C1_SCL);
 PicoPinFunction PinFunction = PicoPinFunction::instance();
 PicoLogger Logger;    // Support for logging
 PicoPWM ArduionPwm(PICO_ARDUINO_PWM_FREQUENCY, 255); // pwm support
+PinSetupGPIO InstancePinSetupGPIO;
+PinSetupADC InstancePinSetupADC = PinSetupADC::instance();
 
 // sleep ms milliseconds
 void delay(unsigned long ms){
@@ -59,12 +61,12 @@ void pinMode(pin_size_t pinNumber, PinMode pinMode){
 }
 
 void digitalWrite(pin_size_t pinNumber, PinStatus status) {
-    PinFunction.usePin(pinNumber, PIN_FUNC_GPIO);
+    PinFunction.usePin(pinNumber, PIN_FUNC_GPIO, &InstancePinSetupGPIO);
     gpio_put(pinNumber, status==0 ? LOW : HIGH);
 }
 
 PinStatus digitalRead(pin_size_t pinNumber) {
-    PinFunction.usePin(pinNumber, PIN_FUNC_GPIO);
+    PinFunction.usePin(pinNumber, PIN_FUNC_GPIO, &InstancePinSetupGPIO);
     int value = gpio_get(pinNumber);
     return value==0 ? LOW : HIGH;
 }
@@ -80,10 +82,12 @@ int analogRead(pin_size_t pinNumber){
     // analog read
     if (pinNumber>=26 && pinNumber<=29){
         // ADC
-        PinFunction.usePin(pinNumber, PIN_FUNC_ADC);
+        PinFunction.usePin(pinNumber, PIN_FUNC_ADC, &InstancePinSetupADC);
         return adc_read();
     } else {
-        Logger.error("Analog read is only supported on GPIO 26-29 and not on GPIO", String(pinNumber).c_str());
+        // PWM Read
+        ArduionPwm.begin(pinNumber);
+        return ArduionPwm.read(pinNumber);
     }
     return -1;
 }
@@ -91,12 +95,12 @@ int analogRead(pin_size_t pinNumber){
 // reads the on board temparature in C 
 int temperature(){
     // init ADC only if it has not been set up yet
-    PinFunction.initADC();
+    PinSetupADC::instance().initADC();
     // this is just setting some flags - so it does not hurt to call this redundantly
     adc_set_temp_sensor_enabled(true);
 
     //Input 4 is the onboard temperature sensor - operation only if there is a change
-    PinFunction.adcSelect(4);
+    PinSetupADC::instance().adcSelect(4);
     int value = 0;
     for (uint8_t i = 0; i < 30 ;i++)
     {

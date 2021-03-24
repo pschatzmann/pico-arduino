@@ -72,17 +72,21 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>The pico requires that the function of the pin is defined. In Arduino, there is no such concept: so we do this at the first call of the corresponding function.  
+<p>The pico requires that the function of the pin is defined. In Arduino, there is no such concept - however we need to define if the pin is input or output.  
  <a href="class_pico_pin_function.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_pico_pin_function_8h_source.html">PicoPinFunction.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ade227c04faab8f1a9ce66d38324540ff"><td class="memItemLeft" align="right" valign="top"><a id="ade227c04faab8f1a9ce66d38324540ff"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_pin_function.html#ade227c04faab8f1a9ce66d38324540ff">setPinMode</a> (pin_size_t pinNumber, PinMode pinMode=INPUT)</td></tr>
-<tr class="memdesc:ade227c04faab8f1a9ce66d38324540ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">defines the actual Arduino PinMode <br /></td></tr>
-<tr class="separator:ade227c04faab8f1a9ce66d38324540ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51dc351b02d18c06f67326995d3b1092"><td class="memItemLeft" align="right" valign="top"><a id="a51dc351b02d18c06f67326995d3b1092"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_pin_function.html#a51dc351b02d18c06f67326995d3b1092">setPinMode</a> (pin_size_t pinNumber, PinMode <a class="el" href="class_pico_pin_function.html#afd903b9285ada85a62aaf8050c73e0a2">pinMode</a>)</td></tr>
+<tr class="memdesc:a51dc351b02d18c06f67326995d3b1092"><td class="mdescLeft">&#160;</td><td class="mdescRight">defines the actual Arduino PinMode. Returns true if it needed to be changed <br /></td></tr>
+<tr class="separator:a51dc351b02d18c06f67326995d3b1092"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac50b85a78d2b8caff56441e2535575bf"><td class="memItemLeft" align="right" valign="top"><a id="ac50b85a78d2b8caff56441e2535575bf"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_pin_function.html#ac50b85a78d2b8caff56441e2535575bf">isModeDefined</a> (pin_size_t pinNumber)</td></tr>
+<tr class="memdesc:ac50b85a78d2b8caff56441e2535575bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the mode was defined for the pin <br /></td></tr>
+<tr class="separator:ac50b85a78d2b8caff56441e2535575bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a539801eb678a141dfcd4dece03db20b5"><td class="memItemLeft" align="right" valign="top"><a id="a539801eb678a141dfcd4dece03db20b5"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_pin_function.html#a539801eb678a141dfcd4dece03db20b5">isInput</a> (pin_size_t pinNumber)</td></tr>
 <tr class="memdesc:a539801eb678a141dfcd4dece03db20b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the pin has been defined as input <br /></td></tr>
@@ -91,22 +95,30 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_pin_function.html#abd7540297a179c6af13d6948c02c139d">isOutput</a> (pin_size_t pinNumber)</td></tr>
 <tr class="memdesc:abd7540297a179c6af13d6948c02c139d"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the pin has been defined as output <br /></td></tr>
 <tr class="separator:abd7540297a179c6af13d6948c02c139d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a477bcf14abd2473b7a96db8d58b1cfff"><td class="memItemLeft" align="right" valign="top"><a id="a477bcf14abd2473b7a96db8d58b1cfff"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_pin_function.html#a477bcf14abd2473b7a96db8d58b1cfff">isSetup</a> (pin_size_t pinNumber)</td></tr>
+<tr class="memdesc:a477bcf14abd2473b7a96db8d58b1cfff"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the setup has been done for the pin <br /></td></tr>
+<tr class="separator:a477bcf14abd2473b7a96db8d58b1cfff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98cf697d5553fb033ee3118a29e1d9de"><td class="memItemLeft" align="right" valign="top"><a id="a98cf697d5553fb033ee3118a29e1d9de"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_pin_function.html#a98cf697d5553fb033ee3118a29e1d9de">setSetup</a> (pin_size_t pinNumber)</td></tr>
+<tr class="memdesc:a98cf697d5553fb033ee3118a29e1d9de"><td class="mdescLeft">&#160;</td><td class="mdescRight">marks the pin setup as completed <br /></td></tr>
+<tr class="separator:a98cf697d5553fb033ee3118a29e1d9de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd903b9285ada85a62aaf8050c73e0a2"><td class="memItemLeft" align="right" valign="top"><a id="afd903b9285ada85a62aaf8050c73e0a2"></a>
+PinMode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_pin_function.html#afd903b9285ada85a62aaf8050c73e0a2">pinMode</a> (pin_size_t pinNumber)</td></tr>
+<tr class="memdesc:afd903b9285ada85a62aaf8050c73e0a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the pin mode <br /></td></tr>
+<tr class="separator:afd903b9285ada85a62aaf8050c73e0a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a401084d7d292015069f4c4b243d6086d"><td class="memItemLeft" align="right" valign="top"><a id="a401084d7d292015069f4c4b243d6086d"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_pin_function.html#a401084d7d292015069f4c4b243d6086d">pinModeStr</a> (pin_size_t pinNumber)</td></tr>
+<tr class="memdesc:a401084d7d292015069f4c4b243d6086d"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the PinMode as string <br /></td></tr>
+<tr class="separator:a401084d7d292015069f4c4b243d6086d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aceb05df306ae0203730bbdbcddbd55e3"><td class="memItemLeft" align="right" valign="top"><a id="aceb05df306ae0203730bbdbcddbd55e3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_pin_function.html#aceb05df306ae0203730bbdbcddbd55e3">clear</a> (pin_size_t pinNumber)</td></tr>
 <tr class="memdesc:aceb05df306ae0203730bbdbcddbd55e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">set gpio function to GPIO_FUNC_NULL <br /></td></tr>
 <tr class="separator:aceb05df306ae0203730bbdbcddbd55e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3556f79bd638642544d1b0e2aa98724b"><td class="memItemLeft" align="right" valign="top"><a id="a3556f79bd638642544d1b0e2aa98724b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_pin_function.html#a3556f79bd638642544d1b0e2aa98724b">usePin</a> (pin_size_t pinNumber, PinFunction pinFunction)</td></tr>
-<tr class="memdesc:a3556f79bd638642544d1b0e2aa98724b"><td class="mdescLeft">&#160;</td><td class="mdescRight">setup Pico pin init function bysed on functionality <br /></td></tr>
-<tr class="separator:a3556f79bd638642544d1b0e2aa98724b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2ddf33c3360533887f38f05b16e3970"><td class="memItemLeft" align="right" valign="top"><a id="af2ddf33c3360533887f38f05b16e3970"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_pin_function.html#af2ddf33c3360533887f38f05b16e3970">adcSelect</a> (int adc)</td></tr>
-<tr class="memdesc:af2ddf33c3360533887f38f05b16e3970"><td class="mdescLeft">&#160;</td><td class="mdescRight">select the ADC if it has been changed <br /></td></tr>
-<tr class="separator:af2ddf33c3360533887f38f05b16e3970"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01d0a1be35ef86f64d0a0108458891a1"><td class="memItemLeft" align="right" valign="top"><a id="a01d0a1be35ef86f64d0a0108458891a1"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_pin_function.html#a01d0a1be35ef86f64d0a0108458891a1">initADC</a> ()</td></tr>
-<tr class="memdesc:a01d0a1be35ef86f64d0a0108458891a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">calls adc_init() if necessary - returns true if it has been intialized (the first time) <br /></td></tr>
-<tr class="separator:a01d0a1be35ef86f64d0a0108458891a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a566eb183ed7c288e584f3f3bc792ea99"><td class="memItemLeft" align="right" valign="top"><a id="a566eb183ed7c288e584f3f3bc792ea99"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_pin_function.html#a566eb183ed7c288e584f3f3bc792ea99">usePin</a> (pin_size_t pinNumber, PinFunction pinFunction, <a class="el" href="class_pin_setup.html">PinSetup</a> *setup=nullptr)</td></tr>
+<tr class="memdesc:a566eb183ed7c288e584f3f3bc792ea99"><td class="mdescLeft">&#160;</td><td class="mdescRight">setup Pico pin init function bysed on functionality <br /></td></tr>
+<tr class="separator:a566eb183ed7c288e584f3f3bc792ea99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -116,10 +128,10 @@ static <a class="el" href="class_pico_pin_function.html">PicoPinFunction</a> &am
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a07c1f53eafac6a4cdf48914081b4d575"><td class="memItemLeft" align="right" valign="top"><a id="a07c1f53eafac6a4cdf48914081b4d575"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_pin_function.html#a07c1f53eafac6a4cdf48914081b4d575">PicoPinFunction</a> (int maxPins=40)</td></tr>
-<tr class="memdesc:a07c1f53eafac6a4cdf48914081b4d575"><td class="mdescLeft">&#160;</td><td class="mdescRight">protected constructor because this is a singleton <br /></td></tr>
-<tr class="separator:a07c1f53eafac6a4cdf48914081b4d575"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a505adc2ca84d4dddf7874bfe3f6dc1c2"><td class="memItemLeft" align="right" valign="top"><a id="a505adc2ca84d4dddf7874bfe3f6dc1c2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_pin_function.html#a505adc2ca84d4dddf7874bfe3f6dc1c2">PicoPinFunction</a> ()</td></tr>
+<tr class="memdesc:a505adc2ca84d4dddf7874bfe3f6dc1c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">protected constructor because this is a singleton <br /></td></tr>
+<tr class="separator:a505adc2ca84d4dddf7874bfe3f6dc1c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -134,7 +146,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>current_adc</b></td></
 <tr class="separator:adcc90b5cdebdf5f20e0e8633df4f6dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The pico requires that the function of the pin is defined. In Arduino, there is no such concept: so we do this at the first call of the corresponding function. </p>
+<div class="textblock"><p>The pico requires that the function of the pin is defined. In Arduino, there is no such concept - however we need to define if the pin is input or output. </p>
 <dl class="section author"><dt>Author</dt><dd>Phil Schatzmann </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>GPLv3 </dd></dl>
 </div><hr/>The documentation for this class was generated from the following file:<ul>

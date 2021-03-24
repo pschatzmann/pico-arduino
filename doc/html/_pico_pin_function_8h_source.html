@@ -79,139 +79,205 @@ $(function() {
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;hardware/pwm.h&quot;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;hardware/clocks.h&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">enum</span> PinFunction {PIN_FUNC_UNDEFINED, PIN_FUNC_GPIO, PIN_FUNC_ADC, PIN_FUNC_PWM};</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="struct_pin_info.html">   17</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_pin_info.html">PinInfo</a> {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    PinFunction pin_function;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    PinMode pinMode;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">bool</span> is_setup = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;};</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html">   31</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pico_pin_function.html">PicoPinFunction</a> {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keyword">static</span> <a class="code" href="class_pico_pin_function.html">PicoPinFunction</a> &amp;instance(){</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keyword">static</span> <a class="code" href="class_pico_pin_function.html">PicoPinFunction</a> *inst_ptr;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keywordflow">if</span> (inst_ptr==<span class="keyword">nullptr</span>){</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                inst_ptr = <span class="keyword">new</span> <a class="code" href="class_pico_pin_function.html#a07c1f53eafac6a4cdf48914081b4d575">PicoPinFunction</a>();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keywordflow">return</span> *inst_ptr;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        }</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#ade227c04faab8f1a9ce66d38324540ff">   42</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_pico_pin_function.html#ade227c04faab8f1a9ce66d38324540ff">setPinMode</a>(pin_size_t pinNumber, PinMode pinMode=INPUT){</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoGPIOFunction::PinMode&quot;</span>);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <span class="keywordtype">bool</span> changed = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordflow">if</span> ( pinInfo[pinNumber].pinMode != pinMode){</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoGPIOFunction::PinMode -&gt; has changed&quot;</span>);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                pinInfo[pinNumber].pinMode = pinMode;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                pinInfo[pinNumber].is_setup = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                changed = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keywordflow">return</span> changed;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        }</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#a539801eb678a141dfcd4dece03db20b5">   55</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_pico_pin_function.html#a539801eb678a141dfcd4dece03db20b5">isInput</a>(pin_size_t pinNumber){</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">return</span> pinInfo[pinNumber].pinMode==INPUT;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#abd7540297a179c6af13d6948c02c139d">   60</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_pico_pin_function.html#abd7540297a179c6af13d6948c02c139d">isOutput</a>(pin_size_t pinNumber){</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordflow">return</span> pinInfo[pinNumber].pinMode==OUTPUT;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        }</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#aceb05df306ae0203730bbdbcddbd55e3">   65</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_pin_function.html#aceb05df306ae0203730bbdbcddbd55e3">clear</a>(pin_size_t pinNumber){</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;clear&quot;</span>);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            gpio_set_function(pinNumber, GPIO_FUNC_NULL);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            pinInfo[pinNumber].is_setup = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#a3556f79bd638642544d1b0e2aa98724b">   72</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_pin_function.html#a3556f79bd638642544d1b0e2aa98724b">usePin</a>(pin_size_t pinNumber, PinFunction pinFunction){</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="comment">//Logger.debug(&quot;PicoGPIOFunction::usePin&quot;, Logger.toStr(pinNumber));</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <a class="code" href="struct_pin_info.html">PinInfo</a> *info = &amp; (pinInfo[pinNumber]);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="comment">//Logger.debug(&quot;is_setup:&quot;, pinInfo[pinNumber].is_setup ? &quot;true&quot; : &quot;false&quot;);</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">if</span> (!info-&gt;is_setup) {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoGPIOFunction::usePin&quot;</span>);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="comment">// just define the function</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                info-&gt;pin_function = pinFunction;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                <span class="keywordflow">switch</span>(info-&gt;pin_function){</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                    <span class="keywordflow">case</span> PIN_FUNC_GPIO:</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                        Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;setup PIN_FUNC_GPIO&quot;</span>);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                        gpio_init(pinNumber);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                        gpio_set_dir(pinNumber, info-&gt;pinMode==OUTPUT ? GPIO_OUT:  GPIO_IN);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                        <span class="keywordflow">if</span> (info-&gt;pinMode==INPUT_PULLUP) gpio_pull_up(pinNumber);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                        <span class="keywordflow">if</span> (info-&gt;pinMode==INPUT_PULLDOWN) gpio_pull_down(pinNumber);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                        info-&gt;is_setup = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                    <span class="keywordflow">case</span> PIN_FUNC_ADC:</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                        Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;setup PIN_FUNC_ADC&quot;</span>);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                        <a class="code" href="class_pico_pin_function.html#a01d0a1be35ef86f64d0a0108458891a1">initADC</a>();</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                        adc_gpio_init(pinNumber);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                        info-&gt;is_setup = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                    <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                         Logger.<a class="code" href="class_pico_logger.html#a2415f6c7f951c557df36e09b80f5650c">warning</a>(<span class="stringliteral">&quot;unsupported pin function&quot;</span>);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                         <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            }</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <span class="comment">// for the PIN_FUNC_ADC we might need to swith the adc</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <span class="keywordflow">if</span> (info-&gt;pin_function==PIN_FUNC_ADC){</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                <span class="keywordtype">int</span> adc = pinNumber - 26;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                <a class="code" href="class_pico_pin_function.html#af2ddf33c3360533887f38f05b16e3970">adcSelect</a>(adc);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            }</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        }</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#af2ddf33c3360533887f38f05b16e3970">  114</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_pico_pin_function.html#af2ddf33c3360533887f38f05b16e3970">adcSelect</a>(<span class="keywordtype">int</span> adc){</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="keywordtype">bool</span> changed = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            <span class="keywordflow">if</span> (current_adc != adc){</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;adc_select_input&quot;</span>,Logger.toStr(adc));</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                adc_select_input((id_t)adc);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                current_adc = adc;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                changed = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            } </div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <span class="keywordflow">return</span> changed;                   </div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        }</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
-<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#a01d0a1be35ef86f64d0a0108458891a1">  126</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_pico_pin_function.html#a01d0a1be35ef86f64d0a0108458891a1">initADC</a>(){</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            <span class="comment">// init if necessary</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            <span class="keywordtype">bool</span> result = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            <span class="keywordflow">if</span> (!adc_init_flag){</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#a7d506705cf2297e66ea30ca4a0d96e55">info</a>(<span class="stringliteral">&quot;adc_init&quot;</span>);</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                adc_init();</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                adc_init_flag = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                result = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            }</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        }</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <a class="code" href="struct_pin_info.html">PinInfo</a>* pinInfo;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        <span class="keywordtype">bool</span> adc_init_flag;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordtype">int</span> current_adc;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
-<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#a07c1f53eafac6a4cdf48914081b4d575">  144</a></span>&#160;        <a class="code" href="class_pico_pin_function.html#a07c1f53eafac6a4cdf48914081b4d575">PicoPinFunction</a>(<span class="keywordtype">int</span> maxPins=40){</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoGPIOFunction&quot;</span>);</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            pinInfo = <span class="keyword">new</span> <a class="code" href="struct_pin_info.html">PinInfo</a>[maxPins];</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        }</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;};</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
-<div class="ttc" id="aclass_pico_logger_html_a2415f6c7f951c557df36e09b80f5650c"><div class="ttname"><a href="class_pico_logger.html#a2415f6c7f951c557df36e09b80f5650c">PicoLogger::warning</a></div><div class="ttdeci">virtual void warning(const char *str, const char *str1=nullptr, const char *str2=nullptr)</div><div class="ttdoc">logs an warning</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:53</div></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#ifndef PICO_MAX_PIN_COUNT </span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define PICO_MAX_PIN_COUNT 40</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">enum</span> PinFunction {PIN_FUNC_UNDEFINED, PIN_FUNC_GPIO, PIN_FUNC_ADC, PIN_FUNC_PWM};</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">// Forward declaraton</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">class </span><a class="code" href="class_pin_setup.html">PinSetup</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="struct_pin_info.html">   26</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_pin_info.html">PinInfo</a> {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    PinFunction pin_function;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    PinMode pinMode;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">bool</span> is_setup = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">bool</span> is_defined = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;};</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_pin_setup.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pin_setup.html">PinSetup</a> {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setupPin(<a class="code" href="struct_pin_info.html">PinInfo</a> *info, pin_size_t pin) = 0;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> usePin(<a class="code" href="struct_pin_info.html">PinInfo</a> *info, pin_size_t pin) { <span class="keywordflow">return</span> <span class="keyword">false</span>; };</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;};</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="class_pin_setup_a_d_c.html">   49</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pin_setup_a_d_c.html">PinSetupADC</a> : <span class="keyword">public</span> <a class="code" href="class_pin_setup.html">PinSetup</a> {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_pin_setup_a_d_c.html">PinSetupADC</a> &amp;instance() {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">static</span> <a class="code" href="class_pin_setup_a_d_c.html">PinSetupADC</a> *ptr = <span class="keyword">new</span> <a class="code" href="class_pin_setup_a_d_c.html">PinSetupADC</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">return</span> *ptr;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setupPin(<a class="code" href="struct_pin_info.html">PinInfo</a> *info, pin_size_t pinNumber) {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PinSetupADC::setupPin&quot;</span>);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="class_pin_setup_a_d_c.html#aec170daf28d0c7035efe3a80601da54d">initADC</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> usePin(<a class="code" href="struct_pin_info.html">PinInfo</a> *info, pin_size_t pinNumber) {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordtype">int</span> adc = pinNumber - 26;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_pin_setup_a_d_c.html#a7dd2f386837bc07c598f9f6deb1defbf">adcSelect</a>(adc);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    };</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="class_pin_setup_a_d_c.html#a7dd2f386837bc07c598f9f6deb1defbf">   69</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_pin_setup_a_d_c.html#a7dd2f386837bc07c598f9f6deb1defbf">adcSelect</a>(<span class="keywordtype">int</span> adc){</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">bool</span> changed = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">if</span> (current_adc != adc){</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;adc_select_input&quot;</span>,Logger.toStr(adc));</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            adc_select_input((id_t)adc);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            current_adc = adc;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            changed = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        } </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">return</span> changed;                   </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="class_pin_setup_a_d_c.html#aec170daf28d0c7035efe3a80601da54d">   81</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_pin_setup_a_d_c.html#aec170daf28d0c7035efe3a80601da54d">initADC</a>(){</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="comment">// init if necessary</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordtype">bool</span> result = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">if</span> (!adc_init_flag){</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#a7d506705cf2297e66ea30ca4a0d96e55">info</a>(<span class="stringliteral">&quot;adc_init&quot;</span>);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            adc_init();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            adc_init_flag = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            result = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">bool</span> adc_init_flag = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">int</span> current_adc;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">// singleton ! use the instance method to get the object</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="class_pin_setup_a_d_c.html">PinSetupADC</a>() {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;};</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="class_pin_setup_g_p_i_o.html">  108</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pin_setup_g_p_i_o.html">PinSetupGPIO</a> : <span class="keyword">public</span> <a class="code" href="class_pin_setup.html">PinSetup</a> {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setupPin(<a class="code" href="struct_pin_info.html">PinInfo</a> *info, pin_size_t pinNumber) {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PinSetupGPIO::setupPin&quot;</span>);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        gpio_init(pinNumber);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        gpio_set_dir(pinNumber, info-&gt;pinMode==OUTPUT ? GPIO_OUT:  GPIO_IN);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordflow">if</span> (info-&gt;pinMode==INPUT_PULLUP) gpio_pull_up(pinNumber);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordflow">if</span> (info-&gt;pinMode==INPUT_PULLDOWN) gpio_pull_down(pinNumber);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        info-&gt;is_setup = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;};</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html">  129</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pico_pin_function.html">PicoPinFunction</a> {</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="keyword">static</span> <a class="code" href="class_pico_pin_function.html">PicoPinFunction</a> &amp;instance(){</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            <span class="keyword">static</span> <a class="code" href="class_pico_pin_function.html">PicoPinFunction</a> *inst_ptr;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            <span class="keywordflow">if</span> (inst_ptr==<span class="keyword">nullptr</span>){</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                inst_ptr = <span class="keyword">new</span> <a class="code" href="class_pico_pin_function.html#a505adc2ca84d4dddf7874bfe3f6dc1c2">PicoPinFunction</a>();</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            }</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            <span class="keywordflow">return</span> *inst_ptr;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#a51dc351b02d18c06f67326995d3b1092">  140</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_pico_pin_function.html#a51dc351b02d18c06f67326995d3b1092">setPinMode</a>(pin_size_t pinNumber, PinMode <a class="code" href="class_pico_pin_function.html#afd903b9285ada85a62aaf8050c73e0a2">pinMode</a>){</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoGPIOFunction::PinMode&quot;</span>);</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            <span class="keywordtype">bool</span> changed = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            <span class="keywordflow">if</span> (!(pinInfo[pinNumber].is_defined) || pinInfo[pinNumber].<a class="code" href="class_pico_pin_function.html#afd903b9285ada85a62aaf8050c73e0a2">pinMode</a> != <a class="code" href="class_pico_pin_function.html#afd903b9285ada85a62aaf8050c73e0a2">pinMode</a>){</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                pinInfo[pinNumber].pinMode = <a class="code" href="class_pico_pin_function.html#afd903b9285ada85a62aaf8050c73e0a2">pinMode</a>;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                pinInfo[pinNumber].is_setup = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                pinInfo[pinNumber].is_defined = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoGPIOFunction::PinMode -&gt; has changed&quot;</span>, Logger.toStr(pinNumber));</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoGPIOFunction::PinMode -&gt;&quot;</span>,<a class="code" href="class_pico_pin_function.html#a401084d7d292015069f4c4b243d6086d">pinModeStr</a>(pinNumber));</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                changed = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            }</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <span class="keywordflow">return</span> changed;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        }</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#ac50b85a78d2b8caff56441e2535575bf">  156</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_pico_pin_function.html#ac50b85a78d2b8caff56441e2535575bf">isModeDefined</a>(pin_size_t pinNumber) {</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            <span class="keywordflow">return</span> pinInfo[pinNumber].is_defined;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        }</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#a539801eb678a141dfcd4dece03db20b5">  161</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_pico_pin_function.html#a539801eb678a141dfcd4dece03db20b5">isInput</a>(pin_size_t pinNumber){</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <span class="keywordflow">return</span> pinInfo[pinNumber].pinMode==INPUT;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#abd7540297a179c6af13d6948c02c139d">  166</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_pico_pin_function.html#abd7540297a179c6af13d6948c02c139d">isOutput</a>(pin_size_t pinNumber){</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            <span class="keywordflow">return</span> pinInfo[pinNumber].pinMode==OUTPUT;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        }</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#a477bcf14abd2473b7a96db8d58b1cfff">  171</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_pico_pin_function.html#a477bcf14abd2473b7a96db8d58b1cfff">isSetup</a>(pin_size_t pinNumber){</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            <span class="keywordflow">return</span> pinInfo[pinNumber].is_setup;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        }</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#a98cf697d5553fb033ee3118a29e1d9de">  176</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_pin_function.html#a98cf697d5553fb033ee3118a29e1d9de">setSetup</a>(pin_size_t pinNumber){</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            pinInfo[pinNumber].is_setup = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        }</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#afd903b9285ada85a62aaf8050c73e0a2">  181</a></span>&#160;        PinMode <a class="code" href="class_pico_pin_function.html#afd903b9285ada85a62aaf8050c73e0a2">pinMode</a>(pin_size_t pinNumber) {</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            <span class="keywordflow">return</span> (PinMode) pinInfo[pinNumber].pinMode;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        }</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
+<div class="line"><a name="l00186"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#a401084d7d292015069f4c4b243d6086d">  186</a></span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="class_pico_pin_function.html#a401084d7d292015069f4c4b243d6086d">pinModeStr</a>(pin_size_t pinNumber){</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_pico_pin_function.html#ac50b85a78d2b8caff56441e2535575bf">isModeDefined</a>(pinNumber)) {</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                <span class="keywordflow">return</span> <a class="code" href="class_pico_pin_function.html#a539801eb678a141dfcd4dece03db20b5">isInput</a>(pinNumber) ? <span class="stringliteral">&quot;INPUT&quot;</span> : <span class="stringliteral">&quot;OUTPUT&quot;</span>;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;UNDEFINED&quot;</span>;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            }</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        }</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#aceb05df306ae0203730bbdbcddbd55e3">  195</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_pin_function.html#aceb05df306ae0203730bbdbcddbd55e3">clear</a>(pin_size_t pinNumber){</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;clear&quot;</span>);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            gpio_set_function(pinNumber, GPIO_FUNC_NULL);</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            pinInfo[pinNumber].is_setup = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        }</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#a566eb183ed7c288e584f3f3bc792ea99">  202</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_pin_function.html#a566eb183ed7c288e584f3f3bc792ea99">usePin</a>(pin_size_t pinNumber, PinFunction pinFunction, <a class="code" href="class_pin_setup.html">PinSetup</a> *setup = <span class="keyword">nullptr</span>){</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoGPIOFunction::usePin&quot;</span>, Logger.toStr(pinNumber));</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <a class="code" href="struct_pin_info.html">PinInfo</a> *info = &amp; (pinInfo[pinNumber]);</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            <span class="comment">//Logger.debug(&quot;is_setup:&quot;, pinInfo[pinNumber].is_setup ? &quot;true&quot; : &quot;false&quot;);</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            <span class="keywordflow">if</span> (!info-&gt;is_setup) {</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                <span class="comment">// initialize setup method</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                <span class="keywordflow">if</span> (setup!=<span class="keyword">nullptr</span>){</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                    setup-&gt;setupPin(info, pinNumber);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                    info-&gt;is_setup = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                }</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            }</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            <span class="comment">// fuctionality which needs to be executed each time before the pin use</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;            <span class="keywordflow">if</span> (setup!=<span class="keyword">nullptr</span>){</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                setup-&gt;usePin(info, pinNumber);</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            }</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        }</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        <a class="code" href="struct_pin_info.html">PinInfo</a>* pinInfo;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        <span class="keywordtype">bool</span> adc_init_flag;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        <span class="keywordtype">int</span> current_adc;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="class_pico_pin_function.html#a505adc2ca84d4dddf7874bfe3f6dc1c2">  226</a></span>&#160;        <a class="code" href="class_pico_pin_function.html#a505adc2ca84d4dddf7874bfe3f6dc1c2">PicoPinFunction</a>(){</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoGPIOFunction&quot;</span>);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            pinInfo = <span class="keyword">new</span> <a class="code" href="struct_pin_info.html">PinInfo</a>[PICO_MAX_PIN_COUNT];</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        }</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;};</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160; </div>
 <div class="ttc" id="aclass_pico_logger_html_a7d506705cf2297e66ea30ca4a0d96e55"><div class="ttname"><a href="class_pico_logger.html#a7d506705cf2297e66ea30ca4a0d96e55">PicoLogger::info</a></div><div class="ttdeci">virtual void info(const char *str, const char *str1=nullptr, const char *str2=nullptr)</div><div class="ttdoc">logs an info message</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:48</div></div>
 <div class="ttc" id="aclass_pico_logger_html_adc449e888e7102d342c904379fb7d10e"><div class="ttname"><a href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">PicoLogger::debug</a></div><div class="ttdeci">virtual void debug(const char *str, const char *str1=nullptr, const char *str2=nullptr)</div><div class="ttdoc">writes an debug message</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:58</div></div>
-<div class="ttc" id="aclass_pico_pin_function_html"><div class="ttname"><a href="class_pico_pin_function.html">PicoPinFunction</a></div><div class="ttdoc">The pico requires that the function of the pin is defined. In Arduino, there is no such concept: so w...</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:31</div></div>
-<div class="ttc" id="aclass_pico_pin_function_html_a01d0a1be35ef86f64d0a0108458891a1"><div class="ttname"><a href="class_pico_pin_function.html#a01d0a1be35ef86f64d0a0108458891a1">PicoPinFunction::initADC</a></div><div class="ttdeci">bool initADC()</div><div class="ttdoc">calls adc_init() if necessary - returns true if it has been intialized (the first time)</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:126</div></div>
-<div class="ttc" id="aclass_pico_pin_function_html_a07c1f53eafac6a4cdf48914081b4d575"><div class="ttname"><a href="class_pico_pin_function.html#a07c1f53eafac6a4cdf48914081b4d575">PicoPinFunction::PicoPinFunction</a></div><div class="ttdeci">PicoPinFunction(int maxPins=40)</div><div class="ttdoc">protected constructor because this is a singleton</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:144</div></div>
-<div class="ttc" id="aclass_pico_pin_function_html_a3556f79bd638642544d1b0e2aa98724b"><div class="ttname"><a href="class_pico_pin_function.html#a3556f79bd638642544d1b0e2aa98724b">PicoPinFunction::usePin</a></div><div class="ttdeci">void usePin(pin_size_t pinNumber, PinFunction pinFunction)</div><div class="ttdoc">setup Pico pin init function bysed on functionality</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:72</div></div>
-<div class="ttc" id="aclass_pico_pin_function_html_a539801eb678a141dfcd4dece03db20b5"><div class="ttname"><a href="class_pico_pin_function.html#a539801eb678a141dfcd4dece03db20b5">PicoPinFunction::isInput</a></div><div class="ttdeci">bool isInput(pin_size_t pinNumber)</div><div class="ttdoc">checks if the pin has been defined as input</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:55</div></div>
-<div class="ttc" id="aclass_pico_pin_function_html_abd7540297a179c6af13d6948c02c139d"><div class="ttname"><a href="class_pico_pin_function.html#abd7540297a179c6af13d6948c02c139d">PicoPinFunction::isOutput</a></div><div class="ttdeci">bool isOutput(pin_size_t pinNumber)</div><div class="ttdoc">checks if the pin has been defined as output</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:60</div></div>
-<div class="ttc" id="aclass_pico_pin_function_html_aceb05df306ae0203730bbdbcddbd55e3"><div class="ttname"><a href="class_pico_pin_function.html#aceb05df306ae0203730bbdbcddbd55e3">PicoPinFunction::clear</a></div><div class="ttdeci">void clear(pin_size_t pinNumber)</div><div class="ttdoc">set gpio function to GPIO_FUNC_NULL</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:65</div></div>
-<div class="ttc" id="aclass_pico_pin_function_html_ade227c04faab8f1a9ce66d38324540ff"><div class="ttname"><a href="class_pico_pin_function.html#ade227c04faab8f1a9ce66d38324540ff">PicoPinFunction::setPinMode</a></div><div class="ttdeci">bool setPinMode(pin_size_t pinNumber, PinMode pinMode=INPUT)</div><div class="ttdoc">defines the actual Arduino PinMode</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:42</div></div>
-<div class="ttc" id="aclass_pico_pin_function_html_af2ddf33c3360533887f38f05b16e3970"><div class="ttname"><a href="class_pico_pin_function.html#af2ddf33c3360533887f38f05b16e3970">PicoPinFunction::adcSelect</a></div><div class="ttdeci">bool adcSelect(int adc)</div><div class="ttdoc">select the ADC if it has been changed</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:114</div></div>
-<div class="ttc" id="astruct_pin_info_html"><div class="ttname"><a href="struct_pin_info.html">PinInfo</a></div><div class="ttdoc">Information about an the status and the Arduino PinMode of an individual pin.</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:17</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html"><div class="ttname"><a href="class_pico_pin_function.html">PicoPinFunction</a></div><div class="ttdoc">The pico requires that the function of the pin is defined. In Arduino, there is no such concept - how...</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:129</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html_a401084d7d292015069f4c4b243d6086d"><div class="ttname"><a href="class_pico_pin_function.html#a401084d7d292015069f4c4b243d6086d">PicoPinFunction::pinModeStr</a></div><div class="ttdeci">const char * pinModeStr(pin_size_t pinNumber)</div><div class="ttdoc">returns the PinMode as string</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:186</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html_a477bcf14abd2473b7a96db8d58b1cfff"><div class="ttname"><a href="class_pico_pin_function.html#a477bcf14abd2473b7a96db8d58b1cfff">PicoPinFunction::isSetup</a></div><div class="ttdeci">bool isSetup(pin_size_t pinNumber)</div><div class="ttdoc">checks if the setup has been done for the pin</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:171</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html_a505adc2ca84d4dddf7874bfe3f6dc1c2"><div class="ttname"><a href="class_pico_pin_function.html#a505adc2ca84d4dddf7874bfe3f6dc1c2">PicoPinFunction::PicoPinFunction</a></div><div class="ttdeci">PicoPinFunction()</div><div class="ttdoc">protected constructor because this is a singleton</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:226</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html_a51dc351b02d18c06f67326995d3b1092"><div class="ttname"><a href="class_pico_pin_function.html#a51dc351b02d18c06f67326995d3b1092">PicoPinFunction::setPinMode</a></div><div class="ttdeci">bool setPinMode(pin_size_t pinNumber, PinMode pinMode)</div><div class="ttdoc">defines the actual Arduino PinMode. Returns true if it needed to be changed</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:140</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html_a539801eb678a141dfcd4dece03db20b5"><div class="ttname"><a href="class_pico_pin_function.html#a539801eb678a141dfcd4dece03db20b5">PicoPinFunction::isInput</a></div><div class="ttdeci">bool isInput(pin_size_t pinNumber)</div><div class="ttdoc">checks if the pin has been defined as input</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:161</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html_a566eb183ed7c288e584f3f3bc792ea99"><div class="ttname"><a href="class_pico_pin_function.html#a566eb183ed7c288e584f3f3bc792ea99">PicoPinFunction::usePin</a></div><div class="ttdeci">void usePin(pin_size_t pinNumber, PinFunction pinFunction, PinSetup *setup=nullptr)</div><div class="ttdoc">setup Pico pin init function bysed on functionality</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:202</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html_a98cf697d5553fb033ee3118a29e1d9de"><div class="ttname"><a href="class_pico_pin_function.html#a98cf697d5553fb033ee3118a29e1d9de">PicoPinFunction::setSetup</a></div><div class="ttdeci">void setSetup(pin_size_t pinNumber)</div><div class="ttdoc">marks the pin setup as completed</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:176</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html_abd7540297a179c6af13d6948c02c139d"><div class="ttname"><a href="class_pico_pin_function.html#abd7540297a179c6af13d6948c02c139d">PicoPinFunction::isOutput</a></div><div class="ttdeci">bool isOutput(pin_size_t pinNumber)</div><div class="ttdoc">checks if the pin has been defined as output</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:166</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html_ac50b85a78d2b8caff56441e2535575bf"><div class="ttname"><a href="class_pico_pin_function.html#ac50b85a78d2b8caff56441e2535575bf">PicoPinFunction::isModeDefined</a></div><div class="ttdeci">bool isModeDefined(pin_size_t pinNumber)</div><div class="ttdoc">checks if the mode was defined for the pin</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:156</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html_aceb05df306ae0203730bbdbcddbd55e3"><div class="ttname"><a href="class_pico_pin_function.html#aceb05df306ae0203730bbdbcddbd55e3">PicoPinFunction::clear</a></div><div class="ttdeci">void clear(pin_size_t pinNumber)</div><div class="ttdoc">set gpio function to GPIO_FUNC_NULL</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:195</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html_afd903b9285ada85a62aaf8050c73e0a2"><div class="ttname"><a href="class_pico_pin_function.html#afd903b9285ada85a62aaf8050c73e0a2">PicoPinFunction::pinMode</a></div><div class="ttdeci">PinMode pinMode(pin_size_t pinNumber)</div><div class="ttdoc">returns the pin mode</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:181</div></div>
+<div class="ttc" id="aclass_pin_setup_a_d_c_html"><div class="ttname"><a href="class_pin_setup_a_d_c.html">PinSetupADC</a></div><div class="ttdoc">Pin Initialization for ADC.</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:49</div></div>
+<div class="ttc" id="aclass_pin_setup_a_d_c_html_a7dd2f386837bc07c598f9f6deb1defbf"><div class="ttname"><a href="class_pin_setup_a_d_c.html#a7dd2f386837bc07c598f9f6deb1defbf">PinSetupADC::adcSelect</a></div><div class="ttdeci">bool adcSelect(int adc)</div><div class="ttdoc">select the ADC if it has been changed</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:69</div></div>
+<div class="ttc" id="aclass_pin_setup_a_d_c_html_aec170daf28d0c7035efe3a80601da54d"><div class="ttname"><a href="class_pin_setup_a_d_c.html#aec170daf28d0c7035efe3a80601da54d">PinSetupADC::initADC</a></div><div class="ttdeci">bool initADC()</div><div class="ttdoc">calls adc_init() if necessary - returns true if it has been intialized (the first time)</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:81</div></div>
+<div class="ttc" id="aclass_pin_setup_g_p_i_o_html"><div class="ttname"><a href="class_pin_setup_g_p_i_o.html">PinSetupGPIO</a></div><div class="ttdoc">Pin Initialization for GPIO.</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:108</div></div>
+<div class="ttc" id="aclass_pin_setup_html"><div class="ttname"><a href="class_pin_setup.html">PinSetup</a></div><div class="ttdoc">Base class for function specific pin setup and pin use functionality.</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:38</div></div>
+<div class="ttc" id="astruct_pin_info_html"><div class="ttname"><a href="struct_pin_info.html">PinInfo</a></div><div class="ttdoc">Information about an the status and the Arduino PinMode of an individual pin.</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:26</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -79,182 +79,511 @@ $(function() {
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;hardware/clocks.h&quot;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;PicoPinFunction.h&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef PWM_MAX_NUMER</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define PWM_MAX_NUMER 65535</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#ifndef PWM_MAX_NUMER</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// 65535</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define PWM_MAX_NUMER 1000</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html">   24</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pico_p_w_m_nano.html">PicoPWMNano</a> {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#aab43f7ce6ba7d8189f3e1d96eeeddd9a">   27</a></span>&#160;        <a class="code" href="class_pico_p_w_m_nano.html#aab43f7ce6ba7d8189f3e1d96eeeddd9a">PicoPWMNano</a>(uint64_t periodNanoSeconds){</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoPWMNano&quot;</span>);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            period_nano_sec = periodNanoSeconds;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="comment">// the maximum number that the pwm_config_set_wrap &amp; and pwm_set_chan_level supports is 65535</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            rangeDivider = (1.0 * period_nano_sec) / PWM_MAX_NUMER;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        }</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#a042ac218ecb0d014020af202d133facf">   35</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m_nano.html#a042ac218ecb0d014020af202d133facf">begin</a>(pin_size_t pin, uint64_t initialDutyCyleNanoSeconds=0){</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoPWMNano::begin&quot;</span>);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_pico_p_w_m_nano.html#ae2da62f75f03fe4ecafdd57ccd9940a6">setupConfig</a>()){</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;gpio_set_function&quot;</span>);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                gpio_set_function(pin, GPIO_FUNC_PWM);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <span class="comment">// determine the slice number and channel</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                uint8_t slice_num = pwm_gpio_to_slice_num(pin);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <span class="comment">// uint8_t channel = pwm_gpio_to_channel(pinNumber);</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;pwm_init&quot;</span>);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                pwm_init(slice_num, &amp;config, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <a class="code" href="class_pico_p_w_m_nano.html#ad4ad99e4594cc4d0065040720f989dd5">setDutyCycle</a>(pin, initialDutyCyleNanoSeconds);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            }</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#ab2f8e9259fb23c43e0e39b9d41747fb1">   50</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m_nano.html#ab2f8e9259fb23c43e0e39b9d41747fb1">end</a>(pin_size_t pin){</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoPWMNano::end&quot;</span>);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <a class="code" href="class_pico_p_w_m_nano.html#ad4ad99e4594cc4d0065040720f989dd5">setDutyCycle</a>(pin, 0);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            PinFunction.clear(pin);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#ad4ad99e4594cc4d0065040720f989dd5">   57</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m_nano.html#ad4ad99e4594cc4d0065040720f989dd5">setDutyCycle</a>(pin_size_t pin, uint64_t dutyCyleNanoSeconds){</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            uint slice_num = pwm_gpio_to_slice_num(pin);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            uint channel = pwm_gpio_to_channel(pin);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            uint16_t value = (1.0 * dutyCyleNanoSeconds) / rangeDivider;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keywordflow">if</span> (Logger.<a class="code" href="class_pico_logger.html#aadc33b92f32997942b0943f3964f283c">isLogging</a>(PicoLogger::Debug)){</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                <span class="keywordtype">char</span> str[40];</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                sprintf(str,<span class="stringliteral">&quot;%lu&quot;</span>, dutyCyleNanoSeconds);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PWM duty cycle ns:&quot;</span>,str);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                sprintf(str,<span class="stringliteral">&quot;%lu&quot;</span>, value);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PWM duty cycle(internal):&quot;</span>,str);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            pwm_set_chan_level(slice_num, channel, value);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#a30ee932272c6ad12e9362c5923ed5f35">   73</a></span>&#160;        uint64_t <a class="code" href="class_pico_p_w_m_nano.html#a30ee932272c6ad12e9362c5923ed5f35">frequency</a>(uint64_t periodNanoSeconds){</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">return</span> 1000000000l / period_nano_sec;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#a036d0fca293c21b4294c46d24d91a6d8">   78</a></span>&#160;        uint64_t <a class="code" href="class_pico_p_w_m_nano.html#a036d0fca293c21b4294c46d24d91a6d8">frequency</a>(){</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="class_pico_p_w_m_nano.html#a036d0fca293c21b4294c46d24d91a6d8">frequency</a>(period_nano_sec);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#a6f64a5e42e0561086d46db591b2e241e">   83</a></span>&#160;        uint64_t <a class="code" href="class_pico_p_w_m_nano.html#a6f64a5e42e0561086d46db591b2e241e">period</a>() {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordflow">return</span> period_nano_sec;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#ifndef PWM_READ_REPEAT</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define PWM_READ_REPEAT 10</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">inline</span> uint32_t pico_pwm_wrap_count;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">inline</span> <span class="keywordtype">int</span> pico_pwm_actual_pin;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> on_pico_pwm_wrap() {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">// Clear the interrupt flag that brought us here</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    pwm_clear_irq(pwm_gpio_to_slice_num(pico_pwm_actual_pin));</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">// increment the wrap counter</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    pico_pwm_wrap_count++;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;};</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">float</span> frequency(uint64_t period_nano_sec){</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">return</span> 1000000000.0 / period_nano_sec;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_writer.html">   46</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pico_p_w_m_writer.html">PicoPWMWriter</a> : <span class="keyword">public</span> <a class="code" href="class_pin_setup.html">PinSetup</a> {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_writer.html#acad4aabe62de3e27a95ed5df3817d68d">   49</a></span>&#160;        <a class="code" href="class_pico_p_w_m_writer.html#acad4aabe62de3e27a95ed5df3817d68d">PicoPWMWriter</a>(uint64_t periodNanoSeconds){</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoPWMWriter&quot;</span>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            period_nano_sec = periodNanoSeconds;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            tick_period_nano_sec =  period_nano_sec / PWM_MAX_NUMER;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_writer.html#a0e9a1941e8bf4bdacf1bafca2cd3544f">   56</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m_writer.html#a0e9a1941e8bf4bdacf1bafca2cd3544f">begin</a>(pin_size_t pin, uint64_t initialDutyCyleNanoSeconds=0){</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoPWMWriter::begin&quot;</span>, Logger.toStr(pin));</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            initial_duty_cycle = initialDutyCyleNanoSeconds;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="comment">// this is executed only once per instance</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <a class="code" href="class_pico_p_w_m_writer.html#af1fd7276dea568c12ecd91bca952a8d8">setupConfig</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="comment">// this is executed only once per pin</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            pinFunction.<a class="code" href="class_pico_pin_function.html#a566eb183ed7c288e584f3f3bc792ea99">usePin</a>(pin, PIN_FUNC_PWM, <span class="keyword">this</span>);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_writer.html#ac4b2f2bd2291f588dc030198b1b4c54f">   66</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m_writer.html#ac4b2f2bd2291f588dc030198b1b4c54f">setupPin</a>(<a class="code" href="struct_pin_info.html">PinInfo</a> *info, pin_size_t pinNumber) {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoPWMWriter::setupPin&quot;</span>);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="comment">// determine the slice number and channel</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            uint8_t slice_num = pwm_gpio_to_slice_num(pinNumber);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="comment">// start only in output mode</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;pwm_init for  OUTPUT&quot;</span>);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            pwm_init(slice_num, &amp;config, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <a class="code" href="class_pico_p_w_m_writer.html#ac6be86ef5c952e774a39fdbb4bf98e8c">setDutyCycle</a>(pinNumber, initial_duty_cycle);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;gpio_set_function&quot;</span>);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            gpio_set_function(pinNumber, GPIO_FUNC_PWM);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_writer.html#acd0e44e44b17903c78b39731c625bfa5">   81</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m_writer.html#acd0e44e44b17903c78b39731c625bfa5">end</a>(pin_size_t pin){</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoPWMWriter::end&quot;</span>);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <a class="code" href="class_pico_p_w_m_writer.html#ac6be86ef5c952e774a39fdbb4bf98e8c">setDutyCycle</a>(pin, 0);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            PinFunction.clear(pin);</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        }</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        uint64_t period_nano_sec;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        pwm_config config;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordtype">float</span> rangeDivider; <span class="comment">// values must be &lt;= 65535</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <a class="code" href="class_pico_pin_function.html">PicoPinFunction</a> pinFunction = PicoPinFunction::instance();</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordtype">bool</span> is_config_done = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#ae2da62f75f03fe4ecafdd57ccd9940a6">   96</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_pico_p_w_m_nano.html#ae2da62f75f03fe4ecafdd57ccd9940a6">setupConfig</a>(){</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <span class="keywordflow">if</span> (!is_config_done) {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoPWMNano::setupConfig&quot;</span>);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                is_config_done = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                config = pwm_get_default_config();</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                uint32_t freq = clock_get_hz(clk_sys);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                <span class="keywordtype">float</span> dividerClock =  (1.0 * freq) / <a class="code" href="class_pico_p_w_m_nano.html#a036d0fca293c21b4294c46d24d91a6d8">frequency</a>();  </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                <span class="comment">// divider for a full cycle</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                <span class="keywordtype">float</span> divider = dividerClock / PWM_MAX_NUMER;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                <span class="comment">// this should actually be identical with PWM_MAX_NUMER</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                uint16_t wrap = PWM_MAX_NUMER ;</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_writer.html#ac6be86ef5c952e774a39fdbb4bf98e8c">   88</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m_writer.html#ac6be86ef5c952e774a39fdbb4bf98e8c">setDutyCycle</a>(pin_size_t pin, uint64_t dutyCyleNanoSeconds){</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoPWMWriter::setDutyCycle&quot;</span>);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            uint slice_num = pwm_gpio_to_slice_num(pin);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            uint channel = pwm_gpio_to_channel(pin);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            uint16_t value = (1.0 * dutyCyleNanoSeconds) / tick_period_nano_sec;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="keywordflow">if</span> (Logger.<a class="code" href="class_pico_logger.html#aadc33b92f32997942b0943f3964f283c">isLogging</a>(PicoLogger::Debug)){</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                <span class="keywordtype">char</span> str[40];</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                sprintf(str,<span class="stringliteral">&quot;%lu&quot;</span>, dutyCyleNanoSeconds);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PWM duty cycle ns:&quot;</span>,str);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                sprintf(str,<span class="stringliteral">&quot;%lu&quot;</span>, value);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PWM duty cycle(internal):&quot;</span>,str);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            pwm_set_chan_level(slice_num, channel, value);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_writer.html#a19e9bb9b5c34f2913b4c285c0650ad10">  105</a></span>&#160;        <span class="keywordtype">float</span> <a class="code" href="class_pico_p_w_m_writer.html#a19e9bb9b5c34f2913b4c285c0650ad10">frequency</a>(){</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            return ::frequency(period_nano_sec);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                <span class="keywordflow">if</span> (Logger.<a class="code" href="class_pico_logger.html#aadc33b92f32997942b0943f3964f283c">isLogging</a>(PicoLogger::Debug)){</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                    <span class="keywordtype">char</span> str[80];</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                    sprintf(str,<span class="stringliteral">&quot;%ul&quot;</span>, period_nano_sec);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                    Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;Period ns:&quot;</span>, str);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                    sprintf(str,<span class="stringliteral">&quot;%f&quot;</span>, rangeDivider);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                    Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;Range divider:&quot;</span>, str);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                    sprintf(str,<span class="stringliteral">&quot;%d&quot;</span>, <a class="code" href="class_pico_p_w_m_nano.html#a036d0fca293c21b4294c46d24d91a6d8">frequency</a>());</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                    Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PWM hz:&quot;</span>, str);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                    sprintf(str,<span class="stringliteral">&quot;%d&quot;</span>, freq);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                    Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;Systemclock hz:&quot;</span>, str);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                    sprintf(str,<span class="stringliteral">&quot;%f&quot;</span>, divider);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                    Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PWM divider:&quot;</span>, str);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                    sprintf(str,<span class="stringliteral">&quot;%d&quot;</span>, wrap);</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                    Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PWM wrap:&quot;</span>, str);</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                }</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        </div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                <span class="comment">// Set divider, reduces counter clock to sysclock/this value</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                pwm_config_set_clkdiv(&amp;config, divider);</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                pwm_config_set_wrap(&amp;config, wrap);</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            }</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        }</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;      </div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;};</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
-<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html">  141</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pico_p_w_m.html">PicoPWM</a> {</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#a4474bc1330f166071c693fee1ebf84e7">  144</a></span>&#160;        <a class="code" href="class_pico_p_w_m.html#a4474bc1330f166071c693fee1ebf84e7">PicoPWM</a>(uint64_t <a class="code" href="class_pico_p_w_m.html#a61c593ccd3e6035d1b086fb5116ece82">frequency</a>, uint64_t maxValue){</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            <span class="comment">// convert frequency to period </span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            period_nano_sec = 1000000000l / <a class="code" href="class_pico_p_w_m.html#a61c593ccd3e6035d1b086fb5116ece82">frequency</a>;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            nano = <span class="keyword">new</span> <a class="code" href="class_pico_p_w_m_nano.html">PicoPWMNano</a>(period_nano_sec);</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            max_value = maxValue;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        }</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
-<div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#a3201442296529e2d8330f0f60181384e">  152</a></span>&#160;        <a class="code" href="class_pico_p_w_m.html#a3201442296529e2d8330f0f60181384e">~PicoPWM</a>(){</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            <span class="keyword">delete</span> nano;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;         }</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
-<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#a9936897354ee31c734227e31e35e5873">  157</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m.html#a9936897354ee31c734227e31e35e5873">begin</a>(pin_size_t pin, uint64_t initalValue=0){</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            nano-&gt;<a class="code" href="class_pico_p_w_m_nano.html#a042ac218ecb0d014020af202d133facf">begin</a>(pin, initalValue);</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        }</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
-<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#a2cc25d863102a78c330b5b03efbf9902">  162</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m.html#a2cc25d863102a78c330b5b03efbf9902">end</a>(pin_size_t pin){</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            nano-&gt;<a class="code" href="class_pico_p_w_m_nano.html#ab2f8e9259fb23c43e0e39b9d41747fb1">end</a>(pin);</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        }</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
-<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#a55f25f43a56fe458c7d843eb465c2ffd">  167</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m.html#a55f25f43a56fe458c7d843eb465c2ffd">write</a>(pin_size_t pin, uint64_t value){</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            nano-&gt;<a class="code" href="class_pico_p_w_m_nano.html#ad4ad99e4594cc4d0065040720f989dd5">setDutyCycle</a>(pin, <a class="code" href="class_pico_p_w_m.html#ad5580bede2cf35ca6810eddd3bf3ebc1">valueToDutyCycle</a>(value));</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        }</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
-<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#a887e7ebf412d75118fdf3bf323bdd2a3">  172</a></span>&#160;        uint64_t <a class="code" href="class_pico_p_w_m.html#a887e7ebf412d75118fdf3bf323bdd2a3">period</a>() {</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            <span class="keywordflow">return</span> nano-&gt;<a class="code" href="class_pico_p_w_m_nano.html#a6f64a5e42e0561086d46db591b2e241e">period</a>();</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="comment">// frequency of a single counter tick</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordtype">float</span> frequencyTick(){</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            return ::frequency(tick_period_nano_sec);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="comment">// period of a single tick in nanoseconds</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordtype">float</span> periodTick(){</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            <span class="keywordflow">return</span> tick_period_nano_sec;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_writer.html#a935a3a914123315c0e021cfba5c07095">  120</a></span>&#160;        uint64_t <a class="code" href="class_pico_p_w_m_writer.html#a935a3a914123315c0e021cfba5c07095">period</a>() {</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            <span class="keywordflow">return</span> period_nano_sec;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <a class="code" href="class_pico_pin_function.html">PicoPinFunction</a> pinFunction = PicoPinFunction::instance();</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        PinMode pin_mode;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        pwm_config config;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        uint64_t period_nano_sec;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        uint64_t initial_duty_cycle;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordtype">float</span> tick_period_nano_sec; <span class="comment">// values must be &lt;= 65535</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="keywordtype">bool</span> is_config_done = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_writer.html#af1fd7276dea568c12ecd91bca952a8d8">  134</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_pico_p_w_m_writer.html#af1fd7276dea568c12ecd91bca952a8d8">setupConfig</a>(){</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            <span class="keywordflow">if</span> (!is_config_done) {</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoPWMWriter::setupConfig&quot;</span>);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                is_config_done = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                uint16_t wrap = PWM_MAX_NUMER ;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                config = pwm_get_default_config();</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                <span class="comment">// this should actually be identical with PWM_MAX_NUMER</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                uint32_t sys_clock_freq = clock_get_hz(clk_sys);</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                <span class="comment">// divider to achieve the requested periodNanoSeconds </span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                <span class="keywordtype">float</span> dividerTick =  (1.0 * sys_clock_freq) / frequencyTick();  </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                logConfig(sys_clock_freq, dividerTick, wrap);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                <span class="comment">// Set divider, reduces counter clock to sysclock/this value</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                pwm_config_set_clkdiv(&amp;config, dividerTick);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                pwm_config_set_wrap(&amp;config, wrap);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            }</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        }   </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordtype">void</span> logConfig(uint32_t sys_clock_freq, <span class="keywordtype">float</span> dividerTick, uint16_t wrap ) {</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            <span class="keywordflow">if</span> (Logger.<a class="code" href="class_pico_logger.html#aadc33b92f32997942b0943f3964f283c">isLogging</a>(PicoLogger::Debug)){</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                <span class="keywordtype">char</span> str[80];</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                sprintf(str,<span class="stringliteral">&quot;%lu&quot;</span>, period_nano_sec);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;Period ns:&quot;</span>, str);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                sprintf(str,<span class="stringliteral">&quot;%f&quot;</span>, tick_period_nano_sec);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;Tick period ns:&quot;</span>, str);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                sprintf(str,<span class="stringliteral">&quot;%f&quot;</span>, <a class="code" href="class_pico_p_w_m_writer.html#a19e9bb9b5c34f2913b4c285c0650ad10">frequency</a>());</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PWM hz:&quot;</span>, str);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                sprintf(str,<span class="stringliteral">&quot;%f&quot;</span>, sys_clock_freq);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;Systemclock hz:&quot;</span>, str);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                sprintf(str,<span class="stringliteral">&quot;%f&quot;</span>, dividerTick);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;Tick divider:&quot;</span>, str);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                sprintf(str,<span class="stringliteral">&quot;%d&quot;</span>, wrap);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PWM wrap:&quot;</span>, str);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            }</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        }</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;};</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
-<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#a61c593ccd3e6035d1b086fb5116ece82">  177</a></span>&#160;        uint64_t <a class="code" href="class_pico_p_w_m.html#a61c593ccd3e6035d1b086fb5116ece82">frequency</a>(){</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            <span class="keywordflow">return</span> nano-&gt;<a class="code" href="class_pico_p_w_m_nano.html#a30ee932272c6ad12e9362c5923ed5f35">frequency</a>();</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        }</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <a class="code" href="class_pico_p_w_m_nano.html">PicoPWMNano</a> *nano;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        int64_t max_value;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        uint64_t period_nano_sec;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
-<div class="line"><a name="l00187"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#ad5580bede2cf35ca6810eddd3bf3ebc1">  187</a></span>&#160;        uint64_t <a class="code" href="class_pico_p_w_m.html#ad5580bede2cf35ca6810eddd3bf3ebc1">valueToDutyCycle</a>(uint64_t value){</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            <span class="keywordflow">return</span> map(value, 0, max_value, 0, period_nano_sec);</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        }</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;};</div>
+<div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_reader.html">  180</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pico_p_w_m_reader.html">PicoPWMReader</a> : <span class="keyword">public</span> <a class="code" href="class_pin_setup.html">PinSetup</a> {</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keyword">public</span>:                 </div>
+<div class="line"><a name="l00188"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_reader.html#a780baa53189b84d5224308dbb1b1a77f">  188</a></span>&#160;        <a class="code" href="class_pico_p_w_m_reader.html#a780baa53189b84d5224308dbb1b1a77f">PicoPWMReader</a>(uint64_t periodNanoSeconds){</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoPWMReader&quot;</span>);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            period_nano_sec = periodNanoSeconds;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            tick_period_nano_sec =  period_nano_sec / PWM_MAX_NUMER;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        }</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_reader.html#a9bc41aed54352bdfd18f11ac0a46f94d">  195</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m_reader.html#a9bc41aed54352bdfd18f11ac0a46f94d">begin</a>(pin_size_t pinNumber){</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoPWMReader::begin&quot;</span>, Logger.toStr(pinNumber));</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <span class="comment">// this is executed only once per instance</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            <a class="code" href="class_pico_p_w_m_reader.html#a8114df548eb5bbe0a2b4e1d16f8db681">setupConfig</a>();</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            <span class="comment">// force input mode</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            pinFunction.<a class="code" href="class_pico_pin_function.html#a51dc351b02d18c06f67326995d3b1092">setPinMode</a>(pinNumber, INPUT);</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            pin_mode = pinFunction.<a class="code" href="class_pico_pin_function.html#afd903b9285ada85a62aaf8050c73e0a2">pinMode</a>(pinNumber);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            <span class="comment">// this is executed only once per pin</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            pinFunction.<a class="code" href="class_pico_pin_function.html#a566eb183ed7c288e584f3f3bc792ea99">usePin</a>(pinNumber, PIN_FUNC_PWM, <span class="keyword">this</span>);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        }</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_reader.html#a72da6a620b0605ac2e0fb3fdd733fa8e">  210</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m_reader.html#a72da6a620b0605ac2e0fb3fdd733fa8e">setupPin</a>(<a class="code" href="struct_pin_info.html">PinInfo</a> *info, pin_size_t pinNumber) {</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoPWMReader::setupPin&quot;</span>);</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            <span class="comment">// determine the slice number and channel</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            uint8_t slice_num = pwm_gpio_to_slice_num(pinNumber);</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;            <span class="comment">// start only in output mode</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;pwm_init for INPUT&quot;</span>);</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            <span class="comment">// READ Mode -&gt; count high !</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            pwm_config_set_clkdiv_mode(&amp;config, PWM_DIV_B_HIGH);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            pwm_init(slice_num, &amp;config, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;gpio_set_function&quot;</span>);</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            gpio_set_function(pinNumber, GPIO_FUNC_PWM);</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        }</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_reader.html#ae43529726c9a072b60e075874d186a20">  226</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m_reader.html#ae43529726c9a072b60e075874d186a20">end</a>(pin_size_t pin){</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoPWMReader::end&quot;</span>);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            PinFunction.clear(pin);</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        }</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
+<div class="line"><a name="l00232"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_reader.html#a78e8fd0aaf3ec3d1ba076d81fea49a1f">  232</a></span>&#160;        uint64_t <a class="code" href="class_pico_p_w_m_reader.html#a78e8fd0aaf3ec3d1ba076d81fea49a1f">measureDutyCycle</a>(uint gpio) {</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="class_pico_p_w_m_reader.html#ad0ef4558f6ddd0120ab5e8e022b27200">measureDutyCyclePercent</a>(gpio) *  <a class="code" href="class_pico_p_w_m_reader.html#a650663b6fdc7dbab2ea3a2573682e1be">period</a>() / 100.0 ;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        }</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160; </div>
+<div class="line"><a name="l00237"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_reader.html#ad0ef4558f6ddd0120ab5e8e022b27200">  237</a></span>&#160;        <span class="keywordtype">float</span> <a class="code" href="class_pico_p_w_m_reader.html#ad0ef4558f6ddd0120ab5e8e022b27200">measureDutyCyclePercent</a>(uint gpio) {</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoPWMReader::measureDutyCycle&quot;</span>);</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            <span class="keywordtype">float</span> result = 0;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            <span class="keywordflow">if</span> (pin_mode==INPUT) {</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;                <span class="comment">// Only the PWM B pins can be used as inputs.</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                <span class="keywordflow">if</span>(pwm_gpio_to_channel(gpio) == PWM_CHAN_B) {</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                    <span class="comment">// used by interrupt handler</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                    pico_pwm_actual_pin = gpio;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                    uint slice_num = pwm_gpio_to_slice_num(gpio);</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                    <span class="comment">// Mask our slice&#39;s IRQ output into the PWM block&#39;s single interrupt line,</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                    <span class="comment">// and register our interrupt handler</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                    pwm_clear_irq(slice_num);</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                    pwm_set_irq_enabled(slice_num, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                    irq_set_exclusive_handler(PWM_IRQ_WRAP, on_pico_pwm_wrap);</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                    irq_set_enabled(PWM_IRQ_WRAP, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160; </div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                    <span class="comment">// measure input pin</span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                    uint64_t counter = count(slice_num, PWM_READ_REPEAT);</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160; </div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                    <span class="comment">// clean up irq</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;                    pwm_clear_irq(slice_num);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;                    pwm_set_irq_enabled(slice_num, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                    irq_remove_handler (PWM_IRQ_WRAP, on_pico_pwm_wrap);</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                    <span class="comment">// convert to percent</span></div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                    result =  100.0 * counter / max_ticks_per_period;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                    Logger.<a class="code" href="class_pico_logger.html#a4dcc8759e80fb78c3553297e5fde99fe">error</a>(<span class="stringliteral">&quot;measureDutyCycle() only allowed the PWM B pins&quot;</span>);</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                }</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#a4dcc8759e80fb78c3553297e5fde99fe">error</a>(<span class="stringliteral">&quot;measureDutyCycle() only allowed with pinMode INPUT&quot;</span>);</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            }</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        }</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160; </div>
+<div class="line"><a name="l00274"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_reader.html#a650663b6fdc7dbab2ea3a2573682e1be">  274</a></span>&#160;        uint64_t <a class="code" href="class_pico_p_w_m_reader.html#a650663b6fdc7dbab2ea3a2573682e1be">period</a>() {</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            <span class="keywordflow">return</span> period_nano_sec;</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        }</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160; </div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160; </div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        <a class="code" href="class_pico_pin_function.html">PicoPinFunction</a> pinFunction = PicoPinFunction::instance();</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        PinMode pin_mode;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;        pwm_config config;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        uint64_t period_nano_sec;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        uint64_t max_ticks_per_period;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;        <span class="keywordtype">float</span> tick_period_nano_sec; <span class="comment">// values must be &lt;= 65535</span></div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        <span class="keywordtype">bool</span> is_config_done = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160; </div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160; </div>
+<div class="line"><a name="l00290"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_reader.html#a8114df548eb5bbe0a2b4e1d16f8db681">  290</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_pico_p_w_m_reader.html#a8114df548eb5bbe0a2b4e1d16f8db681">setupConfig</a>(){</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            <span class="keywordflow">if</span> (!is_config_done) {</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoPWMReader::setupConfig&quot;</span>);</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                is_config_done = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                uint16_t wrap = PWM_MAX_NUMER ;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;                config = pwm_get_default_config();</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                <span class="comment">// this should actually be identical with PWM_MAX_NUMER</span></div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                uint32_t sys_clock_freq = clock_get_hz(clk_sys);</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160; </div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                <span class="comment">// calculate max ticks per period -&gt; sys_clock_freq</span></div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                max_ticks_per_period = period_nano_sec * sys_clock_freq / 1000000000; </div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160; </div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                <span class="comment">// Set divider, run at full speed</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                pwm_config_set_clkdiv(&amp;config, 1.0);</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                pwm_config_set_wrap(&amp;config, wrap);</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160; </div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                logConfig(sys_clock_freq, wrap);</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;            }</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        }</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160; </div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;        <span class="keywordtype">void</span> logConfig(uint32_t sys_clock_freq, uint16_t wrap ) {</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;            <span class="keywordflow">if</span> (Logger.<a class="code" href="class_pico_logger.html#aadc33b92f32997942b0943f3964f283c">isLogging</a>(PicoLogger::Debug)){</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                <span class="keywordtype">char</span> str[80];</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                sprintf(str,<span class="stringliteral">&quot;%lu&quot;</span>, period_nano_sec);</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;Period ns:&quot;</span>, str);</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;                sprintf(str,<span class="stringliteral">&quot;%f&quot;</span>, tick_period_nano_sec);</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;Tick period ns:&quot;</span>, str);</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                sprintf(str,<span class="stringliteral">&quot;%f&quot;</span>, sys_clock_freq);</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;Systemclock hz:&quot;</span>, str);</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;                sprintf(str,<span class="stringliteral">&quot;%d&quot;</span>, wrap);</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PWM wrap:&quot;</span>, str);</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            }</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        }</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160; </div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;        uint64_t count(uint slice_num, <span class="keywordtype">int</span> repeat) {</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;            uint64_t sleep_period_us =  (period_nano_sec / 1000 );  <span class="comment">// 2040</span></div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;            pico_pwm_wrap_count = 0;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160; </div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;            <span class="keywordflow">if</span> (Logger.<a class="code" href="class_pico_logger.html#aadc33b92f32997942b0943f3964f283c">isLogging</a>(PicoLogger::Debug)){</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                <span class="keywordtype">char</span> sleep_str[70];</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                sprintf(sleep_str,<span class="stringliteral">&quot;sleep_us: %lu&quot;</span>, sleep_period_us);</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(sleep_str);</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;            }</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160; </div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            uint64_t counter = 0;</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j=0;j&lt;repeat;j++) {</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                <span class="comment">// measure n pwm cycles</span></div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;                pwm_set_counter (slice_num, 0);</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;                pwm_set_enabled(slice_num, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                sleep_us((sleep_period_us )); <span class="comment">// sleep microsendonds</span></div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                pwm_set_enabled(slice_num, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160; </div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                counter +=  pwm_get_counter(slice_num);</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            }</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;            counter += (pico_pwm_wrap_count * PWM_MAX_NUMER);</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;            <span class="keywordflow">return</span> counter / repeat;</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;        }</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160; </div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;};</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160; </div>
+<div class="line"><a name="l00360"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html">  360</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pico_p_w_m_nano.html">PicoPWMNano</a> {</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00363"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#aab43f7ce6ba7d8189f3e1d96eeeddd9a">  363</a></span>&#160;        <a class="code" href="class_pico_p_w_m_nano.html#aab43f7ce6ba7d8189f3e1d96eeeddd9a">PicoPWMNano</a>(uint64_t periodNanoSeconds) {</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;            Logger.<a class="code" href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">debug</a>(<span class="stringliteral">&quot;PicoPWMNano&quot;</span>);</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;            writer = <span class="keyword">new</span> <a class="code" href="class_pico_p_w_m_writer.html">PicoPWMWriter</a>(periodNanoSeconds);</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;            reader = <span class="keyword">new</span> <a class="code" href="class_pico_p_w_m_reader.html">PicoPWMReader</a>(periodNanoSeconds);</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;        }</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160; </div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        <span class="comment">// Destrucotor - clean up </span></div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        ~<a class="code" href="class_pico_p_w_m_nano.html">PicoPWMNano</a>(){</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;            <span class="keyword">delete</span> writer;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;            <span class="keyword">delete</span> reader;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;        }</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160; </div>
+<div class="line"><a name="l00376"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#aeb6ba2022f8097ea50beceafa1e917c6">  376</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m_nano.html#aeb6ba2022f8097ea50beceafa1e917c6">begin</a>(pin_size_t gpio, uint64_t initialDutyCyleNanoSeconds=0, PinMode pinMode=OUTPUT){</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;            <span class="comment">// determine PinMode from PinFunction - otherwise we use the indicated PinMode</span></div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;            <span class="keywordflow">if</span> (!pin_function.<a class="code" href="class_pico_pin_function.html#ac50b85a78d2b8caff56441e2535575bf">isModeDefined</a>(gpio)){</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                pin_function.<a class="code" href="class_pico_pin_function.html#a51dc351b02d18c06f67326995d3b1092">setPinMode</a>(gpio, pinMode);</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;            } </div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160; </div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;            <span class="keywordflow">if</span> (pin_function.<a class="code" href="class_pico_pin_function.html#a539801eb678a141dfcd4dece03db20b5">isInput</a>(gpio)){</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;                reader-&gt;<a class="code" href="class_pico_p_w_m_reader.html#a9bc41aed54352bdfd18f11ac0a46f94d">begin</a>(gpio);</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (pin_function.<a class="code" href="class_pico_pin_function.html#abd7540297a179c6af13d6948c02c139d">isOutput</a>(gpio)){</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;                writer-&gt;<a class="code" href="class_pico_p_w_m_writer.html#a0e9a1941e8bf4bdacf1bafca2cd3544f">begin</a>(gpio, initialDutyCyleNanoSeconds);</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;            }</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;        }</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160; </div>
+<div class="line"><a name="l00390"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#aef45e7deb7b44bfbe0af911847553945">  390</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m_nano.html#aef45e7deb7b44bfbe0af911847553945">end</a>(pin_size_t gpio){</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;            writer-&gt;<a class="code" href="class_pico_p_w_m_writer.html#acd0e44e44b17903c78b39731c625bfa5">end</a>(gpio);</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;            reader-&gt;<a class="code" href="class_pico_p_w_m_reader.html#ae43529726c9a072b60e075874d186a20">end</a>(gpio);</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;        }</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160; </div>
+<div class="line"><a name="l00396"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#a9a83fd88f0dd5d104c58e6a65bf1aab1">  396</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m_nano.html#a9a83fd88f0dd5d104c58e6a65bf1aab1">setDutyCycle</a>(pin_size_t gpio, uint64_t dutyCyleNanoSeconds){</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;            <span class="keywordflow">if</span> (isOutput(gpio)){</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;              writer-&gt; <a class="code" href="class_pico_p_w_m_nano.html#a9a83fd88f0dd5d104c58e6a65bf1aab1">setDutyCycle</a>(gpio, dutyCyleNanoSeconds);</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;            }</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;        }</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160; </div>
+<div class="line"><a name="l00403"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#a4c6c8b71631254ba470a7fe6d3b9c1c7">  403</a></span>&#160;        uint64_t <a class="code" href="class_pico_p_w_m_nano.html#a4c6c8b71631254ba470a7fe6d3b9c1c7">measureDutyCycle</a>(uint gpio) {</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;            uint64_t result = 0;</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;            <span class="keywordflow">if</span> (isInput(gpio)) {</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;                result = reader-&gt;<a class="code" href="class_pico_p_w_m_reader.html#a78e8fd0aaf3ec3d1ba076d81fea49a1f">measureDutyCycle</a>(gpio);</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;            }</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;            <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;        }</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160; </div>
+<div class="line"><a name="l00412"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#a8f5cd2d1d4af51c77546d01f1f150034">  412</a></span>&#160;        <span class="keywordtype">float</span> <a class="code" href="class_pico_p_w_m_nano.html#a8f5cd2d1d4af51c77546d01f1f150034">measureDutyCyclePercent</a>(uint gpio) {</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;            <span class="keywordtype">float</span> result = 0;</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;            <span class="keywordflow">if</span> (isInput(gpio)) {</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;                result = reader-&gt;<a class="code" href="class_pico_p_w_m_reader.html#ad0ef4558f6ddd0120ab5e8e022b27200">measureDutyCyclePercent</a>(gpio);</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;            }</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;            <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;        }</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160; </div>
+<div class="line"><a name="l00421"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#a87ca06275b791a859552f23da91a475b">  421</a></span>&#160;        <span class="keywordtype">float</span> <a class="code" href="class_pico_p_w_m_nano.html#a87ca06275b791a859552f23da91a475b">measurePeriod</a>(uint gpio) {</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;            <span class="keywordtype">float</span> result = 0;</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;            <span class="keywordflow">if</span> (isInput(gpio)) {</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;                result = reader-&gt;<a class="code" href="class_pico_p_w_m_reader.html#a650663b6fdc7dbab2ea3a2573682e1be">period</a>();</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;            }</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;            <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;        }</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160; </div>
+<div class="line"><a name="l00430"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#a5c2283ea783d73e1f29edd49646d687f">  430</a></span>&#160;        <span class="keywordtype">float</span> <a class="code" href="class_pico_p_w_m_nano.html#a5c2283ea783d73e1f29edd49646d687f">frequency</a>(){</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;            <span class="keywordflow">return</span> writer-&gt;<a class="code" href="class_pico_p_w_m_writer.html#a19e9bb9b5c34f2913b4c285c0650ad10">frequency</a>();</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;        }</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160; </div>
+<div class="line"><a name="l00435"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#a6f64a5e42e0561086d46db591b2e241e">  435</a></span>&#160;        uint64_t <a class="code" href="class_pico_p_w_m_nano.html#a6f64a5e42e0561086d46db591b2e241e">period</a>() {</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;            <span class="keywordflow">return</span>  writer-&gt;<a class="code" href="class_pico_p_w_m_writer.html#a935a3a914123315c0e021cfba5c07095">period</a>();</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;        }</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160; </div>
+<div class="line"><a name="l00440"></a><span class="lineno"><a class="line" href="class_pico_p_w_m_nano.html#aeb840be454021d634504077537f5dd23">  440</a></span>&#160;        <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code" href="class_pico_p_w_m_nano.html#aeb840be454021d634504077537f5dd23">frequency</a>(uint64_t periodNanoSeconds){</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;            <span class="keywordflow">return</span> 1000000000.0 / periodNanoSeconds;</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        }</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160; </div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160; </div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;        <a class="code" href="class_pico_pin_function.html">PicoPinFunction</a>  pin_function = PicoPinFunction::instance();</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;        PinMode pin_mode;</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;        <a class="code" href="class_pico_p_w_m_writer.html">PicoPWMWriter</a> *writer;</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;        <a class="code" href="class_pico_p_w_m_reader.html">PicoPWMReader</a> *reader;</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160; </div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;        <span class="keywordtype">bool</span> isOutput(pin_size_t gpio) {</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;            <span class="keywordflow">return</span> pin_function.<a class="code" href="class_pico_pin_function.html#abd7540297a179c6af13d6948c02c139d">isOutput</a>(gpio);</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;        }</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;        <span class="keywordtype">bool</span> isInput(pin_size_t gpio) {</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;            <span class="keywordflow">return</span> pin_function.<a class="code" href="class_pico_pin_function.html#a539801eb678a141dfcd4dece03db20b5">isInput</a>(gpio);</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;        }</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160; </div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;};</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160; </div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160; </div>
+<div class="line"><a name="l00466"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html">  466</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pico_p_w_m.html">PicoPWM</a> {</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00469"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#a4474bc1330f166071c693fee1ebf84e7">  469</a></span>&#160;        <a class="code" href="class_pico_p_w_m.html#a4474bc1330f166071c693fee1ebf84e7">PicoPWM</a>(uint64_t <a class="code" href="class_pico_p_w_m.html#a61c593ccd3e6035d1b086fb5116ece82">frequency</a>, uint64_t maxValue){</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;            <span class="comment">// convert frequency to period </span></div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;            period_nano_sec = 1000000000l / <a class="code" href="class_pico_p_w_m.html#a61c593ccd3e6035d1b086fb5116ece82">frequency</a>;</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;            nano = <span class="keyword">new</span> <a class="code" href="class_pico_p_w_m_nano.html">PicoPWMNano</a>(period_nano_sec);</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;            max_value = maxValue;</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;        }</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160; </div>
+<div class="line"><a name="l00477"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#a3201442296529e2d8330f0f60181384e">  477</a></span>&#160;        <a class="code" href="class_pico_p_w_m.html#a3201442296529e2d8330f0f60181384e">~PicoPWM</a>(){</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;            <span class="keyword">delete</span> nano;</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;         }</div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160; </div>
+<div class="line"><a name="l00482"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#a9936897354ee31c734227e31e35e5873">  482</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m.html#a9936897354ee31c734227e31e35e5873">begin</a>(pin_size_t pin, uint64_t initalValue=0){</div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;            nano-&gt;<a class="code" href="class_pico_p_w_m_nano.html#aeb6ba2022f8097ea50beceafa1e917c6">begin</a>(pin, initalValue);</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;        }</div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160; </div>
+<div class="line"><a name="l00487"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#a2cc25d863102a78c330b5b03efbf9902">  487</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m.html#a2cc25d863102a78c330b5b03efbf9902">end</a>(pin_size_t pin){</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;            nano-&gt;<a class="code" href="class_pico_p_w_m_nano.html#aef45e7deb7b44bfbe0af911847553945">end</a>(pin);</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;        }</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160; </div>
+<div class="line"><a name="l00492"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#a55f25f43a56fe458c7d843eb465c2ffd">  492</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_p_w_m.html#a55f25f43a56fe458c7d843eb465c2ffd">write</a>(pin_size_t pin, uint64_t value){</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;            nano-&gt;<a class="code" href="class_pico_p_w_m_nano.html#a9a83fd88f0dd5d104c58e6a65bf1aab1">setDutyCycle</a>(pin, <a class="code" href="class_pico_p_w_m.html#ad5580bede2cf35ca6810eddd3bf3ebc1">valueToDutyCycle</a>(value));</div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;        }</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160; </div>
+<div class="line"><a name="l00497"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#acc3928594eb48b5128dd4757553c5423">  497</a></span>&#160;        uint64_t <a class="code" href="class_pico_p_w_m.html#acc3928594eb48b5128dd4757553c5423">read</a>(pin_size_t pin){</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;            <span class="keywordflow">return</span> dutyCycleToValue(nano-&gt;<a class="code" href="class_pico_p_w_m_nano.html#a4c6c8b71631254ba470a7fe6d3b9c1c7">measureDutyCycle</a>(pin));</div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;        }</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160; </div>
+<div class="line"><a name="l00502"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#a795285410b41f4e8912701cc4c146251">  502</a></span>&#160;        <span class="keywordtype">float</span> <a class="code" href="class_pico_p_w_m.html#a795285410b41f4e8912701cc4c146251">readPercent</a>(pin_size_t pin){</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;            <span class="keywordflow">return</span> 100.0 * <a class="code" href="class_pico_p_w_m.html#acc3928594eb48b5128dd4757553c5423">read</a>(pin) / max_value;</div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;        }</div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160; </div>
+<div class="line"><a name="l00507"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#a887e7ebf412d75118fdf3bf323bdd2a3">  507</a></span>&#160;        uint64_t <a class="code" href="class_pico_p_w_m.html#a887e7ebf412d75118fdf3bf323bdd2a3">period</a>() {</div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;            <span class="keywordflow">return</span> nano-&gt;<a class="code" href="class_pico_p_w_m_nano.html#a6f64a5e42e0561086d46db591b2e241e">period</a>();</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;        }</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160; </div>
+<div class="line"><a name="l00512"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#a61c593ccd3e6035d1b086fb5116ece82">  512</a></span>&#160;        uint64_t <a class="code" href="class_pico_p_w_m.html#a61c593ccd3e6035d1b086fb5116ece82">frequency</a>(){</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;            <span class="keywordflow">return</span> nano-&gt;<a class="code" href="class_pico_p_w_m_nano.html#a5c2283ea783d73e1f29edd49646d687f">frequency</a>();</div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;        }</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160; </div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;        <a class="code" href="class_pico_p_w_m_nano.html">PicoPWMNano</a> *nano;</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;        int64_t max_value;</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;        uint64_t period_nano_sec;</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160; </div>
+<div class="line"><a name="l00522"></a><span class="lineno"><a class="line" href="class_pico_p_w_m.html#ad5580bede2cf35ca6810eddd3bf3ebc1">  522</a></span>&#160;        uint64_t <a class="code" href="class_pico_p_w_m.html#ad5580bede2cf35ca6810eddd3bf3ebc1">valueToDutyCycle</a>(uint64_t value){</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;            <span class="keywordflow">return</span> map(value, 0, max_value, 0, period_nano_sec);</div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;        }</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160; </div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;        uint64_t dutyCycleToValue(uint64_t dutyCycle){</div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;            <span class="keywordflow">return</span> map(dutyCycle, 0, period_nano_sec, 0, max_value) + 1;</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;        }</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160; </div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;};</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160; </div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160; </div>
+<div class="ttc" id="aclass_pico_logger_html_a4dcc8759e80fb78c3553297e5fde99fe"><div class="ttname"><a href="class_pico_logger.html#a4dcc8759e80fb78c3553297e5fde99fe">PicoLogger::error</a></div><div class="ttdeci">virtual void error(const char *str, const char *str1=nullptr, const char *str2=nullptr)</div><div class="ttdoc">logs an error</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:43</div></div>
 <div class="ttc" id="aclass_pico_logger_html_aadc33b92f32997942b0943f3964f283c"><div class="ttname"><a href="class_pico_logger.html#aadc33b92f32997942b0943f3964f283c">PicoLogger::isLogging</a></div><div class="ttdeci">virtual bool isLogging(LogLevel level=Info)</div><div class="ttdoc">checks if the logging is active</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:38</div></div>
 <div class="ttc" id="aclass_pico_logger_html_adc449e888e7102d342c904379fb7d10e"><div class="ttname"><a href="class_pico_logger.html#adc449e888e7102d342c904379fb7d10e">PicoLogger::debug</a></div><div class="ttdeci">virtual void debug(const char *str, const char *str1=nullptr, const char *str2=nullptr)</div><div class="ttdoc">writes an debug message</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:58</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_html"><div class="ttname"><a href="class_pico_p_w_m.html">PicoPWM</a></div><div class="ttdoc">This is an even more powerfull PWM API where we can specify a user defined input range and the cycle ...</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:141</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_html_a2cc25d863102a78c330b5b03efbf9902"><div class="ttname"><a href="class_pico_p_w_m.html#a2cc25d863102a78c330b5b03efbf9902">PicoPWM::end</a></div><div class="ttdeci">void end(pin_size_t pin)</div><div class="ttdoc">sets the pin to low</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:162</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_html_a3201442296529e2d8330f0f60181384e"><div class="ttname"><a href="class_pico_p_w_m.html#a3201442296529e2d8330f0f60181384e">PicoPWM::~PicoPWM</a></div><div class="ttdeci">~PicoPWM()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:152</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_html_a4474bc1330f166071c693fee1ebf84e7"><div class="ttname"><a href="class_pico_p_w_m.html#a4474bc1330f166071c693fee1ebf84e7">PicoPWM::PicoPWM</a></div><div class="ttdeci">PicoPWM(uint64_t frequency, uint64_t maxValue)</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:144</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_html_a55f25f43a56fe458c7d843eb465c2ffd"><div class="ttname"><a href="class_pico_p_w_m.html#a55f25f43a56fe458c7d843eb465c2ffd">PicoPWM::write</a></div><div class="ttdeci">void write(pin_size_t pin, uint64_t value)</div><div class="ttdoc">Defines the active period is nanoseconds.</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:167</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_html_a61c593ccd3e6035d1b086fb5116ece82"><div class="ttname"><a href="class_pico_p_w_m.html#a61c593ccd3e6035d1b086fb5116ece82">PicoPWM::frequency</a></div><div class="ttdeci">uint64_t frequency()</div><div class="ttdoc">converts the PWM period to hz</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:177</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_html_a887e7ebf412d75118fdf3bf323bdd2a3"><div class="ttname"><a href="class_pico_p_w_m.html#a887e7ebf412d75118fdf3bf323bdd2a3">PicoPWM::period</a></div><div class="ttdeci">uint64_t period()</div><div class="ttdoc">provides the full cycle period in nanoseconds</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:172</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_html_a9936897354ee31c734227e31e35e5873"><div class="ttname"><a href="class_pico_p_w_m.html#a9936897354ee31c734227e31e35e5873">PicoPWM::begin</a></div><div class="ttdeci">void begin(pin_size_t pin, uint64_t initalValue=0)</div><div class="ttdoc">setup a pin for pwm write</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:157</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_html_ad5580bede2cf35ca6810eddd3bf3ebc1"><div class="ttname"><a href="class_pico_p_w_m.html#ad5580bede2cf35ca6810eddd3bf3ebc1">PicoPWM::valueToDutyCycle</a></div><div class="ttdeci">uint64_t valueToDutyCycle(uint64_t value)</div><div class="ttdoc">converts an input value to the duty cycle in nanosec</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:187</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_nano_html"><div class="ttname"><a href="class_pico_p_w_m_nano.html">PicoPWMNano</a></div><div class="ttdoc">The Raspberry Pico has 8 controllable PWM slices with each 2 channels, so we can control up to 16 pwm...</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:24</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_nano_html_a036d0fca293c21b4294c46d24d91a6d8"><div class="ttname"><a href="class_pico_p_w_m_nano.html#a036d0fca293c21b4294c46d24d91a6d8">PicoPWMNano::frequency</a></div><div class="ttdeci">uint64_t frequency()</div><div class="ttdoc">converts the PWM period to hz</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:78</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_nano_html_a042ac218ecb0d014020af202d133facf"><div class="ttname"><a href="class_pico_p_w_m_nano.html#a042ac218ecb0d014020af202d133facf">PicoPWMNano::begin</a></div><div class="ttdeci">void begin(pin_size_t pin, uint64_t initialDutyCyleNanoSeconds=0)</div><div class="ttdoc">setup a pin for pwm write</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:35</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_nano_html_a30ee932272c6ad12e9362c5923ed5f35"><div class="ttname"><a href="class_pico_p_w_m_nano.html#a30ee932272c6ad12e9362c5923ed5f35">PicoPWMNano::frequency</a></div><div class="ttdeci">uint64_t frequency(uint64_t periodNanoSeconds)</div><div class="ttdoc">converts the indicated period is nanoseconds to hz</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:73</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_nano_html_a6f64a5e42e0561086d46db591b2e241e"><div class="ttname"><a href="class_pico_p_w_m_nano.html#a6f64a5e42e0561086d46db591b2e241e">PicoPWMNano::period</a></div><div class="ttdeci">uint64_t period()</div><div class="ttdoc">provides the full cycle period in nanoseconds</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:83</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_nano_html_aab43f7ce6ba7d8189f3e1d96eeeddd9a"><div class="ttname"><a href="class_pico_p_w_m_nano.html#aab43f7ce6ba7d8189f3e1d96eeeddd9a">PicoPWMNano::PicoPWMNano</a></div><div class="ttdeci">PicoPWMNano(uint64_t periodNanoSeconds)</div><div class="ttdoc">Constructor: Defines the length of a full cycle in nanoseconds (mio of seconds)</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:27</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_nano_html_ab2f8e9259fb23c43e0e39b9d41747fb1"><div class="ttname"><a href="class_pico_p_w_m_nano.html#ab2f8e9259fb23c43e0e39b9d41747fb1">PicoPWMNano::end</a></div><div class="ttdeci">void end(pin_size_t pin)</div><div class="ttdoc">sets the pin to low</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:50</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_nano_html_ad4ad99e4594cc4d0065040720f989dd5"><div class="ttname"><a href="class_pico_p_w_m_nano.html#ad4ad99e4594cc4d0065040720f989dd5">PicoPWMNano::setDutyCycle</a></div><div class="ttdeci">void setDutyCycle(pin_size_t pin, uint64_t dutyCyleNanoSeconds)</div><div class="ttdoc">Defines the active period is nanoseconds.</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:57</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_nano_html_ae2da62f75f03fe4ecafdd57ccd9940a6"><div class="ttname"><a href="class_pico_p_w_m_nano.html#ae2da62f75f03fe4ecafdd57ccd9940a6">PicoPWMNano::setupConfig</a></div><div class="ttdeci">bool setupConfig()</div><div class="ttdoc">provides the configuration - returns true if we have a new configuration</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:96</div></div>
-<div class="ttc" id="aclass_pico_pin_function_html"><div class="ttname"><a href="class_pico_pin_function.html">PicoPinFunction</a></div><div class="ttdoc">The pico requires that the function of the pin is defined. In Arduino, there is no such concept: so w...</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:31</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_html"><div class="ttname"><a href="class_pico_p_w_m.html">PicoPWM</a></div><div class="ttdoc">This is an even more powerfull PWM API where we can specify a user defined input range and the cycle ...</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:466</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_html_a2cc25d863102a78c330b5b03efbf9902"><div class="ttname"><a href="class_pico_p_w_m.html#a2cc25d863102a78c330b5b03efbf9902">PicoPWM::end</a></div><div class="ttdeci">void end(pin_size_t pin)</div><div class="ttdoc">sets the pin to low</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:487</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_html_a3201442296529e2d8330f0f60181384e"><div class="ttname"><a href="class_pico_p_w_m.html#a3201442296529e2d8330f0f60181384e">PicoPWM::~PicoPWM</a></div><div class="ttdeci">~PicoPWM()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:477</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_html_a4474bc1330f166071c693fee1ebf84e7"><div class="ttname"><a href="class_pico_p_w_m.html#a4474bc1330f166071c693fee1ebf84e7">PicoPWM::PicoPWM</a></div><div class="ttdeci">PicoPWM(uint64_t frequency, uint64_t maxValue)</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:469</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_html_a55f25f43a56fe458c7d843eb465c2ffd"><div class="ttname"><a href="class_pico_p_w_m.html#a55f25f43a56fe458c7d843eb465c2ffd">PicoPWM::write</a></div><div class="ttdeci">void write(pin_size_t pin, uint64_t value)</div><div class="ttdoc">Defines the active period in the value range from 0 to maxValue.</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:492</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_html_a61c593ccd3e6035d1b086fb5116ece82"><div class="ttname"><a href="class_pico_p_w_m.html#a61c593ccd3e6035d1b086fb5116ece82">PicoPWM::frequency</a></div><div class="ttdeci">uint64_t frequency()</div><div class="ttdoc">converts the PWM period to hz</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:512</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_html_a795285410b41f4e8912701cc4c146251"><div class="ttname"><a href="class_pico_p_w_m.html#a795285410b41f4e8912701cc4c146251">PicoPWM::readPercent</a></div><div class="ttdeci">float readPercent(pin_size_t pin)</div><div class="ttdoc">Provides the duty cyle in percent.</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:502</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_html_a887e7ebf412d75118fdf3bf323bdd2a3"><div class="ttname"><a href="class_pico_p_w_m.html#a887e7ebf412d75118fdf3bf323bdd2a3">PicoPWM::period</a></div><div class="ttdeci">uint64_t period()</div><div class="ttdoc">provides the full cycle period in nanoseconds</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:507</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_html_a9936897354ee31c734227e31e35e5873"><div class="ttname"><a href="class_pico_p_w_m.html#a9936897354ee31c734227e31e35e5873">PicoPWM::begin</a></div><div class="ttdeci">void begin(pin_size_t pin, uint64_t initalValue=0)</div><div class="ttdoc">setup a pin for pwm write</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:482</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_html_acc3928594eb48b5128dd4757553c5423"><div class="ttname"><a href="class_pico_p_w_m.html#acc3928594eb48b5128dd4757553c5423">PicoPWM::read</a></div><div class="ttdeci">uint64_t read(pin_size_t pin)</div><div class="ttdoc">Reads the active period in the value range from 0 to maxValue.</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:497</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_html_ad5580bede2cf35ca6810eddd3bf3ebc1"><div class="ttname"><a href="class_pico_p_w_m.html#ad5580bede2cf35ca6810eddd3bf3ebc1">PicoPWM::valueToDutyCycle</a></div><div class="ttdeci">uint64_t valueToDutyCycle(uint64_t value)</div><div class="ttdoc">converts an input value to the duty cycle in nanosec</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:522</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_nano_html"><div class="ttname"><a href="class_pico_p_w_m_nano.html">PicoPWMNano</a></div><div class="ttdoc">The Raspberry Pico has 8 controllable PWM slices with each 2 channels, so we can control up to 16 pwm...</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:360</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_nano_html_a4c6c8b71631254ba470a7fe6d3b9c1c7"><div class="ttname"><a href="class_pico_p_w_m_nano.html#a4c6c8b71631254ba470a7fe6d3b9c1c7">PicoPWMNano::measureDutyCycle</a></div><div class="ttdeci">uint64_t measureDutyCycle(uint gpio)</div><div class="ttdoc">measures the duty cycle in nanoseconds - only the PWM B pins can be used as inputs!</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:403</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_nano_html_a5c2283ea783d73e1f29edd49646d687f"><div class="ttname"><a href="class_pico_p_w_m_nano.html#a5c2283ea783d73e1f29edd49646d687f">PicoPWMNano::frequency</a></div><div class="ttdeci">float frequency()</div><div class="ttdoc">converts the PWM period to hz for the PWM output</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:430</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_nano_html_a6f64a5e42e0561086d46db591b2e241e"><div class="ttname"><a href="class_pico_p_w_m_nano.html#a6f64a5e42e0561086d46db591b2e241e">PicoPWMNano::period</a></div><div class="ttdeci">uint64_t period()</div><div class="ttdoc">provides the full cycle period in nanoseconds for the PWM output</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:435</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_nano_html_a87ca06275b791a859552f23da91a475b"><div class="ttname"><a href="class_pico_p_w_m_nano.html#a87ca06275b791a859552f23da91a475b">PicoPWMNano::measurePeriod</a></div><div class="ttdeci">float measurePeriod(uint gpio)</div><div class="ttdoc">provides the duty cycle in percent</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:421</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_nano_html_a8f5cd2d1d4af51c77546d01f1f150034"><div class="ttname"><a href="class_pico_p_w_m_nano.html#a8f5cd2d1d4af51c77546d01f1f150034">PicoPWMNano::measureDutyCyclePercent</a></div><div class="ttdeci">float measureDutyCyclePercent(uint gpio)</div><div class="ttdoc">provides the duty cycle in percent</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:412</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_nano_html_a9a83fd88f0dd5d104c58e6a65bf1aab1"><div class="ttname"><a href="class_pico_p_w_m_nano.html#a9a83fd88f0dd5d104c58e6a65bf1aab1">PicoPWMNano::setDutyCycle</a></div><div class="ttdeci">void setDutyCycle(pin_size_t gpio, uint64_t dutyCyleNanoSeconds)</div><div class="ttdoc">Defines the active period is nanoseconds.</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:396</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_nano_html_aab43f7ce6ba7d8189f3e1d96eeeddd9a"><div class="ttname"><a href="class_pico_p_w_m_nano.html#aab43f7ce6ba7d8189f3e1d96eeeddd9a">PicoPWMNano::PicoPWMNano</a></div><div class="ttdeci">PicoPWMNano(uint64_t periodNanoSeconds)</div><div class="ttdoc">Constructor: Defines the length of a full cycle in nanoseconds (mio of seconds)</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:363</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_nano_html_aeb6ba2022f8097ea50beceafa1e917c6"><div class="ttname"><a href="class_pico_p_w_m_nano.html#aeb6ba2022f8097ea50beceafa1e917c6">PicoPWMNano::begin</a></div><div class="ttdeci">void begin(pin_size_t gpio, uint64_t initialDutyCyleNanoSeconds=0, PinMode pinMode=OUTPUT)</div><div class="ttdoc">setup the pin mode only if necessary</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:376</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_nano_html_aeb840be454021d634504077537f5dd23"><div class="ttname"><a href="class_pico_p_w_m_nano.html#aeb840be454021d634504077537f5dd23">PicoPWMNano::frequency</a></div><div class="ttdeci">static float frequency(uint64_t periodNanoSeconds)</div><div class="ttdoc">Utility function: converts the indicated period is nanoseconds to hz.</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:440</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_nano_html_aef45e7deb7b44bfbe0af911847553945"><div class="ttname"><a href="class_pico_p_w_m_nano.html#aef45e7deb7b44bfbe0af911847553945">PicoPWMNano::end</a></div><div class="ttdeci">void end(pin_size_t gpio)</div><div class="ttdoc">sets the output pins to low</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:390</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_reader_html"><div class="ttname"><a href="class_pico_p_w_m_reader.html">PicoPWMReader</a></div><div class="ttdoc">PWM class which supports the input of PWM signals.</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:180</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_reader_html_a650663b6fdc7dbab2ea3a2573682e1be"><div class="ttname"><a href="class_pico_p_w_m_reader.html#a650663b6fdc7dbab2ea3a2573682e1be">PicoPWMReader::period</a></div><div class="ttdeci">uint64_t period()</div><div class="ttdoc">provides the full cycle period in nanoseconds</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:274</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_reader_html_a72da6a620b0605ac2e0fb3fdd733fa8e"><div class="ttname"><a href="class_pico_p_w_m_reader.html#a72da6a620b0605ac2e0fb3fdd733fa8e">PicoPWMReader::setupPin</a></div><div class="ttdeci">virtual void setupPin(PinInfo *info, pin_size_t pinNumber)</div><div class="ttdoc">setup of pin for PWM Input</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:210</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_reader_html_a780baa53189b84d5224308dbb1b1a77f"><div class="ttname"><a href="class_pico_p_w_m_reader.html#a780baa53189b84d5224308dbb1b1a77f">PicoPWMReader::PicoPWMReader</a></div><div class="ttdeci">PicoPWMReader(uint64_t periodNanoSeconds)</div><div class="ttdoc">Constructor: Defines the length of a full cycle in nanoseconds (mio of seconds). This is used as mesu...</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:188</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_reader_html_a78e8fd0aaf3ec3d1ba076d81fea49a1f"><div class="ttname"><a href="class_pico_p_w_m_reader.html#a78e8fd0aaf3ec3d1ba076d81fea49a1f">PicoPWMReader::measureDutyCycle</a></div><div class="ttdeci">uint64_t measureDutyCycle(uint gpio)</div><div class="ttdoc">measures the duty cycle (active period) in nanoseconds - only the PWM B pins can be used as inputs!</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:232</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_reader_html_a8114df548eb5bbe0a2b4e1d16f8db681"><div class="ttname"><a href="class_pico_p_w_m_reader.html#a8114df548eb5bbe0a2b4e1d16f8db681">PicoPWMReader::setupConfig</a></div><div class="ttdeci">bool setupConfig()</div><div class="ttdoc">provides the configuration - returns true if we have a new configuration</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:290</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_reader_html_a9bc41aed54352bdfd18f11ac0a46f94d"><div class="ttname"><a href="class_pico_p_w_m_reader.html#a9bc41aed54352bdfd18f11ac0a46f94d">PicoPWMReader::begin</a></div><div class="ttdeci">void begin(pin_size_t pinNumber)</div><div class="ttdoc">setup a pin for pwm write</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:195</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_reader_html_ad0ef4558f6ddd0120ab5e8e022b27200"><div class="ttname"><a href="class_pico_p_w_m_reader.html#ad0ef4558f6ddd0120ab5e8e022b27200">PicoPWMReader::measureDutyCyclePercent</a></div><div class="ttdeci">float measureDutyCyclePercent(uint gpio)</div><div class="ttdoc">provides the duty cycle in percent</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:237</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_reader_html_ae43529726c9a072b60e075874d186a20"><div class="ttname"><a href="class_pico_p_w_m_reader.html#ae43529726c9a072b60e075874d186a20">PicoPWMReader::end</a></div><div class="ttdeci">void end(pin_size_t pin)</div><div class="ttdoc">sets the pin to low</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:226</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_writer_html"><div class="ttname"><a href="class_pico_p_w_m_writer.html">PicoPWMWriter</a></div><div class="ttdoc">Support for the generation of PWM signals. For the standard Arduino functionality we use on fixed fre...</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:46</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_writer_html_a0e9a1941e8bf4bdacf1bafca2cd3544f"><div class="ttname"><a href="class_pico_p_w_m_writer.html#a0e9a1941e8bf4bdacf1bafca2cd3544f">PicoPWMWriter::begin</a></div><div class="ttdeci">void begin(pin_size_t pin, uint64_t initialDutyCyleNanoSeconds=0)</div><div class="ttdoc">setup a pin for pwm write</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:56</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_writer_html_a19e9bb9b5c34f2913b4c285c0650ad10"><div class="ttname"><a href="class_pico_p_w_m_writer.html#a19e9bb9b5c34f2913b4c285c0650ad10">PicoPWMWriter::frequency</a></div><div class="ttdeci">float frequency()</div><div class="ttdoc">converts the PWM period to hz</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:105</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_writer_html_a935a3a914123315c0e021cfba5c07095"><div class="ttname"><a href="class_pico_p_w_m_writer.html#a935a3a914123315c0e021cfba5c07095">PicoPWMWriter::period</a></div><div class="ttdeci">uint64_t period()</div><div class="ttdoc">provides the full cycle period in nanoseconds</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:120</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_writer_html_ac4b2f2bd2291f588dc030198b1b4c54f"><div class="ttname"><a href="class_pico_p_w_m_writer.html#ac4b2f2bd2291f588dc030198b1b4c54f">PicoPWMWriter::setupPin</a></div><div class="ttdeci">virtual void setupPin(PinInfo *info, pin_size_t pinNumber)</div><div class="ttdoc">setup of pin for PWM Output</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:66</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_writer_html_ac6be86ef5c952e774a39fdbb4bf98e8c"><div class="ttname"><a href="class_pico_p_w_m_writer.html#ac6be86ef5c952e774a39fdbb4bf98e8c">PicoPWMWriter::setDutyCycle</a></div><div class="ttdeci">void setDutyCycle(pin_size_t pin, uint64_t dutyCyleNanoSeconds)</div><div class="ttdoc">Defines the active period is nanoseconds.</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:88</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_writer_html_acad4aabe62de3e27a95ed5df3817d68d"><div class="ttname"><a href="class_pico_p_w_m_writer.html#acad4aabe62de3e27a95ed5df3817d68d">PicoPWMWriter::PicoPWMWriter</a></div><div class="ttdeci">PicoPWMWriter(uint64_t periodNanoSeconds)</div><div class="ttdoc">Constructor: Defines the length of a full cycle in nanoseconds (mio of seconds)</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:49</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_writer_html_acd0e44e44b17903c78b39731c625bfa5"><div class="ttname"><a href="class_pico_p_w_m_writer.html#acd0e44e44b17903c78b39731c625bfa5">PicoPWMWriter::end</a></div><div class="ttdeci">void end(pin_size_t pin)</div><div class="ttdoc">sets the pin to low</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:81</div></div>
+<div class="ttc" id="aclass_pico_p_w_m_writer_html_af1fd7276dea568c12ecd91bca952a8d8"><div class="ttname"><a href="class_pico_p_w_m_writer.html#af1fd7276dea568c12ecd91bca952a8d8">PicoPWMWriter::setupConfig</a></div><div class="ttdeci">bool setupConfig()</div><div class="ttdoc">provides the configuration - returns true if we have a new configuration</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:134</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html"><div class="ttname"><a href="class_pico_pin_function.html">PicoPinFunction</a></div><div class="ttdoc">The pico requires that the function of the pin is defined. In Arduino, there is no such concept - how...</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:129</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html_a51dc351b02d18c06f67326995d3b1092"><div class="ttname"><a href="class_pico_pin_function.html#a51dc351b02d18c06f67326995d3b1092">PicoPinFunction::setPinMode</a></div><div class="ttdeci">bool setPinMode(pin_size_t pinNumber, PinMode pinMode)</div><div class="ttdoc">defines the actual Arduino PinMode. Returns true if it needed to be changed</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:140</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html_a539801eb678a141dfcd4dece03db20b5"><div class="ttname"><a href="class_pico_pin_function.html#a539801eb678a141dfcd4dece03db20b5">PicoPinFunction::isInput</a></div><div class="ttdeci">bool isInput(pin_size_t pinNumber)</div><div class="ttdoc">checks if the pin has been defined as input</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:161</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html_a566eb183ed7c288e584f3f3bc792ea99"><div class="ttname"><a href="class_pico_pin_function.html#a566eb183ed7c288e584f3f3bc792ea99">PicoPinFunction::usePin</a></div><div class="ttdeci">void usePin(pin_size_t pinNumber, PinFunction pinFunction, PinSetup *setup=nullptr)</div><div class="ttdoc">setup Pico pin init function bysed on functionality</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:202</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html_abd7540297a179c6af13d6948c02c139d"><div class="ttname"><a href="class_pico_pin_function.html#abd7540297a179c6af13d6948c02c139d">PicoPinFunction::isOutput</a></div><div class="ttdeci">bool isOutput(pin_size_t pinNumber)</div><div class="ttdoc">checks if the pin has been defined as output</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:166</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html_ac50b85a78d2b8caff56441e2535575bf"><div class="ttname"><a href="class_pico_pin_function.html#ac50b85a78d2b8caff56441e2535575bf">PicoPinFunction::isModeDefined</a></div><div class="ttdeci">bool isModeDefined(pin_size_t pinNumber)</div><div class="ttdoc">checks if the mode was defined for the pin</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:156</div></div>
+<div class="ttc" id="aclass_pico_pin_function_html_afd903b9285ada85a62aaf8050c73e0a2"><div class="ttname"><a href="class_pico_pin_function.html#afd903b9285ada85a62aaf8050c73e0a2">PicoPinFunction::pinMode</a></div><div class="ttdeci">PinMode pinMode(pin_size_t pinNumber)</div><div class="ttdoc">returns the pin mode</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:181</div></div>
+<div class="ttc" id="aclass_pin_setup_html"><div class="ttname"><a href="class_pin_setup.html">PinSetup</a></div><div class="ttdoc">Base class for function specific pin setup and pin use functionality.</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:38</div></div>
+<div class="ttc" id="astruct_pin_info_html"><div class="ttname"><a href="struct_pin_info.html">PinInfo</a></div><div class="ttdoc">Information about an the status and the Arduino PinMode of an individual pin.</div><div class="ttdef"><b>Definition:</b> PicoPinFunction.h:26</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

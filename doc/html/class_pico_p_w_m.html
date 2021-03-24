@@ -96,8 +96,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:a2cc25d863102a78c330b5b03efbf9902"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55f25f43a56fe458c7d843eb465c2ffd"><td class="memItemLeft" align="right" valign="top"><a id="a55f25f43a56fe458c7d843eb465c2ffd"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m.html#a55f25f43a56fe458c7d843eb465c2ffd">write</a> (pin_size_t pin, uint64_t value)</td></tr>
-<tr class="memdesc:a55f25f43a56fe458c7d843eb465c2ffd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the active period is nanoseconds. <br /></td></tr>
+<tr class="memdesc:a55f25f43a56fe458c7d843eb465c2ffd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the active period in the value range from 0 to maxValue. <br /></td></tr>
 <tr class="separator:a55f25f43a56fe458c7d843eb465c2ffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc3928594eb48b5128dd4757553c5423"><td class="memItemLeft" align="right" valign="top"><a id="acc3928594eb48b5128dd4757553c5423"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m.html#acc3928594eb48b5128dd4757553c5423">read</a> (pin_size_t pin)</td></tr>
+<tr class="memdesc:acc3928594eb48b5128dd4757553c5423"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the active period in the value range from 0 to maxValue. <br /></td></tr>
+<tr class="separator:acc3928594eb48b5128dd4757553c5423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a795285410b41f4e8912701cc4c146251"><td class="memItemLeft" align="right" valign="top"><a id="a795285410b41f4e8912701cc4c146251"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m.html#a795285410b41f4e8912701cc4c146251">readPercent</a> (pin_size_t pin)</td></tr>
+<tr class="memdesc:a795285410b41f4e8912701cc4c146251"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides the duty cyle in percent. <br /></td></tr>
+<tr class="separator:a795285410b41f4e8912701cc4c146251"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a887e7ebf412d75118fdf3bf323bdd2a3"><td class="memItemLeft" align="right" valign="top"><a id="a887e7ebf412d75118fdf3bf323bdd2a3"></a>
 uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m.html#a887e7ebf412d75118fdf3bf323bdd2a3">period</a> ()</td></tr>
 <tr class="memdesc:a887e7ebf412d75118fdf3bf323bdd2a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides the full cycle period in nanoseconds <br /></td></tr>
@@ -113,6 +121,9 @@ Protected Member Functions</h2></td></tr>
 uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_p_w_m.html#ad5580bede2cf35ca6810eddd3bf3ebc1">valueToDutyCycle</a> (uint64_t value)</td></tr>
 <tr class="memdesc:ad5580bede2cf35ca6810eddd3bf3ebc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts an input value to the duty cycle in nanosec <br /></td></tr>
 <tr class="separator:ad5580bede2cf35ca6810eddd3bf3ebc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad63479134000f77260b3177f4b806219"><td class="memItemLeft" align="right" valign="top"><a id="ad63479134000f77260b3177f4b806219"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>dutyCycleToValue</b> (uint64_t dutyCycle)</td></tr>
+<tr class="separator:ad63479134000f77260b3177f4b806219"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>

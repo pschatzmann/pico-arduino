@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['adcselect_0',['adcSelect',['../class_pico_pin_function.html#af2ddf33c3360533887f38f05b16e3970',1,'PicoPinFunction']]],
+  ['adcselect_0',['adcSelect',['../class_pin_setup_a_d_c.html#a7dd2f386837bc07c598f9f6deb1defbf',1,'PinSetupADC']]],
   ['aquire_1',['aquire',['../class_semaphore.html#a027147279b6be91a74296be03e98b5f4',1,'Semaphore']]],
   ['arduinopicotone_2',['ArduinoPicoTone',['../class_arduino_pico_tone.html',1,'']]],
   ['attach_3',['attach',['../class_servo.html#aea34a630b13ec42e2700eec53ae0a382',1,'Servo::attach(int pin)'],['../class_servo.html#ae8d8a8e190a6144364e21678d2137a79',1,'Servo::attach(int pin, int min, int max)']]],
