@@ -8,9 +8,7 @@ const int maxValue = 255;
 
 void setup() {
   Serial.begin();
-  //while(!Serial);
-  //Logger.begin(Serial,PicoLogger::Debug);
-
+  
   //Declaring LED pin as output
   pinMode(led_pin, OUTPUT);
 }

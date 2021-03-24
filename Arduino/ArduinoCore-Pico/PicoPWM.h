@@ -479,8 +479,13 @@ class PicoPWM {
          }
 
         /// setup a pin for pwm write
-        void begin(pin_size_t pin, uint64_t initalValue=0){
+        void begin(pin_size_t pin, uint64_t initalValue){
             nano->begin(pin, initalValue);
+        }
+
+        /// setup a pin for pwm read or write
+        void begin(pin_size_t pin,  PinMode pinMode=OUTPUT){
+            nano->begin(pin, 0, pinMode);
         }
 
         /// sets the pin to low
