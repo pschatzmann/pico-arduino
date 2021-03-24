@@ -26,12 +26,12 @@ PicoHardwareSPI SPI1(spi1);
 PicoHardwareI2C Wire(i2c0, 160, I2C_SDA, I2C_SCL);  
 PicoHardwareI2C Wire1(i2c1, 160, I2C1_SDA, I2C1_SCL);  
 
-//Pico Framework global variables 
-PicoPinFunction PinFunction = PicoPinFunction::instance();
-PicoLogger Logger;    // Support for logging
-PicoPWM ArduionPwm(PICO_ARDUINO_PWM_FREQUENCY, 255); // pwm support
-PinSetupGPIO InstancePinSetupGPIO;
-PinSetupADC InstancePinSetupADC = PinSetupADC::instance();
+// Pico-Arduino Framework: global variables 
+PicoLogger Logger;                                         // Support for logging
+PicoPinFunction PinFunction = PicoPinFunction::instance(); // Record PinMode
+PinSetupADC InstancePinSetupADC = PinSetupADC::instance(); // ADC
+PinSetupGPIO InstancePinSetupGPIO;                         // GPIO
+PicoPWM ArduionPwm(PICO_ARDUINO_PWM_FREQUENCY, 255);       // PWM
 
 // sleep ms milliseconds
 void delay(unsigned long ms){
