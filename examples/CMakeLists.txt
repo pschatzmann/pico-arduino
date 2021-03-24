@@ -30,3 +30,6 @@ add_subdirectory(pwm_arduino)
 add_subdirectory(pwm_pico)
 add_subdirectory(pwm_pico_read)
 add_subdirectory(pwm_servo)
+add_subdirectory(watchdog)
+
+

@@ -28,6 +28,14 @@
 - __v0.6__ PWM, error corrections and additional examples.
      - Provide easy to use PicoPWM class which is used by Arduino analogWrite
      - Implement Servo class with examples
-     - Removed libarduino: all sources are complied as part of the sketch, so that we can overwrite default defines 
      - Example how to change default pins in cmake 
      - provide termperature() and temperatureF() method to read the built in temperature sensor
+     - This release contains the following __Breaking Changes__
+          - Removed libarduino: all sources are complied as part of the sketch now, so that we can overwrite default defines 
+- __v0.7__ PWM reading
+     - Implemented Reading of PWM 
+     - Support for PWM in analogRead()
+     - Added documentation on how to override the predefined framework #defines 
+     - Redesign of internal PicoPinFunction: getting rid of ugly switch case.
+     - Examples for reading PWM
+     - Example for watchdog

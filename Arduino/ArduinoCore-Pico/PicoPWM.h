@@ -9,7 +9,7 @@
 #include "PicoPinFunction.h"
 
 #ifndef PWM_MAX_NUMER
-// 65535
+// you can use up to 65535
 #define PWM_MAX_NUMER 1000
 #endif
 
