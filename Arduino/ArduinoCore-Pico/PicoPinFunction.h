@@ -219,7 +219,7 @@ class PicoPinFunction {
 
     protected:
         PinInfo* pinInfo;
-        bool adc_init_flag;
+        bool adc_init_flag = false;
         int current_adc;
 
         /// protected constructor because this is a singleton
