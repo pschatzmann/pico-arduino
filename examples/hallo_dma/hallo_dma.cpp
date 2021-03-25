@@ -10,6 +10,8 @@ PicoDMA<uint16_t> dma;
 
 // we check if the array constains the expected data
 void checkData(uint16_t *data, uint16_t expected) {
+    // wait for the data to be available
+    dma.wait();
     // check data
     for (int j=0;j<buffer_len;j++){
         if (data[j]!=expected){
@@ -31,14 +33,12 @@ void setup(){
     // initialize source buffer with initial_value
     dma.set(src, initial_value, buffer_len);
     Serial.println("processing...");
-    dma.wait();
     checkData(src, initial_value);
     Serial.println("Data Initialized");
 
     // start the copy 
     dma.copy(dst, src, buffer_len);
     Serial.println("processing...");
-    dma.wait();
     checkData(dst, initial_value);
     Serial.println("Data copied");
 }
