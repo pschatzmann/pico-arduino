@@ -71,17 +71,25 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>We can use the Pico DMA to copy data "in the background" while the processor is doing some other work. One <a class="el" href="class_pico_d_m_a.html" title="We can use the Pico DMA to copy data &quot;in the background&quot; while the processor is doing some other work...">PicoDMA</a> object represents a single DMA channel.  
+<p>We can use the Pico DMA to copy data "in the background" while the processor is doing some other work. One <a class="el" href="class_pico_d_m_a.html" title="We can use the Pico DMA to copy data &quot;in the background&quot; while the processor is doing some other work...">PicoDMA</a> object represents a single DMA channel which is reserved the first time it is needed. You can release it explicity after you are done with the processing.  
  <a href="class_pico_d_m_a.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_pico_d_m_a_8h_source.html">PicoDMA.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a85c81a7899dc9db3f7a6e0aadcee9ad4"><td class="memItemLeft" align="right" valign="top"><a id="a85c81a7899dc9db3f7a6e0aadcee9ad4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a85c81a7899dc9db3f7a6e0aadcee9ad4">releaseChannel</a> ()</td></tr>
-<tr class="memdesc:a85c81a7899dc9db3f7a6e0aadcee9ad4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the DMA channel and makes it available again. <br /></td></tr>
-<tr class="separator:a85c81a7899dc9db3f7a6e0aadcee9ad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa71b00062ea9edca5bfb667dae91603d"><td class="memItemLeft" align="right" valign="top"><a id="aa71b00062ea9edca5bfb667dae91603d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#aa71b00062ea9edca5bfb667dae91603d">PicoDMA</a> ()</td></tr>
+<tr class="memdesc:aa71b00062ea9edca5bfb667dae91603d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:aa71b00062ea9edca5bfb667dae91603d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a198802ab22728a9d91d78617efeb4a1a"><td class="memItemLeft" align="right" valign="top"><a id="a198802ab22728a9d91d78617efeb4a1a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a198802ab22728a9d91d78617efeb4a1a">~PicoDMA</a> ()</td></tr>
+<tr class="memdesc:a198802ab22728a9d91d78617efeb4a1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor: releases the DMA channel if necessary - the some processing is still going on, it is cancelled. <br /></td></tr>
+<tr class="separator:a198802ab22728a9d91d78617efeb4a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f611c2321e59963795882e536e623b7"><td class="memItemLeft" align="right" valign="top"><a id="a6f611c2321e59963795882e536e623b7"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a6f611c2321e59963795882e536e623b7">releaseChannel</a> (bool abortProcessing=false)</td></tr>
+<tr class="memdesc:a6f611c2321e59963795882e536e623b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the DMA channel and makes it available again. <br /></td></tr>
+<tr class="separator:a6f611c2321e59963795882e536e623b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a872d6fa2aa5cc9f30e006084d2492eaf"><td class="memItemLeft" align="right" valign="top"><a id="a872d6fa2aa5cc9f30e006084d2492eaf"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a872d6fa2aa5cc9f30e006084d2492eaf">channel</a> ()</td></tr>
 <tr class="memdesc:a872d6fa2aa5cc9f30e006084d2492eaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides the used DMA channel - returns -1 if no channel has been set up so far <br /></td></tr>
@@ -139,7 +147,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>channel_no</b> = -1</t
 <div class="textblock"><h3>template&lt;class T&gt;<br />
 class PicoDMA&lt; T &gt;</h3>
 
-<p>We can use the Pico DMA to copy data "in the background" while the processor is doing some other work. One <a class="el" href="class_pico_d_m_a.html" title="We can use the Pico DMA to copy data &quot;in the background&quot; while the processor is doing some other work...">PicoDMA</a> object represents a single DMA channel. </p>
+<p>We can use the Pico DMA to copy data "in the background" while the processor is doing some other work. One <a class="el" href="class_pico_d_m_a.html" title="We can use the Pico DMA to copy data &quot;in the background&quot; while the processor is doing some other work...">PicoDMA</a> object represents a single DMA channel which is reserved the first time it is needed. You can release it explicity after you are done with the processing. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a156401d93e1fcac9d42ea205c0640a67"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a156401d93e1fcac9d42ea205c0640a67">&#9670;&nbsp;</a></span>copy() <span class="overload">[1/2]</span></h2>

@@ -4,16 +4,36 @@
 
 /**
  * @brief We can use the Pico DMA to copy data "in the background" while the processor is doing some other work. One PicoDMA object represents
- * a single DMA channel
+ * a single DMA channel which is reserved the first time it is needed.
+ * You can release it explicity after you are done with the processing.
  */
 template <class T> 
 class PicoDMA {
     public:
+        /// Default constructor
+        PicoDMA(){}
+
+        /// Destructor: releases the DMA channel if necessary - the some processing is still going on, it is cancelled 
+        ~PicoDMA(){
+            releaseChannel(true);
+        }
 
         /// Releases the DMA channel and makes it available again
-        void releaseChannel(){
-            if (channel_no!=-1) dma_channel_unclaim(channel_no);
+        bool releaseChannel(bool abortProcessing=false){
+            if (channel_no == -1) {
+                return true;
+            }
+            // if we are still processing - we might need to abort
+            if (isBusy()) {
+                if (abortProcessing){
+                    abort();
+                } else {
+                    return false
+                }
+            }
+            dma_channel_unclaim(channel_no);
             channel_no = -1;
+            return true;
         }
 
         /// provides the used DMA channel - returns -1 if no channel has been set up so far

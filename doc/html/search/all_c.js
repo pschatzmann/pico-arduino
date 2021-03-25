@@ -2,7 +2,7 @@ var searchData=
 [
   ['peek_53',['peek',['../class_pico_hardware_i2_c.html#ad584541e149dae0a222de5e247ce9192',1,'PicoHardwareI2C']]],
   ['period_54',['period',['../class_pico_p_w_m.html#a887e7ebf412d75118fdf3bf323bdd2a3',1,'PicoPWM::period()'],['../class_pico_p_w_m_nano.html#a6f64a5e42e0561086d46db591b2e241e',1,'PicoPWMNano::period()'],['../class_pico_p_w_m_reader.html#a650663b6fdc7dbab2ea3a2573682e1be',1,'PicoPWMReader::period()'],['../class_pico_p_w_m_writer.html#a935a3a914123315c0e021cfba5c07095',1,'PicoPWMWriter::period()']]],
-  ['picodma_55',['PicoDMA',['../class_pico_d_m_a.html',1,'']]],
+  ['picodma_55',['PicoDMA',['../class_pico_d_m_a.html',1,'PicoDMA&lt; T &gt;'],['../class_pico_d_m_a.html#aa71b00062ea9edca5bfb667dae91603d',1,'PicoDMA::PicoDMA()']]],
   ['picohardwarei2c_56',['PicoHardwareI2C',['../class_pico_hardware_i2_c.html',1,'PicoHardwareI2C'],['../class_pico_hardware_i2_c.html#a1de257c70ac2818538ff7014929eeae2',1,'PicoHardwareI2C::PicoHardwareI2C()']]],
   ['picohardwarespi_57',['PicoHardwareSPI',['../class_pico_hardware_s_p_i.html',1,'']]],
   ['picologger_58',['PicoLogger',['../class_pico_logger.html',1,'']]],
