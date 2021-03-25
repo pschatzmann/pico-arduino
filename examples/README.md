@@ -63,4 +63,5 @@ Here is some other Pico specific functionality:
 - [software_serial](software_serial)
 - [temperature_sensor](temperature_sensor)
 - [watchdog](watchdog)
+- [hallo_dma](hallo_dma)
 

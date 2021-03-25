@@ -31,5 +31,6 @@ add_subdirectory(pwm_pico)
 add_subdirectory(pwm_pico_read)
 add_subdirectory(pwm_servo)
 add_subdirectory(watchdog)
+add_subdirectory(hallo_dma)
 
 

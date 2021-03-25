@@ -67,6 +67,7 @@ target_link_libraries("${ARDUINO_SKETCH_NAME}" PRIVATE
     hardware_spi
     hardware_i2c
     hardware_pio
+    hardware_dma
     ${ARDUINO_SKETCH_LIB}
 )
 
