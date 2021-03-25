@@ -61,6 +61,7 @@ target_link_libraries("${ARDUINO_SKETCH_NAME}" PRIVATE
     pico_runtime
     pico_multicore 
     pico_util 
+    pico_unique_id
     hardware_pwm 
     hardware_adc
     hardware_clocks

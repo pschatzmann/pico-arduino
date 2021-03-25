@@ -40,12 +40,14 @@ set(ARDUINO_SKETCH_DEFINITIONS "-DSERIAL1_TX=12" "-DSERIAL1_RX=13")
 #define SPI1_SCK 10
 ```
 
-## Logging
+## Other Topics
+
+### Logging
 ```
 #define PICO_LOG_LEVEL Error
 ```
 
-## Servo
+### Servo
 ```
 #define MIN_PULSE_WIDTH       544
 #define MAX_PULSE_WIDTH      2400
@@ -53,9 +55,16 @@ set(ARDUINO_SKETCH_DEFINITIONS "-DSERIAL1_TX=12" "-DSERIAL1_RX=13")
 #define REFRESH_INTERVAL    20000
 ```
 
-## PWM
+### PWM
 ```
 #define PWM_MAX_NUMER 65535
 #define PICO_ARDUINO_PWM_FREQUENCY 490
 #define PWM_READ_REPEAT 10
 ```
+
+### Arduino Main
+Prevent the generation of main with loop and setup by defining
+```
+#define PICO_ARDUINO_NO_MAIN
+```
+

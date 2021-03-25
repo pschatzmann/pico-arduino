@@ -26,9 +26,11 @@
 #include "PicoMulticoreFifo.h"
 #include "PicoQueue.h"
 #include "pico/stdlib.h"
+#include "pico/unique_id.h"
 #include "hardware/gpio.h"
 #include "hardware/adc.h"
 #include "hardware/pwm.h"
+
 
 // Global variables
 #if !defined(TINYUSB_HOST_LINKED) && !defined(TINYUSB_DEVICE_LINKED)
@@ -44,6 +46,8 @@ extern PicoPinFunction PinFunction;
 int temperature();
 // Temperature in Fahrenheit for our friends in Belize, Paulau, the Cayman Islands and the Bahamas
 int temperatureF();
+///Get the unique 64-bit device identifier which was retrieved from the external NOR flash device at boot.
+uint64_t uniqueId();
 
 // Some Arduino libraries rely on the following
 char *dtostrf (double __val, signed char __width, unsigned char __prec, char *__s);

@@ -118,6 +118,15 @@ int temperatureF(){
     return (static_cast<float>(temperature()) * 9.0/5.0) + 32;
 }
 
+///Get the unique 64-bit device identifier which was retrieved from the external NOR flash device at boot.
+uint64_t uniqueId() {
+    static uint64_t id = 0;
+    if (id==0){
+        pico_get_unique_board_id((pico_unique_board_id_t*)&id);
+    }
+    return id; 
+}
+
 // Not implemented for the Pico
 void analogReference(uint8_t mode){
     Logger.error("analogReference not implemented!");
@@ -151,6 +160,7 @@ void yield(void){
 PluggableUSB_::PluggableUSB_(){}
 
 // define Arduino setup(()) and loop()
+#ifndef PICO_ARDUINO_NO_MAIN
 int main() {
     setup();
     while(true){
@@ -158,5 +168,5 @@ int main() {
         watchdog_update();
     }
 }
-
+#endif
 
