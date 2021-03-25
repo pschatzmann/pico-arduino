@@ -13,7 +13,7 @@ class PicoDMA {
         /// Default constructor
         PicoDMA(){}
 
-        /// Destructor: releases the DMA channel if necessary - the some processing is still going on, it is cancelled 
+        /// Destructor: releases the DMA channel if necessary - if some processing is still going on, it is aborted 
         ~PicoDMA(){
             releaseChannel(true);
         }
