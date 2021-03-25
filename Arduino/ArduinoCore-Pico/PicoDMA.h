@@ -3,17 +3,17 @@
 
 
 /**
- * @brief We can use the Pico DMA to copy data "in the background"
+ * @brief We can use the Pico DMA to copy data "in the background" while the processor is doing some other work.
  */
 template <class T> 
 class PicoDMA {
     public:
-        // returns the next available DMA channel
+        /// Provides the next available DMA channel
         int getChannel() {
             return dma_claim_unused_channel(true);
         }
 
-        // releases the channel and makes it available again
+        /// Releases the DMA channel and makes it available again
         void releaseChannel(int channel){
             dma_channel_unclaim(channel);
         }
@@ -121,8 +121,8 @@ class PicoDMA {
          * @return dma channel 
          */
         void set(int channel, T* dst, T src, int len, void (*completion_handler)(), bool startCopy=true){
-            // copy
-            set(channel, dst, src, false);
+            // set values
+            set(channel, dst, src, len, false);
 
             // Tell the DMA to raise IRQ line 0 when the channel finishes a block
             dma_channel_set_irq0_enabled(channel, true);
@@ -159,7 +159,6 @@ class PicoDMA {
         /// You need to call this method in the completion handler
         void clearInterrupt(int dmaChannel) {
             dma_hw->ints0 = 1u << dmaChannel;
-        
             //irq_clear(DMA_IRQ_0);
         }
 

@@ -70,7 +70,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>We can use the Pico DMA to copy data "in the background".  
+<p>We can use the Pico DMA to copy data "in the background" while the processor is doing some other work.  
  <a href="class_pico_d_m_a.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_pico_d_m_a_8h_source.html">PicoDMA.h</a>&gt;</code></p>
@@ -78,10 +78,12 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2224e523e9d9aa82d5e5e0db929b3cbc"><td class="memItemLeft" align="right" valign="top"><a id="a2224e523e9d9aa82d5e5e0db929b3cbc"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getChannel</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a2224e523e9d9aa82d5e5e0db929b3cbc">getChannel</a> ()</td></tr>
+<tr class="memdesc:a2224e523e9d9aa82d5e5e0db929b3cbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides the next available DMA channel. <br /></td></tr>
 <tr class="separator:a2224e523e9d9aa82d5e5e0db929b3cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e2c28c09e262119c221ff5c7478f03e"><td class="memItemLeft" align="right" valign="top"><a id="a5e2c28c09e262119c221ff5c7478f03e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>releaseChannel</b> (int channel)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a5e2c28c09e262119c221ff5c7478f03e">releaseChannel</a> (int channel)</td></tr>
+<tr class="memdesc:a5e2c28c09e262119c221ff5c7478f03e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the DMA channel and makes it available again. <br /></td></tr>
 <tr class="separator:a5e2c28c09e262119c221ff5c7478f03e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad01913fb6a559809a81f76f92beaf9b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#ad01913fb6a559809a81f76f92beaf9b1">copy</a> (int channel, T *dst, T *src, int len, boolean <a class="el" href="class_pico_d_m_a.html#a3a2eb05a06ce5c1a29fb0df75840257c">start</a>=true)</td></tr>
 <tr class="memdesc:ad01913fb6a559809a81f76f92beaf9b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the values of num bytes from the location pointed to by source directly to the memory block pointed to by destination. The copying is done in the background.  <a href="class_pico_d_m_a.html#ad01913fb6a559809a81f76f92beaf9b1">More...</a><br /></td></tr>
@@ -126,7 +128,7 @@ dma_channel_transfer_size&#160;</td><td class="memItemRight" valign="bottom"><b>
 <div class="textblock"><h3>template&lt;class T&gt;<br />
 class PicoDMA&lt; T &gt;</h3>
 
-<p>We can use the Pico DMA to copy data "in the background". </p>
+<p>We can use the Pico DMA to copy data "in the background" while the processor is doing some other work. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ad01913fb6a559809a81f76f92beaf9b1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad01913fb6a559809a81f76f92beaf9b1">&#9670;&nbsp;</a></span>copy() <span class="overload">[1/2]</span></h2>

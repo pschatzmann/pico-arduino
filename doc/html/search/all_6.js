@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['hardwarei2c_25',['HardwareI2C',['../classarduino_1_1_hardware_i2_c.html',1,'arduino']]],
-  ['hardwareserial_26',['HardwareSerial',['../classarduino_1_1_hardware_serial.html',1,'arduino']]],
-  ['hardwarespi_27',['HardwareSPI',['../classarduino_1_1_hardware_s_p_i.html',1,'arduino']]]
+  ['getchannel_25',['getChannel',['../class_pico_d_m_a.html#a2224e523e9d9aa82d5e5e0db929b3cbc',1,'PicoDMA']]]
 ];

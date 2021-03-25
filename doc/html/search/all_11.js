@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['udp_109',['UDP',['../classarduino_1_1_u_d_p.html',1,'arduino']]],
-  ['up_110',['up',['../class_semaphore.html#a0ba008a098f05e3235eaf23e0064091b',1,'Semaphore']]],
-  ['usepin_111',['usePin',['../class_pico_pin_function.html#a566eb183ed7c288e584f3f3bc792ea99',1,'PicoPinFunction']]],
-  ['usinginterrupt_112',['usingInterrupt',['../class_pico_hardware_s_p_i.html#a9ce51701c2384a6e7a47d556ddc1c9a2',1,'PicoHardwareSPI']]]
+  ['thread_105',['Thread',['../class_thread.html',1,'']]],
+  ['timeralarm_106',['TimerAlarm',['../class_timer_alarm.html',1,'']]],
+  ['timeralarmrepeating_107',['TimerAlarmRepeating',['../class_timer_alarm_repeating.html',1,'']]],
+  ['tone_108',['tone',['../class_arduino_pico_tone.html#a914cd2c8ecfdba2a3cace51bb0d22c59',1,'ArduinoPicoTone']]],
+  ['transfer_109',['transfer',['../class_pico_hardware_s_p_i.html#a86f6206c11379c70c75818a124214c1b',1,'PicoHardwareSPI::transfer(uint8_t data)'],['../class_pico_hardware_s_p_i.html#a82dd8e9e81dfbd7cc5c5eaa9547c058a',1,'PicoHardwareSPI::transfer(void *array, size_t len)']]],
+  ['transfer16_110',['transfer16',['../class_pico_hardware_s_p_i.html#ae15dbbe0614679be10ea1575821ab1bc',1,'PicoHardwareSPI']]]
 ];

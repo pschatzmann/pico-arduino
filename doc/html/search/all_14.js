@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['_7epicohardwarei2c_120',['~PicoHardwareI2C',['../class_pico_hardware_i2_c.html#ac03ee78746e3132d33af51755784744d',1,'PicoHardwareI2C']]],
-  ['_7epicopwm_121',['~PicoPWM',['../class_pico_p_w_m.html#a3201442296529e2d8330f0f60181384e',1,'PicoPWM']]],
-  ['_7esemaphore_122',['~Semaphore',['../class_semaphore.html#a633658a6fde276bffc912028725c6ade',1,'Semaphore']]]
+  ['wait_118',['wait',['../class_pico_d_m_a.html#a7453d3fc3c3a24e42b46668ad408174d',1,'PicoDMA::wait()'],['../class_semaphore.html#a496aae0d0eceef9385c9dcae4c3d9b36',1,'Semaphore::wait()']]],
+  ['warning_119',['warning',['../class_pico_logger.html#a2415f6c7f951c557df36e09b80f5650c',1,'PicoLogger']]],
+  ['write_120',['write',['../class_pico_hardware_i2_c.html#a2e9ec0ef82e6bae75422fe223dcf124f',1,'PicoHardwareI2C::write(uint8_t c)'],['../class_pico_hardware_i2_c.html#a4a170c76434d307a3d56fb059ac36d67',1,'PicoHardwareI2C::write(const char *buffer, size_t size)'],['../class_pico_p_w_m.html#a55f25f43a56fe458c7d843eb465c2ffd',1,'PicoPWM::write()'],['../class_servo.html#a72b4b546912eada96a6ef705168ceb8a',1,'Servo::write(int value)']]],
+  ['writemicroseconds_121',['writeMicroseconds',['../class_servo.html#ac7fe3d6d2ea285ead98814bcfc417029',1,'Servo']]]
 ];

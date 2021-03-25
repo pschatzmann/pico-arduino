@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['notone_203',['noTone',['../class_arduino_pico_tone.html#aafdfe50f76dde9d94738bde5505ac71d',1,'ArduinoPicoTone']]],
-  ['notusinginterrupt_204',['notUsingInterrupt',['../class_pico_hardware_s_p_i.html#ab9bc505878ed86ec105d8b21143513b4',1,'PicoHardwareSPI']]]
+  ['measuredutycycle_204',['measureDutyCycle',['../class_pico_p_w_m_reader.html#a78e8fd0aaf3ec3d1ba076d81fea49a1f',1,'PicoPWMReader::measureDutyCycle()'],['../class_pico_p_w_m_nano.html#a4c6c8b71631254ba470a7fe6d3b9c1c7',1,'PicoPWMNano::measureDutyCycle()']]],
+  ['measuredutycyclepercent_205',['measureDutyCyclePercent',['../class_pico_p_w_m_reader.html#ad0ef4558f6ddd0120ab5e8e022b27200',1,'PicoPWMReader::measureDutyCyclePercent()'],['../class_pico_p_w_m_nano.html#a8f5cd2d1d4af51c77546d01f1f150034',1,'PicoPWMNano::measureDutyCyclePercent()']]]
 ];

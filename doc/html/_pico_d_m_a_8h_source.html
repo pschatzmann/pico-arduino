@@ -76,13 +76,11 @@ $(function() {
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; </div>
 <div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html">    9</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pico_d_m_a.html">PicoDMA</a> {</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="comment">// returns the next available DMA channel</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordtype">int</span> getChannel() {</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#a2224e523e9d9aa82d5e5e0db929b3cbc">   12</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_pico_d_m_a.html#a2224e523e9d9aa82d5e5e0db929b3cbc">getChannel</a>() {</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            <span class="keywordflow">return</span> dma_claim_unused_channel(<span class="keyword">true</span>);</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        }</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="comment">// releases the channel and makes it available again</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordtype">void</span> releaseChannel(<span class="keywordtype">int</span> channel){</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#a5e2c28c09e262119c221ff5c7478f03e">   17</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_d_m_a.html#a5e2c28c09e262119c221ff5c7478f03e">releaseChannel</a>(<span class="keywordtype">int</span> channel){</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            dma_channel_unclaim(channel);</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        }</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
@@ -153,8 +151,8 @@ $(function() {
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        }</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
 <div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#ae054965d7f380e4b0967ae25b763b51a">  123</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_d_m_a.html#ae054965d7f380e4b0967ae25b763b51a">set</a>(<span class="keywordtype">int</span> channel, T* dst, T src, <span class="keywordtype">int</span> len, <span class="keywordtype">void</span> (*completion_handler)(), <span class="keywordtype">bool</span> startCopy=<span class="keyword">true</span>){</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            <span class="comment">// copy</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            <a class="code" href="class_pico_d_m_a.html#a1b14c8e677f4140b9cb2d6d002a59f68">set</a>(channel, dst, src, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            <span class="comment">// set values</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            <a class="code" href="class_pico_d_m_a.html#a1b14c8e677f4140b9cb2d6d002a59f68">set</a>(channel, dst, src, len, <span class="keyword">false</span>);</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            <span class="comment">// Tell the DMA to raise IRQ line 0 when the channel finishes a block</span></div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            dma_channel_set_irq0_enabled(channel, <span class="keyword">true</span>);</div>
@@ -186,32 +184,33 @@ $(function() {
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
 <div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#a6bfad49478533fed131802575ec7c502">  160</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_d_m_a.html#a6bfad49478533fed131802575ec7c502">clearInterrupt</a>(<span class="keywordtype">int</span> dmaChannel) {</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            dma_hw-&gt;ints0 = 1u &lt;&lt; dmaChannel;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        </div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            <span class="comment">//irq_clear(DMA_IRQ_0);</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        }</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        dma_channel_transfer_size transferSize() {</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            <span class="keywordflow">switch</span>(<span class="keyword">sizeof</span>(T)){</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                <span class="keywordflow">case</span> 1:</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                    <span class="keywordflow">return</span> DMA_SIZE_8;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                <span class="keywordflow">case</span> 2:</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                    <span class="keywordflow">return</span> DMA_SIZE_16;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                <span class="keywordflow">case</span> 4:</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                    <span class="keywordflow">return</span> DMA_SIZE_32;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            }</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        }</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <span class="comment">//irq_clear(DMA_IRQ_0);</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        dma_channel_transfer_size transferSize() {</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            <span class="keywordflow">switch</span>(<span class="keyword">sizeof</span>(T)){</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                <span class="keywordflow">case</span> 1:</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                    <span class="keywordflow">return</span> DMA_SIZE_8;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                <span class="keywordflow">case</span> 2:</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                    <span class="keywordflow">return</span> DMA_SIZE_16;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                <span class="keywordflow">case</span> 4:</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                    <span class="keywordflow">return</span> DMA_SIZE_32;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            }</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        }</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;};</div>
-<div class="ttc" id="aclass_pico_d_m_a_html"><div class="ttname"><a href="class_pico_d_m_a.html">PicoDMA</a></div><div class="ttdoc">We can use the Pico DMA to copy data &quot;in the background&quot;.</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:9</div></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;};</div>
+<div class="ttc" id="aclass_pico_d_m_a_html"><div class="ttname"><a href="class_pico_d_m_a.html">PicoDMA</a></div><div class="ttdoc">We can use the Pico DMA to copy data &quot;in the background&quot; while the processor is doing some other work...</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:9</div></div>
 <div class="ttc" id="aclass_pico_d_m_a_html_a028db994097588fe0363596a8bb009f0"><div class="ttname"><a href="class_pico_d_m_a.html#a028db994097588fe0363596a8bb009f0">PicoDMA::isBusy</a></div><div class="ttdeci">bool isBusy(int dmaChannel)</div><div class="ttdoc">checks if the copy is still in process</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:155</div></div>
 <div class="ttc" id="aclass_pico_d_m_a_html_a1b14c8e677f4140b9cb2d6d002a59f68"><div class="ttname"><a href="class_pico_d_m_a.html#a1b14c8e677f4140b9cb2d6d002a59f68">PicoDMA::set</a></div><div class="ttdeci">bool set(int channel, T *dst, T src, int len, boolean start=true)</div><div class="ttdoc">Sets a destination array with a fixed value We support only data of the size of uint_8,...</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:86</div></div>
+<div class="ttc" id="aclass_pico_d_m_a_html_a2224e523e9d9aa82d5e5e0db929b3cbc"><div class="ttname"><a href="class_pico_d_m_a.html#a2224e523e9d9aa82d5e5e0db929b3cbc">PicoDMA::getChannel</a></div><div class="ttdeci">int getChannel()</div><div class="ttdoc">Provides the next available DMA channel.</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:12</div></div>
 <div class="ttc" id="aclass_pico_d_m_a_html_a3a2eb05a06ce5c1a29fb0df75840257c"><div class="ttname"><a href="class_pico_d_m_a.html#a3a2eb05a06ce5c1a29fb0df75840257c">PicoDMA::start</a></div><div class="ttdeci">void start(int dmaChannel)</div><div class="ttdoc">starts the copy</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:140</div></div>
 <div class="ttc" id="aclass_pico_d_m_a_html_a46702d78cb6ace33108ab1fca482afa4"><div class="ttname"><a href="class_pico_d_m_a.html#a46702d78cb6ace33108ab1fca482afa4">PicoDMA::abort</a></div><div class="ttdeci">void abort(int dmaChannel)</div><div class="ttdoc">aborts the copy</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:145</div></div>
+<div class="ttc" id="aclass_pico_d_m_a_html_a5e2c28c09e262119c221ff5c7478f03e"><div class="ttname"><a href="class_pico_d_m_a.html#a5e2c28c09e262119c221ff5c7478f03e">PicoDMA::releaseChannel</a></div><div class="ttdeci">void releaseChannel(int channel)</div><div class="ttdoc">Releases the DMA channel and makes it available again.</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:17</div></div>
 <div class="ttc" id="aclass_pico_d_m_a_html_a6bfad49478533fed131802575ec7c502"><div class="ttname"><a href="class_pico_d_m_a.html#a6bfad49478533fed131802575ec7c502">PicoDMA::clearInterrupt</a></div><div class="ttdeci">void clearInterrupt(int dmaChannel)</div><div class="ttdoc">You need to call this method in the completion handler.</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:160</div></div>
 <div class="ttc" id="aclass_pico_d_m_a_html_a7453d3fc3c3a24e42b46668ad408174d"><div class="ttname"><a href="class_pico_d_m_a.html#a7453d3fc3c3a24e42b46668ad408174d">PicoDMA::wait</a></div><div class="ttdeci">void wait(int dmaChannel)</div><div class="ttdoc">a blocking wait for the copy to complete</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:150</div></div>
 <div class="ttc" id="aclass_pico_d_m_a_html_aaecfd8e55b9691d09820349b364b21bf"><div class="ttname"><a href="class_pico_d_m_a.html#aaecfd8e55b9691d09820349b364b21bf">PicoDMA::copy</a></div><div class="ttdeci">void copy(int channel, T *dst, T *src, int len, void(*completion_handler)(), bool startCopy=true)</div><div class="ttdoc">Copies the values of num bytes from the location pointed to by source directly to the memory block po...</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:61</div></div>
