@@ -98,10 +98,6 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_p_w_m_reader.html#a1baa1a7e431989750ff182584e41535e">begin</a> (pin_size_t pinNumber)</td></tr>
 <tr class="memdesc:a1baa1a7e431989750ff182584e41535e"><td class="mdescLeft">&#160;</td><td class="mdescRight">setup a pin for pwm write <br /></td></tr>
 <tr class="separator:a1baa1a7e431989750ff182584e41535e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76c835809f265a41af7318182906bd6b"><td class="memItemLeft" align="right" valign="top"><a id="a76c835809f265a41af7318182906bd6b"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_p_w_m_reader.html#a76c835809f265a41af7318182906bd6b">setupPin</a> (<a class="el" href="structpico__arduino_1_1_pin_info.html">PinInfo</a> *info, pin_size_t pinNumber)</td></tr>
-<tr class="memdesc:a76c835809f265a41af7318182906bd6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">setup of pin for PWM Input <br /></td></tr>
-<tr class="separator:a76c835809f265a41af7318182906bd6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a677bf77601e43db9985aa990fe18ce26"><td class="memItemLeft" align="right" valign="top"><a id="a677bf77601e43db9985aa990fe18ce26"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_p_w_m_reader.html#a677bf77601e43db9985aa990fe18ce26">end</a> (pin_size_t pin)</td></tr>
 <tr class="memdesc:a677bf77601e43db9985aa990fe18ce26"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the pin to low <br /></td></tr>
@@ -118,6 +114,10 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_p_w_m_reader.html#a146fa3a516eb351fc5f38ca316d30762">period</a> ()</td></tr>
 <tr class="memdesc:a146fa3a516eb351fc5f38ca316d30762"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides the full cycle period in nanoseconds <br /></td></tr>
 <tr class="separator:a146fa3a516eb351fc5f38ca316d30762"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76c835809f265a41af7318182906bd6b"><td class="memItemLeft" align="right" valign="top"><a id="a76c835809f265a41af7318182906bd6b"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_p_w_m_reader.html#a76c835809f265a41af7318182906bd6b">setupPin</a> (<a class="el" href="structpico__arduino_1_1_pin_info.html">PinInfo</a> *info, pin_size_t pinNumber)</td></tr>
+<tr class="memdesc:a76c835809f265a41af7318182906bd6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">setup of pin for PWM Input <br /></td></tr>
+<tr class="separator:a76c835809f265a41af7318182906bd6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classpico__arduino_1_1_pin_setup"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classpico__arduino_1_1_pin_setup')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classpico__arduino_1_1_pin_setup.html">pico_arduino::PinSetup</a></td></tr>
 <tr class="memitem:a1f98c4f391cf3103b43aa922160f0377 inherit pub_methods_classpico__arduino_1_1_pin_setup"><td class="memItemLeft" align="right" valign="top"><a id="a1f98c4f391cf3103b43aa922160f0377"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>usePin</b> (<a class="el" href="structpico__arduino_1_1_pin_info.html">PinInfo</a> *info, pin_size_t pin)</td></tr>
@@ -125,40 +125,40 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>usePin</b> (<
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:a5791306c1fa178f8aea2997621ec477c"><td class="memItemLeft" align="right" valign="top"><a id="a5791306c1fa178f8aea2997621ec477c"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>count</b> (uint slice_num, int repeat)</td></tr>
+<tr class="separator:a5791306c1fa178f8aea2997621ec477c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e0b11ca5b2c445c5fa7b9b4d91c4629"><td class="memItemLeft" align="right" valign="top"><a id="a1e0b11ca5b2c445c5fa7b9b4d91c4629"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>logConfig</b> (uint32_t sys_clock_freq, uint16_t wrap)</td></tr>
+<tr class="separator:a1e0b11ca5b2c445c5fa7b9b4d91c4629"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac702446b2dd5a6432a1e6203f6bfeb10"><td class="memItemLeft" align="right" valign="top"><a id="ac702446b2dd5a6432a1e6203f6bfeb10"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_p_w_m_reader.html#ac702446b2dd5a6432a1e6203f6bfeb10">setupConfig</a> ()</td></tr>
 <tr class="memdesc:ac702446b2dd5a6432a1e6203f6bfeb10"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides the configuration - returns true if we have a new configuration <br /></td></tr>
 <tr class="separator:ac702446b2dd5a6432a1e6203f6bfeb10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e0b11ca5b2c445c5fa7b9b4d91c4629"><td class="memItemLeft" align="right" valign="top"><a id="a1e0b11ca5b2c445c5fa7b9b4d91c4629"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>logConfig</b> (uint32_t sys_clock_freq, uint16_t wrap)</td></tr>
-<tr class="separator:a1e0b11ca5b2c445c5fa7b9b4d91c4629"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5791306c1fa178f8aea2997621ec477c"><td class="memItemLeft" align="right" valign="top"><a id="a5791306c1fa178f8aea2997621ec477c"></a>
-uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>count</b> (uint slice_num, int repeat)</td></tr>
-<tr class="separator:a5791306c1fa178f8aea2997621ec477c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a5e77e13f3ed91ff31da13981c07e29f2"><td class="memItemLeft" align="right" valign="top"><a id="a5e77e13f3ed91ff31da13981c07e29f2"></a>
-<a class="el" href="classpico__arduino_1_1_pico_pin_function.html">PicoPinFunction</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pinFunction</b> = PicoPinFunction::instance()</td></tr>
-<tr class="separator:a5e77e13f3ed91ff31da13981c07e29f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a8420628b0fe3b0348268fa97f10dc7"><td class="memItemLeft" align="right" valign="top"><a id="a2a8420628b0fe3b0348268fa97f10dc7"></a>
-PinMode&#160;</td><td class="memItemRight" valign="bottom"><b>pin_mode</b></td></tr>
-<tr class="separator:a2a8420628b0fe3b0348268fa97f10dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f149805a901d871cdf87b1158922509"><td class="memItemLeft" align="right" valign="top"><a id="a3f149805a901d871cdf87b1158922509"></a>
 pwm_config&#160;</td><td class="memItemRight" valign="bottom"><b>config</b></td></tr>
 <tr class="separator:a3f149805a901d871cdf87b1158922509"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a152539ad94bd4d0e20aa008a15b60153"><td class="memItemLeft" align="right" valign="top"><a id="a152539ad94bd4d0e20aa008a15b60153"></a>
-uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>period_nano_sec</b></td></tr>
-<tr class="separator:a152539ad94bd4d0e20aa008a15b60153"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2eff9598783b9efe0c6422558f131db6"><td class="memItemLeft" align="right" valign="top"><a id="a2eff9598783b9efe0c6422558f131db6"></a>
-uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>max_ticks_per_period</b></td></tr>
-<tr class="separator:a2eff9598783b9efe0c6422558f131db6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8699d61e824098d8288ecd885271df8"><td class="memItemLeft" align="right" valign="top"><a id="ad8699d61e824098d8288ecd885271df8"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>tick_period_nano_sec</b></td></tr>
-<tr class="separator:ad8699d61e824098d8288ecd885271df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfdf13faa31e500345bf17e539dae1be"><td class="memItemLeft" align="right" valign="top"><a id="adfdf13faa31e500345bf17e539dae1be"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_config_done</b> = false</td></tr>
 <tr class="separator:adfdf13faa31e500345bf17e539dae1be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2eff9598783b9efe0c6422558f131db6"><td class="memItemLeft" align="right" valign="top"><a id="a2eff9598783b9efe0c6422558f131db6"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>max_ticks_per_period</b></td></tr>
+<tr class="separator:a2eff9598783b9efe0c6422558f131db6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a152539ad94bd4d0e20aa008a15b60153"><td class="memItemLeft" align="right" valign="top"><a id="a152539ad94bd4d0e20aa008a15b60153"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>period_nano_sec</b></td></tr>
+<tr class="separator:a152539ad94bd4d0e20aa008a15b60153"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a8420628b0fe3b0348268fa97f10dc7"><td class="memItemLeft" align="right" valign="top"><a id="a2a8420628b0fe3b0348268fa97f10dc7"></a>
+PinMode&#160;</td><td class="memItemRight" valign="bottom"><b>pin_mode</b></td></tr>
+<tr class="separator:a2a8420628b0fe3b0348268fa97f10dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e77e13f3ed91ff31da13981c07e29f2"><td class="memItemLeft" align="right" valign="top"><a id="a5e77e13f3ed91ff31da13981c07e29f2"></a>
+<a class="el" href="classpico__arduino_1_1_pico_pin_function.html">PicoPinFunction</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pinFunction</b> = PicoPinFunction::instance()</td></tr>
+<tr class="separator:a5e77e13f3ed91ff31da13981c07e29f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8699d61e824098d8288ecd885271df8"><td class="memItemLeft" align="right" valign="top"><a id="ad8699d61e824098d8288ecd885271df8"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>tick_period_nano_sec</b></td></tr>
+<tr class="separator:ad8699d61e824098d8288ecd885271df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>PWM class which supports the input of PWM signals. </p>

@@ -96,10 +96,11 @@ Public Member Functions</h2></td></tr>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_logger.html#afbba52bbb79ca0844324922b15d9abcc">begin</a> (<a class="el" href="classarduino_1_1_stream.html">Stream</a> &amp;out, <a class="el" href="classpico__arduino_1_1_pico_logger.html#a570583692cbd6a2d8d89e1821099772f">LogLevel</a> level=PICO_LOG_LEVEL)</td></tr>
 <tr class="memdesc:afbba52bbb79ca0844324922b15d9abcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">activate the logging <br /></td></tr>
 <tr class="separator:afbba52bbb79ca0844324922b15d9abcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93421f003ba337b2e24c617b9772c8c7"><td class="memItemLeft" align="right" valign="top"><a id="a93421f003ba337b2e24c617b9772c8c7"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_logger.html#a93421f003ba337b2e24c617b9772c8c7">isLogging</a> (<a class="el" href="classpico__arduino_1_1_pico_logger.html#a570583692cbd6a2d8d89e1821099772f">LogLevel</a> level=Info)</td></tr>
-<tr class="memdesc:a93421f003ba337b2e24c617b9772c8c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the logging is active <br /></td></tr>
-<tr class="separator:a93421f003ba337b2e24c617b9772c8c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adedb413e2d600f3a3c003ce1a6b24802"><td class="memItemLeft" align="right" valign="top"><a id="adedb413e2d600f3a3c003ce1a6b24802"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_logger.html#adedb413e2d600f3a3c003ce1a6b24802">debug</a> (const char *str, const char *str1=nullptr, const char *str2=nullptr)</td></tr>
+<tr class="memdesc:adedb413e2d600f3a3c003ce1a6b24802"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes an debug message <br  />
+ <br /></td></tr>
+<tr class="separator:adedb413e2d600f3a3c003ce1a6b24802"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa97c3dc199ebbc76007f51685a63057"><td class="memItemLeft" align="right" valign="top"><a id="aaa97c3dc199ebbc76007f51685a63057"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_logger.html#aaa97c3dc199ebbc76007f51685a63057">error</a> (const char *str, const char *str1=nullptr, const char *str2=nullptr)</td></tr>
 <tr class="memdesc:aaa97c3dc199ebbc76007f51685a63057"><td class="mdescLeft">&#160;</td><td class="mdescRight">logs an error <br /></td></tr>
@@ -109,16 +110,10 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memdesc:ab4d24abb86916a0d1bf80dfca0f4b5b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">logs an info message <br  />
  <br /></td></tr>
 <tr class="separator:ab4d24abb86916a0d1bf80dfca0f4b5b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9d0b62acfb7340d1c72733ca444df11"><td class="memItemLeft" align="right" valign="top"><a id="ab9d0b62acfb7340d1c72733ca444df11"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_logger.html#ab9d0b62acfb7340d1c72733ca444df11">warning</a> (const char *str, const char *str1=nullptr, const char *str2=nullptr)</td></tr>
-<tr class="memdesc:ab9d0b62acfb7340d1c72733ca444df11"><td class="mdescLeft">&#160;</td><td class="mdescRight">logs an warning <br  />
- <br /></td></tr>
-<tr class="separator:ab9d0b62acfb7340d1c72733ca444df11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adedb413e2d600f3a3c003ce1a6b24802"><td class="memItemLeft" align="right" valign="top"><a id="adedb413e2d600f3a3c003ce1a6b24802"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_logger.html#adedb413e2d600f3a3c003ce1a6b24802">debug</a> (const char *str, const char *str1=nullptr, const char *str2=nullptr)</td></tr>
-<tr class="memdesc:adedb413e2d600f3a3c003ce1a6b24802"><td class="mdescLeft">&#160;</td><td class="mdescRight">writes an debug message <br  />
- <br /></td></tr>
-<tr class="separator:adedb413e2d600f3a3c003ce1a6b24802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93421f003ba337b2e24c617b9772c8c7"><td class="memItemLeft" align="right" valign="top"><a id="a93421f003ba337b2e24c617b9772c8c7"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_logger.html#a93421f003ba337b2e24c617b9772c8c7">isLogging</a> (<a class="el" href="classpico__arduino_1_1_pico_logger.html#a570583692cbd6a2d8d89e1821099772f">LogLevel</a> level=Info)</td></tr>
+<tr class="memdesc:a93421f003ba337b2e24c617b9772c8c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the logging is active <br /></td></tr>
+<tr class="separator:a93421f003ba337b2e24c617b9772c8c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fb0ca69ea82c43499fb1b7ab7561566"><td class="memItemLeft" align="right" valign="top"><a id="a8fb0ca69ea82c43499fb1b7ab7561566"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_logger.html#a8fb0ca69ea82c43499fb1b7ab7561566">log</a> (<a class="el" href="classpico__arduino_1_1_pico_logger.html#a570583692cbd6a2d8d89e1821099772f">LogLevel</a> current_level, const char *str, const char *str1=nullptr, const char *str2=nullptr)</td></tr>
 <tr class="memdesc:a8fb0ca69ea82c43499fb1b7ab7561566"><td class="mdescLeft">&#160;</td><td class="mdescRight">write an message to the log <br /></td></tr>
@@ -126,15 +121,20 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:ab316d653ded86041171027c679494a26"><td class="memItemLeft" align="right" valign="top"><a id="ab316d653ded86041171027c679494a26"></a>
 const char *&#160;</td><td class="memItemRight" valign="bottom"><b>toStr</b> (int value)</td></tr>
 <tr class="separator:ab316d653ded86041171027c679494a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9d0b62acfb7340d1c72733ca444df11"><td class="memItemLeft" align="right" valign="top"><a id="ab9d0b62acfb7340d1c72733ca444df11"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_logger.html#ab9d0b62acfb7340d1c72733ca444df11">warning</a> (const char *str, const char *str1=nullptr, const char *str2=nullptr)</td></tr>
+<tr class="memdesc:ab9d0b62acfb7340d1c72733ca444df11"><td class="mdescLeft">&#160;</td><td class="mdescRight">logs an warning <br  />
+ <br /></td></tr>
+<tr class="separator:ab9d0b62acfb7340d1c72733ca444df11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:af943421fedb56a2cbcd32804631b6f5a"><td class="memItemLeft" align="right" valign="top"><a id="af943421fedb56a2cbcd32804631b6f5a"></a>
-<a class="el" href="classarduino_1_1_stream.html">Stream</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>log_stream_ptr</b></td></tr>
-<tr class="separator:af943421fedb56a2cbcd32804631b6f5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4270de13527a297b5fd4b097f94e5c8a"><td class="memItemLeft" align="right" valign="top"><a id="a4270de13527a297b5fd4b097f94e5c8a"></a>
 <a class="el" href="classpico__arduino_1_1_pico_logger.html#a570583692cbd6a2d8d89e1821099772f">LogLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><b>log_level</b></td></tr>
 <tr class="separator:a4270de13527a297b5fd4b097f94e5c8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af943421fedb56a2cbcd32804631b6f5a"><td class="memItemLeft" align="right" valign="top"><a id="af943421fedb56a2cbcd32804631b6f5a"></a>
+<a class="el" href="classarduino_1_1_stream.html">Stream</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>log_stream_ptr</b></td></tr>
+<tr class="separator:af943421fedb56a2cbcd32804631b6f5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A simple Logger that writes messages dependent on the log level. </p>

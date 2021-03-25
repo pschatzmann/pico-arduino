@@ -85,15 +85,15 @@ Inheritance diagram for arduino::IPAddress:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af25acf9a16981a1b95c66e9e683245b0"><td class="memItemLeft" align="right" valign="top"><a id="af25acf9a16981a1b95c66e9e683245b0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>IPAddress</b> (uint8_t first_octet, uint8_t second_octet, uint8_t third_octet, uint8_t fourth_octet)</td></tr>
-<tr class="separator:af25acf9a16981a1b95c66e9e683245b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9acd9971a8fc47fa51681e9b9a95b511"><td class="memItemLeft" align="right" valign="top"><a id="a9acd9971a8fc47fa51681e9b9a95b511"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>IPAddress</b> (uint32_t address)</td></tr>
-<tr class="separator:a9acd9971a8fc47fa51681e9b9a95b511"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab747742c0a428a369f6ab73b7d28c306"><td class="memItemLeft" align="right" valign="top"><a id="ab747742c0a428a369f6ab73b7d28c306"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>IPAddress</b> (const uint8_t *address)</td></tr>
 <tr class="separator:ab747742c0a428a369f6ab73b7d28c306"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9acd9971a8fc47fa51681e9b9a95b511"><td class="memItemLeft" align="right" valign="top"><a id="a9acd9971a8fc47fa51681e9b9a95b511"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>IPAddress</b> (uint32_t address)</td></tr>
+<tr class="separator:a9acd9971a8fc47fa51681e9b9a95b511"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af25acf9a16981a1b95c66e9e683245b0"><td class="memItemLeft" align="right" valign="top"><a id="af25acf9a16981a1b95c66e9e683245b0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>IPAddress</b> (uint8_t first_octet, uint8_t second_octet, uint8_t third_octet, uint8_t fourth_octet)</td></tr>
+<tr class="separator:af25acf9a16981a1b95c66e9e683245b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad74ee82b3ceb7144b6b1af47b0664cce"><td class="memItemLeft" align="right" valign="top"><a id="ad74ee82b3ceb7144b6b1af47b0664cce"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>fromString</b> (const char *address)</td></tr>
 <tr class="separator:ad74ee82b3ceb7144b6b1af47b0664cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -103,42 +103,42 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>fromString</b> (const
 <tr class="memitem:accab925595c2719d2e878ad3ebb9940e"><td class="memItemLeft" align="right" valign="top"><a id="accab925595c2719d2e878ad3ebb9940e"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>operator uint32_t</b> () const</td></tr>
 <tr class="separator:accab925595c2719d2e878ad3ebb9940e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e886b94f1f86b8277e5a362ef14bc54"><td class="memItemLeft" align="right" valign="top"><a id="a4e886b94f1f86b8277e5a362ef14bc54"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classarduino_1_1_i_p_address.html">IPAddress</a> &amp;addr) const</td></tr>
-<tr class="separator:a4e886b94f1f86b8277e5a362ef14bc54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a44e5d00ce74a692af0bf432e5190cb"><td class="memItemLeft" align="right" valign="top"><a id="a4a44e5d00ce74a692af0bf432e5190cb"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="classarduino_1_1_i_p_address.html">IPAddress</a> &amp;addr) const</td></tr>
 <tr class="separator:a4a44e5d00ce74a692af0bf432e5190cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa211891b41733b551b8a19ef24384a33"><td class="memItemLeft" align="right" valign="top"><a id="aa211891b41733b551b8a19ef24384a33"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const uint8_t *addr) const</td></tr>
-<tr class="separator:aa211891b41733b551b8a19ef24384a33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4037f8e98b4d0bab2598f003fe04486e"><td class="memItemLeft" align="right" valign="top"><a id="a4037f8e98b4d0bab2598f003fe04486e"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (int index) const</td></tr>
-<tr class="separator:a4037f8e98b4d0bab2598f003fe04486e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3bee17bc57ff5699a4f655588805c7f2"><td class="memItemLeft" align="right" valign="top"><a id="a3bee17bc57ff5699a4f655588805c7f2"></a>
-uint8_t &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (int index)</td></tr>
-<tr class="separator:a3bee17bc57ff5699a4f655588805c7f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dc5d0937fec535ef61daa5d05f30d3a"><td class="memItemLeft" align="right" valign="top"><a id="a0dc5d0937fec535ef61daa5d05f30d3a"></a>
 <a class="el" href="classarduino_1_1_i_p_address.html">IPAddress</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const uint8_t *address)</td></tr>
 <tr class="separator:a0dc5d0937fec535ef61daa5d05f30d3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af80a0f81dc5861ae3240a4331c5fc14c"><td class="memItemLeft" align="right" valign="top"><a id="af80a0f81dc5861ae3240a4331c5fc14c"></a>
 <a class="el" href="classarduino_1_1_i_p_address.html">IPAddress</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (uint32_t address)</td></tr>
 <tr class="separator:af80a0f81dc5861ae3240a4331c5fc14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e886b94f1f86b8277e5a362ef14bc54"><td class="memItemLeft" align="right" valign="top"><a id="a4e886b94f1f86b8277e5a362ef14bc54"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classarduino_1_1_i_p_address.html">IPAddress</a> &amp;addr) const</td></tr>
+<tr class="separator:a4e886b94f1f86b8277e5a362ef14bc54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa211891b41733b551b8a19ef24384a33"><td class="memItemLeft" align="right" valign="top"><a id="aa211891b41733b551b8a19ef24384a33"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const uint8_t *addr) const</td></tr>
+<tr class="separator:aa211891b41733b551b8a19ef24384a33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bee17bc57ff5699a4f655588805c7f2"><td class="memItemLeft" align="right" valign="top"><a id="a3bee17bc57ff5699a4f655588805c7f2"></a>
+uint8_t &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (int index)</td></tr>
+<tr class="separator:a3bee17bc57ff5699a4f655588805c7f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4037f8e98b4d0bab2598f003fe04486e"><td class="memItemLeft" align="right" valign="top"><a id="a4037f8e98b4d0bab2598f003fe04486e"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (int index) const</td></tr>
+<tr class="separator:a4037f8e98b4d0bab2598f003fe04486e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80676474bf1cb455a80081f6556c6aa3"><td class="memItemLeft" align="right" valign="top"><a id="a80676474bf1cb455a80081f6556c6aa3"></a>
 virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><b>printTo</b> (<a class="el" href="classarduino_1_1_print.html">Print</a> &amp;p) const</td></tr>
 <tr class="separator:a80676474bf1cb455a80081f6556c6aa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:a480cf93423716d22666c9c3f17177736"><td class="memItemLeft" align="right" valign="top"><a id="a480cf93423716d22666c9c3f17177736"></a>
-class&#160;</td><td class="memItemRight" valign="bottom"><b>UDP</b></td></tr>
-<tr class="separator:a480cf93423716d22666c9c3f17177736"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5db1c99e2c94b26278f3838c85cdb618"><td class="memItemLeft" align="right" valign="top"><a id="a5db1c99e2c94b26278f3838c85cdb618"></a>
 class&#160;</td><td class="memItemRight" valign="bottom"><b>Client</b></td></tr>
 <tr class="separator:a5db1c99e2c94b26278f3838c85cdb618"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2055578ac48afabe5af487878450f68"><td class="memItemLeft" align="right" valign="top"><a id="ac2055578ac48afabe5af487878450f68"></a>
 class&#160;</td><td class="memItemRight" valign="bottom"><b>Server</b></td></tr>
 <tr class="separator:ac2055578ac48afabe5af487878450f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a480cf93423716d22666c9c3f17177736"><td class="memItemLeft" align="right" valign="top"><a id="a480cf93423716d22666c9c3f17177736"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>UDP</b></td></tr>
+<tr class="separator:a480cf93423716d22666c9c3f17177736"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>Arduino/ArduinoCore-API/api/<a class="el" href="_i_p_address_8h_source.html">IPAddress.h</a></li>

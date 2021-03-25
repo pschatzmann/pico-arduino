@@ -88,10 +88,22 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_servo.html#aa98474cdbe97af911805e9c375cae7f2">attach</a> (int pin, int min, int max)</td></tr>
 <tr class="memdesc:aa98474cdbe97af911805e9c375cae7f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">as above but also sets min and max values for writes. <br /></td></tr>
 <tr class="separator:aa98474cdbe97af911805e9c375cae7f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a707ec7d7fae60ef71c29e878b1c721d9"><td class="memItemLeft" align="right" valign="top"><a id="a707ec7d7fae60ef71c29e878b1c721d9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_servo.html#a707ec7d7fae60ef71c29e878b1c721d9">attached</a> ()</td></tr>
+<tr class="memdesc:a707ec7d7fae60ef71c29e878b1c721d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">return true if this servo is attached, otherwise false <br /></td></tr>
+<tr class="separator:a707ec7d7fae60ef71c29e878b1c721d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a587eb816ef16035b45ab1eb529217874"><td class="memItemLeft" align="right" valign="top"><a id="a587eb816ef16035b45ab1eb529217874"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_servo.html#a587eb816ef16035b45ab1eb529217874">detach</a> ()</td></tr>
 <tr class="memdesc:a587eb816ef16035b45ab1eb529217874"><td class="mdescLeft">&#160;</td><td class="mdescRight">stops the generation of signals <br /></td></tr>
 <tr class="separator:a587eb816ef16035b45ab1eb529217874"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3421d86e35b0b160dee4600ba2a5e401"><td class="memItemLeft" align="right" valign="top"><a id="a3421d86e35b0b160dee4600ba2a5e401"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_servo.html#a3421d86e35b0b160dee4600ba2a5e401">read</a> ()</td></tr>
+<tr class="memdesc:a3421d86e35b0b160dee4600ba2a5e401"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns current pulse width as an angle between 0 and 180 degrees <br /></td></tr>
+<tr class="separator:a3421d86e35b0b160dee4600ba2a5e401"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb434fc2fa6eb0d5279f435d2748135c"><td class="memItemLeft" align="right" valign="top"><a id="acb434fc2fa6eb0d5279f435d2748135c"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_servo.html#acb434fc2fa6eb0d5279f435d2748135c">readMicroseconds</a> ()</td></tr>
+<tr class="memdesc:acb434fc2fa6eb0d5279f435d2748135c"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns current pulse width in microseconds for this servo (was read_us() in first release) <br /></td></tr>
+<tr class="separator:acb434fc2fa6eb0d5279f435d2748135c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bac033bc65a4ebb0779047dd9cb23b4"><td class="memItemLeft" align="right" valign="top"><a id="a6bac033bc65a4ebb0779047dd9cb23b4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_servo.html#a6bac033bc65a4ebb0779047dd9cb23b4">write</a> (int value)</td></tr>
 <tr class="memdesc:a6bac033bc65a4ebb0779047dd9cb23b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">if value is &lt; 200 its treated as an angle, otherwise as pulse width in microseconds <br  />
@@ -101,18 +113,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_servo.html#aafa686fa8bd93b455a13c114d0c565b9">writeMicroseconds</a> (int value)</td></tr>
 <tr class="memdesc:aafa686fa8bd93b455a13c114d0c565b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write pulse width in microseconds. <br /></td></tr>
 <tr class="separator:aafa686fa8bd93b455a13c114d0c565b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3421d86e35b0b160dee4600ba2a5e401"><td class="memItemLeft" align="right" valign="top"><a id="a3421d86e35b0b160dee4600ba2a5e401"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_servo.html#a3421d86e35b0b160dee4600ba2a5e401">read</a> ()</td></tr>
-<tr class="memdesc:a3421d86e35b0b160dee4600ba2a5e401"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns current pulse width as an angle between 0 and 180 degrees <br /></td></tr>
-<tr class="separator:a3421d86e35b0b160dee4600ba2a5e401"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb434fc2fa6eb0d5279f435d2748135c"><td class="memItemLeft" align="right" valign="top"><a id="acb434fc2fa6eb0d5279f435d2748135c"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_servo.html#acb434fc2fa6eb0d5279f435d2748135c">readMicroseconds</a> ()</td></tr>
-<tr class="memdesc:acb434fc2fa6eb0d5279f435d2748135c"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns current pulse width in microseconds for this servo (was read_us() in first release) <br /></td></tr>
-<tr class="separator:acb434fc2fa6eb0d5279f435d2748135c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a707ec7d7fae60ef71c29e878b1c721d9"><td class="memItemLeft" align="right" valign="top"><a id="a707ec7d7fae60ef71c29e878b1c721d9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_servo.html#a707ec7d7fae60ef71c29e878b1c721d9">attached</a> ()</td></tr>
-<tr class="memdesc:a707ec7d7fae60ef71c29e878b1c721d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">return true if this servo is attached, otherwise false <br /></td></tr>
-<tr class="separator:a707ec7d7fae60ef71c29e878b1c721d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>We provide an alternative Pico implementation for the <a class="el" href="classpico__arduino_1_1_servo.html" title="We provide an alternative Pico implementation for the Servo class which is compatible with the Arduin...">Servo</a> class which is compatible with the Arduino <a class="el" href="classpico__arduino_1_1_servo.html" title="We provide an alternative Pico implementation for the Servo class which is compatible with the Arduin...">Servo</a> library. </p>

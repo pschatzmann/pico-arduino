@@ -80,21 +80,21 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afcf7f2f96a795e2802252af917fcce2d"><td class="memItemLeft" align="right" valign="top"><a id="afcf7f2f96a795e2802252af917fcce2d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>push</b> (uint32_t data, bool is_blocking=true)</td></tr>
-<tr class="separator:afcf7f2f96a795e2802252af917fcce2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a293da0bd9699cdd185c7138748cada7c"><td class="memItemLeft" align="right" valign="top"><a id="a293da0bd9699cdd185c7138748cada7c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>pop</b> (uint32_t &amp;data, bool is_blocking=true)</td></tr>
-<tr class="separator:a293da0bd9699cdd185c7138748cada7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a006d14047df2b65cb17816c674bf843a"><td class="memItemLeft" align="right" valign="top"><a id="a006d14047df2b65cb17816c674bf843a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
+<tr class="separator:a006d14047df2b65cb17816c674bf843a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b1969bca33f3cc388bb826f9c0156ed"><td class="memItemLeft" align="right" valign="top"><a id="a4b1969bca33f3cc388bb826f9c0156ed"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isEmpty</b> ()</td></tr>
 <tr class="separator:a4b1969bca33f3cc388bb826f9c0156ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07045f5ca76ebc207e2a9e6315943ab4"><td class="memItemLeft" align="right" valign="top"><a id="a07045f5ca76ebc207e2a9e6315943ab4"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isFull</b> ()</td></tr>
 <tr class="separator:a07045f5ca76ebc207e2a9e6315943ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a006d14047df2b65cb17816c674bf843a"><td class="memItemLeft" align="right" valign="top"><a id="a006d14047df2b65cb17816c674bf843a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
-<tr class="separator:a006d14047df2b65cb17816c674bf843a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a293da0bd9699cdd185c7138748cada7c"><td class="memItemLeft" align="right" valign="top"><a id="a293da0bd9699cdd185c7138748cada7c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>pop</b> (uint32_t &amp;data, bool is_blocking=true)</td></tr>
+<tr class="separator:a293da0bd9699cdd185c7138748cada7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcf7f2f96a795e2802252af917fcce2d"><td class="memItemLeft" align="right" valign="top"><a id="afcf7f2f96a795e2802252af917fcce2d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>push</b> (uint32_t data, bool is_blocking=true)</td></tr>
+<tr class="separator:afcf7f2f96a795e2802252af917fcce2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The RP2040 contains two FIFOs for passing data, messages or ordered events between the two cores. Each FIFO is 32 bits wide, and 8 entries deep. One of the FIFOs can only be written by core 0, and read by core 1. The other can only be written by core 1, and read by core 0. </p>

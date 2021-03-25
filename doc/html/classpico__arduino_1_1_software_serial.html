@@ -91,15 +91,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7ece730913cb9c060016713cad79cdae"><td class="memItemLeft" align="right" valign="top"><a id="a7ece730913cb9c060016713cad79cdae"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>SoftwareSerial</b> (PIO pio=pio1, uint stateMachineRxIndex=0, uint stateMachineTxIndex=1)</td></tr>
 <tr class="separator:a7ece730913cb9c060016713cad79cdae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5e041cb192cc5057d870436eaf866ac"><td class="memItemLeft" align="right" valign="top"><a id="ac5e041cb192cc5057d870436eaf866ac"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>available</b> ()</td></tr>
+<tr class="separator:ac5e041cb192cc5057d870436eaf866ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3071457974a67307e0413aea3c4021c6"><td class="memItemLeft" align="right" valign="top"><a id="a3071457974a67307e0413aea3c4021c6"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> (uint baud=9800, int rxPin=-1, int txPin=-1)</td></tr>
 <tr class="separator:a3071457974a67307e0413aea3c4021c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2db61ec471596e9ee4ff04dfe0a2051b"><td class="memItemLeft" align="right" valign="top"><a id="a2db61ec471596e9ee4ff04dfe0a2051b"></a>
 virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>peek</b> ()</td></tr>
 <tr class="separator:a2db61ec471596e9ee4ff04dfe0a2051b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5e041cb192cc5057d870436eaf866ac"><td class="memItemLeft" align="right" valign="top"><a id="ac5e041cb192cc5057d870436eaf866ac"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>available</b> ()</td></tr>
-<tr class="separator:ac5e041cb192cc5057d870436eaf866ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48ff3e6e2e8bc95e786292014e1feaac"><td class="memItemLeft" align="right" valign="top"><a id="a48ff3e6e2e8bc95e786292014e1feaac"></a>
 virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> ()</td></tr>
 <tr class="separator:a48ff3e6e2e8bc95e786292014e1feaac"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,15 +118,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setupTx</b> (uint pin
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a77ff3e70d5988d2bc2f6cac94e98df4a"><td class="memItemLeft" align="right" valign="top"><a id="a77ff3e70d5988d2bc2f6cac94e98df4a"></a>
-PIO&#160;</td><td class="memItemRight" valign="bottom"><b>pio</b></td></tr>
-<tr class="separator:a77ff3e70d5988d2bc2f6cac94e98df4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaaaaf72e296d7799faa7505af49d4432"><td class="memItemLeft" align="right" valign="top"><a id="aaaaaf72e296d7799faa7505af49d4432"></a>
-uint&#160;</td><td class="memItemRight" valign="bottom"><b>sm_rx</b></td></tr>
-<tr class="separator:aaaaaf72e296d7799faa7505af49d4432"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84d216eeb2638e6b969174d17a33758f"><td class="memItemLeft" align="right" valign="top"><a id="a84d216eeb2638e6b969174d17a33758f"></a>
-uint&#160;</td><td class="memItemRight" valign="bottom"><b>sm_tx</b></td></tr>
-<tr class="separator:a84d216eeb2638e6b969174d17a33758f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac953fedaaa1c44b5b4635cadf00d4917"><td class="memItemLeft" align="right" valign="top"><a id="ac953fedaaa1c44b5b4635cadf00d4917"></a>
 uint&#160;</td><td class="memItemRight" valign="bottom"><b>baud</b></td></tr>
 <tr class="separator:ac953fedaaa1c44b5b4635cadf00d4917"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,6 +127,15 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>offset</b></td></tr>
 <tr class="memitem:a65646ba58812ab80b22b0c54c3a1894c"><td class="memItemLeft" align="right" valign="top"><a id="a65646ba58812ab80b22b0c54c3a1894c"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>peekValue</b> =-1</td></tr>
 <tr class="separator:a65646ba58812ab80b22b0c54c3a1894c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77ff3e70d5988d2bc2f6cac94e98df4a"><td class="memItemLeft" align="right" valign="top"><a id="a77ff3e70d5988d2bc2f6cac94e98df4a"></a>
+PIO&#160;</td><td class="memItemRight" valign="bottom"><b>pio</b></td></tr>
+<tr class="separator:a77ff3e70d5988d2bc2f6cac94e98df4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaaaf72e296d7799faa7505af49d4432"><td class="memItemLeft" align="right" valign="top"><a id="aaaaaf72e296d7799faa7505af49d4432"></a>
+uint&#160;</td><td class="memItemRight" valign="bottom"><b>sm_rx</b></td></tr>
+<tr class="separator:aaaaaf72e296d7799faa7505af49d4432"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84d216eeb2638e6b969174d17a33758f"><td class="memItemLeft" align="right" valign="top"><a id="a84d216eeb2638e6b969174d17a33758f"></a>
+uint&#160;</td><td class="memItemRight" valign="bottom"><b>sm_tx</b></td></tr>
+<tr class="separator:a84d216eeb2638e6b969174d17a33758f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Software Serial Arduino Stream which uses the Pico PIO. </p>

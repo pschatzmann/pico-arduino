@@ -90,20 +90,32 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#a854c8772ff5aefa5d446be43f1d73b4b">~PicoDMA</a> ()</td></tr>
 <tr class="memdesc:a854c8772ff5aefa5d446be43f1d73b4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor: releases the DMA channel if necessary - if some processing is still going on, it is aborted. <br /></td></tr>
 <tr class="separator:a854c8772ff5aefa5d446be43f1d73b4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87c663d00dd4148fa48570bb95bc0959"><td class="memItemLeft" align="right" valign="top"><a id="a87c663d00dd4148fa48570bb95bc0959"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#a87c663d00dd4148fa48570bb95bc0959">releaseChannel</a> (bool abortProcessing=false)</td></tr>
-<tr class="memdesc:a87c663d00dd4148fa48570bb95bc0959"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the DMA channel and makes it available again. <br /></td></tr>
-<tr class="separator:a87c663d00dd4148fa48570bb95bc0959"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fa6fa8cc9461b8f8ce905b64878a98a"><td class="memItemLeft" align="right" valign="top"><a id="a7fa6fa8cc9461b8f8ce905b64878a98a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#a7fa6fa8cc9461b8f8ce905b64878a98a">abort</a> ()</td></tr>
+<tr class="memdesc:a7fa6fa8cc9461b8f8ce905b64878a98a"><td class="mdescLeft">&#160;</td><td class="mdescRight">aborts the copy <br /></td></tr>
+<tr class="separator:a7fa6fa8cc9461b8f8ce905b64878a98a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43472e4f399982c6b42925fe0b46c355"><td class="memItemLeft" align="right" valign="top"><a id="a43472e4f399982c6b42925fe0b46c355"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#a43472e4f399982c6b42925fe0b46c355">channel</a> ()</td></tr>
 <tr class="memdesc:a43472e4f399982c6b42925fe0b46c355"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides the used DMA channel - returns -1 if no channel has been set up so far <br /></td></tr>
 <tr class="separator:a43472e4f399982c6b42925fe0b46c355"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbd2398dc879109272e208c43ea305c2"><td class="memItemLeft" align="right" valign="top"><a id="afbd2398dc879109272e208c43ea305c2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#afbd2398dc879109272e208c43ea305c2">clearInterrupt</a> ()</td></tr>
+<tr class="memdesc:afbd2398dc879109272e208c43ea305c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">You need to call this method in the completion handler. <br /></td></tr>
+<tr class="separator:afbd2398dc879109272e208c43ea305c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f69ae8c92618c698b2bfc886f74b2a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#a6f69ae8c92618c698b2bfc886f74b2a9">copy</a> (T *dst, T *src, int len, boolean <a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#a53b34b9f466cd0bdc802c7547c896878">start</a>=true)</td></tr>
 <tr class="memdesc:a6f69ae8c92618c698b2bfc886f74b2a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the values of num bytes from the location pointed to by source directly to the memory block pointed to by destination. The copying is done in the background.  <a href="classpico__arduino_1_1_pico_d_m_a.html#a6f69ae8c92618c698b2bfc886f74b2a9">More...</a><br /></td></tr>
 <tr class="separator:a6f69ae8c92618c698b2bfc886f74b2a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bdfe6704c88cf4b54ea037fa2d55e7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#a7bdfe6704c88cf4b54ea037fa2d55e7c">copy</a> (T *dst, T *src, int len, void(*completion_handler)(), bool startCopy=true)</td></tr>
 <tr class="memdesc:a7bdfe6704c88cf4b54ea037fa2d55e7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the values of num bytes from the location pointed to by source directly to the memory block pointed to by destination. The copying is done in the background.  <a href="classpico__arduino_1_1_pico_d_m_a.html#a7bdfe6704c88cf4b54ea037fa2d55e7c">More...</a><br /></td></tr>
 <tr class="separator:a7bdfe6704c88cf4b54ea037fa2d55e7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c22abb836e3af68a59131d1364cdb1c"><td class="memItemLeft" align="right" valign="top"><a id="a4c22abb836e3af68a59131d1364cdb1c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#a4c22abb836e3af68a59131d1364cdb1c">isBusy</a> ()</td></tr>
+<tr class="memdesc:a4c22abb836e3af68a59131d1364cdb1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the copy is still in process <br /></td></tr>
+<tr class="separator:a4c22abb836e3af68a59131d1364cdb1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87c663d00dd4148fa48570bb95bc0959"><td class="memItemLeft" align="right" valign="top"><a id="a87c663d00dd4148fa48570bb95bc0959"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#a87c663d00dd4148fa48570bb95bc0959">releaseChannel</a> (bool abortProcessing=false)</td></tr>
+<tr class="memdesc:a87c663d00dd4148fa48570bb95bc0959"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the DMA channel and makes it available again. <br /></td></tr>
+<tr class="separator:a87c663d00dd4148fa48570bb95bc0959"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c1fc86f64be2e5980ff14cd08e4d1c1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#a3c1fc86f64be2e5980ff14cd08e4d1c1">set</a> (T *dst, T src, int len, boolean <a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#a53b34b9f466cd0bdc802c7547c896878">start</a>=true)</td></tr>
 <tr class="memdesc:a3c1fc86f64be2e5980ff14cd08e4d1c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a destination array with a fixed value We support only data of the size of uint_8, uint16_t and uint_32_t.  <a href="classpico__arduino_1_1_pico_d_m_a.html#a3c1fc86f64be2e5980ff14cd08e4d1c1">More...</a><br /></td></tr>
 <tr class="separator:a3c1fc86f64be2e5980ff14cd08e4d1c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,32 +126,20 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#a53b34b9f466cd0bdc802c7547c896878">start</a> ()</td></tr>
 <tr class="memdesc:a53b34b9f466cd0bdc802c7547c896878"><td class="mdescLeft">&#160;</td><td class="mdescRight">starts the copy <br /></td></tr>
 <tr class="separator:a53b34b9f466cd0bdc802c7547c896878"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fa6fa8cc9461b8f8ce905b64878a98a"><td class="memItemLeft" align="right" valign="top"><a id="a7fa6fa8cc9461b8f8ce905b64878a98a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#a7fa6fa8cc9461b8f8ce905b64878a98a">abort</a> ()</td></tr>
-<tr class="memdesc:a7fa6fa8cc9461b8f8ce905b64878a98a"><td class="mdescLeft">&#160;</td><td class="mdescRight">aborts the copy <br /></td></tr>
-<tr class="separator:a7fa6fa8cc9461b8f8ce905b64878a98a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7f28cd137bdc8079691ced74113fded"><td class="memItemLeft" align="right" valign="top"><a id="ae7f28cd137bdc8079691ced74113fded"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#ae7f28cd137bdc8079691ced74113fded">wait</a> ()</td></tr>
 <tr class="memdesc:ae7f28cd137bdc8079691ced74113fded"><td class="mdescLeft">&#160;</td><td class="mdescRight">a blocking wait for the copy to complete <br /></td></tr>
 <tr class="separator:ae7f28cd137bdc8079691ced74113fded"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c22abb836e3af68a59131d1364cdb1c"><td class="memItemLeft" align="right" valign="top"><a id="a4c22abb836e3af68a59131d1364cdb1c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#a4c22abb836e3af68a59131d1364cdb1c">isBusy</a> ()</td></tr>
-<tr class="memdesc:a4c22abb836e3af68a59131d1364cdb1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the copy is still in process <br /></td></tr>
-<tr class="separator:a4c22abb836e3af68a59131d1364cdb1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbd2398dc879109272e208c43ea305c2"><td class="memItemLeft" align="right" valign="top"><a id="afbd2398dc879109272e208c43ea305c2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#afbd2398dc879109272e208c43ea305c2">clearInterrupt</a> ()</td></tr>
-<tr class="memdesc:afbd2398dc879109272e208c43ea305c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">You need to call this method in the completion handler. <br /></td></tr>
-<tr class="separator:afbd2398dc879109272e208c43ea305c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ad61a514564ef15eec5cd88b957999b05"><td class="memItemLeft" align="right" valign="top"><a id="ad61a514564ef15eec5cd88b957999b05"></a>
-dma_channel_transfer_size&#160;</td><td class="memItemRight" valign="bottom"><b>transferSize</b> ()</td></tr>
-<tr class="separator:ad61a514564ef15eec5cd88b957999b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab88cea602569c95f5f9100b9d0b44ca9"><td class="memItemLeft" align="right" valign="top"><a id="ab88cea602569c95f5f9100b9d0b44ca9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_d_m_a.html#ab88cea602569c95f5f9100b9d0b44ca9">setupChannel</a> ()</td></tr>
 <tr class="memdesc:ab88cea602569c95f5f9100b9d0b44ca9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides the next available DMA channel. <br /></td></tr>
 <tr class="separator:ab88cea602569c95f5f9100b9d0b44ca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad61a514564ef15eec5cd88b957999b05"><td class="memItemLeft" align="right" valign="top"><a id="ad61a514564ef15eec5cd88b957999b05"></a>
+dma_channel_transfer_size&#160;</td><td class="memItemRight" valign="bottom"><b>transferSize</b> ()</td></tr>
+<tr class="separator:ad61a514564ef15eec5cd88b957999b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>

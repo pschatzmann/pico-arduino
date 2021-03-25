@@ -84,39 +84,39 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a70d32ab455bb08e04ce5dcc06a477bb1"><td class="memItemLeft" align="right" valign="top"><a id="a70d32ab455bb08e04ce5dcc06a477bb1"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setup</b> (USBSetup &amp;setup)=0</td></tr>
-<tr class="separator:a70d32ab455bb08e04ce5dcc06a477bb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f64910fe19f64321d8ffba1baea1c09"><td class="memItemLeft" align="right" valign="top"><a id="a3f64910fe19f64321d8ffba1baea1c09"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>getInterface</b> (uint8_t *interfaceCount)=0</td></tr>
-<tr class="separator:a3f64910fe19f64321d8ffba1baea1c09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74ef0040ea9f4859dc2b5b49c6257480"><td class="memItemLeft" align="right" valign="top"><a id="a74ef0040ea9f4859dc2b5b49c6257480"></a>
 virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>getDescriptor</b> (USBSetup &amp;setup)=0</td></tr>
 <tr class="separator:a74ef0040ea9f4859dc2b5b49c6257480"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f64910fe19f64321d8ffba1baea1c09"><td class="memItemLeft" align="right" valign="top"><a id="a3f64910fe19f64321d8ffba1baea1c09"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>getInterface</b> (uint8_t *interfaceCount)=0</td></tr>
+<tr class="separator:a3f64910fe19f64321d8ffba1baea1c09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb331b0106dc24c874ca1d2ef08205ce"><td class="memItemLeft" align="right" valign="top"><a id="afb331b0106dc24c874ca1d2ef08205ce"></a>
 virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>getShortName</b> (char *name)</td></tr>
 <tr class="separator:afb331b0106dc24c874ca1d2ef08205ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70d32ab455bb08e04ce5dcc06a477bb1"><td class="memItemLeft" align="right" valign="top"><a id="a70d32ab455bb08e04ce5dcc06a477bb1"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>setup</b> (USBSetup &amp;setup)=0</td></tr>
+<tr class="separator:a70d32ab455bb08e04ce5dcc06a477bb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ad7c3d19b60f368ed58e472211c00eae8"><td class="memItemLeft" align="right" valign="top"><a id="ad7c3d19b60f368ed58e472211c00eae8"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>pluggedInterface</b></td></tr>
-<tr class="separator:ad7c3d19b60f368ed58e472211c00eae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27cd47a82102a011a8aba344056ac32f"><td class="memItemLeft" align="right" valign="top"><a id="a27cd47a82102a011a8aba344056ac32f"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>pluggedEndpoint</b></td></tr>
-<tr class="separator:a27cd47a82102a011a8aba344056ac32f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af109bbb22ff186489d8559544911a507"><td class="memItemLeft" align="right" valign="top"><a id="af109bbb22ff186489d8559544911a507"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>numEndpoints</b></td></tr>
-<tr class="separator:af109bbb22ff186489d8559544911a507"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a439d9b03f3e21180b6b49814e146fa4e"><td class="memItemLeft" align="right" valign="top"><a id="a439d9b03f3e21180b6b49814e146fa4e"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>numInterfaces</b></td></tr>
-<tr class="separator:a439d9b03f3e21180b6b49814e146fa4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f7f6d2479ca05c3b0e18ec77150f13f"><td class="memItemLeft" align="right" valign="top"><a id="a7f7f6d2479ca05c3b0e18ec77150f13f"></a>
 const unsigned int *&#160;</td><td class="memItemRight" valign="bottom"><b>endpointType</b></td></tr>
 <tr class="separator:a7f7f6d2479ca05c3b0e18ec77150f13f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a636eab575cdc003d3acebab939e1b86c"><td class="memItemLeft" align="right" valign="top"><a id="a636eab575cdc003d3acebab939e1b86c"></a>
 <a class="el" href="classarduino_1_1_pluggable_u_s_b_module.html">PluggableUSBModule</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>next</b> = NULL</td></tr>
 <tr class="separator:a636eab575cdc003d3acebab939e1b86c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af109bbb22ff186489d8559544911a507"><td class="memItemLeft" align="right" valign="top"><a id="af109bbb22ff186489d8559544911a507"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>numEndpoints</b></td></tr>
+<tr class="separator:af109bbb22ff186489d8559544911a507"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a439d9b03f3e21180b6b49814e146fa4e"><td class="memItemLeft" align="right" valign="top"><a id="a439d9b03f3e21180b6b49814e146fa4e"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>numInterfaces</b></td></tr>
+<tr class="separator:a439d9b03f3e21180b6b49814e146fa4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27cd47a82102a011a8aba344056ac32f"><td class="memItemLeft" align="right" valign="top"><a id="a27cd47a82102a011a8aba344056ac32f"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>pluggedEndpoint</b></td></tr>
+<tr class="separator:a27cd47a82102a011a8aba344056ac32f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7c3d19b60f368ed58e472211c00eae8"><td class="memItemLeft" align="right" valign="top"><a id="ad7c3d19b60f368ed58e472211c00eae8"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>pluggedInterface</b></td></tr>
+<tr class="separator:ad7c3d19b60f368ed58e472211c00eae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>

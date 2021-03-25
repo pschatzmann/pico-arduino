@@ -83,18 +83,18 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a93af195ff4470b9f7f1823f8404f7f18"><td class="memItemLeft" align="right" valign="top"><a id="a93af195ff4470b9f7f1823f8404f7f18"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_pin_function.html#a93af195ff4470b9f7f1823f8404f7f18">setPinMode</a> (pin_size_t pinNumber, PinMode <a class="el" href="classpico__arduino_1_1_pico_pin_function.html#a33aba2e6926caeb9d88ad1dd25c0fcc7">pinMode</a>)</td></tr>
-<tr class="memdesc:a93af195ff4470b9f7f1823f8404f7f18"><td class="mdescLeft">&#160;</td><td class="mdescRight">defines the actual Arduino PinMode. Returns true if it needed to be changed <br /></td></tr>
-<tr class="separator:a93af195ff4470b9f7f1823f8404f7f18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a492c12c6875f2f4ef6cca3eca4d7b0ec"><td class="memItemLeft" align="right" valign="top"><a id="a492c12c6875f2f4ef6cca3eca4d7b0ec"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_pin_function.html#a492c12c6875f2f4ef6cca3eca4d7b0ec">isModeDefined</a> (pin_size_t pinNumber)</td></tr>
-<tr class="memdesc:a492c12c6875f2f4ef6cca3eca4d7b0ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the mode was defined for the pin <br /></td></tr>
-<tr class="separator:a492c12c6875f2f4ef6cca3eca4d7b0ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a354f8ae87e8cf8e2b2e44160f7f0ce0d"><td class="memItemLeft" align="right" valign="top"><a id="a354f8ae87e8cf8e2b2e44160f7f0ce0d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_pin_function.html#a354f8ae87e8cf8e2b2e44160f7f0ce0d">clear</a> (pin_size_t pinNumber)</td></tr>
+<tr class="memdesc:a354f8ae87e8cf8e2b2e44160f7f0ce0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">set gpio function to GPIO_FUNC_NULL <br /></td></tr>
+<tr class="separator:a354f8ae87e8cf8e2b2e44160f7f0ce0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8557edeb67e81d233b8160cbd4efc3df"><td class="memItemLeft" align="right" valign="top"><a id="a8557edeb67e81d233b8160cbd4efc3df"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_pin_function.html#a8557edeb67e81d233b8160cbd4efc3df">isInput</a> (pin_size_t pinNumber)</td></tr>
 <tr class="memdesc:a8557edeb67e81d233b8160cbd4efc3df"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the pin has been defined as input <br /></td></tr>
 <tr class="separator:a8557edeb67e81d233b8160cbd4efc3df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a492c12c6875f2f4ef6cca3eca4d7b0ec"><td class="memItemLeft" align="right" valign="top"><a id="a492c12c6875f2f4ef6cca3eca4d7b0ec"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_pin_function.html#a492c12c6875f2f4ef6cca3eca4d7b0ec">isModeDefined</a> (pin_size_t pinNumber)</td></tr>
+<tr class="memdesc:a492c12c6875f2f4ef6cca3eca4d7b0ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the mode was defined for the pin <br /></td></tr>
+<tr class="separator:a492c12c6875f2f4ef6cca3eca4d7b0ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2cb6a7d81d142b9fb11a60821630bcc"><td class="memItemLeft" align="right" valign="top"><a id="ab2cb6a7d81d142b9fb11a60821630bcc"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_pin_function.html#ab2cb6a7d81d142b9fb11a60821630bcc">isOutput</a> (pin_size_t pinNumber)</td></tr>
 <tr class="memdesc:ab2cb6a7d81d142b9fb11a60821630bcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the pin has been defined as output <br /></td></tr>
@@ -103,10 +103,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_pin_function.html#a44df1e02bf1e1347f93ba9abb1836042">isSetup</a> (pin_size_t pinNumber)</td></tr>
 <tr class="memdesc:a44df1e02bf1e1347f93ba9abb1836042"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the setup has been done for the pin <br /></td></tr>
 <tr class="separator:a44df1e02bf1e1347f93ba9abb1836042"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdf4e3fdf2561c2645324af6f0edb701"><td class="memItemLeft" align="right" valign="top"><a id="abdf4e3fdf2561c2645324af6f0edb701"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_pin_function.html#abdf4e3fdf2561c2645324af6f0edb701">setSetup</a> (pin_size_t pinNumber)</td></tr>
-<tr class="memdesc:abdf4e3fdf2561c2645324af6f0edb701"><td class="mdescLeft">&#160;</td><td class="mdescRight">marks the pin setup as completed <br /></td></tr>
-<tr class="separator:abdf4e3fdf2561c2645324af6f0edb701"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33aba2e6926caeb9d88ad1dd25c0fcc7"><td class="memItemLeft" align="right" valign="top"><a id="a33aba2e6926caeb9d88ad1dd25c0fcc7"></a>
 PinMode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_pin_function.html#a33aba2e6926caeb9d88ad1dd25c0fcc7">pinMode</a> (pin_size_t pinNumber)</td></tr>
 <tr class="memdesc:a33aba2e6926caeb9d88ad1dd25c0fcc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the pin mode <br /></td></tr>
@@ -115,10 +111,14 @@ PinMode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_pin_function.html#a6331b6706cda74fea7a44c43809d0aeb">pinModeStr</a> (pin_size_t pinNumber)</td></tr>
 <tr class="memdesc:a6331b6706cda74fea7a44c43809d0aeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the PinMode as string <br /></td></tr>
 <tr class="separator:a6331b6706cda74fea7a44c43809d0aeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a354f8ae87e8cf8e2b2e44160f7f0ce0d"><td class="memItemLeft" align="right" valign="top"><a id="a354f8ae87e8cf8e2b2e44160f7f0ce0d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_pin_function.html#a354f8ae87e8cf8e2b2e44160f7f0ce0d">clear</a> (pin_size_t pinNumber)</td></tr>
-<tr class="memdesc:a354f8ae87e8cf8e2b2e44160f7f0ce0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">set gpio function to GPIO_FUNC_NULL <br /></td></tr>
-<tr class="separator:a354f8ae87e8cf8e2b2e44160f7f0ce0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93af195ff4470b9f7f1823f8404f7f18"><td class="memItemLeft" align="right" valign="top"><a id="a93af195ff4470b9f7f1823f8404f7f18"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_pin_function.html#a93af195ff4470b9f7f1823f8404f7f18">setPinMode</a> (pin_size_t pinNumber, PinMode <a class="el" href="classpico__arduino_1_1_pico_pin_function.html#a33aba2e6926caeb9d88ad1dd25c0fcc7">pinMode</a>)</td></tr>
+<tr class="memdesc:a93af195ff4470b9f7f1823f8404f7f18"><td class="mdescLeft">&#160;</td><td class="mdescRight">defines the actual Arduino PinMode. Returns true if it needed to be changed <br /></td></tr>
+<tr class="separator:a93af195ff4470b9f7f1823f8404f7f18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdf4e3fdf2561c2645324af6f0edb701"><td class="memItemLeft" align="right" valign="top"><a id="abdf4e3fdf2561c2645324af6f0edb701"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_pin_function.html#abdf4e3fdf2561c2645324af6f0edb701">setSetup</a> (pin_size_t pinNumber)</td></tr>
+<tr class="memdesc:abdf4e3fdf2561c2645324af6f0edb701"><td class="mdescLeft">&#160;</td><td class="mdescRight">marks the pin setup as completed <br /></td></tr>
+<tr class="separator:abdf4e3fdf2561c2645324af6f0edb701"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a450b2d8403557bcdbb8852f6ff4fa183"><td class="memItemLeft" align="right" valign="top"><a id="a450b2d8403557bcdbb8852f6ff4fa183"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpico__arduino_1_1_pico_pin_function.html#a450b2d8403557bcdbb8852f6ff4fa183">usePin</a> (pin_size_t pinNumber, <a class="el" href="namespacepico__arduino.html#a5a5c6ece9123fbb94a4d684688c1817f">PinFunctionEnum</a> pinFunction, <a class="el" href="classpico__arduino_1_1_pin_setup.html">PinSetup</a> *setup=nullptr)</td></tr>
 <tr class="memdesc:a450b2d8403557bcdbb8852f6ff4fa183"><td class="mdescLeft">&#160;</td><td class="mdescRight">setup Pico pin init function bysed on functionality <br /></td></tr>
@@ -139,15 +139,15 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ae56eb381d206958b89598b5c2f58a40d"><td class="memItemLeft" align="right" valign="top"><a id="ae56eb381d206958b89598b5c2f58a40d"></a>
-<a class="el" href="structpico__arduino_1_1_pin_info.html">PinInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>pinInfo</b></td></tr>
-<tr class="separator:ae56eb381d206958b89598b5c2f58a40d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3b33acfda863b76df5a1a361526c66b"><td class="memItemLeft" align="right" valign="top"><a id="ad3b33acfda863b76df5a1a361526c66b"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>adc_init_flag</b> = false</td></tr>
 <tr class="separator:ad3b33acfda863b76df5a1a361526c66b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3519368e1acdbeaa46f0dc33d44f0b52"><td class="memItemLeft" align="right" valign="top"><a id="a3519368e1acdbeaa46f0dc33d44f0b52"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>current_adc</b></td></tr>
 <tr class="separator:a3519368e1acdbeaa46f0dc33d44f0b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae56eb381d206958b89598b5c2f58a40d"><td class="memItemLeft" align="right" valign="top"><a id="ae56eb381d206958b89598b5c2f58a40d"></a>
+<a class="el" href="structpico__arduino_1_1_pin_info.html">PinInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>pinInfo</b></td></tr>
+<tr class="separator:ae56eb381d206958b89598b5c2f58a40d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The pico requires that the function of the pin is defined. In Arduino, there is no such concept - however we need to define if the pin is input or output. </p>

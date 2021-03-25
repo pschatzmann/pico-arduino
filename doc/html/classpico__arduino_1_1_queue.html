@@ -85,6 +85,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8bd4b45f11010130df7a32b3ea5ef681"><td class="memItemLeft" align="right" valign="top"><a id="a8bd4b45f11010130df7a32b3ea5ef681"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Queue</b> (int maxCount=100, bool blocking=true, bool withLock=true)</td></tr>
 <tr class="separator:a8bd4b45f11010130df7a32b3ea5ef681"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8af4b2bd0d5956c1cb83fdb4e874eaf8"><td class="memItemLeft" align="right" valign="top"><a id="a8af4b2bd0d5956c1cb83fdb4e874eaf8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
+<tr class="separator:a8af4b2bd0d5956c1cb83fdb4e874eaf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9e43222b2a71c8cdbea9b7c099eb55c"><td class="memItemLeft" align="right" valign="top"><a id="ad9e43222b2a71c8cdbea9b7c099eb55c"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isEmpty</b> ()</td></tr>
 <tr class="separator:ad9e43222b2a71c8cdbea9b7c099eb55c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -94,18 +97,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isFull</b> ()</td></t
 <tr class="memitem:a7a6e63fb7ae4bef7d6d3a7dce62cb88f"><td class="memItemLeft" align="right" valign="top"><a id="a7a6e63fb7ae4bef7d6d3a7dce62cb88f"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>peek</b> (T &amp;data)</td></tr>
 <tr class="separator:a7a6e63fb7ae4bef7d6d3a7dce62cb88f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9b0b1a11d8ada97ecafd4e3c92003e2"><td class="memItemLeft" align="right" valign="top"><a id="ab9b0b1a11d8ada97ecafd4e3c92003e2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>push</b> (T &amp;data)</td></tr>
-<tr class="separator:ab9b0b1a11d8ada97ecafd4e3c92003e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20de6ff48e011bbf0455731e01563855"><td class="memItemLeft" align="right" valign="top"><a id="a20de6ff48e011bbf0455731e01563855"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>pop</b> (T &amp;data)</td></tr>
 <tr class="separator:a20de6ff48e011bbf0455731e01563855"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9b0b1a11d8ada97ecafd4e3c92003e2"><td class="memItemLeft" align="right" valign="top"><a id="ab9b0b1a11d8ada97ecafd4e3c92003e2"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>push</b> (T &amp;data)</td></tr>
+<tr class="separator:ab9b0b1a11d8ada97ecafd4e3c92003e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2768a3b883695e4dc88983f36c15cb8e"><td class="memItemLeft" align="right" valign="top"><a id="a2768a3b883695e4dc88983f36c15cb8e"></a>
 uint&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> ()</td></tr>
 <tr class="separator:a2768a3b883695e4dc88983f36c15cb8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8af4b2bd0d5956c1cb83fdb4e874eaf8"><td class="memItemLeft" align="right" valign="top"><a id="a8af4b2bd0d5956c1cb83fdb4e874eaf8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
-<tr class="separator:a8af4b2bd0d5956c1cb83fdb4e874eaf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -115,12 +115,12 @@ uint&#160;</td><td class="memItemRight" valign="bottom"><b>nextSpinlockNumber</b
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:af59cd040dae4b4fbc691ebf880550916"><td class="memItemLeft" align="right" valign="top"><a id="af59cd040dae4b4fbc691ebf880550916"></a>
-queue_t&#160;</td><td class="memItemRight" valign="bottom"><b>q</b></td></tr>
-<tr class="separator:af59cd040dae4b4fbc691ebf880550916"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31e65f965a80bc08f8dfd3d76d27df82"><td class="memItemLeft" align="right" valign="top"><a id="a31e65f965a80bc08f8dfd3d76d27df82"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_blocking</b></td></tr>
 <tr class="separator:a31e65f965a80bc08f8dfd3d76d27df82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af59cd040dae4b4fbc691ebf880550916"><td class="memItemLeft" align="right" valign="top"><a id="af59cd040dae4b4fbc691ebf880550916"></a>
+queue_t&#160;</td><td class="memItemRight" valign="bottom"><b>q</b></td></tr>
+<tr class="separator:af59cd040dae4b4fbc691ebf880550916"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class T&gt;<br />
