@@ -32,14 +32,8 @@
 #include "hardware/pwm.h"
 
 
-// Global variables
-#if !defined(TINYUSB_HOST_LINKED) && !defined(TINYUSB_DEVICE_LINKED)
-extern PicoSerialUSB Serial; // pico_stdio
-#endif
-extern PicoSerialUART Serial1;
-extern PicoSerialUART Serial2; 
-extern PicoLogger Logger;   // Support for logging
-extern PicoPinFunction PinFunction;
+using namespace pico_arduino;
+using namespace arduino;
 
 // Pico specific global methods
 // Provides the on board temperature in Celsius
@@ -53,6 +47,3 @@ uint64_t uniqueId();
 char *dtostrf (double __val, signed char __width, unsigned char __prec, char *__s);
 char *dtostre (double __val, char *__s, unsigned char __prec, unsigned char __flags);
 
-#ifndef PICO_ARDUINO_PWM_FREQUENCY
-#define PICO_ARDUINO_PWM_FREQUENCY 490
-#endif

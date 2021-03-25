@@ -1,15 +1,15 @@
 var searchData=
 [
-  ['peek_212',['peek',['../class_pico_hardware_i2_c.html#ad584541e149dae0a222de5e247ce9192',1,'PicoHardwareI2C']]],
-  ['period_213',['period',['../class_pico_p_w_m_writer.html#a935a3a914123315c0e021cfba5c07095',1,'PicoPWMWriter::period()'],['../class_pico_p_w_m_reader.html#a650663b6fdc7dbab2ea3a2573682e1be',1,'PicoPWMReader::period()'],['../class_pico_p_w_m_nano.html#a6f64a5e42e0561086d46db591b2e241e',1,'PicoPWMNano::period()'],['../class_pico_p_w_m.html#a887e7ebf412d75118fdf3bf323bdd2a3',1,'PicoPWM::period()']]],
-  ['picodma_214',['PicoDMA',['../class_pico_d_m_a.html#aa71b00062ea9edca5bfb667dae91603d',1,'PicoDMA']]],
-  ['picohardwarei2c_215',['PicoHardwareI2C',['../class_pico_hardware_i2_c.html#a1de257c70ac2818538ff7014929eeae2',1,'PicoHardwareI2C']]],
-  ['picopinfunction_216',['PicoPinFunction',['../class_pico_pin_function.html#a505adc2ca84d4dddf7874bfe3f6dc1c2',1,'PicoPinFunction']]],
-  ['picopwm_217',['PicoPWM',['../class_pico_p_w_m.html#a4474bc1330f166071c693fee1ebf84e7',1,'PicoPWM']]],
-  ['picopwmnano_218',['PicoPWMNano',['../class_pico_p_w_m_nano.html#aab43f7ce6ba7d8189f3e1d96eeeddd9a',1,'PicoPWMNano']]],
-  ['picopwmreader_219',['PicoPWMReader',['../class_pico_p_w_m_reader.html#a780baa53189b84d5224308dbb1b1a77f',1,'PicoPWMReader']]],
-  ['picopwmwriter_220',['PicoPWMWriter',['../class_pico_p_w_m_writer.html#acad4aabe62de3e27a95ed5df3817d68d',1,'PicoPWMWriter']]],
-  ['pinmap_221',['pinMap',['../class_arduino_pico_tone.html#adbd6a63f39c585d3cc62cca712582db1',1,'ArduinoPicoTone']]],
-  ['pinmode_222',['pinMode',['../class_pico_pin_function.html#afd903b9285ada85a62aaf8050c73e0a2',1,'PicoPinFunction']]],
-  ['pinmodestr_223',['pinModeStr',['../class_pico_pin_function.html#a401084d7d292015069f4c4b243d6086d',1,'PicoPinFunction']]]
+  ['peek_218',['peek',['../classpico__arduino_1_1_pico_hardware_i2_c.html#a30f0c39db5bf3dee384c6ddcddc61eae',1,'pico_arduino::PicoHardwareI2C']]],
+  ['period_219',['period',['../classpico__arduino_1_1_pico_p_w_m_writer.html#a54635abb2cf029c45d7494b5dde8ce4d',1,'pico_arduino::PicoPWMWriter::period()'],['../classpico__arduino_1_1_pico_p_w_m_reader.html#a146fa3a516eb351fc5f38ca316d30762',1,'pico_arduino::PicoPWMReader::period()'],['../classpico__arduino_1_1_pico_p_w_m_nano.html#a7a66769292358aea66f0adbf7b749cbe',1,'pico_arduino::PicoPWMNano::period()'],['../classpico__arduino_1_1_pico_p_w_m.html#a86fda94b5e6b93ef89f94818e66a4f19',1,'pico_arduino::PicoPWM::period()']]],
+  ['picodma_220',['PicoDMA',['../classpico__arduino_1_1_pico_d_m_a.html#a1bf1ea36cc6f503c1c75f4e739b04724',1,'pico_arduino::PicoDMA']]],
+  ['picohardwarei2c_221',['PicoHardwareI2C',['../classpico__arduino_1_1_pico_hardware_i2_c.html#a04311a1f7066122e88aa267ac9bed311',1,'pico_arduino::PicoHardwareI2C']]],
+  ['picopinfunction_222',['PicoPinFunction',['../classpico__arduino_1_1_pico_pin_function.html#ac5006de817cf58ecdcb188bcb136a654',1,'pico_arduino::PicoPinFunction']]],
+  ['picopwm_223',['PicoPWM',['../classpico__arduino_1_1_pico_p_w_m.html#a57b6b2a7028632223906cd91db913c11',1,'pico_arduino::PicoPWM']]],
+  ['picopwmnano_224',['PicoPWMNano',['../classpico__arduino_1_1_pico_p_w_m_nano.html#aa31824dc72713a77b75ac26452da9dc3',1,'pico_arduino::PicoPWMNano']]],
+  ['picopwmreader_225',['PicoPWMReader',['../classpico__arduino_1_1_pico_p_w_m_reader.html#a1cc8b8642c7d5f39e44381ddfba3de8b',1,'pico_arduino::PicoPWMReader']]],
+  ['picopwmwriter_226',['PicoPWMWriter',['../classpico__arduino_1_1_pico_p_w_m_writer.html#a36812556eb8f9c30527d9057f87f2d85',1,'pico_arduino::PicoPWMWriter']]],
+  ['pinmap_227',['pinMap',['../classpico__arduino_1_1_arduino_pico_tone.html#a640d30fcaa7427ff6b454416f76324e7',1,'pico_arduino::ArduinoPicoTone']]],
+  ['pinmode_228',['pinMode',['../classpico__arduino_1_1_pico_pin_function.html#a33aba2e6926caeb9d88ad1dd25c0fcc7',1,'pico_arduino::PicoPinFunction']]],
+  ['pinmodestr_229',['pinModeStr',['../classpico__arduino_1_1_pico_pin_function.html#a6331b6706cda74fea7a44c43809d0aeb',1,'pico_arduino::PicoPinFunction']]]
 ];

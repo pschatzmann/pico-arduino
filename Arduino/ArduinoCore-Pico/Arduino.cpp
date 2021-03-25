@@ -1,5 +1,5 @@
 /**
- * Arduino.cpp - Main implementation file for the PICO Arduino SDK.
+ * Arduino.cpp - Main implementation file for the Arduino functions for the Pico Arduino framework
  * @author Phil Schatzmann
  * @copyright GPLv3
  * 
@@ -15,23 +15,23 @@
 #include "PicoPWM.h"
 
 
-// Standard Arduino global variables
-#if !defined(TINYUSB_HOST_LINKED) && !defined(TINYUSB_DEVICE_LINKED)
-PicoSerialUSB Serial;
+#ifndef PICO_ARDUINO_PWM_FREQUENCY
+#define PICO_ARDUINO_PWM_FREQUENCY 490
 #endif
-PicoSerialUART Serial1(0);
-PicoSerialUART Serial2(1); 
-PicoHardwareSPI SPI(spi0);
-PicoHardwareSPI SPI1(spi1);
-PicoHardwareI2C Wire(i2c0, 160, I2C_SDA, I2C_SCL);  
-PicoHardwareI2C Wire1(i2c1, 160, I2C1_SDA, I2C1_SCL);  
 
-// Pico-Arduino Framework: global variables 
-PicoLogger Logger;                                         // Support for logging
-PicoPinFunction PinFunction = PicoPinFunction::instance(); // Record PinMode
-PinSetupADC InstancePinSetupADC = PinSetupADC::instance(); // ADC
-PinSetupGPIO InstancePinSetupGPIO;                         // GPIO
-PicoPWM ArduionPwm(PICO_ARDUINO_PWM_FREQUENCY, 255);       // PWM
+/**
+ * @brief Pico Arduino Framework
+ * @author Phil Schatzmann
+ * @copyright GPLv3
+ */
+namespace pico_arduino {
+
+    PicoPinFunction PinFunction = PicoPinFunction::instance(); // Record PinMode
+    PinSetupADC InstancePinSetupADC = PinSetupADC::instance(); // ADC
+    PinSetupGPIO InstancePinSetupGPIO;                         // GPIO
+    PicoPWM ArduionPwm(PICO_ARDUINO_PWM_FREQUENCY, 255);       // PWM
+
+}
 
 // sleep ms milliseconds
 void delay(unsigned long ms){
@@ -78,7 +78,7 @@ PinStatus digitalRead(pin_size_t pinNumber) {
  * @return int 
  */
 int analogRead(pin_size_t pinNumber){
-    Logger.debug("analogRead");
+    pico_arduino::Logger.debug("analogRead");
     // analog read
     if (pinNumber>=26 && pinNumber<=29){
         // ADC
@@ -102,8 +102,7 @@ int temperature(){
     //Input 4 is the onboard temperature sensor - operation only if there is a change
     PinSetupADC::instance().adcSelect(4);
     int value = 0;
-    for (uint8_t i = 0; i < 30 ;i++)
-    {
+    for (uint8_t i = 0; i < 30 ;i++){
         value = (value + adc_read())/2;
     }
     //T = 27 - (ADC_Voltage - 0.706)/0.001721
@@ -129,7 +128,7 @@ uint64_t uniqueId() {
 
 // Not implemented for the Pico
 void analogReference(uint8_t mode){
-    Logger.error("analogReference not implemented!");
+    pico_arduino::Logger.error("analogReference not implemented!");
 }
 
 // Writes an analog value (PWM wave) to a pin. The value needs to be between 0 and 255
@@ -160,7 +159,7 @@ void yield(void){
 PluggableUSB_::PluggableUSB_(){}
 
 // define Arduino setup(()) and loop()
-#ifndef PICO_ARDUINO_NO_MAIN
+//#ifndef PICO_ARDUINO_NO_MAIN
 int main() {
     setup();
     while(true){
@@ -168,5 +167,4 @@ int main() {
         watchdog_update();
     }
 }
-#endif
-
+//#endif

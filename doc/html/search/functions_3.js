@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['debug_187',['debug',['../class_pico_logger.html#adc449e888e7102d342c904379fb7d10e',1,'PicoLogger']]],
-  ['detach_188',['detach',['../class_servo.html#a0b69ccc5c8b348ebaa84be91d973a362',1,'Servo']]],
-  ['detachinterrupt_189',['detachInterrupt',['../class_pico_hardware_s_p_i.html#a8eae40e524523328a6d6e1ac4293fe79',1,'PicoHardwareSPI']]],
-  ['down_190',['down',['../class_semaphore.html#a7c80c14ed73f0075421aae94f43378d1',1,'Semaphore']]]
+  ['debug_193',['debug',['../classpico__arduino_1_1_pico_logger.html#adedb413e2d600f3a3c003ce1a6b24802',1,'pico_arduino::PicoLogger']]],
+  ['detach_194',['detach',['../classpico__arduino_1_1_servo.html#a587eb816ef16035b45ab1eb529217874',1,'pico_arduino::Servo']]],
+  ['detachinterrupt_195',['detachInterrupt',['../classpico__arduino_1_1_pico_hardware_s_p_i.html#a285d5d834d41ac7d4119061d376ad776',1,'pico_arduino::PicoHardwareSPI']]],
+  ['down_196',['down',['../classpico__arduino_1_1_semaphore.html#aa1e6ccbf0fa6e265de0d8dae7c739d57',1,'pico_arduino::Semaphore']]]
 ];

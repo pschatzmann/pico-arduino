@@ -17,6 +17,7 @@
 #define PWM_READ_REPEAT 10
 #endif
 
+namespace pico_arduino {
 
 /// For measureDutyCycle we need to track the pwm wrap interrupts
 inline uint32_t pico_pwm_wrap_count;
@@ -80,8 +81,9 @@ class PicoPWMWriter : public PinSetup {
         /// sets the pin to low
         void end(pin_size_t pin){
             Logger.debug("PicoPWMWriter::end");
+            
             setDutyCycle(pin, 0);
-            PinFunction.clear(pin);
+            pinFunction.clear(pin);
         }
 
         /// Defines the active period is nanoseconds
@@ -103,12 +105,12 @@ class PicoPWMWriter : public PinSetup {
 
         /// converts the PWM period to hz
         float frequency(){
-            return ::frequency(period_nano_sec);
+            return pico_arduino::frequency(period_nano_sec);
         }
 
         // frequency of a single counter tick
         float frequencyTick(){
-            return ::frequency(tick_period_nano_sec);
+            return pico_arduino::frequency(tick_period_nano_sec);
         }
 
         // period of a single tick in nanoseconds
@@ -225,7 +227,7 @@ class PicoPWMReader : public PinSetup {
         /// sets the pin to low
         void end(pin_size_t pin){
             Logger.debug("PicoPWMReader::end");
-            PinFunction.clear(pin);
+            pinFunction.clear(pin);
         }
 
         /// measures the duty cycle (active period) in nanoseconds - only the PWM B pins can be used as inputs!
@@ -518,5 +520,7 @@ class PicoPWM {
         }
 
 };
+
+}
 
 

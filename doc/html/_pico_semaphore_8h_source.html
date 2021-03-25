@@ -74,69 +74,74 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;pico/stdlib.h&quot;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;pico/sync.h&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_semaphore.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_semaphore.html">Semaphore</a> {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="class_semaphore.html#a6bc0580e79d62888bc9e29ae9697036d">   14</a></span>&#160;        <a class="code" href="class_semaphore.html#a6bc0580e79d62888bc9e29ae9697036d">Semaphore</a>(<span class="keywordtype">int</span> maxPermits=1, <span class="keywordtype">int</span> initalPermits=1){</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            sem_init(&amp;sem, initalPermits,maxPermits);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        }</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_semaphore.html#a633658a6fde276bffc912028725c6ade">   19</a></span>&#160;        <a class="code" href="class_semaphore.html#a633658a6fde276bffc912028725c6ade">~Semaphore</a>(){</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            sem_release(&amp;sem);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        }</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_semaphore.html#a7b21d121df4080c9cdafbc90a5383620">   24</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_semaphore.html#a7b21d121df4080c9cdafbc90a5383620">available</a>(){</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordflow">return</span> sem_available(&amp;sem);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        }</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="class_semaphore.html#af2b2684b880c78549bf5b89b3d135756">   29</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_semaphore.html#af2b2684b880c78549bf5b89b3d135756">reset</a>(<span class="keywordtype">int</span> permits=1) {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            sem_reset(&amp;sem, permits);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="class_semaphore.html#a027147279b6be91a74296be03e98b5f4">   34</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_semaphore.html#a027147279b6be91a74296be03e98b5f4">aquire</a>(int64_t timeoutMs=-1){</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keywordtype">bool</span> result = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="keywordflow">if</span> (timeoutMs&lt;0){</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                sem_acquire_blocking(&amp;sem);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                result = <span class="keyword">true</span>; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                result = sem_acquire_timeout_ms(&amp;sem, timeoutMs);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            }</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        }</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="class_semaphore.html#a8df11949af5c6fa22fd9bb1fac2e4fe6">   46</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_semaphore.html#a8df11949af5c6fa22fd9bb1fac2e4fe6">release</a>() {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">return</span> sem_release(&amp;sem);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        }</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="class_semaphore.html#a0ba008a098f05e3235eaf23e0064091b">   51</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_semaphore.html#a0ba008a098f05e3235eaf23e0064091b">up</a>(){</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="class_semaphore.html#a027147279b6be91a74296be03e98b5f4">aquire</a>();   </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_semaphore.html#a7c80c14ed73f0075421aae94f43378d1">   56</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_semaphore.html#a7c80c14ed73f0075421aae94f43378d1">down</a>() {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="class_semaphore.html#a8df11949af5c6fa22fd9bb1fac2e4fe6">release</a>();</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="class_semaphore.html#a496aae0d0eceef9385c9dcae4c3d9b36">   61</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_semaphore.html#a496aae0d0eceef9385c9dcae4c3d9b36">wait</a>() {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="class_semaphore.html#a027147279b6be91a74296be03e98b5f4">aquire</a>();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="class_semaphore.html#a1c1944487968a6295b3af8268b286b08">   66</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_semaphore.html#a1c1944487968a6295b3af8268b286b08">signal</a>(){</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="class_semaphore.html#a8df11949af5c6fa22fd9bb1fac2e4fe6">release</a>();   </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">protected</span>: </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        semaphore_t sem;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
-<div class="ttc" id="aclass_semaphore_html"><div class="ttname"><a href="class_semaphore.html">Semaphore</a></div><div class="ttdoc">Pico Semaphore which might be useful if you use the 2 processors (e.g. with the Thread class)</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:11</div></div>
-<div class="ttc" id="aclass_semaphore_html_a027147279b6be91a74296be03e98b5f4"><div class="ttname"><a href="class_semaphore.html#a027147279b6be91a74296be03e98b5f4">Semaphore::aquire</a></div><div class="ttdeci">bool aquire(int64_t timeoutMs=-1)</div><div class="ttdoc">aquires a semaphore - if no time is indicated it is blocking</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:34</div></div>
-<div class="ttc" id="aclass_semaphore_html_a0ba008a098f05e3235eaf23e0064091b"><div class="ttname"><a href="class_semaphore.html#a0ba008a098f05e3235eaf23e0064091b">Semaphore::up</a></div><div class="ttdeci">bool up()</div><div class="ttdoc">identical with aquire</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:51</div></div>
-<div class="ttc" id="aclass_semaphore_html_a1c1944487968a6295b3af8268b286b08"><div class="ttname"><a href="class_semaphore.html#a1c1944487968a6295b3af8268b286b08">Semaphore::signal</a></div><div class="ttdeci">bool signal()</div><div class="ttdoc">identical with release</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:66</div></div>
-<div class="ttc" id="aclass_semaphore_html_a496aae0d0eceef9385c9dcae4c3d9b36"><div class="ttname"><a href="class_semaphore.html#a496aae0d0eceef9385c9dcae4c3d9b36">Semaphore::wait</a></div><div class="ttdeci">bool wait()</div><div class="ttdoc">identical with aquire</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:61</div></div>
-<div class="ttc" id="aclass_semaphore_html_a633658a6fde276bffc912028725c6ade"><div class="ttname"><a href="class_semaphore.html#a633658a6fde276bffc912028725c6ade">Semaphore::~Semaphore</a></div><div class="ttdeci">~Semaphore()</div><div class="ttdoc">descructor - calls sem_release</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:19</div></div>
-<div class="ttc" id="aclass_semaphore_html_a6bc0580e79d62888bc9e29ae9697036d"><div class="ttname"><a href="class_semaphore.html#a6bc0580e79d62888bc9e29ae9697036d">Semaphore::Semaphore</a></div><div class="ttdeci">Semaphore(int maxPermits=1, int initalPermits=1)</div><div class="ttdoc">constructor - calls sem_init</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:14</div></div>
-<div class="ttc" id="aclass_semaphore_html_a7b21d121df4080c9cdafbc90a5383620"><div class="ttname"><a href="class_semaphore.html#a7b21d121df4080c9cdafbc90a5383620">Semaphore::available</a></div><div class="ttdeci">int available()</div><div class="ttdoc">checks if a semaphore is available</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:24</div></div>
-<div class="ttc" id="aclass_semaphore_html_a7c80c14ed73f0075421aae94f43378d1"><div class="ttname"><a href="class_semaphore.html#a7c80c14ed73f0075421aae94f43378d1">Semaphore::down</a></div><div class="ttdeci">bool down()</div><div class="ttdoc">identical with release</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:56</div></div>
-<div class="ttc" id="aclass_semaphore_html_a8df11949af5c6fa22fd9bb1fac2e4fe6"><div class="ttname"><a href="class_semaphore.html#a8df11949af5c6fa22fd9bb1fac2e4fe6">Semaphore::release</a></div><div class="ttdeci">bool release()</div><div class="ttdoc">release the semaphore and makes it availale for other processes</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:46</div></div>
-<div class="ttc" id="aclass_semaphore_html_af2b2684b880c78549bf5b89b3d135756"><div class="ttname"><a href="class_semaphore.html#af2b2684b880c78549bf5b89b3d135756">Semaphore::reset</a></div><div class="ttdeci">void reset(int permits=1)</div><div class="ttdoc">calls sem_reset</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:29</div></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacepico__arduino.html">pico_arduino</a> {</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_semaphore.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="classpico__arduino_1_1_semaphore.html">Semaphore</a> {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_semaphore.html#a8620f5fcceb3ca28efcf690cacd2fb21">   16</a></span>&#160;        <a class="code" href="classpico__arduino_1_1_semaphore.html#a8620f5fcceb3ca28efcf690cacd2fb21">Semaphore</a>(<span class="keywordtype">int</span> maxPermits=1, <span class="keywordtype">int</span> initalPermits=1){</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            sem_init(&amp;sem, initalPermits,maxPermits);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        }</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_semaphore.html#aa8ce4ddfbdeda274f24f15be32dca55c">   21</a></span>&#160;        <a class="code" href="classpico__arduino_1_1_semaphore.html#aa8ce4ddfbdeda274f24f15be32dca55c">~Semaphore</a>(){</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            sem_release(&amp;sem);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_semaphore.html#aa796a9c6346d2fdb8959af3bde383889">   26</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classpico__arduino_1_1_semaphore.html#aa796a9c6346d2fdb8959af3bde383889">available</a>(){</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keywordflow">return</span> sem_available(&amp;sem);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_semaphore.html#aea707e639a3951c2552bd21d52b0ee3f">   31</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_semaphore.html#aea707e639a3951c2552bd21d52b0ee3f">reset</a>(<span class="keywordtype">int</span> permits=1) {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            sem_reset(&amp;sem, permits);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_semaphore.html#abf134b2daf49cb382c267decb362e63a">   36</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpico__arduino_1_1_semaphore.html#abf134b2daf49cb382c267decb362e63a">aquire</a>(int64_t timeoutMs=-1){</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordtype">bool</span> result = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keywordflow">if</span> (timeoutMs&lt;0){</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                sem_acquire_blocking(&amp;sem);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                result = <span class="keyword">true</span>; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                result = sem_acquire_timeout_ms(&amp;sem, timeoutMs);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_semaphore.html#a5cb8328099d434976c467cce67530dad">   48</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpico__arduino_1_1_semaphore.html#a5cb8328099d434976c467cce67530dad">release</a>() {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keywordflow">return</span> sem_release(&amp;sem);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_semaphore.html#ac400aaefdb8c9a54f6012d7dbd905022">   53</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpico__arduino_1_1_semaphore.html#ac400aaefdb8c9a54f6012d7dbd905022">up</a>(){</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classpico__arduino_1_1_semaphore.html#abf134b2daf49cb382c267decb362e63a">aquire</a>();   </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_semaphore.html#aa1e6ccbf0fa6e265de0d8dae7c739d57">   58</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpico__arduino_1_1_semaphore.html#aa1e6ccbf0fa6e265de0d8dae7c739d57">down</a>() {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classpico__arduino_1_1_semaphore.html#a5cb8328099d434976c467cce67530dad">release</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_semaphore.html#aecef4172b6a346c6b830dd7b83ea9caf">   63</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpico__arduino_1_1_semaphore.html#aecef4172b6a346c6b830dd7b83ea9caf">wait</a>() {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classpico__arduino_1_1_semaphore.html#abf134b2daf49cb382c267decb362e63a">aquire</a>();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_semaphore.html#a1e6d879e194d7892ea3096864ebf5672">   68</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpico__arduino_1_1_semaphore.html#a1e6d879e194d7892ea3096864ebf5672">signal</a>(){</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classpico__arduino_1_1_semaphore.html#a5cb8328099d434976c467cce67530dad">release</a>();   </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">protected</span>: </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        semaphore_t sem;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;};</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
+<div class="ttc" id="aclasspico__arduino_1_1_semaphore_html"><div class="ttname"><a href="classpico__arduino_1_1_semaphore.html">pico_arduino::Semaphore</a></div><div class="ttdoc">Pico Semaphore which might be useful if you use the 2 processors (e.g. with the Thread class)</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:13</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_semaphore_html_a1e6d879e194d7892ea3096864ebf5672"><div class="ttname"><a href="classpico__arduino_1_1_semaphore.html#a1e6d879e194d7892ea3096864ebf5672">pico_arduino::Semaphore::signal</a></div><div class="ttdeci">bool signal()</div><div class="ttdoc">identical with release</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:68</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_semaphore_html_a5cb8328099d434976c467cce67530dad"><div class="ttname"><a href="classpico__arduino_1_1_semaphore.html#a5cb8328099d434976c467cce67530dad">pico_arduino::Semaphore::release</a></div><div class="ttdeci">bool release()</div><div class="ttdoc">release the semaphore and makes it availale for other processes</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:48</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_semaphore_html_a8620f5fcceb3ca28efcf690cacd2fb21"><div class="ttname"><a href="classpico__arduino_1_1_semaphore.html#a8620f5fcceb3ca28efcf690cacd2fb21">pico_arduino::Semaphore::Semaphore</a></div><div class="ttdeci">Semaphore(int maxPermits=1, int initalPermits=1)</div><div class="ttdoc">constructor - calls sem_init</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:16</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_semaphore_html_aa1e6ccbf0fa6e265de0d8dae7c739d57"><div class="ttname"><a href="classpico__arduino_1_1_semaphore.html#aa1e6ccbf0fa6e265de0d8dae7c739d57">pico_arduino::Semaphore::down</a></div><div class="ttdeci">bool down()</div><div class="ttdoc">identical with release</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:58</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_semaphore_html_aa796a9c6346d2fdb8959af3bde383889"><div class="ttname"><a href="classpico__arduino_1_1_semaphore.html#aa796a9c6346d2fdb8959af3bde383889">pico_arduino::Semaphore::available</a></div><div class="ttdeci">int available()</div><div class="ttdoc">checks if a semaphore is available</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:26</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_semaphore_html_aa8ce4ddfbdeda274f24f15be32dca55c"><div class="ttname"><a href="classpico__arduino_1_1_semaphore.html#aa8ce4ddfbdeda274f24f15be32dca55c">pico_arduino::Semaphore::~Semaphore</a></div><div class="ttdeci">~Semaphore()</div><div class="ttdoc">descructor - calls sem_release</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:21</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_semaphore_html_abf134b2daf49cb382c267decb362e63a"><div class="ttname"><a href="classpico__arduino_1_1_semaphore.html#abf134b2daf49cb382c267decb362e63a">pico_arduino::Semaphore::aquire</a></div><div class="ttdeci">bool aquire(int64_t timeoutMs=-1)</div><div class="ttdoc">aquires a semaphore - if no time is indicated it is blocking</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:36</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_semaphore_html_ac400aaefdb8c9a54f6012d7dbd905022"><div class="ttname"><a href="classpico__arduino_1_1_semaphore.html#ac400aaefdb8c9a54f6012d7dbd905022">pico_arduino::Semaphore::up</a></div><div class="ttdeci">bool up()</div><div class="ttdoc">identical with aquire</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:53</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_semaphore_html_aea707e639a3951c2552bd21d52b0ee3f"><div class="ttname"><a href="classpico__arduino_1_1_semaphore.html#aea707e639a3951c2552bd21d52b0ee3f">pico_arduino::Semaphore::reset</a></div><div class="ttdeci">void reset(int permits=1)</div><div class="ttdoc">calls sem_reset</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:31</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_semaphore_html_aecef4172b6a346c6b830dd7b83ea9caf"><div class="ttname"><a href="classpico__arduino_1_1_semaphore.html#aecef4172b6a346c6b830dd7b83ea9caf">pico_arduino::Semaphore::wait</a></div><div class="ttdeci">bool wait()</div><div class="ttdoc">identical with aquire</div><div class="ttdef"><b>Definition:</b> PicoSemaphore.h:63</div></div>
+<div class="ttc" id="anamespacepico__arduino_html"><div class="ttname"><a href="namespacepico__arduino.html">pico_arduino</a></div><div class="ttdoc">Pico Arduino Framework.</div><div class="ttdef"><b>Definition:</b> Arduino.cpp:27</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

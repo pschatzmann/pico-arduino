@@ -94,87 +94,92 @@ $(function() {
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">// maximum in degrees</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define MAX_DEGREES           180l</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_servo.html">   32</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_servo.html">Servo</a> {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  <a class="code" href="class_servo.html">Servo</a>() {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  }</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  ~<a class="code" href="class_servo.html">Servo</a>(){</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">if</span> (pwm!=<span class="keyword">nullptr</span>) <span class="keyword">delete</span> pwm;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  }</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="class_servo.html#aea34a630b13ec42e2700eec53ae0a382">   42</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_servo.html#aea34a630b13ec42e2700eec53ae0a382">attach</a>(<span class="keywordtype">int</span> pin) {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">if</span> (pwm==<span class="keyword">nullptr</span>){</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;       pwm = <span class="keyword">new</span> <a class="code" href="class_pico_p_w_m_nano.html">PicoPWMNano</a>(REFRESH_INTERVAL * 1000);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">if</span> (pwm!=<span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;      pwm-&gt;<a class="code" href="class_pico_p_w_m_nano.html#aeb6ba2022f8097ea50beceafa1e917c6">begin</a>(pin);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    this-&gt;is_attached = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    this-&gt;pin = pin;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  }  </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="class_servo.html#ae8d8a8e190a6144364e21678d2137a79">   53</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_servo.html#ae8d8a8e190a6144364e21678d2137a79">attach</a>(<span class="keywordtype">int</span> pin, <span class="keywordtype">int</span> min, <span class="keywordtype">int</span> max) {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    this-&gt;min = min;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    this-&gt;max = max;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="class_servo.html#aea34a630b13ec42e2700eec53ae0a382">attach</a>(pin);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="class_servo.html#a0b69ccc5c8b348ebaa84be91d973a362">   60</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_servo.html#a0b69ccc5c8b348ebaa84be91d973a362">detach</a>() {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    is_attached = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">if</span> (pwm!=<span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      pwm-&gt;<a class="code" href="class_pico_p_w_m_nano.html#aef45e7deb7b44bfbe0af911847553945">end</a>(pin);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="class_servo.html#a72b4b546912eada96a6ef705168ceb8a">   67</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_servo.html#a72b4b546912eada96a6ef705168ceb8a">write</a>(<span class="keywordtype">int</span> value) {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">int</span> pulse_width_ms = value;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">if</span> (value&lt;200){</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        pulse_width_ms = map(value,MIN_DEGREES, MAX_DEGREES, MIN_PULSE_WIDTH, MAX_PULSE_WIDTH);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="class_servo.html#ac7fe3d6d2ea285ead98814bcfc417029">writeMicroseconds</a>(pulse_width_ms);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  }    </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="class_servo.html#ac7fe3d6d2ea285ead98814bcfc417029">   76</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_servo.html#ac7fe3d6d2ea285ead98814bcfc417029">writeMicroseconds</a>(<span class="keywordtype">int</span> value) {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    pwm_value = value;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">if</span> (pwm!=<span class="keyword">nullptr</span>) {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      <span class="comment">// convert value to nanoseconds</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;      pwm-&gt;<a class="code" href="class_pico_p_w_m_nano.html#a9a83fd88f0dd5d104c58e6a65bf1aab1">setDutyCycle</a>(pin, value * 1000);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  }</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="class_servo.html#aaca0af33ba7d7c87c8a785b8eabf95a7">   85</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="class_servo.html#aaca0af33ba7d7c87c8a785b8eabf95a7">read</a>() {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      <span class="keywordflow">return</span> map(pwm_value, MIN_PULSE_WIDTH, MAX_PULSE_WIDTH, MIN_DEGREES,MAX_DEGREES);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  }  </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="class_servo.html#a43950424d146c1414460066483d9561b">   90</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="class_servo.html#a43950424d146c1414460066483d9561b">readMicroseconds</a>() {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;      <span class="keywordflow">return</span> pwm_value;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  }    </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="class_servo.html#a48607d47aa5678780b1b927102bd3b1b">   95</a></span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="class_servo.html#a48607d47aa5678780b1b927102bd3b1b">attached</a>() {</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;      <span class="keywordflow">return</span> is_attached;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;   <a class="code" href="class_pico_p_w_m_nano.html">PicoPWMNano</a> *pwm;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;   int8_t min = MIN_DEGREES;                         </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;   int8_t max = MAX_DEGREES;                       </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;   <span class="keywordtype">bool</span> is_attached = <span class="keyword">false</span>; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;   <span class="keywordtype">int</span> pwm_value;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;   <span class="keywordtype">int</span> pin;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;};</div>
-<div class="ttc" id="aclass_pico_p_w_m_nano_html"><div class="ttname"><a href="class_pico_p_w_m_nano.html">PicoPWMNano</a></div><div class="ttdoc">Basic PWM API based on the input and output in nano seconds The Raspberry Pico has 8 controllable PWM...</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:360</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_nano_html_a9a83fd88f0dd5d104c58e6a65bf1aab1"><div class="ttname"><a href="class_pico_p_w_m_nano.html#a9a83fd88f0dd5d104c58e6a65bf1aab1">PicoPWMNano::setDutyCycle</a></div><div class="ttdeci">void setDutyCycle(pin_size_t gpio, uint64_t dutyCyleNanoSeconds)</div><div class="ttdoc">Defines the active period is nanoseconds.</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:396</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_nano_html_aeb6ba2022f8097ea50beceafa1e917c6"><div class="ttname"><a href="class_pico_p_w_m_nano.html#aeb6ba2022f8097ea50beceafa1e917c6">PicoPWMNano::begin</a></div><div class="ttdeci">void begin(pin_size_t gpio, uint64_t initialDutyCyleNanoSeconds=0, PinMode pinMode=OUTPUT)</div><div class="ttdoc">setup the pin mode only if necessary</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:376</div></div>
-<div class="ttc" id="aclass_pico_p_w_m_nano_html_aef45e7deb7b44bfbe0af911847553945"><div class="ttname"><a href="class_pico_p_w_m_nano.html#aef45e7deb7b44bfbe0af911847553945">PicoPWMNano::end</a></div><div class="ttdeci">void end(pin_size_t gpio)</div><div class="ttdoc">sets the output pins to low</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:390</div></div>
-<div class="ttc" id="aclass_servo_html"><div class="ttname"><a href="class_servo.html">Servo</a></div><div class="ttdoc">We provide an alternative Pico implementation for the Servo class which is compatible with the Arduin...</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:32</div></div>
-<div class="ttc" id="aclass_servo_html_a0b69ccc5c8b348ebaa84be91d973a362"><div class="ttname"><a href="class_servo.html#a0b69ccc5c8b348ebaa84be91d973a362">Servo::detach</a></div><div class="ttdeci">void detach()</div><div class="ttdoc">stops the generation of signals</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:60</div></div>
-<div class="ttc" id="aclass_servo_html_a43950424d146c1414460066483d9561b"><div class="ttname"><a href="class_servo.html#a43950424d146c1414460066483d9561b">Servo::readMicroseconds</a></div><div class="ttdeci">int readMicroseconds()</div><div class="ttdoc">returns current pulse width in microseconds for this servo (was read_us() in first release)</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:90</div></div>
-<div class="ttc" id="aclass_servo_html_a48607d47aa5678780b1b927102bd3b1b"><div class="ttname"><a href="class_servo.html#a48607d47aa5678780b1b927102bd3b1b">Servo::attached</a></div><div class="ttdeci">bool attached()</div><div class="ttdoc">return true if this servo is attached, otherwise false</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:95</div></div>
-<div class="ttc" id="aclass_servo_html_a72b4b546912eada96a6ef705168ceb8a"><div class="ttname"><a href="class_servo.html#a72b4b546912eada96a6ef705168ceb8a">Servo::write</a></div><div class="ttdeci">void write(int value)</div><div class="ttdoc">if value is &lt; 200 its treated as an angle, otherwise as pulse width in microseconds</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:67</div></div>
-<div class="ttc" id="aclass_servo_html_aaca0af33ba7d7c87c8a785b8eabf95a7"><div class="ttname"><a href="class_servo.html#aaca0af33ba7d7c87c8a785b8eabf95a7">Servo::read</a></div><div class="ttdeci">int read()</div><div class="ttdoc">returns current pulse width as an angle between 0 and 180 degrees</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:85</div></div>
-<div class="ttc" id="aclass_servo_html_ac7fe3d6d2ea285ead98814bcfc417029"><div class="ttname"><a href="class_servo.html#ac7fe3d6d2ea285ead98814bcfc417029">Servo::writeMicroseconds</a></div><div class="ttdeci">void writeMicroseconds(int value)</div><div class="ttdoc">Write pulse width in microseconds.</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:76</div></div>
-<div class="ttc" id="aclass_servo_html_ae8d8a8e190a6144364e21678d2137a79"><div class="ttname"><a href="class_servo.html#ae8d8a8e190a6144364e21678d2137a79">Servo::attach</a></div><div class="ttdeci">void attach(int pin, int min, int max)</div><div class="ttdoc">as above but also sets min and max values for writes.</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:53</div></div>
-<div class="ttc" id="aclass_servo_html_aea34a630b13ec42e2700eec53ae0a382"><div class="ttname"><a href="class_servo.html#aea34a630b13ec42e2700eec53ae0a382">Servo::attach</a></div><div class="ttdeci">void attach(int pin)</div><div class="ttdoc">attach the given pin to the next free channel, sets pinMode, returns channel number or 0 if failure</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:42</div></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacepico__arduino.html">pico_arduino</a> {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_servo.html">   34</a></span>&#160;<span class="keyword">class </span><a class="code" href="classpico__arduino_1_1_servo.html">Servo</a> {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  <a class="code" href="classpico__arduino_1_1_servo.html">Servo</a>() {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  }</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  ~<a class="code" href="classpico__arduino_1_1_servo.html">Servo</a>(){</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">if</span> (pwm!=<span class="keyword">nullptr</span>) <span class="keyword">delete</span> pwm;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_servo.html#a83760af1834bf2cca965426999db2af8">   44</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_servo.html#a83760af1834bf2cca965426999db2af8">attach</a>(<span class="keywordtype">int</span> pin) {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">if</span> (pwm==<span class="keyword">nullptr</span>){</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;       pwm = <span class="keyword">new</span> <a class="code" href="classpico__arduino_1_1_pico_p_w_m_nano.html">PicoPWMNano</a>(REFRESH_INTERVAL * 1000);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">if</span> (pwm!=<span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      pwm-&gt;<a class="code" href="classpico__arduino_1_1_pico_p_w_m_nano.html#a5516c009cacc0ccddd2afb9a73505d96">begin</a>(pin);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    this-&gt;is_attached = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    this-&gt;pin = pin;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  }  </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_servo.html#aa98474cdbe97af911805e9c375cae7f2">   55</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_servo.html#aa98474cdbe97af911805e9c375cae7f2">attach</a>(<span class="keywordtype">int</span> pin, <span class="keywordtype">int</span> min, <span class="keywordtype">int</span> max) {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    this-&gt;min = min;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    this-&gt;max = max;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="classpico__arduino_1_1_servo.html#a83760af1834bf2cca965426999db2af8">attach</a>(pin);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_servo.html#a587eb816ef16035b45ab1eb529217874">   62</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_servo.html#a587eb816ef16035b45ab1eb529217874">detach</a>() {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    is_attached = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">if</span> (pwm!=<span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      pwm-&gt;<a class="code" href="classpico__arduino_1_1_pico_p_w_m_nano.html#ab6d1a5a9e0696c324e22fd4dbca9dc9f">end</a>(pin);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_servo.html#a6bac033bc65a4ebb0779047dd9cb23b4">   69</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_servo.html#a6bac033bc65a4ebb0779047dd9cb23b4">write</a>(<span class="keywordtype">int</span> value) {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">int</span> pulse_width_ms = value;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">if</span> (value&lt;200){</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        pulse_width_ms = map(value,MIN_DEGREES, MAX_DEGREES, MIN_PULSE_WIDTH, MAX_PULSE_WIDTH);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="classpico__arduino_1_1_servo.html#aafa686fa8bd93b455a13c114d0c565b9">writeMicroseconds</a>(pulse_width_ms);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  }    </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_servo.html#aafa686fa8bd93b455a13c114d0c565b9">   78</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_servo.html#aafa686fa8bd93b455a13c114d0c565b9">writeMicroseconds</a>(<span class="keywordtype">int</span> value) {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    pwm_value = value;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">if</span> (pwm!=<span class="keyword">nullptr</span>) {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      <span class="comment">// convert value to nanoseconds</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;      pwm-&gt;<a class="code" href="classpico__arduino_1_1_pico_p_w_m_nano.html#ace8a5b2db8b4600010263f04653e62dd">setDutyCycle</a>(pin, value * 1000);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_servo.html#a3421d86e35b0b160dee4600ba2a5e401">   87</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="classpico__arduino_1_1_servo.html#a3421d86e35b0b160dee4600ba2a5e401">read</a>() {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      <span class="keywordflow">return</span> map(pwm_value, MIN_PULSE_WIDTH, MAX_PULSE_WIDTH, MIN_DEGREES,MAX_DEGREES);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  }  </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_servo.html#acb434fc2fa6eb0d5279f435d2748135c">   92</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="classpico__arduino_1_1_servo.html#acb434fc2fa6eb0d5279f435d2748135c">readMicroseconds</a>() {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;      <span class="keywordflow">return</span> pwm_value;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  }    </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_servo.html#a707ec7d7fae60ef71c29e878b1c721d9">   97</a></span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="classpico__arduino_1_1_servo.html#a707ec7d7fae60ef71c29e878b1c721d9">attached</a>() {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;      <span class="keywordflow">return</span> is_attached;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  }</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;   <a class="code" href="classpico__arduino_1_1_pico_p_w_m_nano.html">PicoPWMNano</a> *pwm;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;   int8_t min = MIN_DEGREES;                         </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;   int8_t max = MAX_DEGREES;                       </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;   <span class="keywordtype">bool</span> is_attached = <span class="keyword">false</span>; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;   <span class="keywordtype">int</span> pwm_value;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;   <span class="keywordtype">int</span> pin;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;};</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;}</div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_p_w_m_nano_html"><div class="ttname"><a href="classpico__arduino_1_1_pico_p_w_m_nano.html">pico_arduino::PicoPWMNano</a></div><div class="ttdoc">Basic PWM API based on the input and output in nano seconds The Raspberry Pico has 8 controllable PWM...</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:362</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_p_w_m_nano_html_a5516c009cacc0ccddd2afb9a73505d96"><div class="ttname"><a href="classpico__arduino_1_1_pico_p_w_m_nano.html#a5516c009cacc0ccddd2afb9a73505d96">pico_arduino::PicoPWMNano::begin</a></div><div class="ttdeci">void begin(pin_size_t gpio, uint64_t initialDutyCyleNanoSeconds=0, PinMode pinMode=OUTPUT)</div><div class="ttdoc">setup the pin mode only if necessary</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:378</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_p_w_m_nano_html_ab6d1a5a9e0696c324e22fd4dbca9dc9f"><div class="ttname"><a href="classpico__arduino_1_1_pico_p_w_m_nano.html#ab6d1a5a9e0696c324e22fd4dbca9dc9f">pico_arduino::PicoPWMNano::end</a></div><div class="ttdeci">void end(pin_size_t gpio)</div><div class="ttdoc">sets the output pins to low</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:392</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_p_w_m_nano_html_ace8a5b2db8b4600010263f04653e62dd"><div class="ttname"><a href="classpico__arduino_1_1_pico_p_w_m_nano.html#ace8a5b2db8b4600010263f04653e62dd">pico_arduino::PicoPWMNano::setDutyCycle</a></div><div class="ttdeci">void setDutyCycle(pin_size_t gpio, uint64_t dutyCyleNanoSeconds)</div><div class="ttdoc">Defines the active period is nanoseconds.</div><div class="ttdef"><b>Definition:</b> PicoPWM.h:398</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_servo_html"><div class="ttname"><a href="classpico__arduino_1_1_servo.html">pico_arduino::Servo</a></div><div class="ttdoc">We provide an alternative Pico implementation for the Servo class which is compatible with the Arduin...</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:34</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_servo_html_a3421d86e35b0b160dee4600ba2a5e401"><div class="ttname"><a href="classpico__arduino_1_1_servo.html#a3421d86e35b0b160dee4600ba2a5e401">pico_arduino::Servo::read</a></div><div class="ttdeci">int read()</div><div class="ttdoc">returns current pulse width as an angle between 0 and 180 degrees</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:87</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_servo_html_a587eb816ef16035b45ab1eb529217874"><div class="ttname"><a href="classpico__arduino_1_1_servo.html#a587eb816ef16035b45ab1eb529217874">pico_arduino::Servo::detach</a></div><div class="ttdeci">void detach()</div><div class="ttdoc">stops the generation of signals</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:62</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_servo_html_a6bac033bc65a4ebb0779047dd9cb23b4"><div class="ttname"><a href="classpico__arduino_1_1_servo.html#a6bac033bc65a4ebb0779047dd9cb23b4">pico_arduino::Servo::write</a></div><div class="ttdeci">void write(int value)</div><div class="ttdoc">if value is &lt; 200 its treated as an angle, otherwise as pulse width in microseconds</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:69</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_servo_html_a707ec7d7fae60ef71c29e878b1c721d9"><div class="ttname"><a href="classpico__arduino_1_1_servo.html#a707ec7d7fae60ef71c29e878b1c721d9">pico_arduino::Servo::attached</a></div><div class="ttdeci">bool attached()</div><div class="ttdoc">return true if this servo is attached, otherwise false</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:97</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_servo_html_a83760af1834bf2cca965426999db2af8"><div class="ttname"><a href="classpico__arduino_1_1_servo.html#a83760af1834bf2cca965426999db2af8">pico_arduino::Servo::attach</a></div><div class="ttdeci">void attach(int pin)</div><div class="ttdoc">attach the given pin to the next free channel, sets pinMode, returns channel number or 0 if failure</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:44</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_servo_html_aa98474cdbe97af911805e9c375cae7f2"><div class="ttname"><a href="classpico__arduino_1_1_servo.html#aa98474cdbe97af911805e9c375cae7f2">pico_arduino::Servo::attach</a></div><div class="ttdeci">void attach(int pin, int min, int max)</div><div class="ttdoc">as above but also sets min and max values for writes.</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:55</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_servo_html_aafa686fa8bd93b455a13c114d0c565b9"><div class="ttname"><a href="classpico__arduino_1_1_servo.html#aafa686fa8bd93b455a13c114d0c565b9">pico_arduino::Servo::writeMicroseconds</a></div><div class="ttdeci">void writeMicroseconds(int value)</div><div class="ttdoc">Write pulse width in microseconds.</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:78</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_servo_html_acb434fc2fa6eb0d5279f435d2748135c"><div class="ttname"><a href="classpico__arduino_1_1_servo.html#acb434fc2fa6eb0d5279f435d2748135c">pico_arduino::Servo::readMicroseconds</a></div><div class="ttdeci">int readMicroseconds()</div><div class="ttdoc">returns current pulse width in microseconds for this servo (was read_us() in first release)</div><div class="ttdef"><b>Definition:</b> PicoPWMServo.h:92</div></div>
+<div class="ttc" id="anamespacepico__arduino_html"><div class="ttname"><a href="namespacepico__arduino.html">pico_arduino</a></div><div class="ttdoc">Pico Arduino Framework.</div><div class="ttdef"><b>Definition:</b> Arduino.cpp:27</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

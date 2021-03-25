@@ -12,8 +12,10 @@
 #define PICO_MAX_PIN_COUNT 40
 #endif
 
+namespace pico_arduino {
+
 /// Supported pin functions
-enum PinFunction {PIN_FUNC_UNDEFINED, PIN_FUNC_GPIO, PIN_FUNC_ADC, PIN_FUNC_PWM};
+enum PinFunctionEnum {PIN_FUNC_UNDEFINED, PIN_FUNC_GPIO, PIN_FUNC_ADC, PIN_FUNC_PWM};
 
 // Forward declaraton
 class PinSetup;
@@ -24,7 +26,7 @@ class PinSetup;
  * @copyright GPLv3
  */
 struct PinInfo {
-    PinFunction pin_function;
+    PinFunctionEnum pin_function;
     PinMode pinMode;
     bool is_setup = false;
     bool is_defined = false;
@@ -199,7 +201,7 @@ class PicoPinFunction {
         }
 
         /// setup Pico pin init function bysed on functionality
-        void usePin(pin_size_t pinNumber, PinFunction pinFunction, PinSetup *setup = nullptr){
+        void usePin(pin_size_t pinNumber, PinFunctionEnum pinFunction, PinSetup *setup = nullptr){
             Logger.debug("PicoGPIOFunction::usePin", Logger.toStr(pinNumber));
             PinInfo *info = & (pinInfo[pinNumber]);
             //Logger.debug("is_setup:", pinInfo[pinNumber].is_setup ? "true" : "false");
@@ -228,4 +230,6 @@ class PicoPinFunction {
             pinInfo = new PinInfo[PICO_MAX_PIN_COUNT];
         }
 };
+
+}
 

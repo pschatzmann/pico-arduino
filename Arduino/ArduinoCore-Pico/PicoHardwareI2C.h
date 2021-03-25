@@ -6,6 +6,8 @@
 #include "pins_arduino.h"
 #include <algorithm>    // std::max
 
+namespace pico_arduino {
+
 /**
  * @brief Arduino I2C implementation using the Pico functionality.
  * In Arduino we can read and write individal characters wheresease in Pico the operations have to be done with 
@@ -303,5 +305,7 @@ class PicoHardwareI2C : public HardwareI2C {
       }
 
 };
+
+}
 
 

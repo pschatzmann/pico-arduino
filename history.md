@@ -32,10 +32,12 @@
      - provide termperature() and temperatureF() method to read the built in temperature sensor
      - This release contains the following __Breaking Changes__
           - Removed libarduino: all sources are complied as part of the sketch now, so that we can overwrite default defines 
-- __v0.7__ PWM reading
+- __v0.7__ PWM reading / DMA / pico_arduino Namespace
      - Implemented Reading of PWM 
      - Support for PWM in analogRead()
      - Added documentation on how to override the predefined framework #defines 
      - Redesign of internal PicoPinFunction: getting rid of ugly switch case.
      - Examples for reading PWM
      - Example for watchdog
+     - DMA support with examples
+     - Implementation of namespace using pico_arudino

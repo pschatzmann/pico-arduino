@@ -23,6 +23,8 @@
 // maximum in degrees
 #define MAX_DEGREES           180l
 
+namespace pico_arduino {
+
 /**
  * @brief We provide an alternative Pico implementation for the Servo class which is compatible with 
  * the Arduino Servo library.
@@ -105,3 +107,5 @@ private:
    int pin;
 
 };
+
+}

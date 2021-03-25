@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['valuetodutycycle_249',['valueToDutyCycle',['../class_pico_p_w_m.html#ad5580bede2cf35ca6810eddd3bf3ebc1',1,'PicoPWM']]]
+  ['valuetodutycycle_256',['valueToDutyCycle',['../classpico__arduino_1_1_pico_p_w_m.html#aeb2efa4b471018139aa905640cf2ad14',1,'pico_arduino::PicoPWM']]]
 ];

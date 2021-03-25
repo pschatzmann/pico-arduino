@@ -72,178 +72,182 @@ $(function() {
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;hardware/dma.h&quot;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; </div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pico_d_m_a.html">PicoDMA</a> {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#aa71b00062ea9edca5bfb667dae91603d">   14</a></span>&#160;        <a class="code" href="class_pico_d_m_a.html#aa71b00062ea9edca5bfb667dae91603d">PicoDMA</a>(){}</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#a198802ab22728a9d91d78617efeb4a1a">   17</a></span>&#160;        <a class="code" href="class_pico_d_m_a.html#a198802ab22728a9d91d78617efeb4a1a">~PicoDMA</a>(){</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <a class="code" href="class_pico_d_m_a.html#a6f611c2321e59963795882e536e623b7">releaseChannel</a>(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        }</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#a6f611c2321e59963795882e536e623b7">   22</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_pico_d_m_a.html#a6f611c2321e59963795882e536e623b7">releaseChannel</a>(<span class="keywordtype">bool</span> abortProcessing=<span class="keyword">false</span>){</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">if</span> (channel_no == -1) {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="comment">// if we are still processing - we might need to abort</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_pico_d_m_a.html#a584408e8da2cb19ab5835e9313b257cc">isBusy</a>()) {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keywordflow">if</span> (abortProcessing){</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                    <a class="code" href="class_pico_d_m_a.html#ad6546c6a0916dd3003a6e0d1d643aff9">abort</a>();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                }</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            dma_channel_unclaim(channel_no);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            channel_no = -1;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#a872d6fa2aa5cc9f30e006084d2492eaf">   40</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_pico_d_m_a.html#a872d6fa2aa5cc9f30e006084d2492eaf">channel</a>() {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordflow">return</span> channel_no;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        }</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#a156401d93e1fcac9d42ea205c0640a67">   53</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_d_m_a.html#a156401d93e1fcac9d42ea205c0640a67">copy</a>(T* dst, T* src, <span class="keywordtype">int</span> len, <span class="keywordtype">boolean</span> <a class="code" href="class_pico_d_m_a.html#a298141aae22d13fb47e3145e064b2c4a">start</a> = <span class="keyword">true</span>){</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <a class="code" href="class_pico_d_m_a.html#ab23d1a5f5f5c11055bbe9020fd8643ee">setupChannel</a>();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="comment">// we dont use any interrupts in this method</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            irq_set_enabled(DMA_IRQ_0, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="comment">// 8 bit transfers. Both read and write address increment after each</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="comment">// transfer (each pointing to a location in src or dst respectively).</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="comment">// No DREQ is selected, so the DMA transfers as fast as it can.</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            dma_channel_config c = dma_channel_get_default_config(channel_no);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            channel_config_set_transfer_data_size(&amp;c, DMA_SIZE_8);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            channel_config_set_read_increment(&amp;c, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            channel_config_set_write_increment(&amp;c, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            dma_channel_configure(</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                channel_no,          <span class="comment">// Channel to be configured</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                &amp;c,            <span class="comment">// The configuration we just created</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                dst,           <span class="comment">// The initial write address</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                src,           <span class="comment">// The initial read address</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                len * <span class="keyword">sizeof</span>(T) , <span class="comment">// Number of transfers; in this case each is 1 byte.</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                <a class="code" href="class_pico_d_m_a.html#a298141aae22d13fb47e3145e064b2c4a">start</a>           <span class="comment">// Start immediately.</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            );</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#aa3bbe1a9032b7e90cd0a3fdef06deee9">   84</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_d_m_a.html#aa3bbe1a9032b7e90cd0a3fdef06deee9">copy</a>(T* dst, T* src, <span class="keywordtype">int</span> len, <span class="keywordtype">void</span> (*completion_handler)(), <span class="keywordtype">bool</span> startCopy=<span class="keyword">true</span>){</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <a class="code" href="class_pico_d_m_a.html#a156401d93e1fcac9d42ea205c0640a67">copy</a>(dst, src, len, <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="comment">// Tell the DMA to raise IRQ line 0 when the channel finishes a block</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            dma_channel_set_irq0_enabled(channel_no, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            <span class="comment">// Configure the processor to run dma_handler() when DMA IRQ 0 is asserted</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            irq_set_exclusive_handler(DMA_IRQ_0, completion_handler);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            irq_set_enabled(DMA_IRQ_0, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="comment">// starts the processing</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keywordflow">if</span> (startCopy) <a class="code" href="class_pico_d_m_a.html#a298141aae22d13fb47e3145e064b2c4a">start</a>(channel_no);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        }</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacepico__arduino.html">pico_arduino</a> {</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; </div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_d_m_a.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="classpico__arduino_1_1_pico_d_m_a.html">PicoDMA</a> {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_d_m_a.html#a1bf1ea36cc6f503c1c75f4e739b04724">   15</a></span>&#160;        <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a1bf1ea36cc6f503c1c75f4e739b04724">PicoDMA</a>(){}</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_d_m_a.html#a854c8772ff5aefa5d446be43f1d73b4b">   18</a></span>&#160;        <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a854c8772ff5aefa5d446be43f1d73b4b">~PicoDMA</a>(){</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a87c663d00dd4148fa48570bb95bc0959">releaseChannel</a>(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        }</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_d_m_a.html#a87c663d00dd4148fa48570bb95bc0959">   23</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a87c663d00dd4148fa48570bb95bc0959">releaseChannel</a>(<span class="keywordtype">bool</span> abortProcessing=<span class="keyword">false</span>){</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keywordflow">if</span> (channel_no == -1) {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="comment">// if we are still processing - we might need to abort</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a4c22abb836e3af68a59131d1364cdb1c">isBusy</a>()) {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <span class="keywordflow">if</span> (abortProcessing){</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                    <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a7fa6fa8cc9461b8f8ce905b64878a98a">abort</a>();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            dma_channel_unclaim(channel_no);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            channel_no = -1;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_d_m_a.html#a43472e4f399982c6b42925fe0b46c355">   41</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a43472e4f399982c6b42925fe0b46c355">channel</a>() {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="keywordflow">return</span> channel_no;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_d_m_a.html#a6f69ae8c92618c698b2bfc886f74b2a9">   54</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a6f69ae8c92618c698b2bfc886f74b2a9">copy</a>(T* dst, T* src, <span class="keywordtype">int</span> len, <span class="keywordtype">boolean</span> <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a53b34b9f466cd0bdc802c7547c896878">start</a> = <span class="keyword">true</span>){</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#ab88cea602569c95f5f9100b9d0b44ca9">setupChannel</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="comment">// we dont use any interrupts in this method</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            irq_set_enabled(DMA_IRQ_0, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="comment">// 8 bit transfers. Both read and write address increment after each</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="comment">// transfer (each pointing to a location in src or dst respectively).</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="comment">// No DREQ is selected, so the DMA transfers as fast as it can.</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            dma_channel_config c = dma_channel_get_default_config(channel_no);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            channel_config_set_transfer_data_size(&amp;c, DMA_SIZE_8);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            channel_config_set_read_increment(&amp;c, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            channel_config_set_write_increment(&amp;c, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            dma_channel_configure(</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                channel_no,          <span class="comment">// Channel to be configured</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                &amp;c,            <span class="comment">// The configuration we just created</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                dst,           <span class="comment">// The initial write address</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                src,           <span class="comment">// The initial read address</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                len * <span class="keyword">sizeof</span>(T) , <span class="comment">// Number of transfers; in this case each is 1 byte.</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a53b34b9f466cd0bdc802c7547c896878">start</a>           <span class="comment">// Start immediately.</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            );</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_d_m_a.html#a7bdfe6704c88cf4b54ea037fa2d55e7c">   85</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a7bdfe6704c88cf4b54ea037fa2d55e7c">copy</a>(T* dst, T* src, <span class="keywordtype">int</span> len, <span class="keywordtype">void</span> (*completion_handler)(), <span class="keywordtype">bool</span> startCopy=<span class="keyword">true</span>){</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a6f69ae8c92618c698b2bfc886f74b2a9">copy</a>(dst, src, len, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="comment">// Tell the DMA to raise IRQ line 0 when the channel finishes a block</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            dma_channel_set_irq0_enabled(channel_no, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="comment">// Configure the processor to run dma_handler() when DMA IRQ 0 is asserted</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            irq_set_exclusive_handler(DMA_IRQ_0, completion_handler);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            irq_set_enabled(DMA_IRQ_0, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="comment">// starts the processing</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keywordflow">if</span> (startCopy) <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a53b34b9f466cd0bdc802c7547c896878">start</a>(channel_no);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        }</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#a4b4d6d06b7435438b97afb7f8ae45ae2">  109</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_pico_d_m_a.html#a4b4d6d06b7435438b97afb7f8ae45ae2">set</a>(T* dst, T src, <span class="keywordtype">int</span> len, <span class="keywordtype">boolean</span> <a class="code" href="class_pico_d_m_a.html#a298141aae22d13fb47e3145e064b2c4a">start</a> = <span class="keyword">true</span>){</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="keywordflow">if</span> (<span class="keyword">sizeof</span>(T)&gt;4){</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#a4dcc8759e80fb78c3553297e5fde99fe">error</a>(<span class="stringliteral">&quot;Only data up to 32 bytes is supported by DMA&quot;</span>);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            }</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            <a class="code" href="class_pico_d_m_a.html#ab23d1a5f5f5c11055bbe9020fd8643ee">setupChannel</a>();</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            T src_copy = src;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <span class="comment">// we dont use any interrupts in this method</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            irq_set_enabled(DMA_IRQ_0, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            <span class="comment">// 8 bit transfers. Both read and write address increment after each</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            <span class="comment">// transfer (each pointing to a location in src or dst respectively).</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <span class="comment">// No DREQ is selected, so the DMA transfers as fast as it can.</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            dma_channel_config c = dma_channel_get_default_config(channel_no);</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            channel_config_set_transfer_data_size(&amp;c, transferSize());</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            channel_config_set_read_increment(&amp;c, <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            channel_config_set_write_increment(&amp;c, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            dma_channel_configure(</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                channel_no,          <span class="comment">// Channel to be configured</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                &amp;c,            <span class="comment">// The configuration we just created</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                dst,           <span class="comment">// The initial write address</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                &amp;src_copy,           <span class="comment">// The initial read address</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                len, <span class="comment">// Number of transfers; in this case each is 1 byte.</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                <a class="code" href="class_pico_d_m_a.html#a298141aae22d13fb47e3145e064b2c4a">start</a>           <span class="comment">// Start immediately.</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            );</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        }</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
-<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#a5685a90a718ca61e55e18904ba4a3539">  147</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_d_m_a.html#a5685a90a718ca61e55e18904ba4a3539">set</a>(T* dst, T src, <span class="keywordtype">int</span> len, <span class="keywordtype">void</span> (*completion_handler)(), <span class="keywordtype">bool</span> startCopy=<span class="keyword">true</span>){</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            <span class="comment">// set values</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            <a class="code" href="class_pico_d_m_a.html#a4b4d6d06b7435438b97afb7f8ae45ae2">set</a>(dst, src, len, <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            <span class="comment">// Tell the DMA to raise IRQ line 0 when the channel finishes a block</span></div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            dma_channel_set_irq0_enabled(channel_no, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            <span class="comment">// Configure the processor to run dma_handler() when DMA IRQ 0 is asserted</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            irq_set_exclusive_handler(DMA_IRQ_0, completion_handler);</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            irq_set_enabled(DMA_IRQ_0, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            <span class="comment">// starts the processing</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="keywordflow">if</span> (startCopy) <a class="code" href="class_pico_d_m_a.html#a298141aae22d13fb47e3145e064b2c4a">start</a>(channel_no);</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        }</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
-<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#a298141aae22d13fb47e3145e064b2c4a">  164</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_d_m_a.html#a298141aae22d13fb47e3145e064b2c4a">start</a>(){</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            <span class="keywordflow">if</span> (channel_no!=-1) dma_channel_start(channel_no);</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        }</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
-<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#ad6546c6a0916dd3003a6e0d1d643aff9">  169</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_d_m_a.html#ad6546c6a0916dd3003a6e0d1d643aff9">abort</a>(){</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            <span class="keywordflow">if</span> (channel_no!=-1) dma_channel_abort(channel_no);</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        }</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
-<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#acbbceecaecb2ee72822996f8974bb179">  174</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_d_m_a.html#acbbceecaecb2ee72822996f8974bb179">wait</a>(){</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            <span class="keywordflow">if</span> (channel_no!=-1) dma_channel_wait_for_finish_blocking(channel_no);</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        }</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
-<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#a584408e8da2cb19ab5835e9313b257cc">  179</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_pico_d_m_a.html#a584408e8da2cb19ab5835e9313b257cc">isBusy</a>(){</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            <span class="keywordflow">return</span> channel_no==-1 ? true : dma_channel_is_busy(channel_no);</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        } </div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
-<div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#ad6f97089722fdbddd3e49ce7ae3becf9">  184</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_d_m_a.html#ad6f97089722fdbddd3e49ce7ae3becf9">clearInterrupt</a>() {</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            dma_hw-&gt;ints0 = 1u &lt;&lt; <a class="code" href="class_pico_d_m_a.html#a872d6fa2aa5cc9f30e006084d2492eaf">channel</a>;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            <span class="comment">//irq_clear(DMA_IRQ_0);</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        }</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="keywordtype">int</span> channel_no = -1;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        dma_channel_transfer_size transferSize() {</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            <span class="keywordflow">switch</span>(<span class="keyword">sizeof</span>(T)){</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                <span class="keywordflow">case</span> 1:</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                    <span class="keywordflow">return</span> DMA_SIZE_8;</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                <span class="keywordflow">case</span> 2:</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                    <span class="keywordflow">return</span> DMA_SIZE_16;</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                <span class="keywordflow">case</span> 4:</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                    <span class="keywordflow">return</span> DMA_SIZE_32;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            }</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        }</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
-<div class="line"><a name="l00204"></a><span class="lineno"><a class="line" href="class_pico_d_m_a.html#ab23d1a5f5f5c11055bbe9020fd8643ee">  204</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_pico_d_m_a.html#ab23d1a5f5f5c11055bbe9020fd8643ee">setupChannel</a>() {</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            <span class="keywordflow">if</span> (channel_no == -1){</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                channel_no = dma_claim_unused_channel(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            }</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        }</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;};</div>
-<div class="ttc" id="aclass_pico_d_m_a_html"><div class="ttname"><a href="class_pico_d_m_a.html">PicoDMA</a></div><div class="ttdoc">We can use the Pico DMA to copy data &quot;in the background&quot; while the processor is doing some other work...</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:11</div></div>
-<div class="ttc" id="aclass_pico_d_m_a_html_a156401d93e1fcac9d42ea205c0640a67"><div class="ttname"><a href="class_pico_d_m_a.html#a156401d93e1fcac9d42ea205c0640a67">PicoDMA::copy</a></div><div class="ttdeci">void copy(T *dst, T *src, int len, boolean start=true)</div><div class="ttdoc">Copies the values of num bytes from the location pointed to by source directly to the memory block po...</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:53</div></div>
-<div class="ttc" id="aclass_pico_d_m_a_html_a198802ab22728a9d91d78617efeb4a1a"><div class="ttname"><a href="class_pico_d_m_a.html#a198802ab22728a9d91d78617efeb4a1a">PicoDMA::~PicoDMA</a></div><div class="ttdeci">~PicoDMA()</div><div class="ttdoc">Destructor: releases the DMA channel if necessary - if some processing is still going on,...</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:17</div></div>
-<div class="ttc" id="aclass_pico_d_m_a_html_a298141aae22d13fb47e3145e064b2c4a"><div class="ttname"><a href="class_pico_d_m_a.html#a298141aae22d13fb47e3145e064b2c4a">PicoDMA::start</a></div><div class="ttdeci">void start()</div><div class="ttdoc">starts the copy</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:164</div></div>
-<div class="ttc" id="aclass_pico_d_m_a_html_a4b4d6d06b7435438b97afb7f8ae45ae2"><div class="ttname"><a href="class_pico_d_m_a.html#a4b4d6d06b7435438b97afb7f8ae45ae2">PicoDMA::set</a></div><div class="ttdeci">bool set(T *dst, T src, int len, boolean start=true)</div><div class="ttdoc">Sets a destination array with a fixed value We support only data of the size of uint_8,...</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:109</div></div>
-<div class="ttc" id="aclass_pico_d_m_a_html_a5685a90a718ca61e55e18904ba4a3539"><div class="ttname"><a href="class_pico_d_m_a.html#a5685a90a718ca61e55e18904ba4a3539">PicoDMA::set</a></div><div class="ttdeci">void set(T *dst, T src, int len, void(*completion_handler)(), bool startCopy=true)</div><div class="ttdoc">Sets a destination array with a fixed value.</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:147</div></div>
-<div class="ttc" id="aclass_pico_d_m_a_html_a584408e8da2cb19ab5835e9313b257cc"><div class="ttname"><a href="class_pico_d_m_a.html#a584408e8da2cb19ab5835e9313b257cc">PicoDMA::isBusy</a></div><div class="ttdeci">bool isBusy()</div><div class="ttdoc">checks if the copy is still in process</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:179</div></div>
-<div class="ttc" id="aclass_pico_d_m_a_html_a6f611c2321e59963795882e536e623b7"><div class="ttname"><a href="class_pico_d_m_a.html#a6f611c2321e59963795882e536e623b7">PicoDMA::releaseChannel</a></div><div class="ttdeci">bool releaseChannel(bool abortProcessing=false)</div><div class="ttdoc">Releases the DMA channel and makes it available again.</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:22</div></div>
-<div class="ttc" id="aclass_pico_d_m_a_html_a872d6fa2aa5cc9f30e006084d2492eaf"><div class="ttname"><a href="class_pico_d_m_a.html#a872d6fa2aa5cc9f30e006084d2492eaf">PicoDMA::channel</a></div><div class="ttdeci">int channel()</div><div class="ttdoc">provides the used DMA channel - returns -1 if no channel has been set up so far</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:40</div></div>
-<div class="ttc" id="aclass_pico_d_m_a_html_aa3bbe1a9032b7e90cd0a3fdef06deee9"><div class="ttname"><a href="class_pico_d_m_a.html#aa3bbe1a9032b7e90cd0a3fdef06deee9">PicoDMA::copy</a></div><div class="ttdeci">void copy(T *dst, T *src, int len, void(*completion_handler)(), bool startCopy=true)</div><div class="ttdoc">Copies the values of num bytes from the location pointed to by source directly to the memory block po...</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:84</div></div>
-<div class="ttc" id="aclass_pico_d_m_a_html_aa71b00062ea9edca5bfb667dae91603d"><div class="ttname"><a href="class_pico_d_m_a.html#aa71b00062ea9edca5bfb667dae91603d">PicoDMA::PicoDMA</a></div><div class="ttdeci">PicoDMA()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:14</div></div>
-<div class="ttc" id="aclass_pico_d_m_a_html_ab23d1a5f5f5c11055bbe9020fd8643ee"><div class="ttname"><a href="class_pico_d_m_a.html#ab23d1a5f5f5c11055bbe9020fd8643ee">PicoDMA::setupChannel</a></div><div class="ttdeci">void setupChannel()</div><div class="ttdoc">Provides the next available DMA channel.</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:204</div></div>
-<div class="ttc" id="aclass_pico_d_m_a_html_acbbceecaecb2ee72822996f8974bb179"><div class="ttname"><a href="class_pico_d_m_a.html#acbbceecaecb2ee72822996f8974bb179">PicoDMA::wait</a></div><div class="ttdeci">void wait()</div><div class="ttdoc">a blocking wait for the copy to complete</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:174</div></div>
-<div class="ttc" id="aclass_pico_d_m_a_html_ad6546c6a0916dd3003a6e0d1d643aff9"><div class="ttname"><a href="class_pico_d_m_a.html#ad6546c6a0916dd3003a6e0d1d643aff9">PicoDMA::abort</a></div><div class="ttdeci">void abort()</div><div class="ttdoc">aborts the copy</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:169</div></div>
-<div class="ttc" id="aclass_pico_d_m_a_html_ad6f97089722fdbddd3e49ce7ae3becf9"><div class="ttname"><a href="class_pico_d_m_a.html#ad6f97089722fdbddd3e49ce7ae3becf9">PicoDMA::clearInterrupt</a></div><div class="ttdeci">void clearInterrupt()</div><div class="ttdoc">You need to call this method in the completion handler.</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:184</div></div>
-<div class="ttc" id="aclass_pico_logger_html_a4dcc8759e80fb78c3553297e5fde99fe"><div class="ttname"><a href="class_pico_logger.html#a4dcc8759e80fb78c3553297e5fde99fe">PicoLogger::error</a></div><div class="ttdeci">virtual void error(const char *str, const char *str1=nullptr, const char *str2=nullptr)</div><div class="ttdoc">logs an error</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:43</div></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_d_m_a.html#a3c1fc86f64be2e5980ff14cd08e4d1c1">  110</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a3c1fc86f64be2e5980ff14cd08e4d1c1">set</a>(T* dst, T src, <span class="keywordtype">int</span> len, <span class="keywordtype">boolean</span> <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a53b34b9f466cd0bdc802c7547c896878">start</a> = <span class="keyword">true</span>){</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <span class="keywordflow">if</span> (<span class="keyword">sizeof</span>(T)&gt;4){</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#aaa97c3dc199ebbc76007f51685a63057">error</a>(<span class="stringliteral">&quot;Only data up to 32 bytes is supported by DMA&quot;</span>);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#ab88cea602569c95f5f9100b9d0b44ca9">setupChannel</a>();</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            T src_copy = src;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            <span class="comment">// we dont use any interrupts in this method</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            irq_set_enabled(DMA_IRQ_0, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            <span class="comment">// 8 bit transfers. Both read and write address increment after each</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <span class="comment">// transfer (each pointing to a location in src or dst respectively).</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            <span class="comment">// No DREQ is selected, so the DMA transfers as fast as it can.</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            dma_channel_config c = dma_channel_get_default_config(channel_no);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            channel_config_set_transfer_data_size(&amp;c, transferSize());</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            channel_config_set_read_increment(&amp;c, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            channel_config_set_write_increment(&amp;c, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            dma_channel_configure(</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                channel_no,          <span class="comment">// Channel to be configured</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                &amp;c,            <span class="comment">// The configuration we just created</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                dst,           <span class="comment">// The initial write address</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                &amp;src_copy,           <span class="comment">// The initial read address</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                len, <span class="comment">// Number of transfers; in this case each is 1 byte.</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a53b34b9f466cd0bdc802c7547c896878">start</a>           <span class="comment">// Start immediately.</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            );</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        }</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_d_m_a.html#ab84bb496847295e6cae0c162406e00e4">  148</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#ab84bb496847295e6cae0c162406e00e4">set</a>(T* dst, T src, <span class="keywordtype">int</span> len, <span class="keywordtype">void</span> (*completion_handler)(), <span class="keywordtype">bool</span> startCopy=<span class="keyword">true</span>){</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            <span class="comment">// set values</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a3c1fc86f64be2e5980ff14cd08e4d1c1">set</a>(dst, src, len, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <span class="comment">// Tell the DMA to raise IRQ line 0 when the channel finishes a block</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            dma_channel_set_irq0_enabled(channel_no, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="comment">// Configure the processor to run dma_handler() when DMA IRQ 0 is asserted</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            irq_set_exclusive_handler(DMA_IRQ_0, completion_handler);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            irq_set_enabled(DMA_IRQ_0, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="comment">// starts the processing</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <span class="keywordflow">if</span> (startCopy) <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a53b34b9f466cd0bdc802c7547c896878">start</a>(channel_no);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        }</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_d_m_a.html#a53b34b9f466cd0bdc802c7547c896878">  165</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a53b34b9f466cd0bdc802c7547c896878">start</a>(){</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            <span class="keywordflow">if</span> (channel_no!=-1) dma_channel_start(channel_no);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        }</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_d_m_a.html#a7fa6fa8cc9461b8f8ce905b64878a98a">  170</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a7fa6fa8cc9461b8f8ce905b64878a98a">abort</a>(){</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            <span class="keywordflow">if</span> (channel_no!=-1) dma_channel_abort(channel_no);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        }</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_d_m_a.html#ae7f28cd137bdc8079691ced74113fded">  175</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#ae7f28cd137bdc8079691ced74113fded">wait</a>(){</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            <span class="keywordflow">if</span> (channel_no!=-1) dma_channel_wait_for_finish_blocking(channel_no);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        }</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_d_m_a.html#a4c22abb836e3af68a59131d1364cdb1c">  180</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a4c22abb836e3af68a59131d1364cdb1c">isBusy</a>(){</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;            <span class="keywordflow">return</span> channel_no==-1 ? true : dma_channel_is_busy(channel_no);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        } </div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
+<div class="line"><a name="l00185"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_d_m_a.html#afbd2398dc879109272e208c43ea305c2">  185</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#afbd2398dc879109272e208c43ea305c2">clearInterrupt</a>() {</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            dma_hw-&gt;ints0 = 1u &lt;&lt; <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#a43472e4f399982c6b42925fe0b46c355">channel</a>;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            <span class="comment">//irq_clear(DMA_IRQ_0);</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        }</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <span class="keywordtype">int</span> channel_no = -1;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        dma_channel_transfer_size transferSize() {</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            <span class="keywordflow">switch</span>(<span class="keyword">sizeof</span>(T)){</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                <span class="keywordflow">case</span> 1:</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                    <span class="keywordflow">return</span> DMA_SIZE_8;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                <span class="keywordflow">case</span> 2:</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                    <span class="keywordflow">return</span> DMA_SIZE_16;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                <span class="keywordflow">case</span> 4:</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                    <span class="keywordflow">return</span> DMA_SIZE_32;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            }</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        }</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
+<div class="line"><a name="l00205"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_d_m_a.html#ab88cea602569c95f5f9100b9d0b44ca9">  205</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_pico_d_m_a.html#ab88cea602569c95f5f9100b9d0b44ca9">setupChannel</a>() {</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            <span class="keywordflow">if</span> (channel_no == -1){</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                channel_no = dma_claim_unused_channel(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            }</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        }</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160; </div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;};</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;}</div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_d_m_a_html"><div class="ttname"><a href="classpico__arduino_1_1_pico_d_m_a.html">pico_arduino::PicoDMA</a></div><div class="ttdoc">We can use the Pico DMA to copy data &quot;in the background&quot; while the processor is doing some other work...</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:12</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_d_m_a_html_a1bf1ea36cc6f503c1c75f4e739b04724"><div class="ttname"><a href="classpico__arduino_1_1_pico_d_m_a.html#a1bf1ea36cc6f503c1c75f4e739b04724">pico_arduino::PicoDMA::PicoDMA</a></div><div class="ttdeci">PicoDMA()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:15</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_d_m_a_html_a3c1fc86f64be2e5980ff14cd08e4d1c1"><div class="ttname"><a href="classpico__arduino_1_1_pico_d_m_a.html#a3c1fc86f64be2e5980ff14cd08e4d1c1">pico_arduino::PicoDMA::set</a></div><div class="ttdeci">bool set(T *dst, T src, int len, boolean start=true)</div><div class="ttdoc">Sets a destination array with a fixed value We support only data of the size of uint_8,...</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:110</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_d_m_a_html_a43472e4f399982c6b42925fe0b46c355"><div class="ttname"><a href="classpico__arduino_1_1_pico_d_m_a.html#a43472e4f399982c6b42925fe0b46c355">pico_arduino::PicoDMA::channel</a></div><div class="ttdeci">int channel()</div><div class="ttdoc">provides the used DMA channel - returns -1 if no channel has been set up so far</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:41</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_d_m_a_html_a4c22abb836e3af68a59131d1364cdb1c"><div class="ttname"><a href="classpico__arduino_1_1_pico_d_m_a.html#a4c22abb836e3af68a59131d1364cdb1c">pico_arduino::PicoDMA::isBusy</a></div><div class="ttdeci">bool isBusy()</div><div class="ttdoc">checks if the copy is still in process</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:180</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_d_m_a_html_a53b34b9f466cd0bdc802c7547c896878"><div class="ttname"><a href="classpico__arduino_1_1_pico_d_m_a.html#a53b34b9f466cd0bdc802c7547c896878">pico_arduino::PicoDMA::start</a></div><div class="ttdeci">void start()</div><div class="ttdoc">starts the copy</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:165</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_d_m_a_html_a6f69ae8c92618c698b2bfc886f74b2a9"><div class="ttname"><a href="classpico__arduino_1_1_pico_d_m_a.html#a6f69ae8c92618c698b2bfc886f74b2a9">pico_arduino::PicoDMA::copy</a></div><div class="ttdeci">void copy(T *dst, T *src, int len, boolean start=true)</div><div class="ttdoc">Copies the values of num bytes from the location pointed to by source directly to the memory block po...</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:54</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_d_m_a_html_a7bdfe6704c88cf4b54ea037fa2d55e7c"><div class="ttname"><a href="classpico__arduino_1_1_pico_d_m_a.html#a7bdfe6704c88cf4b54ea037fa2d55e7c">pico_arduino::PicoDMA::copy</a></div><div class="ttdeci">void copy(T *dst, T *src, int len, void(*completion_handler)(), bool startCopy=true)</div><div class="ttdoc">Copies the values of num bytes from the location pointed to by source directly to the memory block po...</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:85</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_d_m_a_html_a7fa6fa8cc9461b8f8ce905b64878a98a"><div class="ttname"><a href="classpico__arduino_1_1_pico_d_m_a.html#a7fa6fa8cc9461b8f8ce905b64878a98a">pico_arduino::PicoDMA::abort</a></div><div class="ttdeci">void abort()</div><div class="ttdoc">aborts the copy</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:170</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_d_m_a_html_a854c8772ff5aefa5d446be43f1d73b4b"><div class="ttname"><a href="classpico__arduino_1_1_pico_d_m_a.html#a854c8772ff5aefa5d446be43f1d73b4b">pico_arduino::PicoDMA::~PicoDMA</a></div><div class="ttdeci">~PicoDMA()</div><div class="ttdoc">Destructor: releases the DMA channel if necessary - if some processing is still going on,...</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:18</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_d_m_a_html_a87c663d00dd4148fa48570bb95bc0959"><div class="ttname"><a href="classpico__arduino_1_1_pico_d_m_a.html#a87c663d00dd4148fa48570bb95bc0959">pico_arduino::PicoDMA::releaseChannel</a></div><div class="ttdeci">bool releaseChannel(bool abortProcessing=false)</div><div class="ttdoc">Releases the DMA channel and makes it available again.</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:23</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_d_m_a_html_ab84bb496847295e6cae0c162406e00e4"><div class="ttname"><a href="classpico__arduino_1_1_pico_d_m_a.html#ab84bb496847295e6cae0c162406e00e4">pico_arduino::PicoDMA::set</a></div><div class="ttdeci">void set(T *dst, T src, int len, void(*completion_handler)(), bool startCopy=true)</div><div class="ttdoc">Sets a destination array with a fixed value.</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:148</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_d_m_a_html_ab88cea602569c95f5f9100b9d0b44ca9"><div class="ttname"><a href="classpico__arduino_1_1_pico_d_m_a.html#ab88cea602569c95f5f9100b9d0b44ca9">pico_arduino::PicoDMA::setupChannel</a></div><div class="ttdeci">void setupChannel()</div><div class="ttdoc">Provides the next available DMA channel.</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:205</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_d_m_a_html_ae7f28cd137bdc8079691ced74113fded"><div class="ttname"><a href="classpico__arduino_1_1_pico_d_m_a.html#ae7f28cd137bdc8079691ced74113fded">pico_arduino::PicoDMA::wait</a></div><div class="ttdeci">void wait()</div><div class="ttdoc">a blocking wait for the copy to complete</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:175</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_d_m_a_html_afbd2398dc879109272e208c43ea305c2"><div class="ttname"><a href="classpico__arduino_1_1_pico_d_m_a.html#afbd2398dc879109272e208c43ea305c2">pico_arduino::PicoDMA::clearInterrupt</a></div><div class="ttdeci">void clearInterrupt()</div><div class="ttdoc">You need to call this method in the completion handler.</div><div class="ttdef"><b>Definition:</b> PicoDMA.h:185</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_logger_html_aaa97c3dc199ebbc76007f51685a63057"><div class="ttname"><a href="classpico__arduino_1_1_pico_logger.html#aaa97c3dc199ebbc76007f51685a63057">pico_arduino::PicoLogger::error</a></div><div class="ttdeci">virtual void error(const char *str, const char *str1=nullptr, const char *str2=nullptr)</div><div class="ttdoc">logs an error</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:45</div></div>
+<div class="ttc" id="anamespacepico__arduino_html"><div class="ttname"><a href="namespacepico__arduino.html">pico_arduino</a></div><div class="ttdoc">Pico Arduino Framework.</div><div class="ttdef"><b>Definition:</b> Arduino.cpp:27</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

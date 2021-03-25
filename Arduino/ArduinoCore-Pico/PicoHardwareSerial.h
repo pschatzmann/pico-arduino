@@ -1,8 +1,10 @@
 #pragma once
 
 #include "pins_arduino.h"
-#include "Stream.h"
 #include "HardwareSerial.h"
+#include "PicoUSB.h"
+#include "PicoLogger.h"
+#include "Stream.h"
 #include "RingBufferN.h"
 #include "pico/stdlib.h"
 #include "hardware/uart.h"
@@ -14,18 +16,17 @@
 #define BUFFER_SIZE 512
 #endif
 
-#if !defined(TINYUSB_HOST_LINKED) && !defined(TINYUSB_DEVICE_LINKED)
+namespace pico_arduino {
 
-extern "C" {
-static bool tud_cdc_connected (void);
-}
+// PicoSerialUSB is not available with TinyUSB is used !
+#if !defined(TINYUSB_HOST_LINKED) && !defined(TINYUSB_DEVICE_LINKED)
 
 /**
  * @brief PicoUSBSerial is using the pico USB output. It is mapped to the Arduino Serial variable.
  * @author Phil Schatzmann
  * @copyright GPLv3
  */
-class PicoSerialUSB : public HardwareSerial {
+class PicoSerialUSB : public arduino::HardwareSerial {
     public:
         PicoSerialUSB(){
         }
@@ -120,6 +121,8 @@ class PicoSerialUSB : public HardwareSerial {
 
 };
 
+inline PicoSerialUSB Serial;
+
 #endif
 
 /**
@@ -169,7 +172,7 @@ class PicoSerialUART : public HardwareSerial {
 
             uint rate_effective = uart_set_baudrate(uart,baudrate);
             open = uart_is_enabled(uart);
-            if (Logger.isLogging(PicoLogger::Info)) {
+            if (Logger.isLogging()) {
                 Logger.info("baud_rate requested:",toStr(baudrate));
                 Logger.info("baud_rate effective:",toStr(rate_effective));
                 Logger.info("uart_is_enabled:", open ?  "true" :  "false");
@@ -369,5 +372,12 @@ class PicoSerialUART : public HardwareSerial {
             itoa(value,buffer,10);
             return (const char*)buffer;
         }
+
 };
+
+// Standard Arduino global variables
+inline PicoSerialUART Serial1(0);
+inline PicoSerialUART Serial2(1); 
+
+}
 

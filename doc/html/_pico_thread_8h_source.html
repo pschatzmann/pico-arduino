@@ -74,86 +74,91 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;pico/stdlib.h&quot;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;pico/multicore.h&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">typedef</span> void (*ThreadCB)(<span class="keywordtype">void</span>* arg);</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacepico__arduino.html">pico_arduino</a> {</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="class_thread.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_thread.html">Thread</a> {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="class_thread.html">Thread</a>(){</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            started(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        }</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        ~<a class="code" href="class_thread.html">Thread</a>(){</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <a class="code" href="class_thread.html#abd50159ecd409936f454c2321f673616">stop</a>();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_thread.html#a240b663c75959f78879530a36cc24d76">   26</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_thread.html#a240b663c75959f78879530a36cc24d76">start</a>(ThreadCB callback, <span class="keywordtype">void</span>* ptr=<span class="keyword">nullptr</span>){</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keywordtype">bool</span> result = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <span class="comment">// set arguments to callback</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            staticPtr(ptr);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            staticCallback(callback);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">if</span> (!started()){</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                multicore_launch_core1(callback_handler);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                started(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                result = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#a7d506705cf2297e66ea30ca4a0d96e55">info</a>(<span class="stringliteral">&quot;Thread started on core1&quot;</span>);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                Logger.<a class="code" href="class_pico_logger.html#a7d506705cf2297e66ea30ca4a0d96e55">info</a>(<span class="stringliteral">&quot;Thread not started - because one is already active&quot;</span>);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            }</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        }</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_thread.html#abd50159ecd409936f454c2321f673616">   44</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_thread.html#abd50159ecd409936f454c2321f673616">stop</a>() {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            multicore_reset_core1();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            started(<span class="keyword">false</span>);   </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="comment">// // Send core 1 to sleep.</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="comment">// void sleep() {</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">//     multicore_sleep_core1();</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="comment">// }</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="class_thread.html#ab17a6bee5b20a1e32734b19a93314b7a">   55</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_thread.html#ab17a6bee5b20a1e32734b19a93314b7a">isRunning</a>() {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">return</span> started();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> callback_handler(){</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            ThreadCB cb = staticCallback();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordtype">void</span>* ptr = staticPtr();</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <span class="comment">// calling callback</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            cb(ptr);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="comment">// static setter / getter for ptr</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> *staticPtr(<span class="keywordtype">void</span>* ptr = <span class="keyword">nullptr</span>){</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keyword">static</span> <span class="keywordtype">void</span> *stat_ptr = {ptr};</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keywordflow">return</span> stat_ptr;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        }</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="comment">// static setter / getter for callback</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">static</span> ThreadCB staticCallback(ThreadCB cb = <span class="keyword">nullptr</span>) {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keyword">static</span> ThreadCB stat_cb = {cb};</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">return</span> stat_cb;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        };</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="comment">// get or update static started flag</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordtype">bool</span> started(<span class="keywordtype">int</span> flag=-1){</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <span class="keyword">static</span> <span class="keywordtype">bool</span> started_flag;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">if</span> (flag!=-1)</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                started_flag = flag;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="keywordflow">return</span> started_flag;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;};</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">typedef</span> void (*ThreadCB)(<span class="keywordtype">void</span>* arg);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_thread.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classpico__arduino_1_1_thread.html">Thread</a> {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="classpico__arduino_1_1_thread.html">Thread</a>(){</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            started(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        }</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        ~<a class="code" href="classpico__arduino_1_1_thread.html">Thread</a>(){</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <a class="code" href="classpico__arduino_1_1_thread.html#ae62209a2d84e97d0963dc8fd5b2cd210">stop</a>();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        }</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_thread.html#a6a7334e1ad9f9831a4bfea4e4c7c7cad">   28</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpico__arduino_1_1_thread.html#a6a7334e1ad9f9831a4bfea4e4c7c7cad">start</a>(ThreadCB callback, <span class="keywordtype">void</span>* ptr=<span class="keyword">nullptr</span>){</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="keywordtype">bool</span> result = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="comment">// set arguments to callback</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            staticPtr(ptr);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            staticCallback(callback);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keywordflow">if</span> (!started()){</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                multicore_launch_core1(callback_handler);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                started(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                result = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#ab4d24abb86916a0d1bf80dfca0f4b5b4">info</a>(<span class="stringliteral">&quot;Thread started on core1&quot;</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#ab4d24abb86916a0d1bf80dfca0f4b5b4">info</a>(<span class="stringliteral">&quot;Thread not started - because one is already active&quot;</span>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_thread.html#ae62209a2d84e97d0963dc8fd5b2cd210">   46</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_thread.html#ae62209a2d84e97d0963dc8fd5b2cd210">stop</a>() {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            multicore_reset_core1();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            started(<span class="keyword">false</span>);   </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">// // Send core 1 to sleep.</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="comment">// void sleep() {</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="comment">//     multicore_sleep_core1();</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="comment">// }</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_thread.html#a4f2801b115ca6c6b1304680568eedeaf">   57</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpico__arduino_1_1_thread.html#a4f2801b115ca6c6b1304680568eedeaf">isRunning</a>() {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keywordflow">return</span> started();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> callback_handler(){</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            ThreadCB cb = staticCallback();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordtype">void</span>* ptr = staticPtr();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="comment">// calling callback</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            cb(ptr);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="comment">// static setter / getter for ptr</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> *staticPtr(<span class="keywordtype">void</span>* ptr = <span class="keyword">nullptr</span>){</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keyword">static</span> <span class="keywordtype">void</span> *stat_ptr = {ptr};</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">return</span> stat_ptr;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="comment">// static setter / getter for callback</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keyword">static</span> ThreadCB staticCallback(ThreadCB cb = <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keyword">static</span> ThreadCB stat_cb = {cb};</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keywordflow">return</span> stat_cb;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        };</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="comment">// get or update static started flag</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordtype">bool</span> started(<span class="keywordtype">int</span> flag=-1){</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keyword">static</span> <span class="keywordtype">bool</span> started_flag;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="keywordflow">if</span> (flag!=-1)</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                started_flag = flag;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keywordflow">return</span> started_flag;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        }</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="ttc" id="aclass_pico_logger_html_a7d506705cf2297e66ea30ca4a0d96e55"><div class="ttname"><a href="class_pico_logger.html#a7d506705cf2297e66ea30ca4a0d96e55">PicoLogger::info</a></div><div class="ttdeci">virtual void info(const char *str, const char *str1=nullptr, const char *str2=nullptr)</div><div class="ttdoc">logs an info message</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:48</div></div>
-<div class="ttc" id="aclass_thread_html"><div class="ttname"><a href="class_thread.html">Thread</a></div><div class="ttdoc">Adds support for running code on the second processor core (core1)</div><div class="ttdef"><b>Definition:</b> PicoThread.h:15</div></div>
-<div class="ttc" id="aclass_thread_html_a240b663c75959f78879530a36cc24d76"><div class="ttname"><a href="class_thread.html#a240b663c75959f78879530a36cc24d76">Thread::start</a></div><div class="ttdeci">bool start(ThreadCB callback, void *ptr=nullptr)</div><div class="ttdoc">Run code on core 1 - we can pass a reference to an object which will be given to the callback as argu...</div><div class="ttdef"><b>Definition:</b> PicoThread.h:26</div></div>
-<div class="ttc" id="aclass_thread_html_ab17a6bee5b20a1e32734b19a93314b7a"><div class="ttname"><a href="class_thread.html#ab17a6bee5b20a1e32734b19a93314b7a">Thread::isRunning</a></div><div class="ttdeci">bool isRunning()</div><div class="ttdoc">check if the core1 has been started and is not stoped</div><div class="ttdef"><b>Definition:</b> PicoThread.h:55</div></div>
-<div class="ttc" id="aclass_thread_html_abd50159ecd409936f454c2321f673616"><div class="ttname"><a href="class_thread.html#abd50159ecd409936f454c2321f673616">Thread::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdoc">resets the core 1</div><div class="ttdef"><b>Definition:</b> PicoThread.h:44</div></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;};</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_logger_html_ab4d24abb86916a0d1bf80dfca0f4b5b4"><div class="ttname"><a href="classpico__arduino_1_1_pico_logger.html#ab4d24abb86916a0d1bf80dfca0f4b5b4">pico_arduino::PicoLogger::info</a></div><div class="ttdeci">virtual void info(const char *str, const char *str1=nullptr, const char *str2=nullptr)</div><div class="ttdoc">logs an info message</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:50</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_thread_html"><div class="ttname"><a href="classpico__arduino_1_1_thread.html">pico_arduino::Thread</a></div><div class="ttdoc">Adds support for running code on the second processor core (core1)</div><div class="ttdef"><b>Definition:</b> PicoThread.h:17</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_thread_html_a4f2801b115ca6c6b1304680568eedeaf"><div class="ttname"><a href="classpico__arduino_1_1_thread.html#a4f2801b115ca6c6b1304680568eedeaf">pico_arduino::Thread::isRunning</a></div><div class="ttdeci">bool isRunning()</div><div class="ttdoc">check if the core1 has been started and is not stoped</div><div class="ttdef"><b>Definition:</b> PicoThread.h:57</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_thread_html_a6a7334e1ad9f9831a4bfea4e4c7c7cad"><div class="ttname"><a href="classpico__arduino_1_1_thread.html#a6a7334e1ad9f9831a4bfea4e4c7c7cad">pico_arduino::Thread::start</a></div><div class="ttdeci">bool start(ThreadCB callback, void *ptr=nullptr)</div><div class="ttdoc">Run code on core 1 - we can pass a reference to an object which will be given to the callback as argu...</div><div class="ttdef"><b>Definition:</b> PicoThread.h:28</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_thread_html_ae62209a2d84e97d0963dc8fd5b2cd210"><div class="ttname"><a href="classpico__arduino_1_1_thread.html#ae62209a2d84e97d0963dc8fd5b2cd210">pico_arduino::Thread::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdoc">resets the core 1</div><div class="ttdef"><b>Definition:</b> PicoThread.h:46</div></div>
+<div class="ttc" id="anamespacepico__arduino_html"><div class="ttname"><a href="namespacepico__arduino.html">pico_arduino</a></div><div class="ttdoc">Pico Arduino Framework.</div><div class="ttdef"><b>Definition:</b> Arduino.cpp:27</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

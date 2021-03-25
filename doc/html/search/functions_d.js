@@ -1,15 +1,16 @@
 var searchData=
 [
-  ['semaphore_231',['Semaphore',['../class_semaphore.html#a6bc0580e79d62888bc9e29ae9697036d',1,'Semaphore']]],
-  ['set_232',['set',['../class_pico_d_m_a.html#a4b4d6d06b7435438b97afb7f8ae45ae2',1,'PicoDMA::set(T *dst, T src, int len, boolean start=true)'],['../class_pico_d_m_a.html#a5685a90a718ca61e55e18904ba4a3539',1,'PicoDMA::set(T *dst, T src, int len, void(*completion_handler)(), bool startCopy=true)']]],
-  ['setclock_233',['setClock',['../class_pico_hardware_i2_c.html#aa3f4f7914960c10a97954f633b382639',1,'PicoHardwareI2C']]],
-  ['setdutycycle_234',['setDutyCycle',['../class_pico_p_w_m_writer.html#ac6be86ef5c952e774a39fdbb4bf98e8c',1,'PicoPWMWriter::setDutyCycle()'],['../class_pico_p_w_m_nano.html#a9a83fd88f0dd5d104c58e6a65bf1aab1',1,'PicoPWMNano::setDutyCycle()']]],
-  ['setpinmode_235',['setPinMode',['../class_pico_pin_function.html#a51dc351b02d18c06f67326995d3b1092',1,'PicoPinFunction']]],
-  ['setsetup_236',['setSetup',['../class_pico_pin_function.html#a98cf697d5553fb033ee3118a29e1d9de',1,'PicoPinFunction']]],
-  ['setupchannel_237',['setupChannel',['../class_pico_d_m_a.html#ab23d1a5f5f5c11055bbe9020fd8643ee',1,'PicoDMA']]],
-  ['setupconfig_238',['setupConfig',['../class_pico_p_w_m_writer.html#af1fd7276dea568c12ecd91bca952a8d8',1,'PicoPWMWriter::setupConfig()'],['../class_pico_p_w_m_reader.html#a8114df548eb5bbe0a2b4e1d16f8db681',1,'PicoPWMReader::setupConfig()']]],
-  ['setuppin_239',['setupPin',['../class_pico_p_w_m_writer.html#ac4b2f2bd2291f588dc030198b1b4c54f',1,'PicoPWMWriter::setupPin()'],['../class_pico_p_w_m_reader.html#a72da6a620b0605ac2e0fb3fdd733fa8e',1,'PicoPWMReader::setupPin()']]],
-  ['signal_240',['signal',['../class_semaphore.html#a1c1944487968a6295b3af8268b286b08',1,'Semaphore']]],
-  ['start_241',['start',['../class_pico_d_m_a.html#a298141aae22d13fb47e3145e064b2c4a',1,'PicoDMA::start()'],['../class_thread.html#a240b663c75959f78879530a36cc24d76',1,'Thread::start()'],['../class_timer_alarm.html#a2d9c89d6933cd4dd0e607f2d3a1a2688',1,'TimerAlarm::start()'],['../class_timer_alarm_repeating.html#a85d740a9ed702418574f92de8372306d',1,'TimerAlarmRepeating::start()']]],
-  ['stop_242',['stop',['../class_thread.html#abd50159ecd409936f454c2321f673616',1,'Thread::stop()'],['../class_timer_alarm.html#aecbb48b5a54752f236dcc417800f2ea9',1,'TimerAlarm::stop()'],['../class_timer_alarm_repeating.html#a59a49e928144e223f4caea422f20f148',1,'TimerAlarmRepeating::stop()']]]
+  ['semaphore_237',['Semaphore',['../classpico__arduino_1_1_semaphore.html#a8620f5fcceb3ca28efcf690cacd2fb21',1,'pico_arduino::Semaphore']]],
+  ['set_238',['set',['../classpico__arduino_1_1_pico_d_m_a.html#a3c1fc86f64be2e5980ff14cd08e4d1c1',1,'pico_arduino::PicoDMA::set(T *dst, T src, int len, boolean start=true)'],['../classpico__arduino_1_1_pico_d_m_a.html#ab84bb496847295e6cae0c162406e00e4',1,'pico_arduino::PicoDMA::set(T *dst, T src, int len, void(*completion_handler)(), bool startCopy=true)']]],
+  ['setclock_239',['setClock',['../classpico__arduino_1_1_pico_hardware_i2_c.html#a1ce8f585923b92c42e99718f520ef12f',1,'pico_arduino::PicoHardwareI2C']]],
+  ['setdutycycle_240',['setDutyCycle',['../classpico__arduino_1_1_pico_p_w_m_writer.html#a11171eeae3d44a1df16cf62c4e25dcce',1,'pico_arduino::PicoPWMWriter::setDutyCycle()'],['../classpico__arduino_1_1_pico_p_w_m_nano.html#ace8a5b2db8b4600010263f04653e62dd',1,'pico_arduino::PicoPWMNano::setDutyCycle()']]],
+  ['setpinmode_241',['setPinMode',['../classpico__arduino_1_1_pico_pin_function.html#a93af195ff4470b9f7f1823f8404f7f18',1,'pico_arduino::PicoPinFunction']]],
+  ['setsetup_242',['setSetup',['../classpico__arduino_1_1_pico_pin_function.html#abdf4e3fdf2561c2645324af6f0edb701',1,'pico_arduino::PicoPinFunction']]],
+  ['setupchannel_243',['setupChannel',['../classpico__arduino_1_1_pico_d_m_a.html#ab88cea602569c95f5f9100b9d0b44ca9',1,'pico_arduino::PicoDMA']]],
+  ['setupconfig_244',['setupConfig',['../classpico__arduino_1_1_pico_p_w_m_writer.html#a7b2f3eac29bb5d01fb298dcb761bf312',1,'pico_arduino::PicoPWMWriter::setupConfig()'],['../classpico__arduino_1_1_pico_p_w_m_reader.html#ac702446b2dd5a6432a1e6203f6bfeb10',1,'pico_arduino::PicoPWMReader::setupConfig()']]],
+  ['setuppin_245',['setupPin',['../classpico__arduino_1_1_pico_p_w_m_writer.html#a1b8d65767361b0d819f842eb21c61e7f',1,'pico_arduino::PicoPWMWriter::setupPin()'],['../classpico__arduino_1_1_pico_p_w_m_reader.html#a76c835809f265a41af7318182906bd6b',1,'pico_arduino::PicoPWMReader::setupPin()']]],
+  ['signal_246',['signal',['../classpico__arduino_1_1_semaphore.html#a1e6d879e194d7892ea3096864ebf5672',1,'pico_arduino::Semaphore']]],
+  ['spi_247',['SPI',['../namespacepico__arduino.html#a4cc646338fe0b8918f500ccb7c9a9561',1,'pico_arduino']]],
+  ['start_248',['start',['../classpico__arduino_1_1_pico_d_m_a.html#a53b34b9f466cd0bdc802c7547c896878',1,'pico_arduino::PicoDMA::start()'],['../classpico__arduino_1_1_thread.html#a6a7334e1ad9f9831a4bfea4e4c7c7cad',1,'pico_arduino::Thread::start()'],['../classpico__arduino_1_1_timer_alarm.html#a6b52da7b7575c0ca47f6935ad4c05173',1,'pico_arduino::TimerAlarm::start()'],['../classpico__arduino_1_1_timer_alarm_repeating.html#af23a306f2012ea8ab1999aac884b5173',1,'pico_arduino::TimerAlarmRepeating::start()']]],
+  ['stop_249',['stop',['../classpico__arduino_1_1_thread.html#ae62209a2d84e97d0963dc8fd5b2cd210',1,'pico_arduino::Thread::stop()'],['../classpico__arduino_1_1_timer_alarm.html#a95362a95280b5b057c3b1d233eb60d8d',1,'pico_arduino::TimerAlarm::stop()'],['../classpico__arduino_1_1_timer_alarm_repeating.html#a4b14f3bf2658af070ba86a19c3503d32',1,'pico_arduino::TimerAlarmRepeating::stop()']]]
 ];

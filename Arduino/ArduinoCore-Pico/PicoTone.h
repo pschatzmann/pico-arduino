@@ -3,6 +3,8 @@
 #include "PicoTimer.h"
 #include "Map.h"
 
+namespace pico_arduino {
+
 // forward declaratioins
 extern int64_t stop_tone_callback(alarm_id_t id, void *user_data);
 
@@ -97,8 +99,6 @@ class ArduinoPicoTone {
             static Map<int, PicoTone> ArduinoPicoTonePinMap(empyTone()); 
             return ArduinoPicoTonePinMap;
         }
-
-
 };
 
-    
+}    

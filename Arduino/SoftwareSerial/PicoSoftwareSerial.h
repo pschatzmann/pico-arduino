@@ -2,6 +2,9 @@
 #include "hardware/gpio.h"
 #include "SoftwareSerial/pio_uart_tx.h"
 #include "SoftwareSerial/pio_uart_rx.h"
+
+namespace pico_arduino {
+
 /**
  * @brief Software Serial Arduino Stream which uses the Pico PIO.
  * 
@@ -122,3 +125,5 @@ class SoftwareSerial : public Stream {
             pio_sm_set_enabled(pio, sm_tx, true);
         }
 };
+
+}

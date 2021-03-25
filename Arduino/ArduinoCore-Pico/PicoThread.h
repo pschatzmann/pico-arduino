@@ -3,6 +3,8 @@
 #include "pico/stdlib.h"
 #include "pico/multicore.h"
 
+namespace pico_arduino {
+
 
 typedef void (*ThreadCB)(void* arg);
 
@@ -86,4 +88,6 @@ class Thread {
         }
 
 };
+
+}
 

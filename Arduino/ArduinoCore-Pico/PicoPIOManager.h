@@ -5,6 +5,8 @@
 #include "hardware/pio.h"
 #include "hardware/clocks.h"
 
+namespace pico_arduino {
+
 /**
  * @brief The PIO subsystem on RP2040 allows you to write small, simple programs for what are called PIO state machines, of
  * which RP2040 has eight split across two PIO instances. A state machine is responsible for setting and reading one or
@@ -97,3 +99,5 @@ class PIOManager {
         uint state_machine; 
         int pin;
 };
+
+}

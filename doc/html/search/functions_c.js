@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['read_224',['read',['../class_pico_hardware_i2_c.html#a5604ec9a1e487d3cdae04754d038da7a',1,'PicoHardwareI2C::read()'],['../class_pico_p_w_m.html#acc3928594eb48b5128dd4757553c5423',1,'PicoPWM::read()'],['../class_servo.html#aaca0af33ba7d7c87c8a785b8eabf95a7',1,'Servo::read()']]],
-  ['readmicroseconds_225',['readMicroseconds',['../class_servo.html#a43950424d146c1414460066483d9561b',1,'Servo']]],
-  ['readpercent_226',['readPercent',['../class_pico_p_w_m.html#a795285410b41f4e8912701cc4c146251',1,'PicoPWM']]],
-  ['release_227',['release',['../class_semaphore.html#a8df11949af5c6fa22fd9bb1fac2e4fe6',1,'Semaphore']]],
-  ['releasechannel_228',['releaseChannel',['../class_pico_d_m_a.html#a6f611c2321e59963795882e536e623b7',1,'PicoDMA']]],
-  ['requestfrom_229',['requestFrom',['../class_pico_hardware_i2_c.html#a6aa77439c4b584e649e8f8d0e35bb2a4',1,'PicoHardwareI2C::requestFrom(uint8_t address, size_t len, bool stopBit)'],['../class_pico_hardware_i2_c.html#afc8f3a0bc77b6843479d09d28bab1a49',1,'PicoHardwareI2C::requestFrom(uint8_t address, size_t len)']]],
-  ['reset_230',['reset',['../class_semaphore.html#af2b2684b880c78549bf5b89b3d135756',1,'Semaphore']]]
+  ['read_230',['read',['../classpico__arduino_1_1_pico_hardware_i2_c.html#a1700f5766fadc05fd889f9bb803cb2b8',1,'pico_arduino::PicoHardwareI2C::read()'],['../classpico__arduino_1_1_pico_p_w_m.html#ace41e43de1581c0b0806c783a500959f',1,'pico_arduino::PicoPWM::read()'],['../classpico__arduino_1_1_servo.html#a3421d86e35b0b160dee4600ba2a5e401',1,'pico_arduino::Servo::read()']]],
+  ['readmicroseconds_231',['readMicroseconds',['../classpico__arduino_1_1_servo.html#acb434fc2fa6eb0d5279f435d2748135c',1,'pico_arduino::Servo']]],
+  ['readpercent_232',['readPercent',['../classpico__arduino_1_1_pico_p_w_m.html#a874ba6144f89a0eb956d8f4bb704c419',1,'pico_arduino::PicoPWM']]],
+  ['release_233',['release',['../classpico__arduino_1_1_semaphore.html#a5cb8328099d434976c467cce67530dad',1,'pico_arduino::Semaphore']]],
+  ['releasechannel_234',['releaseChannel',['../classpico__arduino_1_1_pico_d_m_a.html#a87c663d00dd4148fa48570bb95bc0959',1,'pico_arduino::PicoDMA']]],
+  ['requestfrom_235',['requestFrom',['../classpico__arduino_1_1_pico_hardware_i2_c.html#a2479fe005040eb2df29e6ab90c4dfd9c',1,'pico_arduino::PicoHardwareI2C::requestFrom(uint8_t address, size_t len, bool stopBit)'],['../classpico__arduino_1_1_pico_hardware_i2_c.html#a7d9628f24ffe2d5e5e4b2fdd615ac9a9',1,'pico_arduino::PicoHardwareI2C::requestFrom(uint8_t address, size_t len)']]],
+  ['reset_236',['reset',['../classpico__arduino_1_1_semaphore.html#aea707e639a3951c2552bd21d52b0ee3f',1,'pico_arduino::Semaphore']]]
 ];

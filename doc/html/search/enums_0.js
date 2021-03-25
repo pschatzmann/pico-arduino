@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loglevel_258',['LogLevel',['../class_pico_logger.html#af15ec27beaed81a34725f0f50589be18',1,'PicoLogger']]]
+  ['loglevel_267',['LogLevel',['../classpico__arduino_1_1_pico_logger.html#a570583692cbd6a2d8d89e1821099772f',1,'pico_arduino::PicoLogger']]]
 ];

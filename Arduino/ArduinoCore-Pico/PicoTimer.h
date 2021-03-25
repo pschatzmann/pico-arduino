@@ -2,6 +2,8 @@
 
 #include "pico/stdlib.h"
 
+namespace pico_arduino {
+
 typedef int64_t(* alarm_callback_t )(alarm_id_t id, void *user_data);
 typedef bool(* repeating_timer_callback_t )(repeating_timer_t *rt);
 
@@ -87,3 +89,5 @@ class TimerAlarmRepeating {
         alarm_pool_t *ap;
         repeating_timer_t timer;
 };
+
+}

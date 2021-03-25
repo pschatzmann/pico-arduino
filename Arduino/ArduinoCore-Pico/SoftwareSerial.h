@@ -5,4 +5,4 @@
  * @copyright GPLv3
  */
 
-#include "SoftwareSerial/SoftwareSerial.h"
+#include "SoftwareSerial/PicoSoftwareSerial.h"

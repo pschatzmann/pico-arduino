@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['frequency_195',['frequency',['../class_pico_p_w_m_writer.html#a19e9bb9b5c34f2913b4c285c0650ad10',1,'PicoPWMWriter::frequency()'],['../class_pico_p_w_m_nano.html#a5c2283ea783d73e1f29edd49646d687f',1,'PicoPWMNano::frequency()'],['../class_pico_p_w_m.html#a61c593ccd3e6035d1b086fb5116ece82',1,'PicoPWM::frequency()']]]
+  ['frequency_201',['frequency',['../classpico__arduino_1_1_pico_p_w_m_writer.html#a0afd591408475378e9089514be6f5fc6',1,'pico_arduino::PicoPWMWriter::frequency()'],['../classpico__arduino_1_1_pico_p_w_m_nano.html#a3206b199e56dfa895e943eed270f01fa',1,'pico_arduino::PicoPWMNano::frequency()'],['../classpico__arduino_1_1_pico_p_w_m.html#a116a2d2f6381e3ef04b2e7c727782b8e',1,'pico_arduino::PicoPWM::frequency()']]]
 ];

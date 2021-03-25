@@ -71,9 +71,16 @@ $(function() {
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;PicoHardwareSPI.h&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_pico_hardware_s_p_i.html">PicoHardwareSPI</a> SPI;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_pico_hardware_s_p_i.html">PicoHardwareSPI</a> SPI1;</div>
-<div class="ttc" id="aclass_pico_hardware_s_p_i_html"><div class="ttname"><a href="class_pico_hardware_s_p_i.html">PicoHardwareSPI</a></div><div class="ttdoc">Arduino HardwareSPI interface using the Pico API. We use the following default pins spi0: pinRx = 16;...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:19</div></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacepico__arduino.html">pico_arduino</a> {</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="namespacepico__arduino.html#a4cc646338fe0b8918f500ccb7c9a9561">   12</a></span>&#160;<span class="keyword">inline</span> <a class="code" href="classpico__arduino_1_1_pico_hardware_s_p_i.html">PicoHardwareSPI</a> <a class="code" href="namespacepico__arduino.html#a4cc646338fe0b8918f500ccb7c9a9561">SPI</a>(spi0);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">inline</span> <a class="code" href="classpico__arduino_1_1_pico_hardware_s_p_i.html">PicoHardwareSPI</a> SPI1(spi1);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_hardware_s_p_i_html"><div class="ttname"><a href="classpico__arduino_1_1_pico_hardware_s_p_i.html">pico_arduino::PicoHardwareSPI</a></div><div class="ttdoc">Arduino HardwareSPI interface using the Pico API. We use the following default pins spi0: pinRx = 16;...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSPI.h:21</div></div>
+<div class="ttc" id="anamespacepico__arduino_html"><div class="ttname"><a href="namespacepico__arduino.html">pico_arduino</a></div><div class="ttdoc">Pico Arduino Framework.</div><div class="ttdef"><b>Definition:</b> Arduino.cpp:27</div></div>
+<div class="ttc" id="anamespacepico__arduino_html_a4cc646338fe0b8918f500ccb7c9a9561"><div class="ttname"><a href="namespacepico__arduino.html#a4cc646338fe0b8918f500ccb7c9a9561">pico_arduino::SPI</a></div><div class="ttdeci">PicoHardwareSPI SPI(spi0)</div><div class="ttdoc">Provides the SPI and SPI1 object to support interfacing via SPI.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

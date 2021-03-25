@@ -4,6 +4,9 @@
 extern "C" {
 #include "pico/util/queue.h"
 }
+
+namespace pico_arduino {
+
 /**
  * @brief Construct a new Pico Queue object
  * @tparam T 
@@ -85,3 +88,5 @@ class Queue {
             return spinlock_num++;
         }
 };
+
+}

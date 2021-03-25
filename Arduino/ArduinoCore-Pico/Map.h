@@ -2,6 +2,8 @@
 
 #include "Vector.h"
 
+namespace pico_arduino {
+
 /**
  * @brief A simple key value map collection
  * @author Phil Schatzmann
@@ -55,12 +57,6 @@ class Map {
             }
         }
 
-        // void erase(K key){
-        //     Iterator<Entry> it = entry(key);
-        //     if (it.pos()>=0){
-        //         data.erase(it);
-        //     }
-        // }
-
-
 };
+
+}

@@ -3,6 +3,8 @@
 #include "pico/stdlib.h"
 #include "pico/sync.h"
 
+namespace pico_arduino {
+
 /**
  * @brief Pico Semaphore which might be useful if you use the 2 processors (e.g. with the Thread class)
  * @author Phil Schatzmann
@@ -70,3 +72,5 @@ class Semaphore {
     protected: 
         semaphore_t sem;
 };
+
+}

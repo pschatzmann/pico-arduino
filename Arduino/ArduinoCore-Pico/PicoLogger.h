@@ -7,6 +7,8 @@
 #define PICO_LOG_LEVEL Error
 #endif
 
+namespace pico_arduino {
+
 /**
  * @brief A simple Logger that writes messages dependent on the log level
  * @author Phil Schatzmann
@@ -92,7 +94,7 @@ class PicoLogger {
 
 };
 
-extern PicoLogger Logger;   // Support for logging
+inline PicoLogger Logger;
 
-    
+}    
 

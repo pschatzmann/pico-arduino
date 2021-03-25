@@ -6,6 +6,8 @@
 #include "hardware/spi.h"
 #include "hardware/irq.h"
 
+namespace pico_arduino {
+
 /**
  * @brief Arduino HardwareSPI interface using the Pico API. 
  * We use the following default pins
@@ -303,7 +305,6 @@ class PicoHardwareSPI : public HardwareSPI {
             }
 
         }
-        
-
-    
 };
+
+}

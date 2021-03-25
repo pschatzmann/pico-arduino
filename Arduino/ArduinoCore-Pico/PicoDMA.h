@@ -1,6 +1,7 @@
 #pragma once
 #include "hardware/dma.h"
 
+namespace pico_arduino {
 
 /**
  * @brief We can use the Pico DMA to copy data "in the background" while the processor is doing some other work. One PicoDMA object represents
@@ -28,7 +29,7 @@ class PicoDMA {
                 if (abortProcessing){
                     abort();
                 } else {
-                    return false
+                    return false;
                 }
             }
             dma_channel_unclaim(channel_no);
@@ -208,3 +209,5 @@ class PicoDMA {
         }
 
 };
+
+}

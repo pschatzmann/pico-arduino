@@ -97,8 +97,8 @@ Change History</h1>
 </ul>
 </li>
 <li><b>v0.6</b> PWM, error corrections and additional examples.<ul>
-<li>Provide easy to use <a class="el" href="class_pico_p_w_m.html" title="This is an even more powerfull PWM API where we can specify a user defined input range and the cycle ...">PicoPWM</a> class which is used by Arduino analogWrite</li>
-<li>Implement <a class="el" href="class_servo.html" title="We provide an alternative Pico implementation for the Servo class which is compatible with the Arduin...">Servo</a> class with examples</li>
+<li>Provide easy to use PicoPWM class which is used by Arduino analogWrite</li>
+<li>Implement Servo class with examples</li>
 <li>Example how to change default pins in cmake</li>
 <li>provide termperature() and temperatureF() method to read the built in temperature sensor</li>
 <li>This release contains the following <b>Breaking Changes</b><ul>
@@ -107,13 +107,15 @@ Change History</h1>
 </li>
 </ul>
 </li>
-<li><b>v0.7</b> PWM reading<ul>
+<li><b>v0.7</b> PWM reading / DMA / <a class="el" href="namespacepico__arduino.html" title="Pico Arduino Framework.">pico_arduino</a> Namespace<ul>
 <li>Implemented Reading of PWM</li>
 <li>Support for PWM in analogRead()</li>
 <li>Added documentation on how to override the predefined framework #defines</li>
-<li>Redesign of internal <a class="el" href="class_pico_pin_function.html" title="The pico requires that the function of the pin is defined. In Arduino, there is no such concept - how...">PicoPinFunction</a>: getting rid of ugly switch case.</li>
+<li>Redesign of internal PicoPinFunction: getting rid of ugly switch case.</li>
 <li>Examples for reading PWM</li>
-<li>Example for watchdog </li>
+<li>Example for watchdog</li>
+<li>DMA support with examples</li>
+<li>Implementation of namespace using pico_arudino </li>
 </ul>
 </li>
 </ul>

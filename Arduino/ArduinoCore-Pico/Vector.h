@@ -1,5 +1,7 @@
 #pragma once
 
+namespace pico_arduino {
+
 /**
  * @brief Vector implementation which provides the most important methods as defined by std::vector. This is neither part of 
  * Pico nor of the Arduino framwork but nevertheless it is quite handy to have and most of the times quite better then dealing
@@ -283,6 +285,6 @@ class Vector {
         data[j].~T();
       }
     }
-
-
 };
+
+}

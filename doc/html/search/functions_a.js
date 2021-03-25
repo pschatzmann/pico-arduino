@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['onreceive_210',['onReceive',['../class_pico_hardware_i2_c.html#aec8f2058d30ee68298b3445132501ce4',1,'PicoHardwareI2C']]],
-  ['onrequest_211',['onRequest',['../class_pico_hardware_i2_c.html#ab8898242a4bbe5171f1bc7bb68603fda',1,'PicoHardwareI2C']]]
+  ['onreceive_216',['onReceive',['../classpico__arduino_1_1_pico_hardware_i2_c.html#ae819698f5527c94f19404a33f108a21f',1,'pico_arduino::PicoHardwareI2C']]],
+  ['onrequest_217',['onRequest',['../classpico__arduino_1_1_pico_hardware_i2_c.html#a0ec49ec5ef664fb51494846c281054de',1,'pico_arduino::PicoHardwareI2C']]]
 ];
