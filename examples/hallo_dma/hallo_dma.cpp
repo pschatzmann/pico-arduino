@@ -6,7 +6,6 @@ uint16_t src[buffer_len];
 uint16_t dst[buffer_len];
 uint16_t initial_value = 1;
 PicoDMA<uint16_t> dma;
-int channel;
 
 
 // we check if the array constains the expected data
@@ -29,19 +28,17 @@ void setup(){
     Serial.begin();
     while(!Serial);
 
-    // get a new DMA channel
-    channel = dma.getChannel();
     // initialize source buffer with initial_value
-    dma.set(channel, src, initial_value, buffer_len);
+    dma.set(src, initial_value, buffer_len);
     Serial.println("processing...");
-    dma.wait(channel);
+    dma.wait();
     checkData(src, initial_value);
     Serial.println("Data Initialized");
 
     // start the copy 
-    dma.copy(channel, dst, src, buffer_len);
+    dma.copy(dst, src, buffer_len);
     Serial.println("processing...");
-    dma.wait(channel);
+    dma.wait();
     checkData(dst, initial_value);
     Serial.println("Data copied");
 }
@@ -49,9 +46,9 @@ void setup(){
 void loop(){
     // just print out a * character from loop
     Serial.print("*");
-    if (!dma.isBusy(channel)){
+    if (!dma.isBusy()){
         // just print out + character to show that copy is done and we restart copy
         Serial.print("+");
-        dma.copy(channel, dst, src, buffer_len);    
+        dma.copy( dst, src, buffer_len);    
     }
 }

@@ -64,74 +64,85 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_pico_d_m_a-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">PicoDMA&lt; T &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>We can use the Pico DMA to copy data "in the background" while the processor is doing some other work.  
+<p>We can use the Pico DMA to copy data "in the background" while the processor is doing some other work. One <a class="el" href="class_pico_d_m_a.html" title="We can use the Pico DMA to copy data &quot;in the background&quot; while the processor is doing some other work...">PicoDMA</a> object represents a single DMA channel.  
  <a href="class_pico_d_m_a.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_pico_d_m_a_8h_source.html">PicoDMA.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2224e523e9d9aa82d5e5e0db929b3cbc"><td class="memItemLeft" align="right" valign="top"><a id="a2224e523e9d9aa82d5e5e0db929b3cbc"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a2224e523e9d9aa82d5e5e0db929b3cbc">getChannel</a> ()</td></tr>
-<tr class="memdesc:a2224e523e9d9aa82d5e5e0db929b3cbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides the next available DMA channel. <br /></td></tr>
-<tr class="separator:a2224e523e9d9aa82d5e5e0db929b3cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e2c28c09e262119c221ff5c7478f03e"><td class="memItemLeft" align="right" valign="top"><a id="a5e2c28c09e262119c221ff5c7478f03e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a5e2c28c09e262119c221ff5c7478f03e">releaseChannel</a> (int channel)</td></tr>
-<tr class="memdesc:a5e2c28c09e262119c221ff5c7478f03e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the DMA channel and makes it available again. <br /></td></tr>
-<tr class="separator:a5e2c28c09e262119c221ff5c7478f03e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad01913fb6a559809a81f76f92beaf9b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#ad01913fb6a559809a81f76f92beaf9b1">copy</a> (int channel, T *dst, T *src, int len, boolean <a class="el" href="class_pico_d_m_a.html#a3a2eb05a06ce5c1a29fb0df75840257c">start</a>=true)</td></tr>
-<tr class="memdesc:ad01913fb6a559809a81f76f92beaf9b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the values of num bytes from the location pointed to by source directly to the memory block pointed to by destination. The copying is done in the background.  <a href="class_pico_d_m_a.html#ad01913fb6a559809a81f76f92beaf9b1">More...</a><br /></td></tr>
-<tr class="separator:ad01913fb6a559809a81f76f92beaf9b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaecfd8e55b9691d09820349b364b21bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#aaecfd8e55b9691d09820349b364b21bf">copy</a> (int channel, T *dst, T *src, int len, void(*completion_handler)(), bool startCopy=true)</td></tr>
-<tr class="memdesc:aaecfd8e55b9691d09820349b364b21bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the values of num bytes from the location pointed to by source directly to the memory block pointed to by destination. The copying is done in the background.  <a href="class_pico_d_m_a.html#aaecfd8e55b9691d09820349b364b21bf">More...</a><br /></td></tr>
-<tr class="separator:aaecfd8e55b9691d09820349b364b21bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b14c8e677f4140b9cb2d6d002a59f68"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a1b14c8e677f4140b9cb2d6d002a59f68">set</a> (int channel, T *dst, T src, int len, boolean <a class="el" href="class_pico_d_m_a.html#a3a2eb05a06ce5c1a29fb0df75840257c">start</a>=true)</td></tr>
-<tr class="memdesc:a1b14c8e677f4140b9cb2d6d002a59f68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a destination array with a fixed value We support only data of the size of uint_8, uint16_t and uint_32_t.  <a href="class_pico_d_m_a.html#a1b14c8e677f4140b9cb2d6d002a59f68">More...</a><br /></td></tr>
-<tr class="separator:a1b14c8e677f4140b9cb2d6d002a59f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae054965d7f380e4b0967ae25b763b51a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#ae054965d7f380e4b0967ae25b763b51a">set</a> (int channel, T *dst, T src, int len, void(*completion_handler)(), bool startCopy=true)</td></tr>
-<tr class="memdesc:ae054965d7f380e4b0967ae25b763b51a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a destination array with a fixed value.  <a href="class_pico_d_m_a.html#ae054965d7f380e4b0967ae25b763b51a">More...</a><br /></td></tr>
-<tr class="separator:ae054965d7f380e4b0967ae25b763b51a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a2eb05a06ce5c1a29fb0df75840257c"><td class="memItemLeft" align="right" valign="top"><a id="a3a2eb05a06ce5c1a29fb0df75840257c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a3a2eb05a06ce5c1a29fb0df75840257c">start</a> (int dmaChannel)</td></tr>
-<tr class="memdesc:a3a2eb05a06ce5c1a29fb0df75840257c"><td class="mdescLeft">&#160;</td><td class="mdescRight">starts the copy <br /></td></tr>
-<tr class="separator:a3a2eb05a06ce5c1a29fb0df75840257c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46702d78cb6ace33108ab1fca482afa4"><td class="memItemLeft" align="right" valign="top"><a id="a46702d78cb6ace33108ab1fca482afa4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a46702d78cb6ace33108ab1fca482afa4">abort</a> (int dmaChannel)</td></tr>
-<tr class="memdesc:a46702d78cb6ace33108ab1fca482afa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">aborts the copy <br /></td></tr>
-<tr class="separator:a46702d78cb6ace33108ab1fca482afa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7453d3fc3c3a24e42b46668ad408174d"><td class="memItemLeft" align="right" valign="top"><a id="a7453d3fc3c3a24e42b46668ad408174d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a7453d3fc3c3a24e42b46668ad408174d">wait</a> (int dmaChannel)</td></tr>
-<tr class="memdesc:a7453d3fc3c3a24e42b46668ad408174d"><td class="mdescLeft">&#160;</td><td class="mdescRight">a blocking wait for the copy to complete <br /></td></tr>
-<tr class="separator:a7453d3fc3c3a24e42b46668ad408174d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a028db994097588fe0363596a8bb009f0"><td class="memItemLeft" align="right" valign="top"><a id="a028db994097588fe0363596a8bb009f0"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a028db994097588fe0363596a8bb009f0">isBusy</a> (int dmaChannel)</td></tr>
-<tr class="memdesc:a028db994097588fe0363596a8bb009f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the copy is still in process <br /></td></tr>
-<tr class="separator:a028db994097588fe0363596a8bb009f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bfad49478533fed131802575ec7c502"><td class="memItemLeft" align="right" valign="top"><a id="a6bfad49478533fed131802575ec7c502"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a6bfad49478533fed131802575ec7c502">clearInterrupt</a> (int dmaChannel)</td></tr>
-<tr class="memdesc:a6bfad49478533fed131802575ec7c502"><td class="mdescLeft">&#160;</td><td class="mdescRight">You need to call this method in the completion handler. <br /></td></tr>
-<tr class="separator:a6bfad49478533fed131802575ec7c502"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85c81a7899dc9db3f7a6e0aadcee9ad4"><td class="memItemLeft" align="right" valign="top"><a id="a85c81a7899dc9db3f7a6e0aadcee9ad4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a85c81a7899dc9db3f7a6e0aadcee9ad4">releaseChannel</a> ()</td></tr>
+<tr class="memdesc:a85c81a7899dc9db3f7a6e0aadcee9ad4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the DMA channel and makes it available again. <br /></td></tr>
+<tr class="separator:a85c81a7899dc9db3f7a6e0aadcee9ad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a872d6fa2aa5cc9f30e006084d2492eaf"><td class="memItemLeft" align="right" valign="top"><a id="a872d6fa2aa5cc9f30e006084d2492eaf"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a872d6fa2aa5cc9f30e006084d2492eaf">channel</a> ()</td></tr>
+<tr class="memdesc:a872d6fa2aa5cc9f30e006084d2492eaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides the used DMA channel - returns -1 if no channel has been set up so far <br /></td></tr>
+<tr class="separator:a872d6fa2aa5cc9f30e006084d2492eaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a156401d93e1fcac9d42ea205c0640a67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a156401d93e1fcac9d42ea205c0640a67">copy</a> (T *dst, T *src, int len, boolean <a class="el" href="class_pico_d_m_a.html#a298141aae22d13fb47e3145e064b2c4a">start</a>=true)</td></tr>
+<tr class="memdesc:a156401d93e1fcac9d42ea205c0640a67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the values of num bytes from the location pointed to by source directly to the memory block pointed to by destination. The copying is done in the background.  <a href="class_pico_d_m_a.html#a156401d93e1fcac9d42ea205c0640a67">More...</a><br /></td></tr>
+<tr class="separator:a156401d93e1fcac9d42ea205c0640a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3bbe1a9032b7e90cd0a3fdef06deee9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#aa3bbe1a9032b7e90cd0a3fdef06deee9">copy</a> (T *dst, T *src, int len, void(*completion_handler)(), bool startCopy=true)</td></tr>
+<tr class="memdesc:aa3bbe1a9032b7e90cd0a3fdef06deee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the values of num bytes from the location pointed to by source directly to the memory block pointed to by destination. The copying is done in the background.  <a href="class_pico_d_m_a.html#aa3bbe1a9032b7e90cd0a3fdef06deee9">More...</a><br /></td></tr>
+<tr class="separator:aa3bbe1a9032b7e90cd0a3fdef06deee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b4d6d06b7435438b97afb7f8ae45ae2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a4b4d6d06b7435438b97afb7f8ae45ae2">set</a> (T *dst, T src, int len, boolean <a class="el" href="class_pico_d_m_a.html#a298141aae22d13fb47e3145e064b2c4a">start</a>=true)</td></tr>
+<tr class="memdesc:a4b4d6d06b7435438b97afb7f8ae45ae2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a destination array with a fixed value We support only data of the size of uint_8, uint16_t and uint_32_t.  <a href="class_pico_d_m_a.html#a4b4d6d06b7435438b97afb7f8ae45ae2">More...</a><br /></td></tr>
+<tr class="separator:a4b4d6d06b7435438b97afb7f8ae45ae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5685a90a718ca61e55e18904ba4a3539"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a5685a90a718ca61e55e18904ba4a3539">set</a> (T *dst, T src, int len, void(*completion_handler)(), bool startCopy=true)</td></tr>
+<tr class="memdesc:a5685a90a718ca61e55e18904ba4a3539"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a destination array with a fixed value.  <a href="class_pico_d_m_a.html#a5685a90a718ca61e55e18904ba4a3539">More...</a><br /></td></tr>
+<tr class="separator:a5685a90a718ca61e55e18904ba4a3539"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a298141aae22d13fb47e3145e064b2c4a"><td class="memItemLeft" align="right" valign="top"><a id="a298141aae22d13fb47e3145e064b2c4a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a298141aae22d13fb47e3145e064b2c4a">start</a> ()</td></tr>
+<tr class="memdesc:a298141aae22d13fb47e3145e064b2c4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">starts the copy <br /></td></tr>
+<tr class="separator:a298141aae22d13fb47e3145e064b2c4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6546c6a0916dd3003a6e0d1d643aff9"><td class="memItemLeft" align="right" valign="top"><a id="ad6546c6a0916dd3003a6e0d1d643aff9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#ad6546c6a0916dd3003a6e0d1d643aff9">abort</a> ()</td></tr>
+<tr class="memdesc:ad6546c6a0916dd3003a6e0d1d643aff9"><td class="mdescLeft">&#160;</td><td class="mdescRight">aborts the copy <br /></td></tr>
+<tr class="separator:ad6546c6a0916dd3003a6e0d1d643aff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbbceecaecb2ee72822996f8974bb179"><td class="memItemLeft" align="right" valign="top"><a id="acbbceecaecb2ee72822996f8974bb179"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#acbbceecaecb2ee72822996f8974bb179">wait</a> ()</td></tr>
+<tr class="memdesc:acbbceecaecb2ee72822996f8974bb179"><td class="mdescLeft">&#160;</td><td class="mdescRight">a blocking wait for the copy to complete <br /></td></tr>
+<tr class="separator:acbbceecaecb2ee72822996f8974bb179"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a584408e8da2cb19ab5835e9313b257cc"><td class="memItemLeft" align="right" valign="top"><a id="a584408e8da2cb19ab5835e9313b257cc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#a584408e8da2cb19ab5835e9313b257cc">isBusy</a> ()</td></tr>
+<tr class="memdesc:a584408e8da2cb19ab5835e9313b257cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the copy is still in process <br /></td></tr>
+<tr class="separator:a584408e8da2cb19ab5835e9313b257cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6f97089722fdbddd3e49ce7ae3becf9"><td class="memItemLeft" align="right" valign="top"><a id="ad6f97089722fdbddd3e49ce7ae3becf9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#ad6f97089722fdbddd3e49ce7ae3becf9">clearInterrupt</a> ()</td></tr>
+<tr class="memdesc:ad6f97089722fdbddd3e49ce7ae3becf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">You need to call this method in the completion handler. <br /></td></tr>
+<tr class="separator:ad6f97089722fdbddd3e49ce7ae3becf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a10a33505ff8467db997c4f0ccef32bfd"><td class="memItemLeft" align="right" valign="top"><a id="a10a33505ff8467db997c4f0ccef32bfd"></a>
 dma_channel_transfer_size&#160;</td><td class="memItemRight" valign="bottom"><b>transferSize</b> ()</td></tr>
 <tr class="separator:a10a33505ff8467db997c4f0ccef32bfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab23d1a5f5f5c11055bbe9020fd8643ee"><td class="memItemLeft" align="right" valign="top"><a id="ab23d1a5f5f5c11055bbe9020fd8643ee"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pico_d_m_a.html#ab23d1a5f5f5c11055bbe9020fd8643ee">setupChannel</a> ()</td></tr>
+<tr class="memdesc:ab23d1a5f5f5c11055bbe9020fd8643ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides the next available DMA channel. <br /></td></tr>
+<tr class="separator:ab23d1a5f5f5c11055bbe9020fd8643ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a7d3e6bf7bffac2fc2b5d4c198f0a8bb0"><td class="memItemLeft" align="right" valign="top"><a id="a7d3e6bf7bffac2fc2b5d4c198f0a8bb0"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>channel_no</b> = -1</td></tr>
+<tr class="separator:a7d3e6bf7bffac2fc2b5d4c198f0a8bb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class T&gt;<br />
 class PicoDMA&lt; T &gt;</h3>
 
-<p>We can use the Pico DMA to copy data "in the background" while the processor is doing some other work. </p>
+<p>We can use the Pico DMA to copy data "in the background" while the processor is doing some other work. One <a class="el" href="class_pico_d_m_a.html" title="We can use the Pico DMA to copy data &quot;in the background&quot; while the processor is doing some other work...">PicoDMA</a> object represents a single DMA channel. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad01913fb6a559809a81f76f92beaf9b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad01913fb6a559809a81f76f92beaf9b1">&#9670;&nbsp;</a></span>copy() <span class="overload">[1/2]</span></h2>
+<a id="a156401d93e1fcac9d42ea205c0640a67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a156401d93e1fcac9d42ea205c0640a67">&#9670;&nbsp;</a></span>copy() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -144,12 +155,6 @@ template&lt;class T &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="class_pico_d_m_a.html">PicoDMA</a>&lt; T &gt;::copy </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>channel</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">T *&#160;</td>
           <td class="paramname"><em>dst</em>, </td>
         </tr>
@@ -190,7 +195,7 @@ template&lt;class T &gt; </div>
     <tr><td class="paramname">dst</td><td>copy destination </td></tr>
     <tr><td class="paramname">src</td><td>copy source </td></tr>
     <tr><td class="paramname">len</td><td>number of entries </td></tr>
-    <tr><td class="paramname">start</td><td>if true the copy starts immediatly - if set to thrue you need to call <a class="el" href="class_pico_d_m_a.html#a3a2eb05a06ce5c1a29fb0df75840257c" title="starts the copy">start()</a> </td></tr>
+    <tr><td class="paramname">start</td><td>if true the copy starts immediatly - if set to thrue you need to call <a class="el" href="class_pico_d_m_a.html#a298141aae22d13fb47e3145e064b2c4a" title="starts the copy">start()</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -198,8 +203,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="aaecfd8e55b9691d09820349b364b21bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaecfd8e55b9691d09820349b364b21bf">&#9670;&nbsp;</a></span>copy() <span class="overload">[2/2]</span></h2>
+<a id="aa3bbe1a9032b7e90cd0a3fdef06deee9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3bbe1a9032b7e90cd0a3fdef06deee9">&#9670;&nbsp;</a></span>copy() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -212,12 +217,6 @@ template&lt;class T &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="class_pico_d_m_a.html">PicoDMA</a>&lt; T &gt;::copy </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>channel</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">T *&#160;</td>
           <td class="paramname"><em>dst</em>, </td>
         </tr>
@@ -272,8 +271,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="a1b14c8e677f4140b9cb2d6d002a59f68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b14c8e677f4140b9cb2d6d002a59f68">&#9670;&nbsp;</a></span>set() <span class="overload">[1/2]</span></h2>
+<a id="a4b4d6d06b7435438b97afb7f8ae45ae2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b4d6d06b7435438b97afb7f8ae45ae2">&#9670;&nbsp;</a></span>set() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -286,12 +285,6 @@ template&lt;class T &gt; </div>
         <tr>
           <td class="memname">bool <a class="el" href="class_pico_d_m_a.html">PicoDMA</a>&lt; T &gt;::set </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>channel</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">T *&#160;</td>
           <td class="paramname"><em>dst</em>, </td>
         </tr>
@@ -340,8 +333,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="ae054965d7f380e4b0967ae25b763b51a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae054965d7f380e4b0967ae25b763b51a">&#9670;&nbsp;</a></span>set() <span class="overload">[2/2]</span></h2>
+<a id="a5685a90a718ca61e55e18904ba4a3539"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5685a90a718ca61e55e18904ba4a3539">&#9670;&nbsp;</a></span>set() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -354,12 +347,6 @@ template&lt;class T &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="class_pico_d_m_a.html">PicoDMA</a>&lt; T &gt;::set </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>channel</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">T *&#160;</td>
           <td class="paramname"><em>dst</em>, </td>
         </tr>

@@ -3,19 +3,22 @@
 
 
 /**
- * @brief We can use the Pico DMA to copy data "in the background" while the processor is doing some other work.
+ * @brief We can use the Pico DMA to copy data "in the background" while the processor is doing some other work. One PicoDMA object represents
+ * a single DMA channel
  */
 template <class T> 
 class PicoDMA {
     public:
-        /// Provides the next available DMA channel
-        int getChannel() {
-            return dma_claim_unused_channel(true);
-        }
 
         /// Releases the DMA channel and makes it available again
-        void releaseChannel(int channel){
-            dma_channel_unclaim(channel);
+        void releaseChannel(){
+            if (channel_no!=-1) dma_channel_unclaim(channel_no);
+            channel_no = -1;
+        }
+
+        /// provides the used DMA channel - returns -1 if no channel has been set up so far
+        int channel() {
+            return channel_no;
         }
 
         /**
@@ -27,20 +30,20 @@ class PicoDMA {
          * @param start if true the copy starts immediatly - if set to thrue you need to call start()
          * @return dma channel 
          */
-        void copy(int channel, T* dst, T* src, int len, boolean start = true){
-     
+        void copy(T* dst, T* src, int len, boolean start = true){
+            setupChannel();
             // we dont use any interrupts in this method
             irq_set_enabled(DMA_IRQ_0, true);
 
             // 8 bit transfers. Both read and write address increment after each
             // transfer (each pointing to a location in src or dst respectively).
             // No DREQ is selected, so the DMA transfers as fast as it can.
-            dma_channel_config c = dma_channel_get_default_config(channel);
+            dma_channel_config c = dma_channel_get_default_config(channel_no);
             channel_config_set_transfer_data_size(&c, DMA_SIZE_8);
             channel_config_set_read_increment(&c, true);
             channel_config_set_write_increment(&c, true);
             dma_channel_configure(
-                channel,          // Channel to be configured
+                channel_no,          // Channel to be configured
                 &c,            // The configuration we just created
                 dst,           // The initial write address
                 src,           // The initial read address
@@ -58,18 +61,18 @@ class PicoDMA {
          * @param completion_handler interrupt handler which is executed when the copy terminates
          * @return dma channel 
          */
-        void copy(int channel, T* dst, T* src, int len, void (*completion_handler)(), bool startCopy=true){
-            copy(channel, dst, src, len, false);
+        void copy(T* dst, T* src, int len, void (*completion_handler)(), bool startCopy=true){
+            copy(dst, src, len, false);
 
             // Tell the DMA to raise IRQ line 0 when the channel finishes a block
-            dma_channel_set_irq0_enabled(channel, true);
+            dma_channel_set_irq0_enabled(channel_no, true);
 
             // Configure the processor to run dma_handler() when DMA IRQ 0 is asserted
             irq_set_exclusive_handler(DMA_IRQ_0, completion_handler);
             irq_set_enabled(DMA_IRQ_0, true);
 
             // starts the processing
-            if (startCopy) start(channel);
+            if (startCopy) start(channel_no);
         }
 
 
@@ -83,25 +86,26 @@ class PicoDMA {
          * @return dma channel 
          */
 
-        bool set(int channel, T* dst, T src, int len, boolean start = true){
+        bool set(T* dst, T src, int len, boolean start = true){
             if (sizeof(T)>4){
                 Logger.error("Only data up to 32 bytes is supported by DMA");
                 return false;
             }
+            setupChannel();
             T src_copy = src;
-     
+    
             // we dont use any interrupts in this method
             irq_set_enabled(DMA_IRQ_0, true);
 
             // 8 bit transfers. Both read and write address increment after each
             // transfer (each pointing to a location in src or dst respectively).
             // No DREQ is selected, so the DMA transfers as fast as it can.
-            dma_channel_config c = dma_channel_get_default_config(channel);
+            dma_channel_config c = dma_channel_get_default_config(channel_no);
             channel_config_set_transfer_data_size(&c, transferSize());
             channel_config_set_read_increment(&c, false);
             channel_config_set_write_increment(&c, true);
             dma_channel_configure(
-                channel,          // Channel to be configured
+                channel_no,          // Channel to be configured
                 &c,            // The configuration we just created
                 dst,           // The initial write address
                 &src_copy,           // The initial read address
@@ -120,49 +124,50 @@ class PicoDMA {
          * @param completion_handler interrupt handler which is executed when the copy terminates
          * @return dma channel 
          */
-        void set(int channel, T* dst, T src, int len, void (*completion_handler)(), bool startCopy=true){
+        void set(T* dst, T src, int len, void (*completion_handler)(), bool startCopy=true){
             // set values
-            set(channel, dst, src, len, false);
+            set(dst, src, len, false);
 
             // Tell the DMA to raise IRQ line 0 when the channel finishes a block
-            dma_channel_set_irq0_enabled(channel, true);
+            dma_channel_set_irq0_enabled(channel_no, true);
 
             // Configure the processor to run dma_handler() when DMA IRQ 0 is asserted
             irq_set_exclusive_handler(DMA_IRQ_0, completion_handler);
             irq_set_enabled(DMA_IRQ_0, true);
 
             // starts the processing
-            if (startCopy) start(channel);
+            if (startCopy) start(channel_no);
 ;
         }
 
         /// starts the copy
-        void start(int dmaChannel){
-            dma_channel_start(dmaChannel);
+        void start(){
+            if (channel_no!=-1) dma_channel_start(channel_no);
         }
 
         /// aborts the copy
-        void abort(int dmaChannel){
-            dma_channel_abort(dmaChannel);
+        void abort(){
+            if (channel_no!=-1) dma_channel_abort(channel_no);
         }
 
         /// a blocking wait for the copy to complete
-        void wait(int dmaChannel){
-            dma_channel_wait_for_finish_blocking(dmaChannel);
+        void wait(){
+            if (channel_no!=-1) dma_channel_wait_for_finish_blocking(channel_no);
         }
 
         /// checks if the copy is still in process
-        bool isBusy(int dmaChannel){
-            return dma_channel_is_busy(dmaChannel);
+        bool isBusy(){
+            return channel_no==-1 ? true : dma_channel_is_busy(channel_no);
         } 
 
         /// You need to call this method in the completion handler
-        void clearInterrupt(int dmaChannel) {
-            dma_hw->ints0 = 1u << dmaChannel;
+        void clearInterrupt() {
+            dma_hw->ints0 = 1u << channel;
             //irq_clear(DMA_IRQ_0);
         }
 
     protected:
+        int channel_no = -1;
 
         dma_channel_transfer_size transferSize() {
             switch(sizeof(T)){
@@ -175,7 +180,11 @@ class PicoDMA {
             }
         }
 
-
-
+        /// Provides the next available DMA channel
+        void setupChannel() {
+            if (channel_no == -1){
+                channel_no = dma_claim_unused_channel(true);
+            }
+        }
 
 };
