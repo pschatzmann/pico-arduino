@@ -73,11 +73,11 @@ $(function() {
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;hardware/gpio.h&quot;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;SoftwareSerial/pio_uart_tx.h&quot;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;SoftwareSerial/pio_uart_rx.h&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;PicoSerialPrintf.h&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;PicoStreamPrintf.h&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacepico__arduino.html">pico_arduino</a> {</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_software_serial.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classpico__arduino_1_1_software_serial.html">SoftwareSerial</a> : <span class="keyword">public</span> Stream, <span class="keyword">public</span> <a class="code" href="classpico__arduino_1_1_stream_printf.html">StreamPrintf</a> {</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_software_serial.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classpico__arduino_1_1_software_serial.html">SoftwareSerial</a> : <span class="keyword">public</span> <a class="code" href="classarduino_1_1_stream.html">Stream</a>, <span class="keyword">public</span> <a class="code" href="classpico__arduino_1_1_stream_printf.html">StreamPrintf</a> {</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="classpico__arduino_1_1_software_serial.html">SoftwareSerial</a>(PIO pio = pio1, uint stateMachineRxIndex=0,uint stateMachineTxIndex=1) : <a class="code" href="classpico__arduino_1_1_stream_printf.html">StreamPrintf</a>(<span class="keyword">this</span>)  {</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            this-&gt;pio = pio;</div>
@@ -192,6 +192,7 @@ $(function() {
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;};</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div>
+<div class="ttc" id="aclassarduino_1_1_stream_html"><div class="ttname"><a href="classarduino_1_1_stream.html">arduino::Stream</a></div><div class="ttdef"><b>Definition:</b> Stream.h:51</div></div>
 <div class="ttc" id="aclasspico__arduino_1_1_software_serial_html"><div class="ttname"><a href="classpico__arduino_1_1_software_serial.html">pico_arduino::SoftwareSerial</a></div><div class="ttdoc">Software Serial Arduino Stream which uses the Pico PIO.</div><div class="ttdef"><b>Definition:</b> PicoSoftwareSerial.h:17</div></div>
 <div class="ttc" id="aclasspico__arduino_1_1_stream_printf_html"><div class="ttname"><a href="classpico__arduino_1_1_stream_printf.html">pico_arduino::StreamPrintf</a></div><div class="ttdoc">Support for Serial.printf. The maximum printable length is defined by PRINTF_BUFFER_SIZE which is set...</div><div class="ttdef"><b>Definition:</b> PicoStreamPrintf.h:16</div></div>
 <div class="ttc" id="anamespacepico__arduino_html"><div class="ttname"><a href="namespacepico__arduino.html">pico_arduino</a></div><div class="ttdoc">Pico Arduino Framework.</div><div class="ttdef"><b>Definition:</b> Arduino.cpp:26</div></div>

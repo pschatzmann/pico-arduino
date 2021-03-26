@@ -162,7 +162,7 @@ class PicoSerialUART : public HardwareSerial, public StreamPrintf {
          */
 
         virtual void begin(unsigned long baudrate, int rxPin, int txPin, uint32_t config=SERIAL_8N1,  bool invert=false, bool cts=false, bool rts=false) {
-            Logger.info("PicoHardwareSerial::begin", toStr(baudrate));
+            Logger.printf(PicoLogger::Info, "PicoHardwareSerial::begin %d", baudrate);
             rx_pin = rxPin;
             tx_pin = txPin;
             uart_init(uart, baudrate);
@@ -175,15 +175,15 @@ class PicoSerialUART : public HardwareSerial, public StreamPrintf {
             uint rate_effective = uart_set_baudrate(uart,baudrate);
             open = uart_is_enabled(uart);
             if (Logger.isLogging()) {
-                Logger.info("baud_rate requested:",toStr(baudrate));
-                Logger.info("baud_rate effective:",toStr(rate_effective));
-                Logger.info("uart_is_enabled:", open ?  "true" :  "false");
+                Logger.printf(PicoLogger::Info, "baud_rate requested: %d",baudrate);
+                Logger.printf(PicoLogger::Info,"baud_rate effective: %d",rate_effective);
+                Logger.printf(PicoLogger::Info,"uart_is_enabled: %s", open ?  "true" :  "false");
             }
             
         }
 
         virtual void end(){
-             Logger.info("PicoHardwareSerial::end ",toStr(uart_no));
+             Logger.printf(PicoLogger::Info, "PicoHardwareSerial::end %d",uart_no);
              uart_deinit(uart);
              open = false;
         }
@@ -356,9 +356,9 @@ class PicoSerialUART : public HardwareSerial, public StreamPrintf {
             }
             // display pin assignments
             if (Logger.isLogging()) {
-                Logger.info("Using UART: ", toStr(uart_no));
-                Logger.info("txPin is ", toStr(tx_pin));
-                Logger.info("rxPin is ", toStr(rx_pin));
+                Logger.printf(PicoLogger::Info, "Using UART: %d ", uart_no);
+                Logger.printf(PicoLogger::Info,"txPin is %d", tx_pin);
+                Logger.printf(PicoLogger::Info,"rxPin is %d", rx_pin);
             }
             if (tx_pin!=-1) {
                 gpio_set_function(tx_pin, GPIO_FUNC_UART);
@@ -369,11 +369,6 @@ class PicoSerialUART : public HardwareSerial, public StreamPrintf {
 
         }
 
-        const char* toStr(int value){
-            static char buffer[10];
-            itoa(value,buffer,10);
-            return (const char*)buffer;
-        }
 
 };
 

@@ -210,7 +210,7 @@ $(function() {
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        }</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
 <div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_serial_u_a_r_t.html#a7ed5c94fdb7fb49a88829527644057da">  164</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_pico_serial_u_a_r_t.html#a7ed5c94fdb7fb49a88829527644057da">begin</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> baudrate, <span class="keywordtype">int</span> rxPin, <span class="keywordtype">int</span> txPin, uint32_t config=SERIAL_8N1,  <span class="keywordtype">bool</span> invert=<span class="keyword">false</span>, <span class="keywordtype">bool</span> cts=<span class="keyword">false</span>, <span class="keywordtype">bool</span> rts=<span class="keyword">false</span>) {</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#ab4d24abb86916a0d1bf80dfca0f4b5b4">info</a>(<span class="stringliteral">&quot;PicoHardwareSerial::begin&quot;</span>, toStr(baudrate));</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Info, <span class="stringliteral">&quot;PicoHardwareSerial::begin %d&quot;</span>, baudrate);</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            rx_pin = rxPin;</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            tx_pin = txPin;</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            uart_init(uart, baudrate);</div>
@@ -223,15 +223,15 @@ $(function() {
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            uint rate_effective = uart_set_baudrate(uart,baudrate);</div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            open = uart_is_enabled(uart);</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            <span class="keywordflow">if</span> (Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a93421f003ba337b2e24c617b9772c8c7">isLogging</a>()) {</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#ab4d24abb86916a0d1bf80dfca0f4b5b4">info</a>(<span class="stringliteral">&quot;baud_rate requested:&quot;</span>,toStr(baudrate));</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#ab4d24abb86916a0d1bf80dfca0f4b5b4">info</a>(<span class="stringliteral">&quot;baud_rate effective:&quot;</span>,toStr(rate_effective));</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#ab4d24abb86916a0d1bf80dfca0f4b5b4">info</a>(<span class="stringliteral">&quot;uart_is_enabled:&quot;</span>, open ?  <span class="stringliteral">&quot;true&quot;</span> :  <span class="stringliteral">&quot;false&quot;</span>);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Info, <span class="stringliteral">&quot;baud_rate requested: %d&quot;</span>,baudrate);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Info,<span class="stringliteral">&quot;baud_rate effective: %d&quot;</span>,rate_effective);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Info,<span class="stringliteral">&quot;uart_is_enabled: %s&quot;</span>, open ?  <span class="stringliteral">&quot;true&quot;</span> :  <span class="stringliteral">&quot;false&quot;</span>);</div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;            }</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            </div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        }</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> end(){</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;             Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#ab4d24abb86916a0d1bf80dfca0f4b5b4">info</a>(<span class="stringliteral">&quot;PicoHardwareSerial::end &quot;</span>,toStr(uart_no));</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;             Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Info, <span class="stringliteral">&quot;PicoHardwareSerial::end %d&quot;</span>,uart_no);</div>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;             uart_deinit(uart);</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;             open = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        }</div>
@@ -404,9 +404,9 @@ $(function() {
 <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;            }</div>
 <div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;            <span class="comment">// display pin assignments</span></div>
 <div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;            <span class="keywordflow">if</span> (Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a93421f003ba337b2e24c617b9772c8c7">isLogging</a>()) {</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;                Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#ab4d24abb86916a0d1bf80dfca0f4b5b4">info</a>(<span class="stringliteral">&quot;Using UART: &quot;</span>, toStr(uart_no));</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;                Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#ab4d24abb86916a0d1bf80dfca0f4b5b4">info</a>(<span class="stringliteral">&quot;txPin is &quot;</span>, toStr(tx_pin));</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;                Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#ab4d24abb86916a0d1bf80dfca0f4b5b4">info</a>(<span class="stringliteral">&quot;rxPin is &quot;</span>, toStr(rx_pin));</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;                Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Info, <span class="stringliteral">&quot;Using UART: %d &quot;</span>, uart_no);</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;                Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Info,<span class="stringliteral">&quot;txPin is %d&quot;</span>, tx_pin);</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;                Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Info,<span class="stringliteral">&quot;rxPin is %d&quot;</span>, rx_pin);</div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;            }</div>
 <div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;            <span class="keywordflow">if</span> (tx_pin!=-1) {</div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;                gpio_set_function(tx_pin, GPIO_FUNC_UART);</div>
@@ -417,23 +417,19 @@ $(function() {
 <div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160; </div>
 <div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        }</div>
 <div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160; </div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span>* toStr(<span class="keywordtype">int</span> value){</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;            <span class="keyword">static</span> <span class="keywordtype">char</span> buffer[10];</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;            itoa(value,buffer,10);</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;            <span class="keywordflow">return</span> (<span class="keyword">const</span> <span class="keywordtype">char</span>*)buffer;</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;        }</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160; </div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;};</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160; </div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;<span class="comment">// Standard Arduino global variables</span></div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;<span class="keyword">inline</span> PicoSerialUART Serial1(0);</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;<span class="keyword">inline</span> PicoSerialUART Serial2(1); </div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160; </div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;}</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160; </div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160; </div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;};</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160; </div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="comment">// Standard Arduino global variables</span></div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;<span class="keyword">inline</span> PicoSerialUART Serial1(0);</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;<span class="keyword">inline</span> PicoSerialUART Serial2(1); </div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160; </div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;}</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160; </div>
 <div class="ttc" id="aclassarduino_1_1_hardware_serial_html"><div class="ttname"><a href="classarduino_1_1_hardware_serial.html">arduino::HardwareSerial</a></div><div class="ttdef"><b>Definition:</b> HardwareSerial.h:88</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_logger_html_a54b25231805f12e4fa40d30f8df2e100"><div class="ttname"><a href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">pico_arduino::PicoLogger::printf</a></div><div class="ttdeci">virtual int printf(LogLevel current_level, const char *fmt,...)</div><div class="ttdoc">printf support</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:65</div></div>
 <div class="ttc" id="aclasspico__arduino_1_1_pico_logger_html_a93421f003ba337b2e24c617b9772c8c7"><div class="ttname"><a href="classpico__arduino_1_1_pico_logger.html#a93421f003ba337b2e24c617b9772c8c7">pico_arduino::PicoLogger::isLogging</a></div><div class="ttdeci">virtual bool isLogging(LogLevel level=Info)</div><div class="ttdoc">checks if the logging is active</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:40</div></div>
-<div class="ttc" id="aclasspico__arduino_1_1_pico_logger_html_ab4d24abb86916a0d1bf80dfca0f4b5b4"><div class="ttname"><a href="classpico__arduino_1_1_pico_logger.html#ab4d24abb86916a0d1bf80dfca0f4b5b4">pico_arduino::PicoLogger::info</a></div><div class="ttdeci">virtual void info(const char *str, const char *str1=nullptr, const char *str2=nullptr)</div><div class="ttdoc">logs an info message</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:52</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_logger_html_ab4d24abb86916a0d1bf80dfca0f4b5b4"><div class="ttname"><a href="classpico__arduino_1_1_pico_logger.html#ab4d24abb86916a0d1bf80dfca0f4b5b4">pico_arduino::PicoLogger::info</a></div><div class="ttdeci">virtual void info(const char *str, const char *str1=nullptr, const char *str2=nullptr)</div><div class="ttdoc">logs an info message</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:50</div></div>
 <div class="ttc" id="aclasspico__arduino_1_1_pico_serial_u_a_r_t_html"><div class="ttname"><a href="classpico__arduino_1_1_pico_serial_u_a_r_t.html">pico_arduino::PicoSerialUART</a></div><div class="ttdoc">Serial Stream for a defined UART. By default we use the following pins: UART0 tx/rx = gp0/gp1; UART1 ...</div><div class="ttdef"><b>Definition:</b> PicoHardwareSerial.h:134</div></div>
 <div class="ttc" id="aclasspico__arduino_1_1_pico_serial_u_a_r_t_html_a7ed5c94fdb7fb49a88829527644057da"><div class="ttname"><a href="classpico__arduino_1_1_pico_serial_u_a_r_t.html#a7ed5c94fdb7fb49a88829527644057da">pico_arduino::PicoSerialUART::begin</a></div><div class="ttdeci">virtual void begin(unsigned long baudrate, int rxPin, int txPin, uint32_t config=SERIAL_8N1, bool invert=false, bool cts=false, bool rts=false)</div><div class="ttdoc">Initialization to output to UART.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSerial.h:164</div></div>
 <div class="ttc" id="aclasspico__arduino_1_1_pico_serial_u_s_b_html"><div class="ttname"><a href="classpico__arduino_1_1_pico_serial_u_s_b.html">pico_arduino::PicoSerialUSB</a></div><div class="ttdoc">PicoUSBSerial is using the pico USB output. It is mapped to the Arduino Serial variable.</div><div class="ttdef"><b>Definition:</b> PicoHardwareSerial.h:30</div></div>

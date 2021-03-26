@@ -95,13 +95,6 @@ class PicoLogger {
             }
         }
 
-        // const char* toStr(int value){
-        //     static char buffer[10];
-        //     itoa(value,buffer,10);
-        //     return (const char*)buffer;
-        // }
-
-
     protected:
         Stream *log_stream_ptr;
         LogLevel log_level;  
