@@ -61,24 +61,8 @@ uint64_t measuredSamplingRate() {
 // callback for logic which is processed on processor 1
 void writeDataThread(void*) {
     Serial.println("writeDataThread started");
-    while(true) {
-        // get next data to write
-        int16_t *data;
-        if (filledBuffers.pop(data)){
-            for (int j=0;j<buffer_length;j++){
-                Serial.println(data[j]);
-            }
-            // make the buffer available again
-            emptyBuffers.push(data);
-        }
-    }
-}
-
-// callback for logic which is processed on processor 1
-void writeDataThread1(void*) {
-    Serial.println("writeDataThread started");
     int32_t timeout = 0;
-    File32 file;
+    File file;
     while(true) {
         // create a new file every 10 minutes
         if (millis()>timeout){

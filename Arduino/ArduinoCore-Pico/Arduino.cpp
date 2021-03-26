@@ -14,7 +14,6 @@
 #include "hardware/clocks.h"
 #include "PicoPWM.h"
 
-
 #ifndef PICO_ARDUINO_PWM_FREQUENCY
 #define PICO_ARDUINO_PWM_FREQUENCY 490
 #endif
@@ -159,7 +158,7 @@ void yield(void){
 PluggableUSB_::PluggableUSB_(){}
 
 // define Arduino setup(()) and loop()
-//#ifndef PICO_ARDUINO_NO_MAIN
+#ifndef PICO_ARDUINO_NO_MAIN
 int main() {
     setup();
     while(true){
@@ -167,4 +166,6 @@ int main() {
         watchdog_update();
     }
 }
-//#endif
+#endif
+
+

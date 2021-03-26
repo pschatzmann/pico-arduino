@@ -1,24 +1,25 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.19.2)
 # PICO initialization
 set(PICO_SDK_PATH $ENV{PICO_SDK_PATH})
+set(PICO_SDK_ARDUINO_PATH $ENV{PICO_SDK_ARDUINO_PATH})
+set(ARDUINO_SKETCH_NAME "sd_read_csv" )
+
 include(${PICO_SDK_PATH}/external/pico_sdk_import.cmake)
 include(FetchContent)
 
-# define project settins
-set(PICO_SDK_ARDUINO_PATH $ENV{PICO_SDK_ARDUINO_PATH})
-set(ARDUINO_SKETCH_NAME "mic_to_sd" )
+project("${ARDUINO_SKETCH_NAME}")
 
 ## Download of SdFat from Guthub
 FetchContent_Declare( sdfat GIT_REPOSITORY https://github.com/greiman/SdFat  GIT_TAG  master)
 FetchContent_MakeAvailable(sdfat)
 # Replace SdFatConfig.h with our version
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/library/SdFatConfig.h DESTINATION ${sdfat_SOURCE_DIR}/src/)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/SdFatConfig.h DESTINATION ${sdfat_SOURCE_DIR}/src/)
 
+## Define all Source files incl SdFat
 file(GLOB_RECURSE SDFAT_SRC CONFIGURE_DEPENDS "${sdfat_SOURCE_DIR}/src/*.cpp")
-set(ARDUINO_SKETCH_SOURCE "${ARDUINO_SKETCH_NAME}.cpp" ${SDFAT_SRC} )
-set(ARDUINO_SKETCH_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR} ${sdfat_SOURCE_DIR}/src/)
+set(ARDUINO_SKETCH_SOURCE  "sd_read_csv.cpp" ${SDFAT_SRC})
+set(ARDUINO_SKETCH_INCLUDES  "${sdfat_SOURCE_DIR}/src/")
+set(ARDUINO_SKETCH_DEFINITIONS "-DENABLE_ARDUINO_FEATURES")
 
-# Standard Sketch logic
-project("${ARDUINO_SKETCH_NAME}")
 include("${PICO_SDK_ARDUINO_PATH}/ArduinoSketch.cmake")
 

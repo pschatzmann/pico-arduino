@@ -1,5 +1,6 @@
 #pragma once
 
+#include "PicoStreamPrintf.h"
 #include "pins_arduino.h"
 #include "HardwareSerial.h"
 #include "PicoUSB.h"
@@ -26,9 +27,9 @@ namespace pico_arduino {
  * @author Phil Schatzmann
  * @copyright GPLv3
  */
-class PicoSerialUSB : public arduino::HardwareSerial {
+class PicoSerialUSB : public HardwareSerial, public StreamPrintf {
     public:
-        PicoSerialUSB(){
+        PicoSerialUSB() : StreamPrintf(this){
         }
 
         // opens the processing - calling the pico stdio_usb_init
@@ -74,7 +75,7 @@ class PicoSerialUSB : public arduino::HardwareSerial {
              stdio_flush();
         }
 
-        // provide implmentation of standard Arduino output of single character
+        /// provide implmentation of standard Arduino output of single character
         virtual size_t write(uint8_t c) {
             size_t len = putchar(c);
 #ifndef PICO_ARDUINO_NO_FLUSH
@@ -83,7 +84,7 @@ class PicoSerialUSB : public arduino::HardwareSerial {
             return len;
         }
 
-        // provide implmentation of standard Arduino output of multiple characters
+        /// provide implmentation of standard Arduino output of multiple characters
         virtual size_t write(const uint8_t *buffer, size_t size){
             int result;
             for (size_t j=0;j<size;j++){
@@ -97,6 +98,7 @@ class PicoSerialUSB : public arduino::HardwareSerial {
         using Print::write; // pull in write(str) and write(buf, size) from Print
         using Print::print; // pull in write(str) and write(buf, size) from Print
         using Print::println; // pull in write(str) and write(buf, size) from Print
+
 
         virtual operator bool(){
             return tud_cdc_connected() && is_open;
@@ -129,12 +131,12 @@ inline PicoSerialUSB Serial;
  * @brief Serial Stream for a defined UART. By default we use the following pins: UART0 tx/rx = gp0/gp1; UART1 tx/rx = gp4/gp5; 
  * 
  */
-class PicoSerialUART : public HardwareSerial {
+class PicoSerialUART : public HardwareSerial, public StreamPrintf {
     public:
-        PicoSerialUART(){
+        PicoSerialUART() : StreamPrintf(this) {
         }
 
-        PicoSerialUART(int uart_no) {
+        PicoSerialUART(int uart_no) : StreamPrintf(this)  {
             this->uart_no = uart_no;
             this->uart = uart_no == 0 ? uart0 : uart1;
         }

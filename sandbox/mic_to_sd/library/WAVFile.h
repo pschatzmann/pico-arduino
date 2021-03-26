@@ -8,7 +8,8 @@
  * @brief A simple class to manage the WAV file names and assign new numbers
  */
 
-#define SD_CONFIG SdSpiConfig(SD_CS_PIN, SHARED_SPI, SPI_CLOCK)
+#define SPEED_MHZ 12
+#define SD_CONFIG SdSpiConfig(SS, DEDICATED_SPI, SD_SCK_MHZ(SPEED_MHZ))
 
 class WAVFile {
     public:
@@ -16,17 +17,17 @@ class WAVFile {
         }
 
         void begin() {
-            if (!sd.begin(SS, SD_SCK_MHZ(1))){
+            if (!sd.begin(SD_CONFIG)){
                 Serial.println("sd.begin() failed!");
             }
             fileCount = findMaxFileIndex();
         }
 
         // get a new non existing file name
-        File32 &getNextFile() {
+        File &getNextFile() {
             file.close();
-            sprintf(fileName, "/SN_%d.wav", ++fileCount);
-            if (!file.open(fileName, O_RDWR | O_CREAT | O_TRUNC)){
+            sprintf(fileName, "SN_%d.WAV", ++fileCount);
+            if (!file.open(fileName, FILE_WRITE)) {
                 Serial.println("file.open() failed!");
             }
             return file;
@@ -37,8 +38,8 @@ class WAVFile {
         }
 
     protected:
-        SdFat32 sd;
-        File32 file;
+        SdFat sd;
+        File file;
         int fileCount;
         char fileName[80];
 

@@ -2,6 +2,7 @@
 #include "hardware/gpio.h"
 #include "SoftwareSerial/pio_uart_tx.h"
 #include "SoftwareSerial/pio_uart_rx.h"
+#include "PicoSerialPrintf.h"
 
 namespace pico_arduino {
 
@@ -13,9 +14,9 @@ namespace pico_arduino {
  * @copyright GPLv3
  */
 
-class SoftwareSerial : public Stream {
+class SoftwareSerial : public Stream, public StreamPrintf {
     public:
-        SoftwareSerial(PIO pio = pio1, uint stateMachineRxIndex=0,uint stateMachineTxIndex=1) {
+        SoftwareSerial(PIO pio = pio1, uint stateMachineRxIndex=0,uint stateMachineTxIndex=1) : StreamPrintf(this)  {
             this->pio = pio;
             this->sm_rx = stateMachineRxIndex;
             this->sm_tx = stateMachineTxIndex;
@@ -65,6 +66,7 @@ class SoftwareSerial : public Stream {
         using Print::write; // pull in write(str) and write(buf, size) from Print
         using Print::print; // pull in write(str) and write(buf, size) from Print
         using Print::println; // pull in write(str) and write(buf, size) from Print
+
 
     protected:
         PIO pio;
