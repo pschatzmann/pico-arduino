@@ -71,7 +71,7 @@ public:
     bool adcSelect(int adc){
         bool changed = false;
         if (current_adc != adc){
-            Logger.debug("adc_select_input",Logger.toStr(adc));
+            Logger.printf(PicoLogger::Debug, "adc_select_input %d",adc);
             adc_select_input((id_t)adc);
             current_adc = adc;
             changed = true;
@@ -147,8 +147,7 @@ class PicoPinFunction {
                 pinInfo[pinNumber].is_setup = false;
                 pinInfo[pinNumber].is_defined = true;
 
-                Logger.debug("PicoGPIOFunction::PinMode -> has changed", Logger.toStr(pinNumber));
-                Logger.debug("PicoGPIOFunction::PinMode ->",pinModeStr(pinNumber));
+                Logger.printf(PicoLogger::Debug, "PicoGPIOFunction::PinMode -> has changed - pin: %d", pinNumber);
                 changed = true;
             }
             return changed;
@@ -202,7 +201,7 @@ class PicoPinFunction {
 
         /// setup Pico pin init function bysed on functionality
         void usePin(pin_size_t pinNumber, PinFunctionEnum pinFunction, PinSetup *setup = nullptr){
-            Logger.debug("PicoGPIOFunction::usePin", Logger.toStr(pinNumber));
+            Logger.printf(PicoLogger::Debug, "PicoGPIOFunction::usePin %d", pinNumber);
             PinInfo *info = & (pinInfo[pinNumber]);
             //Logger.debug("is_setup:", pinInfo[pinNumber].is_setup ? "true" : "false");
             if (!info->is_setup) {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Stream.h"
-
+#include "PicoStreamPrintf.h" // for PRINTF_BUFFER_SIZE
 
 #ifndef PICO_LOG_LEVEL
 #define PICO_LOG_LEVEL Error
@@ -61,6 +61,21 @@ class PicoLogger {
             log(Debug, str, str1, str2);
         }
 
+        /// printf support
+        virtual int printf(LogLevel current_level, const char* fmt, ...) {
+            int len = 0;
+            if (log_stream_ptr!=nullptr && current_level >= log_level){
+                char serial_printf_buffer[PRINTF_BUFFER_SIZE] = {0};
+                va_list args;
+                va_start(args,fmt);
+                len = vsnprintf(serial_printf_buffer,PRINTF_BUFFER_SIZE, fmt, args);
+                log_stream_ptr->print(serial_printf_buffer);
+                va_end(args);
+            }
+            return len;
+        }
+
+
         /// write an message to the log
         virtual void log(LogLevel current_level, const char *str, const char* str1=nullptr, const char* str2=nullptr){
             if (log_stream_ptr!=nullptr){
@@ -80,11 +95,11 @@ class PicoLogger {
             }
         }
 
-        const char* toStr(int value){
-            static char buffer[10];
-            itoa(value,buffer,10);
-            return (const char*)buffer;
-        }
+        // const char* toStr(int value){
+        //     static char buffer[10];
+        //     itoa(value,buffer,10);
+        //     return (const char*)buffer;
+        // }
 
 
     protected:

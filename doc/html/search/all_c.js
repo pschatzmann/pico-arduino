@@ -29,5 +29,6 @@ var searchData=
   ['pluggableusbmodule_79',['PluggableUSBModule',['../classarduino_1_1_pluggable_u_s_b_module.html',1,'arduino']]],
   ['print_80',['Print',['../classarduino_1_1_print.html',1,'arduino']]],
   ['printable_81',['Printable',['../classarduino_1_1_printable.html',1,'arduino']]],
-  ['project_20status_82',['Project Status',['../md__history.html',1,'']]]
+  ['printf_82',['printf',['../classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100',1,'pico_arduino::PicoLogger']]],
+  ['project_20status_83',['Project Status',['../md__history.html',1,'']]]
 ];

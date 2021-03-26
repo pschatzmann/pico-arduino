@@ -2,7 +2,7 @@
 #include "hardware/gpio.h"
 #include "SoftwareSerial/pio_uart_tx.h"
 #include "SoftwareSerial/pio_uart_rx.h"
-#include "PicoSerialPrintf.h"
+#include "PicoStreamPrintf.h"
 
 namespace pico_arduino {
 
