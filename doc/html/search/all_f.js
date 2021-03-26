@@ -17,5 +17,6 @@ var searchData=
   ['spisettings_106',['SPISettings',['../classarduino_1_1_s_p_i_settings.html',1,'arduino']]],
   ['start_107',['start',['../classpico__arduino_1_1_pico_d_m_a.html#a53b34b9f466cd0bdc802c7547c896878',1,'pico_arduino::PicoDMA::start()'],['../classpico__arduino_1_1_thread.html#a6a7334e1ad9f9831a4bfea4e4c7c7cad',1,'pico_arduino::Thread::start()'],['../classpico__arduino_1_1_timer_alarm.html#a6b52da7b7575c0ca47f6935ad4c05173',1,'pico_arduino::TimerAlarm::start()'],['../classpico__arduino_1_1_timer_alarm_repeating.html#af23a306f2012ea8ab1999aac884b5173',1,'pico_arduino::TimerAlarmRepeating::start()']]],
   ['stop_108',['stop',['../classpico__arduino_1_1_thread.html#ae62209a2d84e97d0963dc8fd5b2cd210',1,'pico_arduino::Thread::stop()'],['../classpico__arduino_1_1_timer_alarm.html#a95362a95280b5b057c3b1d233eb60d8d',1,'pico_arduino::TimerAlarm::stop()'],['../classpico__arduino_1_1_timer_alarm_repeating.html#a4b14f3bf2658af070ba86a19c3503d32',1,'pico_arduino::TimerAlarmRepeating::stop()']]],
-  ['stream_109',['Stream',['../classarduino_1_1_stream.html',1,'arduino']]]
+  ['stream_109',['Stream',['../classarduino_1_1_stream.html',1,'arduino']]],
+  ['streamprintf_110',['StreamPrintf',['../classpico__arduino_1_1_stream_printf.html',1,'pico_arduino']]]
 ];

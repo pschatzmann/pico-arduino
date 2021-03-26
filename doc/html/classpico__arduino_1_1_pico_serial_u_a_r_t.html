@@ -86,6 +86,7 @@ Inheritance diagram for pico_arduino::PicoSerialUART:</div>
   <img src="classpico__arduino_1_1_pico_serial_u_a_r_t.png" usemap="#pico_5Farduino::PicoSerialUART_map" alt=""/>
   <map id="pico_5Farduino::PicoSerialUART_map" name="pico_5Farduino::PicoSerialUART_map">
 <area href="classarduino_1_1_hardware_serial.html" alt="arduino::HardwareSerial" shape="rect" coords="0,112,182,136"/>
+<area href="classpico__arduino_1_1_stream_printf.html" title="Support for Serial.printf. The maximum printable length is defined by PRINTF_BUFFER_SIZE which is set..." alt="pico_arduino::StreamPrintf" shape="rect" coords="192,112,374,136"/>
 <area href="classarduino_1_1_stream.html" alt="arduino::Stream" shape="rect" coords="0,56,182,80"/>
 <area href="classarduino_1_1_print.html" alt="arduino::Print" shape="rect" coords="0,0,182,24"/>
   </map>
@@ -300,6 +301,13 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (const ch
 <tr class="memitem:ab24071e3c5379c05091026ee3f7aa3e4 inherit pub_methods_classarduino_1_1_print"><td class="memItemLeft" align="right" valign="top"><a id="ab24071e3c5379c05091026ee3f7aa3e4"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (const char *str)</td></tr>
 <tr class="separator:ab24071e3c5379c05091026ee3f7aa3e4 inherit pub_methods_classarduino_1_1_print"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classpico__arduino_1_1_stream_printf"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classpico__arduino_1_1_stream_printf')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classpico__arduino_1_1_stream_printf.html">pico_arduino::StreamPrintf</a></td></tr>
+<tr class="memitem:a375cae93408a1f25a7ee6c067868d841 inherit pub_methods_classpico__arduino_1_1_stream_printf"><td class="memItemLeft" align="right" valign="top"><a id="a375cae93408a1f25a7ee6c067868d841"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>StreamPrintf</b> (<a class="el" href="classarduino_1_1_stream.html">Stream</a> *stream)</td></tr>
+<tr class="separator:a375cae93408a1f25a7ee6c067868d841 inherit pub_methods_classpico__arduino_1_1_stream_printf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07c9eed152ebd2b023b005e688f068d5 inherit pub_methods_classpico__arduino_1_1_stream_printf"><td class="memItemLeft" align="right" valign="top"><a id="a07c9eed152ebd2b023b005e688f068d5"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>printf</b> (const char *fmt,...)</td></tr>
+<tr class="separator:a07c9eed152ebd2b023b005e688f068d5 inherit pub_methods_classpico__arduino_1_1_stream_printf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -369,6 +377,10 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>_startMillis
 <tr class="memitem:a4b2dfb456a3030efc2b21a89d600907e inherit pro_attribs_classarduino_1_1_stream"><td class="memItemLeft" align="right" valign="top"><a id="a4b2dfb456a3030efc2b21a89d600907e"></a>
 unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>_timeout</b></td></tr>
 <tr class="separator:a4b2dfb456a3030efc2b21a89d600907e inherit pro_attribs_classarduino_1_1_stream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classpico__arduino_1_1_stream_printf"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classpico__arduino_1_1_stream_printf')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classpico__arduino_1_1_stream_printf.html">pico_arduino::StreamPrintf</a></td></tr>
+<tr class="memitem:ac6999613990c1d4febbef764cda28719 inherit pro_attribs_classpico__arduino_1_1_stream_printf"><td class="memItemLeft" align="right" valign="top"><a id="ac6999613990c1d4febbef764cda28719"></a>
+<a class="el" href="classarduino_1_1_stream.html">Stream</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>stream_ptr</b></td></tr>
+<tr class="separator:ac6999613990c1d4febbef764cda28719 inherit pro_attribs_classpico__arduino_1_1_stream_printf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Serial Stream for a defined UART. By default we use the following pins: UART0 tx/rx = gp0/gp1; UART1 tx/rx = gp4/gp5;. </p>
