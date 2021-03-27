@@ -1,6 +1,7 @@
 #include "Arduino.h"
+#include <cstdio> // printf
+#include <iostream> // cout
 
-// we use the default baud rate which is 115200. 
 // You can get the result e.g with  screen /dev/cu.usbmodemFA141 115200
 void setup(){
     // Serial is mapped to the default Pico output. 
@@ -8,7 +9,9 @@ void setup(){
 }
 
 void loop(){
-    Serial.print("test-");
-    Serial.println("Hallo world");
+    Serial.println("Hallo world! from Arduino Serial");
+    std::cout << "Hello World! from C++ runtime" <<  std::endl;
+    printf("Hello World! from C runtime\n");
+
     delay(1000);
 }

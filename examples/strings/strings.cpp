@@ -1,7 +1,6 @@
 #include "Arduino.h"
+#include <string> // Include the c++ std::string library
 
-// Include the string library
-#include <string>
 
 // Create a string variable
 const String arduinoString = "I am an Arduino String";
