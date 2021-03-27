@@ -12,7 +12,7 @@ set(ARDUINO_SKETCH_NAME "mic_to_sd" )
 FetchContent_Declare( sdfat GIT_REPOSITORY https://github.com/greiman/SdFat  GIT_TAG  master)
 FetchContent_MakeAvailable(sdfat)
 # Replace SdFatConfig.h with our version
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/library/SdFatConfig.h DESTINATION ${sdfat_SOURCE_DIR}/src/)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/SdFatConfig.h DESTINATION ${sdfat_SOURCE_DIR}/src/)
 
 file(GLOB_RECURSE SDFAT_SRC CONFIGURE_DEPENDS "${sdfat_SOURCE_DIR}/src/*.cpp")
 set(ARDUINO_SKETCH_SOURCE "${ARDUINO_SKETCH_NAME}.cpp" ${SDFAT_SRC} )

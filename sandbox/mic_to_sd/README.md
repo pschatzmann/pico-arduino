@@ -8,15 +8,14 @@ The Pico might be a good environment for sound processing because we can
 
  ## Processing Logic
 
-The mic_to_sd.cpp sketch is sampling the microphone with the help of the TimerAlarmRepeating into a buffer. On the second processor we just write the data to the SD card as soon as as the buffer is filled up. 
+- We preallocate a fixed number of buffers. 
+- The sketch is sampling the microphone with the help of the TimerAlarmRepeating into a available buffer. 
+- On the second processor we just write the data to the SD card as soon as the buffer has been filled up. 
+- After the data has been written the buffer is make available to the microphone again.
+- New files are generated every minute with an increasing number in the name.
+- We also expect a samping rate of 44100 Hz. To be able to verify if the timer is working as expected, we just print the measured sampling rate every 10 seconds (in the loop()).
 
-After the data has been written the buffer is make available to the microphone again.
-
-We generate a new file with an increasing counter which is driven by the "save_every_n_min" constant.
-
-We also expect a samping rate of 44100 Hz. To be able to verify if the timer is working as expected, we just print the measured sampling rate every 10 seconds (in the loop()).
-
-This basic logic can be made available __with only 100 lines of code__!
+This basic logic can be made available __with only 200 lines of code__!
 
  ## Connections for the cjmcu-622 Microphone
 

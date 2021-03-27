@@ -57,11 +57,13 @@ public:
     }
 
     virtual void setupPin(PinInfo *info, pin_size_t pinNumber) {
-        Logger.debug("PinSetupADC::setupPin");
-        initADC();
+        if (initADC()){
+            Logger.printf(PicoLogger::Debug, "PinSetupADC::setupPin %d\n", pinNumber);
+        }
     }
 
     virtual bool usePin(PinInfo *info, pin_size_t pinNumber) {
+        Logger.printf(PicoLogger::Debug, "PinSetupADC::usePin %d\n", pinNumber);
         int adc = pinNumber - 26;
         return adcSelect(adc);
     };
@@ -71,7 +73,7 @@ public:
     bool adcSelect(int adc){
         bool changed = false;
         if (current_adc != adc){
-            Logger.printf(PicoLogger::Debug, "adc_select_input %d",adc);
+            Logger.printf(PicoLogger::Debug, "adc_select_input %d\n",adc);
             adc_select_input((id_t)adc);
             current_adc = adc;
             changed = true;
@@ -147,7 +149,7 @@ class PicoPinFunction {
                 pinInfo[pinNumber].is_setup = false;
                 pinInfo[pinNumber].is_defined = true;
 
-                Logger.printf(PicoLogger::Debug, "PicoGPIOFunction::PinMode -> has changed - pin: %d", pinNumber);
+                Logger.printf(PicoLogger::Debug, "PicoGPIOFunction::PinMode -> has changed - pin: %d\n", pinNumber);
                 changed = true;
             }
             return changed;
@@ -201,7 +203,7 @@ class PicoPinFunction {
 
         /// setup Pico pin init function bysed on functionality
         void usePin(pin_size_t pinNumber, PinFunctionEnum pinFunction, PinSetup *setup = nullptr){
-            Logger.printf(PicoLogger::Debug, "PicoGPIOFunction::usePin %d", pinNumber);
+            Logger.printf(PicoLogger::Debug, "PicoGPIOFunction::usePin %d\n", pinNumber);
             PinInfo *info = & (pinInfo[pinNumber]);
             //Logger.debug("is_setup:", pinInfo[pinNumber].is_setup ? "true" : "false");
             if (!info->is_setup) {
