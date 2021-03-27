@@ -65,5 +65,6 @@ Here is some other Pico specific functionality:
 - [watchdog](watchdog)
 - [hallo_dma](hallo_dma)
 - [hallo_world_printf](hallo_world_printf)
+- [hallo_world_ext](hallo_world_ext)
 - [strings](strings)
 

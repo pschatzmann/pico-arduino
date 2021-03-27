@@ -10,5 +10,8 @@ void setup(){
 
 void loop(){
     Serial.println("Hallo world! from Arduino Serial");
+    std::cout << "Hello World! from C++ runtime" <<  std::endl;
+    printf("Hello World! from C runtime\n");
+
     delay(1000);
 }

@@ -34,6 +34,7 @@ add_subdirectory(pwm_servo)
 add_subdirectory(watchdog)
 add_subdirectory(hallo_dma)
 add_subdirectory(hallo_world_printf)
+add_subdirectory(hallo_world_ext)
 add_subdirectory(strings)
 
 
