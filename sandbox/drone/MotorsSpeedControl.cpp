@@ -6,7 +6,8 @@
 
 #ifdef PICO
 
-PicoPWM pwm(50000, 1860);
+int pwm_frequency = 50000;
+PicoPWM pwm(pwm_frequency, MAX_POWER);
 
 void MotorsSpeedControl::Init() {
     // Set motors pin PD4, PD5, PD6, PD7 as outputs
