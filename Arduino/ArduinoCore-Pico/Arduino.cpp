@@ -154,8 +154,75 @@ void noTone(pin_size_t pinNumber) {
 void yield(void){
 }
 
+// -----
+// Arduino Pin Interrupt support
+
+struct {
+    voidFuncPtr callback;
+    voidFuncPtrParam callback_with_param;
+    void* param;
+} arduino_gpio_interrupt_table[28];
+
+void pin_interrupt_callback(uint gpio, uint32_t events) {
+    if (arduino_gpio_interrupt_table[gpio].callback_with_param != nullptr){
+        arduino_gpio_interrupt_table[gpio].callback_with_param(arduino_gpio_interrupt_table[gpio].param);
+    } else {
+        arduino_gpio_interrupt_table[gpio].callback();
+    }
+}
+
+pin_size_t digitalPinToInterrupt(pin_size_t interruptPin){
+    return interruptPin;
+}
+pin_size_t interruptTodigitalPin(pin_size_t interrupt){
+    return interrupt;
+}
+
+/// translate the Arduino PinStatus to the PicoEvent
+uint32_t pinStatusToEvents(PinStatus status){
+    switch(status) {
+        case LOW:
+            return GPIO_IRQ_LEVEL_LOW;
+        case HIGH:
+            return GPIO_IRQ_LEVEL_HIGH;
+        case CHANGE:
+            return GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL;
+        case FALLING:
+            return GPIO_IRQ_EDGE_FALL;
+        case RISING:
+            return GPIO_IRQ_EDGE_RISE;
+    }    
+    // this should not really be relevant
+    return GPIO_IRQ_EDGE_RISE;
+}
+
+void attachInterrupt(pin_size_t interruptNumber, voidFuncPtr callback, PinStatus mode) {
+    pin_size_t gpio = interruptTodigitalPin(interruptNumber);
+    arduino_gpio_interrupt_table[gpio].callback = callback;
+    arduino_gpio_interrupt_table[gpio].callback_with_param = nullptr;
+    gpio_set_irq_enabled_with_callback(gpio, pinStatusToEvents(mode), true, pin_interrupt_callback);
+}
+
+void attachInterruptParam(pin_size_t interruptNumber, voidFuncPtrParam callback, PinStatus mode, void* param){
+    pin_size_t gpio = interruptTodigitalPin(interruptNumber);
+    arduino_gpio_interrupt_table[gpio].callback = nullptr;
+    arduino_gpio_interrupt_table[gpio].callback_with_param = callback;
+    arduino_gpio_interrupt_table[gpio].param = param;
+    gpio_set_irq_enabled_with_callback(gpio, pinStatusToEvents(mode), true, pin_interrupt_callback);
+}
+
+void detachInterrupt(pin_size_t interruptNumber){
+    irq_handler_t hdl = irq_get_exclusive_handler(interruptNumber);
+    irq_remove_handler(interruptNumber, hdl);	
+}
+
+
+
 //static PluggableUSB_ obj;
 PluggableUSB_::PluggableUSB_(){}
+
+// -----
+// Main
 
 // define Arduino setup(()) and loop()
 #ifndef PICO_ARDUINO_NO_MAIN

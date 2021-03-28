@@ -40,8 +40,10 @@ using namespace arduino;
 int temperature();
 // Temperature in Fahrenheit for our friends in Belize, Paulau, the Cayman Islands and the Bahamas
 int temperatureF();
-///Get the unique 64-bit device identifier which was retrieved from the external NOR flash device at boot.
+/// Get the unique 64-bit device identifier which was retrieved from the external NOR flash device at boot.
 uint64_t uniqueId();
+/// used in official Arduino interrupt examples 
+pin_size_t digitalPinToInterrupt(pin_size_t interruptPin);
 
 // Some Arduino libraries rely on the following
 char *dtostrf (double __val, signed char __width, unsigned char __prec, char *__s);
