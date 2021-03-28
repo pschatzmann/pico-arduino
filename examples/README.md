@@ -37,6 +37,7 @@ Here is the list of the provided examples using the Arduino functionality
 - [hallo_world](hallo_world)
 - [hallo_world_serial](hallo_world_serial)
 - [hallo_world_serial_define_pins](hallo_world_serial_define_pins)
+- [pin_interrupt](pin_interrupt)
 - [tone](tone_melody)
 - [analog_read](analog_read)
 - [pwm_arduino](pwm_arduino)
