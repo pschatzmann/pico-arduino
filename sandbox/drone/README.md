@@ -8,6 +8,4 @@ Therefore I discarded it and used the following (more managable) Arduino drone p
 
 - https://github.com/liourej/CodeDroneDIY.git 
 
-Here as well, I needed to make some small adjustment:
-
-- Replaced the MotorsSpeedControl.cpp with a implementation which uses the PicoPWM class
+Here as well, I needed to make some small adjustment and replace the MotorsSpeedControl.cpp with a implementation which uses the PicoPWM class

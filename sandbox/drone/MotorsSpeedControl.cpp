@@ -6,7 +6,7 @@
 
 #ifdef PICO
 
-PicoPWM pwm(20000, 1860);
+PicoPWM pwm(50000, 1860);
 
 void MotorsSpeedControl::Init() {
     // Set motors pin PD4, PD5, PD6, PD7 as outputs
@@ -26,9 +26,7 @@ void MotorsSpeedControl::UpdateSpeed(int _id, float _PWM) {
     pwm.write(_id, _PWM);
 }
 
-// Set a falling edge for the previous motor, and a rising edge for the current motor
-// Motor speed is managed by the pulse with: the larger the high level is, the faster the motor run
 void MotorsSpeedControl::ApplySpeed(volatile uint16_t *TCNTn, volatile uint16_t *OCRnA) {
-    // nothing to do
+    // nothing to do - update was directly done in UpdateSpeed
 }
 #endif
