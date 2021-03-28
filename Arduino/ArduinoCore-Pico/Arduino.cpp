@@ -152,6 +152,7 @@ void noTone(pin_size_t pinNumber) {
 
 // actually does nothing
 void yield(void){
+    watchdog_update();
 }
 
 // -----

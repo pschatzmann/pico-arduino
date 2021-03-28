@@ -43,7 +43,7 @@ Here is the list of the provided examples using the Arduino functionality
 - [pwm_arduino](pwm_arduino)
 - [pwm_arduino_read](pwm_arduino_read)
 - [pwm_servo](pwm_servo)
-- [Using an Arduino library](example_with_arduino_library)
+- [using_arduino_library](using_arduino_library)
 - [sd_info](sd_info)
 - [sd_bench](sd_bench)
 - [sd_read_csv](sd_read_csv)

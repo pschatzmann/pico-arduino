@@ -9,7 +9,7 @@ project(all_examples)
 # buil all exampleles
 add_subdirectory(blink)
 add_subdirectory(blink_timer)
-add_subdirectory(example_with_arduino_library)
+add_subdirectory(using_arduino_library)
 add_subdirectory(hallo_world)
 add_subdirectory(hallo_world_serial)
 add_subdirectory(hallo_world_serial_define_pins)
