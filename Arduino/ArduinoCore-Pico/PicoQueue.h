@@ -16,6 +16,13 @@ namespace pico_arduino {
 template <class T> 
 class Queue {
     public:
+        /**
+         * @brief Construct a new Queue object
+         * 
+         * @param maxCount max number of entries
+         * @param blocking true if blocking
+         * @param withLock true if access is synchronized with locks
+         */
         Queue( int maxCount = 100,bool blocking=true, bool withLock=true ){
             is_blocking = blocking;
             if (withLock){
@@ -25,18 +32,22 @@ class Queue {
             }
         }
 
+        /// Destructor - calls queue_free
         ~Queue() {
             queue_free(&q);
         }
 
+        /// checks if the queue is eimpty
         bool isEmpty() {
             return queue_is_empty(&q);
         }
 
+        /// checks if the queue is full
         bool isFull() {
             return queue_is_full(&q);
         }
 
+        /// Reads the next element w/o removing it from the queue
         bool peek(T &data){
             bool result = false;
             if (is_blocking){
@@ -48,6 +59,7 @@ class Queue {
             return result;
         }
 
+        /// Adds an element (at the end) of the queue
         bool push(T &data){
             bool result = false;
             if (is_blocking){
@@ -59,6 +71,7 @@ class Queue {
             return result;
         }
 
+        /// Gets the next element (from the head) and removes it from the queue
         bool pop(T &data){
             bool result = false;
             if (is_blocking){
@@ -70,10 +83,12 @@ class Queue {
             return result;
         }
 
+        /// Provides the number of entries in the queue
         uint size() {
             return queue_get_level(&q);
         }
 
+        /// clears the queue by removing all elements
         void clear() {
             T data;
             while(remove((void*) &data));

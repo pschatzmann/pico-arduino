@@ -1,7 +1,7 @@
 #pragma once
 
 #include "PicoTimer.h"
-#include "Map.h"
+#include "Tools/Map.h"
 
 namespace pico_arduino {
 
@@ -71,6 +71,7 @@ class ArduinoPicoTone {
 
         /// static interface which supports multipe pins concurrently
         static void tone(uint8_t pinNumber, unsigned int frequency, int duration) {
+            Logger.debug("ArduinoPicoTone::tone");
             PicoTone ptone = pinMap().get(pinNumber);
             if (ptone==empyTone()){
                 // add entry
@@ -82,6 +83,7 @@ class ArduinoPicoTone {
 
         /// static interface which supports multipe pins
         static void noTone(uint8_t pinNumber) {
+            Logger.debug("ArduinoPicoTone::noTone");
             // find the actual PicoTone with the pin number
             PicoTone ptone = pinMap().get(pinNumber);
             if (ptone!=empyTone()){

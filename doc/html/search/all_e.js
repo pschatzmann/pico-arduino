@@ -1,11 +1,5 @@
 var searchData=
 [
-  ['raspberry_20pi_20pico_20_2d_20arduino_20api_85',['Raspberry PI Pico - Arduino API',['../index.html',1,'']]],
-  ['read_86',['read',['../classpico__arduino_1_1_pico_hardware_i2_c.html#a1700f5766fadc05fd889f9bb803cb2b8',1,'pico_arduino::PicoHardwareI2C::read()'],['../classpico__arduino_1_1_pico_p_w_m.html#ace41e43de1581c0b0806c783a500959f',1,'pico_arduino::PicoPWM::read()'],['../classpico__arduino_1_1_servo.html#a3421d86e35b0b160dee4600ba2a5e401',1,'pico_arduino::Servo::read()']]],
-  ['readmicroseconds_87',['readMicroseconds',['../classpico__arduino_1_1_servo.html#acb434fc2fa6eb0d5279f435d2748135c',1,'pico_arduino::Servo']]],
-  ['readpercent_88',['readPercent',['../classpico__arduino_1_1_pico_p_w_m.html#a874ba6144f89a0eb956d8f4bb704c419',1,'pico_arduino::PicoPWM']]],
-  ['release_89',['release',['../classpico__arduino_1_1_semaphore.html#a5cb8328099d434976c467cce67530dad',1,'pico_arduino::Semaphore']]],
-  ['releasechannel_90',['releaseChannel',['../classpico__arduino_1_1_pico_d_m_a.html#a87c663d00dd4148fa48570bb95bc0959',1,'pico_arduino::PicoDMA']]],
-  ['requestfrom_91',['requestFrom',['../classpico__arduino_1_1_pico_hardware_i2_c.html#a2479fe005040eb2df29e6ab90c4dfd9c',1,'pico_arduino::PicoHardwareI2C::requestFrom(uint8_t address, size_t len, bool stopBit)'],['../classpico__arduino_1_1_pico_hardware_i2_c.html#a7d9628f24ffe2d5e5e4b2fdd615ac9a9',1,'pico_arduino::PicoHardwareI2C::requestFrom(uint8_t address, size_t len)']]],
-  ['reset_92',['reset',['../classpico__arduino_1_1_semaphore.html#aea707e639a3951c2552bd21d52b0ee3f',1,'pico_arduino::Semaphore']]]
+  ['queue_98',['Queue',['../classpico__arduino_1_1_queue.html',1,'pico_arduino::Queue&lt; T &gt;'],['../classpico__arduino_1_1_queue.html#a8bd4b45f11010130df7a32b3ea5ef681',1,'pico_arduino::Queue::Queue()']]],
+  ['queue_3c_20t_20_2a_20_3e_99',['Queue&lt; T * &gt;',['../classpico__arduino_1_1_queue.html',1,'pico_arduino']]]
 ];

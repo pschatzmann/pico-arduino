@@ -72,7 +72,7 @@ $(function() {
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;PicoTimer.h&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;Map.h&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;Tools/Map.h&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacepico__arduino.html">pico_arduino</a> {</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
@@ -132,40 +132,43 @@ $(function() {
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
 <div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_arduino_pico_tone.html#a520b3a028afaf5a77b92c95477fb00b9">   73</a></span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_arduino_pico_tone.html#a520b3a028afaf5a77b92c95477fb00b9">tone</a>(uint8_t pinNumber, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> frequency, <span class="keywordtype">int</span> duration) {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <a class="code" href="classpico__arduino_1_1_pico_tone.html">PicoTone</a> ptone = <a class="code" href="classpico__arduino_1_1_arduino_pico_tone.html#a640d30fcaa7427ff6b454416f76324e7">pinMap</a>().get(pinNumber);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">if</span> (ptone==empyTone()){</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="comment">// add entry</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <a class="code" href="classpico__arduino_1_1_arduino_pico_tone.html#a640d30fcaa7427ff6b454416f76324e7">pinMap</a>().put(pinNumber, ptone);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            } </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            ptone.tone(pinNumber, frequency);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            add_alarm_in_ms(duration, stop_tone_callback, &amp;ptone , <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_arduino_pico_tone.html#a03a49a5b6e3cb5cc96a2637a6d7d7cdf">   84</a></span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_arduino_pico_tone.html#a03a49a5b6e3cb5cc96a2637a6d7d7cdf">noTone</a>(uint8_t pinNumber) {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="comment">// find the actual PicoTone with the pin number</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <a class="code" href="classpico__arduino_1_1_pico_tone.html">PicoTone</a> ptone = <a class="code" href="classpico__arduino_1_1_arduino_pico_tone.html#a640d30fcaa7427ff6b454416f76324e7">pinMap</a>().get(pinNumber);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keywordflow">if</span> (ptone!=empyTone()){</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                ptone.noTone();</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            }</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classpico__arduino_1_1_pico_tone.html">PicoTone</a> empyTone() {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classpico__arduino_1_1_pico_tone.html">PicoTone</a> EMPTY_TONE;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="keywordflow">return</span> EMPTY_TONE;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_arduino_pico_tone.html#a640d30fcaa7427ff6b454416f76324e7">   98</a></span>&#160;        <span class="keyword">static</span>  <a class="code" href="classpico__arduino_1_1_map.html">Map&lt;int, PicoTone&gt;</a> <a class="code" href="classpico__arduino_1_1_arduino_pico_tone.html#a640d30fcaa7427ff6b454416f76324e7">pinMap</a>(){</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <span class="keyword">static</span> <a class="code" href="classpico__arduino_1_1_map.html">Map&lt;int, PicoTone&gt;</a> ArduinoPicoTonePinMap(empyTone()); </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            <span class="keywordflow">return</span> ArduinoPicoTonePinMap;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        }</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;};</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;}    </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#adedb413e2d600f3a3c003ce1a6b24802">debug</a>(<span class="stringliteral">&quot;ArduinoPicoTone::tone&quot;</span>);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <a class="code" href="classpico__arduino_1_1_pico_tone.html">PicoTone</a> ptone = <a class="code" href="classpico__arduino_1_1_arduino_pico_tone.html#a640d30fcaa7427ff6b454416f76324e7">pinMap</a>().get(pinNumber);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">if</span> (ptone==empyTone()){</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <span class="comment">// add entry</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <a class="code" href="classpico__arduino_1_1_arduino_pico_tone.html#a640d30fcaa7427ff6b454416f76324e7">pinMap</a>().put(pinNumber, ptone);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            } </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            ptone.tone(pinNumber, frequency);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            add_alarm_in_ms(duration, stop_tone_callback, &amp;ptone , <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_arduino_pico_tone.html#a03a49a5b6e3cb5cc96a2637a6d7d7cdf">   85</a></span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_arduino_pico_tone.html#a03a49a5b6e3cb5cc96a2637a6d7d7cdf">noTone</a>(uint8_t pinNumber) {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#adedb413e2d600f3a3c003ce1a6b24802">debug</a>(<span class="stringliteral">&quot;ArduinoPicoTone::noTone&quot;</span>);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="comment">// find the actual PicoTone with the pin number</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <a class="code" href="classpico__arduino_1_1_pico_tone.html">PicoTone</a> ptone = <a class="code" href="classpico__arduino_1_1_arduino_pico_tone.html#a640d30fcaa7427ff6b454416f76324e7">pinMap</a>().get(pinNumber);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">if</span> (ptone!=empyTone()){</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                ptone.noTone();</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        }</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classpico__arduino_1_1_pico_tone.html">PicoTone</a> empyTone() {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classpico__arduino_1_1_pico_tone.html">PicoTone</a> EMPTY_TONE;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keywordflow">return</span> EMPTY_TONE;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_arduino_pico_tone.html#a640d30fcaa7427ff6b454416f76324e7">  100</a></span>&#160;        <span class="keyword">static</span>  <a class="code" href="classpico__arduino_1_1_map.html">Map&lt;int, PicoTone&gt;</a> <a class="code" href="classpico__arduino_1_1_arduino_pico_tone.html#a640d30fcaa7427ff6b454416f76324e7">pinMap</a>(){</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keyword">static</span> <a class="code" href="classpico__arduino_1_1_map.html">Map&lt;int, PicoTone&gt;</a> ArduinoPicoTonePinMap(empyTone()); </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="keywordflow">return</span> ArduinoPicoTonePinMap;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;};</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}    </div>
 <div class="ttc" id="aclasspico__arduino_1_1_arduino_pico_tone_html"><div class="ttname"><a href="classpico__arduino_1_1_arduino_pico_tone.html">pico_arduino::ArduinoPicoTone</a></div><div class="ttdoc">ArduinoPicoTone provides static methods for PicoTone.</div><div class="ttdef"><b>Definition:</b> PicoTone.h:63</div></div>
-<div class="ttc" id="aclasspico__arduino_1_1_arduino_pico_tone_html_a03a49a5b6e3cb5cc96a2637a6d7d7cdf"><div class="ttname"><a href="classpico__arduino_1_1_arduino_pico_tone.html#a03a49a5b6e3cb5cc96a2637a6d7d7cdf">pico_arduino::ArduinoPicoTone::noTone</a></div><div class="ttdeci">static void noTone(uint8_t pinNumber)</div><div class="ttdoc">static interface which supports multipe pins</div><div class="ttdef"><b>Definition:</b> PicoTone.h:84</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_arduino_pico_tone_html_a03a49a5b6e3cb5cc96a2637a6d7d7cdf"><div class="ttname"><a href="classpico__arduino_1_1_arduino_pico_tone.html#a03a49a5b6e3cb5cc96a2637a6d7d7cdf">pico_arduino::ArduinoPicoTone::noTone</a></div><div class="ttdeci">static void noTone(uint8_t pinNumber)</div><div class="ttdoc">static interface which supports multipe pins</div><div class="ttdef"><b>Definition:</b> PicoTone.h:85</div></div>
 <div class="ttc" id="aclasspico__arduino_1_1_arduino_pico_tone_html_a520b3a028afaf5a77b92c95477fb00b9"><div class="ttname"><a href="classpico__arduino_1_1_arduino_pico_tone.html#a520b3a028afaf5a77b92c95477fb00b9">pico_arduino::ArduinoPicoTone::tone</a></div><div class="ttdeci">static void tone(uint8_t pinNumber, unsigned int frequency, int duration)</div><div class="ttdoc">static interface which supports multipe pins concurrently</div><div class="ttdef"><b>Definition:</b> PicoTone.h:73</div></div>
-<div class="ttc" id="aclasspico__arduino_1_1_arduino_pico_tone_html_a640d30fcaa7427ff6b454416f76324e7"><div class="ttname"><a href="classpico__arduino_1_1_arduino_pico_tone.html#a640d30fcaa7427ff6b454416f76324e7">pico_arduino::ArduinoPicoTone::pinMap</a></div><div class="ttdeci">static Map&lt; int, PicoTone &gt; pinMap()</div><div class="ttdoc">for static interface</div><div class="ttdef"><b>Definition:</b> PicoTone.h:98</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_arduino_pico_tone_html_a640d30fcaa7427ff6b454416f76324e7"><div class="ttname"><a href="classpico__arduino_1_1_arduino_pico_tone.html#a640d30fcaa7427ff6b454416f76324e7">pico_arduino::ArduinoPicoTone::pinMap</a></div><div class="ttdeci">static Map&lt; int, PicoTone &gt; pinMap()</div><div class="ttdoc">for static interface</div><div class="ttdef"><b>Definition:</b> PicoTone.h:100</div></div>
 <div class="ttc" id="aclasspico__arduino_1_1_map_html"><div class="ttname"><a href="classpico__arduino_1_1_map.html">pico_arduino::Map</a></div><div class="ttdoc">A simple key value map collection.</div><div class="ttdef"><b>Definition:</b> Map.h:14</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_pico_logger_html_adedb413e2d600f3a3c003ce1a6b24802"><div class="ttname"><a href="classpico__arduino_1_1_pico_logger.html#adedb413e2d600f3a3c003ce1a6b24802">pico_arduino::PicoLogger::debug</a></div><div class="ttdeci">virtual void debug(const char *str, const char *str1=nullptr, const char *str2=nullptr)</div><div class="ttdoc">writes an debug message</div><div class="ttdef"><b>Definition:</b> PicoLogger.h:60</div></div>
 <div class="ttc" id="aclasspico__arduino_1_1_pico_tone_html"><div class="ttname"><a href="classpico__arduino_1_1_pico_tone.html">pico_arduino::PicoTone</a></div><div class="ttdoc">We use the TimerAlarmRepeating to generate tones.</div><div class="ttdef"><b>Definition:</b> PicoTone.h:17</div></div>
 <div class="ttc" id="aclasspico__arduino_1_1_timer_alarm_repeating_html"><div class="ttname"><a href="classpico__arduino_1_1_timer_alarm_repeating.html">pico_arduino::TimerAlarmRepeating</a></div><div class="ttdoc">Repeating Timer functions for simple scheduling of repeated execution.</div><div class="ttdef"><b>Definition:</b> PicoTimer.h:58</div></div>
 <div class="ttc" id="aclasspico__arduino_1_1_timer_alarm_repeating_html_a4b14f3bf2658af070ba86a19c3503d32"><div class="ttname"><a href="classpico__arduino_1_1_timer_alarm_repeating.html#a4b14f3bf2658af070ba86a19c3503d32">pico_arduino::TimerAlarmRepeating::stop</a></div><div class="ttdeci">bool stop()</div><div class="ttdoc">stops the execution</div><div class="ttdef"><b>Definition:</b> PicoTimer.h:84</div></div>

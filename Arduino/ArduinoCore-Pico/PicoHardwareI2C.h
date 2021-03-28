@@ -56,7 +56,7 @@ class PicoHardwareI2C : public HardwareI2C {
 
       /// Initiate the Wire library and join the I2C bus as a slave. This should normally be called only once.
       virtual void begin(uint8_t address, int sdaPin, int sclPin) {
-        Logger.printf(PicoLogger::Info, "begin %d", address);
+        Logger.printf(PicoLogger::Info, "begin %d\n", address);
         setupPins(sdaPin,sclPin);
         transmission_address = address;
         i2c_init(i2c, 100000);
@@ -87,7 +87,7 @@ class PicoHardwareI2C : public HardwareI2C {
     
       /// Begin a transmission to the I2C slave device with the given address. Subsequently, queue bytes for transmission with the write() function and transmit them by calling endTransmission().
       virtual void beginTransmission(uint8_t address) {
-        Logger.printf(PicoLogger::Info, "beginTransmission %d", address);
+        Logger.printf(PicoLogger::Info, "beginTransmission %d\n", address);
         transmission_address=address;
       }
 
@@ -131,7 +131,7 @@ class PicoHardwareI2C : public HardwareI2C {
 
       /// Used by the master to request bytes from a slave device. The bytes may then be retrieved with the available() and read() functions.
       virtual size_t requestFrom(uint8_t address, size_t len, bool stopBit) {
-        Logger.printf(PicoLogger::Info,"requestFrom (%d, %ld, %s)", address,len, stopBit?"stop":"no-stop");
+        Logger.printf(PicoLogger::Info,"requestFrom (%d, %ld, %s)\n", address,len, stopBit?"stop":"no-stop");
         flush();
         setupReadBuffer(len);
         read_address = address;
@@ -149,7 +149,7 @@ class PicoHardwareI2C : public HardwareI2C {
           Logger.warning("requestFrom->","PICO_ERROR_GENERIC");
           read_len = 0;
         }
-        Logger.printf(PicoLogger::Debug, "requestFrom -> %d",read_len);
+        Logger.printf(PicoLogger::Debug, "requestFrom -> %ld\n",read_len);
 
         // call recieveHandler
         if (read_len>0 && this->recieveHandler!=nullptr){
@@ -185,7 +185,7 @@ class PicoHardwareI2C : public HardwareI2C {
           buffer_available = 0;
           Logger.error("buffer_available is negative - corrected to 0");
         }
-        Logger.printf(PicoLogger::Debug, "available: %d", buffer_available);
+        Logger.printf(PicoLogger::Debug, "available: %d\n", buffer_available);
         return buffer_available;
       }
 
@@ -246,7 +246,7 @@ class PicoHardwareI2C : public HardwareI2C {
       int flush(bool stop=false) {
         bool result = 0; // 4:other error
         if (write_pos>0) {
-          Logger.printf(PicoLogger::Debug, "flush address:%d, len:%d, end:%s",transmission_address, write_pos, stop ? "stop": "no-stop" );
+          Logger.printf(PicoLogger::Debug, "flush address:%d, len:%d, end:%s\n",transmission_address, write_pos, stop ? "stop": "no-stop" );
           int result = i2c_write_blocking(i2c, transmission_address, write_buffer, write_pos, !stop);
           if (result == write_pos){
             result = 0; // OK
@@ -256,7 +256,7 @@ class PicoHardwareI2C : public HardwareI2C {
             result = 4; // 4:other error
           }
           write_pos = 0;
-          Logger.printf(PicoLogger::Debug, "flush->%d", result);
+          Logger.printf(PicoLogger::Debug, "flush->%d\n", result);
           
         }
 

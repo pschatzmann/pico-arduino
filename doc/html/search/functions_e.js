@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['tone_254',['tone',['../classpico__arduino_1_1_arduino_pico_tone.html#a520b3a028afaf5a77b92c95477fb00b9',1,'pico_arduino::ArduinoPicoTone']]],
-  ['transfer_255',['transfer',['../classpico__arduino_1_1_pico_hardware_s_p_i.html#aec20f37cc7f99cbbd6d4bcf3e1ec91d9',1,'pico_arduino::PicoHardwareSPI::transfer(uint8_t data)'],['../classpico__arduino_1_1_pico_hardware_s_p_i.html#a8eeb629e6ca3c7c52132d1794021f1f8',1,'pico_arduino::PicoHardwareSPI::transfer(void *array, size_t len)']]],
-  ['transfer16_256',['transfer16',['../classpico__arduino_1_1_pico_hardware_s_p_i.html#ae5dbc29cef4e4b7795d2ef5c2afa71ec',1,'pico_arduino::PicoHardwareSPI']]]
+  ['read_276',['read',['../classpico__arduino_1_1_pico_hardware_i2_c.html#a1700f5766fadc05fd889f9bb803cb2b8',1,'pico_arduino::PicoHardwareI2C::read()'],['../classpico__arduino_1_1_pico_p_w_m.html#ace41e43de1581c0b0806c783a500959f',1,'pico_arduino::PicoPWM::read()'],['../classpico__arduino_1_1_servo.html#a3421d86e35b0b160dee4600ba2a5e401',1,'pico_arduino::Servo::read()']]],
+  ['readmicroseconds_277',['readMicroseconds',['../classpico__arduino_1_1_servo.html#acb434fc2fa6eb0d5279f435d2748135c',1,'pico_arduino::Servo']]],
+  ['readpercent_278',['readPercent',['../classpico__arduino_1_1_pico_p_w_m.html#a874ba6144f89a0eb956d8f4bb704c419',1,'pico_arduino::PicoPWM']]],
+  ['release_279',['release',['../classpico__arduino_1_1_semaphore.html#a5cb8328099d434976c467cce67530dad',1,'pico_arduino::Semaphore']]],
+  ['releasechannel_280',['releaseChannel',['../classpico__arduino_1_1_pico_d_m_a.html#a87c663d00dd4148fa48570bb95bc0959',1,'pico_arduino::PicoDMA']]],
+  ['requestfrom_281',['requestFrom',['../classpico__arduino_1_1_pico_hardware_i2_c.html#a2479fe005040eb2df29e6ab90c4dfd9c',1,'pico_arduino::PicoHardwareI2C::requestFrom(uint8_t address, size_t len, bool stopBit)'],['../classpico__arduino_1_1_pico_hardware_i2_c.html#a7d9628f24ffe2d5e5e4b2fdd615ac9a9',1,'pico_arduino::PicoHardwareI2C::requestFrom(uint8_t address, size_t len)']]],
+  ['reset_282',['reset',['../classpico__arduino_1_1_semaphore.html#aea707e639a3951c2552bd21d52b0ee3f',1,'pico_arduino::Semaphore']]]
 ];

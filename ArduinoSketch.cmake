@@ -26,20 +26,10 @@ endif ()
 # Define PICO for c++ Preprocessor 
 add_definitions(-DPICO -DARDUINO=183 ${ARDUINO_SKETCH_DEFINITIONS})
 
-# We search for the ARDUINO library
-find_library(ARDUINO_LIB  
-    NAMES "arduino" 
-    PATHS "${PICO_SDK_ARDUINO_PATH}/lib"
-    NO_CMAKE_FIND_ROOT_PATH
-    NO_DEFAULT_PATH
-    NO_SYSTEM_ENVIRONMENT_PATH
-    NO_CMAKE_SYSTEM_PATH
-)
-
 include_directories(
     "${CMAKE_SOURCE_DIR}"
-    ${ARDUINO_SKETCH_INCLUDES}
     "${CMAKE_CURRENT_SOURCE_DIR}"
+    ${ARDUINO_SKETCH_INCLUDES}
     "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-API/api" 
     "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-Pico"
     "${PICO_SDK_ARDUINO_PATH}/Arduino"
@@ -48,7 +38,6 @@ include_directories(
 # Arduino PICO Implementation
 file(GLOB ARD_DIR_LIST CONFIGURE_DEPENDS "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-API/api/*.cpp" )
 file(GLOB ARD_DIR_PICO_LIST CONFIGURE_DEPENDS "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-Pico/*.cpp" )
-
 
 # PICO
 add_executable(${ARDUINO_SKETCH_NAME} ${HEADER_LIST} ${ARDUINO_SKETCH_SOURCE} ${ARD_DIR_LIST} ${ARD_DIR_PICO_LIST})

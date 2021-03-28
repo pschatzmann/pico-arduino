@@ -81,81 +81,90 @@ $(function() {
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; </div>
 <div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_queue.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classpico__arduino_1_1_queue.html">Queue</a> {</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="classpico__arduino_1_1_queue.html">Queue</a>( <span class="keywordtype">int</span> maxCount = 100,<span class="keywordtype">bool</span> blocking=<span class="keyword">true</span>, <span class="keywordtype">bool</span> withLock=<span class="keyword">true</span> ){</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            is_blocking = blocking;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <span class="keywordflow">if</span> (withLock){</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                queue_init_with_spinlock(&amp;q,<span class="keyword">sizeof</span>(T), maxCount, nextSpinlockNumber());</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                queue_init(&amp;q,<span class="keyword">sizeof</span>(T),maxCount);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        }</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        ~<a class="code" href="classpico__arduino_1_1_queue.html">Queue</a>() {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            queue_free(&amp;q);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordtype">bool</span> isEmpty() {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keywordflow">return</span> queue_is_empty(&amp;q);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        }</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordtype">bool</span> isFull() {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordflow">return</span> queue_is_full(&amp;q);</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_queue.html#a8bd4b45f11010130df7a32b3ea5ef681">   26</a></span>&#160;        <a class="code" href="classpico__arduino_1_1_queue.html#a8bd4b45f11010130df7a32b3ea5ef681">Queue</a>( <span class="keywordtype">int</span> maxCount = 100,<span class="keywordtype">bool</span> blocking=<span class="keyword">true</span>, <span class="keywordtype">bool</span> withLock=<span class="keyword">true</span> ){</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            is_blocking = blocking;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <span class="keywordflow">if</span> (withLock){</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                queue_init_with_spinlock(&amp;q,<span class="keyword">sizeof</span>(T), maxCount, nextSpinlockNumber());</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                queue_init(&amp;q,<span class="keyword">sizeof</span>(T),maxCount);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_queue.html#a1c2300038904c8534ebc84382f5e2f4f">   36</a></span>&#160;        <a class="code" href="classpico__arduino_1_1_queue.html#a1c2300038904c8534ebc84382f5e2f4f">~Queue</a>() {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            queue_free(&amp;q);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        }</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordtype">bool</span> peek(T &amp;data){</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordtype">bool</span> result = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="keywordflow">if</span> (is_blocking){</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                queue_peek_blocking(&amp;q, (<span class="keywordtype">void</span>*) &amp;data);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                result = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                result = queue_try_peek(&amp;q, (<span class="keywordtype">void</span>*) &amp;data);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordtype">bool</span> push(T &amp;data){</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_queue.html#ad9e43222b2a71c8cdbea9b7c099eb55c">   41</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpico__arduino_1_1_queue.html#ad9e43222b2a71c8cdbea9b7c099eb55c">isEmpty</a>() {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="keywordflow">return</span> queue_is_empty(&amp;q);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_queue.html#a873eec347e916905ddab4171f3280622">   46</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpico__arduino_1_1_queue.html#a873eec347e916905ddab4171f3280622">isFull</a>() {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">return</span> queue_is_full(&amp;q);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_queue.html#a7a6e63fb7ae4bef7d6d3a7dce62cb88f">   51</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpico__arduino_1_1_queue.html#a7a6e63fb7ae4bef7d6d3a7dce62cb88f">peek</a>(T &amp;data){</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="keywordtype">bool</span> result = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordflow">if</span> (is_blocking){</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                queue_add_blocking(&amp;q, (<span class="keywordtype">void</span>*) &amp;data);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                queue_peek_blocking(&amp;q, (<span class="keywordtype">void</span>*) &amp;data);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                result = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                result = queue_try_add(&amp;q, (<span class="keywordtype">void</span>*) &amp;data);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                result = queue_try_peek(&amp;q, (<span class="keywordtype">void</span>*) &amp;data);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            }</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">return</span> result;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        }</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordtype">bool</span> pop(T &amp;data){</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordtype">bool</span> result = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordflow">if</span> (is_blocking){</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                queue_remove_blocking(&amp;q, (<span class="keywordtype">void</span>*) &amp;data);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                result = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                result = queue_try_remove(&amp;q, (<span class="keywordtype">void</span>*) &amp;data);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        }</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        uint size() {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">return</span> queue_get_level(&amp;q);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">void</span> clear() {</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            T data;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keywordflow">while</span>(remove((<span class="keywordtype">void</span>*) &amp;data));</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        queue_t q;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordtype">bool</span> is_blocking;</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_queue.html#ab9b0b1a11d8ada97ecafd4e3c92003e2">   63</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpico__arduino_1_1_queue.html#ab9b0b1a11d8ada97ecafd4e3c92003e2">push</a>(T &amp;data){</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordtype">bool</span> result = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keywordflow">if</span> (is_blocking){</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                queue_add_blocking(&amp;q, (<span class="keywordtype">void</span>*) &amp;data);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                result = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                result = queue_try_add(&amp;q, (<span class="keywordtype">void</span>*) &amp;data);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_queue.html#a20de6ff48e011bbf0455731e01563855">   75</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpico__arduino_1_1_queue.html#a20de6ff48e011bbf0455731e01563855">pop</a>(T &amp;data){</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordtype">bool</span> result = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keywordflow">if</span> (is_blocking){</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                queue_remove_blocking(&amp;q, (<span class="keywordtype">void</span>*) &amp;data);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                result = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                result = queue_try_remove(&amp;q, (<span class="keywordtype">void</span>*) &amp;data);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        }</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        uint nextSpinlockNumber(){</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keyword">static</span> uint spinlock_num;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="keywordflow">return</span> spinlock_num++;</div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_queue.html#a2768a3b883695e4dc88983f36c15cb8e">   87</a></span>&#160;        uint <a class="code" href="classpico__arduino_1_1_queue.html#a2768a3b883695e4dc88983f36c15cb8e">size</a>() {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="keywordflow">return</span> queue_get_level(&amp;q);</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        }</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;};</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_queue.html#a8af4b2bd0d5956c1cb83fdb4e874eaf8">   92</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_queue.html#a8af4b2bd0d5956c1cb83fdb4e874eaf8">clear</a>() {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            T data;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="keywordflow">while</span>(remove((<span class="keywordtype">void</span>*) &amp;data));</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        queue_t q;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordtype">bool</span> is_blocking;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        uint nextSpinlockNumber(){</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="keyword">static</span> uint spinlock_num;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <span class="keywordflow">return</span> spinlock_num++;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        }</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;};</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
 <div class="ttc" id="aclasspico__arduino_1_1_queue_html"><div class="ttname"><a href="classpico__arduino_1_1_queue.html">pico_arduino::Queue</a></div><div class="ttdoc">Construct a new Pico Queue object.</div><div class="ttdef"><b>Definition:</b> PicoQueue.h:17</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_queue_html_a1c2300038904c8534ebc84382f5e2f4f"><div class="ttname"><a href="classpico__arduino_1_1_queue.html#a1c2300038904c8534ebc84382f5e2f4f">pico_arduino::Queue::~Queue</a></div><div class="ttdeci">~Queue()</div><div class="ttdoc">Destructor - calls queue_free.</div><div class="ttdef"><b>Definition:</b> PicoQueue.h:36</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_queue_html_a20de6ff48e011bbf0455731e01563855"><div class="ttname"><a href="classpico__arduino_1_1_queue.html#a20de6ff48e011bbf0455731e01563855">pico_arduino::Queue::pop</a></div><div class="ttdeci">bool pop(T &amp;data)</div><div class="ttdoc">Gets the next element (from the head) and removes it from the queue.</div><div class="ttdef"><b>Definition:</b> PicoQueue.h:75</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_queue_html_a2768a3b883695e4dc88983f36c15cb8e"><div class="ttname"><a href="classpico__arduino_1_1_queue.html#a2768a3b883695e4dc88983f36c15cb8e">pico_arduino::Queue::size</a></div><div class="ttdeci">uint size()</div><div class="ttdoc">Provides the number of entries in the queue.</div><div class="ttdef"><b>Definition:</b> PicoQueue.h:87</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_queue_html_a7a6e63fb7ae4bef7d6d3a7dce62cb88f"><div class="ttname"><a href="classpico__arduino_1_1_queue.html#a7a6e63fb7ae4bef7d6d3a7dce62cb88f">pico_arduino::Queue::peek</a></div><div class="ttdeci">bool peek(T &amp;data)</div><div class="ttdoc">Reads the next element w/o removing it from the queue.</div><div class="ttdef"><b>Definition:</b> PicoQueue.h:51</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_queue_html_a873eec347e916905ddab4171f3280622"><div class="ttname"><a href="classpico__arduino_1_1_queue.html#a873eec347e916905ddab4171f3280622">pico_arduino::Queue::isFull</a></div><div class="ttdeci">bool isFull()</div><div class="ttdoc">checks if the queue is full</div><div class="ttdef"><b>Definition:</b> PicoQueue.h:46</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_queue_html_a8af4b2bd0d5956c1cb83fdb4e874eaf8"><div class="ttname"><a href="classpico__arduino_1_1_queue.html#a8af4b2bd0d5956c1cb83fdb4e874eaf8">pico_arduino::Queue::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">clears the queue by removing all elements</div><div class="ttdef"><b>Definition:</b> PicoQueue.h:92</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_queue_html_a8bd4b45f11010130df7a32b3ea5ef681"><div class="ttname"><a href="classpico__arduino_1_1_queue.html#a8bd4b45f11010130df7a32b3ea5ef681">pico_arduino::Queue::Queue</a></div><div class="ttdeci">Queue(int maxCount=100, bool blocking=true, bool withLock=true)</div><div class="ttdoc">Construct a new Queue object.</div><div class="ttdef"><b>Definition:</b> PicoQueue.h:26</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_queue_html_ab9b0b1a11d8ada97ecafd4e3c92003e2"><div class="ttname"><a href="classpico__arduino_1_1_queue.html#ab9b0b1a11d8ada97ecafd4e3c92003e2">pico_arduino::Queue::push</a></div><div class="ttdeci">bool push(T &amp;data)</div><div class="ttdoc">Adds an element (at the end) of the queue.</div><div class="ttdef"><b>Definition:</b> PicoQueue.h:63</div></div>
+<div class="ttc" id="aclasspico__arduino_1_1_queue_html_ad9e43222b2a71c8cdbea9b7c099eb55c"><div class="ttname"><a href="classpico__arduino_1_1_queue.html#ad9e43222b2a71c8cdbea9b7c099eb55c">pico_arduino::Queue::isEmpty</a></div><div class="ttdeci">bool isEmpty()</div><div class="ttdoc">checks if the queue is eimpty</div><div class="ttdef"><b>Definition:</b> PicoQueue.h:41</div></div>
 <div class="ttc" id="anamespacepico__arduino_html"><div class="ttname"><a href="namespacepico__arduino.html">pico_arduino</a></div><div class="ttdoc">Pico Arduino Framework.</div><div class="ttdef"><b>Definition:</b> Arduino.cpp:26</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

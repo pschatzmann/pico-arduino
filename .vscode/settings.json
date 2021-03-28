@@ -68,6 +68,7 @@
         "vec4ui": "cpp",
         "vec4us": "cpp",
         "valuemap": "cpp",
-        "displaysettings": "cpp"
+        "displaysettings": "cpp",
+        "image": "cpp"
     }
 }

@@ -54,13 +54,13 @@ class PicoPWMWriter : public PinSetup {
         }
 
         /// setup a pin for pwm write
-        void begin(pin_size_t pin, uint64_t initialDutyCyleNanoSeconds=0){
-            Logger.printf(PicoLogger::Debug, "PicoPWMWriter::begin %d", pin);
+        void begin(pin_size_t pinNumber, uint64_t initialDutyCyleNanoSeconds=0){
+            Logger.printf(PicoLogger::Debug, "PicoPWMWriter::begin %d\n", pinNumber);
             initial_duty_cycle = initialDutyCyleNanoSeconds;
             // this is executed only once per instance
             setupConfig();
             // this is executed only once per pin
-            pinFunction.usePin(pin, PIN_FUNC_PWM, this);
+            pinFunction.usePin(pinNumber, PIN_FUNC_PWM, this);
         }
 
         /// setup of pin for PWM Output
@@ -195,7 +195,7 @@ class PicoPWMReader : public PinSetup {
 
         /// setup a pin for pwm write
         void begin(pin_size_t pinNumber){
-            Logger.printf(PicoLogger::Info, "PicoPWMReader::begin %d", pinNumber);
+            Logger.printf(PicoLogger::Info, "PicoPWMReader::begin %d\n", pinNumber);
 
             // this is executed only once per instance
             setupConfig();

@@ -14,6 +14,10 @@ namespace pico_arduino {
  */
 class MuliticoreFifo {
     public:
+        /**
+         * @brief Construct a new Muliticore Fifo object
+         * 
+         */
         MuliticoreFifo(){
         }
 
@@ -21,6 +25,7 @@ class MuliticoreFifo {
             clear();
         }
 
+        /// Adds an elelment to the end
         bool push(uint32_t data,bool is_blocking=true){
             bool result = true;
             if (!is_blocking){
@@ -32,6 +37,7 @@ class MuliticoreFifo {
             return result;
         }
 
+        /// Retrieves the next element (from the front) and removes it from the collection
         bool pop(uint32_t &data, bool is_blocking=true){
             bool result = true;
             if (!is_blocking){
@@ -43,14 +49,17 @@ class MuliticoreFifo {
             return result;
         }
 
+        /// Checks if the fifo is empty
         bool isEmpty() {
             return !multicore_fifo_rvalid();
         }
 
+        /// Checks if the fifo is full
         bool isFull() {
             return !multicore_fifo_wready();
         }
 
+        /// Removes all entries
         void clear(){
             multicore_fifo_drain();
         }

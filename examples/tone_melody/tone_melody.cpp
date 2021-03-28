@@ -14,6 +14,10 @@ int noteDurations[] = {
 };
 
 void setup() {
+  Serial.begin();
+  while(!Serial);
+  Logger.begin(Serial,PicoLogger::Debug);
+
   // iterate over the notes of the melody:
   for (int thisNote = 0; thisNote < 8; thisNote++) {
 

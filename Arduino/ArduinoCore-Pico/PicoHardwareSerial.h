@@ -22,6 +22,9 @@ namespace pico_arduino {
 // PicoSerialUSB is not available with TinyUSB is used !
 #if !defined(TINYUSB_HOST_LINKED) && !defined(TINYUSB_DEVICE_LINKED)
 
+// Arduino Due provides SerialUSB - this is identical with Serial 
+#define SerialUSB Serial
+
 /**
  * @brief PicoUSBSerial is using the pico USB output. It is mapped to the Arduino Serial variable.
  * @author Phil Schatzmann
@@ -162,7 +165,7 @@ class PicoSerialUART : public HardwareSerial, public StreamPrintf {
          */
 
         virtual void begin(unsigned long baudrate, int rxPin, int txPin, uint32_t config=SERIAL_8N1,  bool invert=false, bool cts=false, bool rts=false) {
-            Logger.printf(PicoLogger::Info, "PicoHardwareSerial::begin %d", baudrate);
+            Logger.printf(PicoLogger::Info, "PicoHardwareSerial::begin %ld\n", baudrate);
             rx_pin = rxPin;
             tx_pin = txPin;
             uart_init(uart, baudrate);
@@ -175,15 +178,15 @@ class PicoSerialUART : public HardwareSerial, public StreamPrintf {
             uint rate_effective = uart_set_baudrate(uart,baudrate);
             open = uart_is_enabled(uart);
             if (Logger.isLogging()) {
-                Logger.printf(PicoLogger::Info, "baud_rate requested: %d",baudrate);
-                Logger.printf(PicoLogger::Info,"baud_rate effective: %d",rate_effective);
-                Logger.printf(PicoLogger::Info,"uart_is_enabled: %s", open ?  "true" :  "false");
+                Logger.printf(PicoLogger::Info, "baud_rate requested: %ld\n",baudrate);
+                Logger.printf(PicoLogger::Info,"baud_rate effective: %ld\n",rate_effective);
+                Logger.printf(PicoLogger::Info,"uart_is_enabled: %s\n", open ?  "true" :  "false");
             }
             
         }
 
         virtual void end(){
-             Logger.printf(PicoLogger::Info, "PicoHardwareSerial::end %d",uart_no);
+             Logger.printf(PicoLogger::Info, "PicoHardwareSerial::end %d\n",uart_no);
              uart_deinit(uart);
              open = false;
         }
@@ -356,9 +359,9 @@ class PicoSerialUART : public HardwareSerial, public StreamPrintf {
             }
             // display pin assignments
             if (Logger.isLogging()) {
-                Logger.printf(PicoLogger::Info, "Using UART: %d ", uart_no);
-                Logger.printf(PicoLogger::Info,"txPin is %d", tx_pin);
-                Logger.printf(PicoLogger::Info,"rxPin is %d", rx_pin);
+                Logger.printf(PicoLogger::Info, "Using UART: %d \n", uart_no);
+                Logger.printf(PicoLogger::Info,"txPin is %d\n", tx_pin);
+                Logger.printf(PicoLogger::Info,"rxPin is %d\n", rx_pin);
             }
             if (tx_pin!=-1) {
                 gpio_set_function(tx_pin, GPIO_FUNC_UART);

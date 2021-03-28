@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['_7epicodma_130',['~PicoDMA',['../classpico__arduino_1_1_pico_d_m_a.html#a854c8772ff5aefa5d446be43f1d73b4b',1,'pico_arduino::PicoDMA']]],
-  ['_7epicohardwarei2c_131',['~PicoHardwareI2C',['../classpico__arduino_1_1_pico_hardware_i2_c.html#ab1b9003512841d5d50f1390455cf7f6c',1,'pico_arduino::PicoHardwareI2C']]],
-  ['_7epicopwm_132',['~PicoPWM',['../classpico__arduino_1_1_pico_p_w_m.html#ae0a62a59058893b73bfbf53033026357',1,'pico_arduino::PicoPWM']]],
-  ['_7esemaphore_133',['~Semaphore',['../classpico__arduino_1_1_semaphore.html#aa8ce4ddfbdeda274f24f15be32dca55c',1,'pico_arduino::Semaphore']]]
+  ['wait_144',['wait',['../classpico__arduino_1_1_pico_d_m_a.html#ae7f28cd137bdc8079691ced74113fded',1,'pico_arduino::PicoDMA::wait()'],['../classpico__arduino_1_1_semaphore.html#aecef4172b6a346c6b830dd7b83ea9caf',1,'pico_arduino::Semaphore::wait()']]],
+  ['warning_145',['warning',['../classpico__arduino_1_1_pico_logger.html#ab9d0b62acfb7340d1c72733ca444df11',1,'pico_arduino::PicoLogger']]],
+  ['wire_146',['Wire',['../namespacepico__arduino.html#abb7abb5ed5dc678222c0025f9f901db1',1,'pico_arduino']]],
+  ['write_147',['write',['../classpico__arduino_1_1_pico_hardware_i2_c.html#a8725aaec1955e549c3bc9414884c557a',1,'pico_arduino::PicoHardwareI2C::write(uint8_t c)'],['../classpico__arduino_1_1_pico_hardware_i2_c.html#a2f676e66ac84c0823133d529b14259f1',1,'pico_arduino::PicoHardwareI2C::write(const char *buffer, size_t size)'],['../classpico__arduino_1_1_pico_serial_u_s_b.html#a46ecfe34cfe79f2cf2b502530c9282bf',1,'pico_arduino::PicoSerialUSB::write(uint8_t c)'],['../classpico__arduino_1_1_pico_serial_u_s_b.html#a7b54d0050db75a977358e0b1747395b6',1,'pico_arduino::PicoSerialUSB::write(const uint8_t *buffer, size_t size)'],['../classpico__arduino_1_1_pico_p_w_m.html#a4d6218b4b3ec63a77ecdd05350fe196d',1,'pico_arduino::PicoPWM::write()'],['../classpico__arduino_1_1_servo.html#a6bac033bc65a4ebb0779047dd9cb23b4',1,'pico_arduino::Servo::write()'],['../class_serial_d_a_c.html#a442e5d6fbfbfa599e7ce9c3bc810e069',1,'SerialDAC::write(uint16_t *inValues, int len) const'],['../class_serial_d_a_c.html#a558d7a7f87b503808bf4a7ffd49939d2',1,'SerialDAC::write(uint16_t value) const']]],
+  ['writemicroseconds_148',['writeMicroseconds',['../classpico__arduino_1_1_servo.html#aafa686fa8bd93b455a13c114d0c565b9',1,'pico_arduino::Servo']]]
 ];

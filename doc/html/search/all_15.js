@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['_7epicohardwarei2c_122',['~PicoHardwareI2C',['../class_pico_hardware_i2_c.html#ac03ee78746e3132d33af51755784744d',1,'PicoHardwareI2C']]],
-  ['_7epicopwm_123',['~PicoPWM',['../class_pico_p_w_m.html#a3201442296529e2d8330f0f60181384e',1,'PicoPWM']]],
-  ['_7esemaphore_124',['~Semaphore',['../class_semaphore.html#a633658a6fde276bffc912028725c6ade',1,'Semaphore']]]
+  ['_7ebuffers_149',['~Buffers',['../classpico__arduino_1_1_buffers.html#af48ad71fb9108efb15e036a38dac06eb',1,'pico_arduino::Buffers']]],
+  ['_7epicodma_150',['~PicoDMA',['../classpico__arduino_1_1_pico_d_m_a.html#a854c8772ff5aefa5d446be43f1d73b4b',1,'pico_arduino::PicoDMA']]],
+  ['_7epicohardwarei2c_151',['~PicoHardwareI2C',['../classpico__arduino_1_1_pico_hardware_i2_c.html#ab1b9003512841d5d50f1390455cf7f6c',1,'pico_arduino::PicoHardwareI2C']]],
+  ['_7epicopwm_152',['~PicoPWM',['../classpico__arduino_1_1_pico_p_w_m.html#ae0a62a59058893b73bfbf53033026357',1,'pico_arduino::PicoPWM']]],
+  ['_7equeue_153',['~Queue',['../classpico__arduino_1_1_queue.html#a1c2300038904c8534ebc84382f5e2f4f',1,'pico_arduino::Queue']]],
+  ['_7esemaphore_154',['~Semaphore',['../classpico__arduino_1_1_semaphore.html#aa8ce4ddfbdeda274f24f15be32dca55c',1,'pico_arduino::Semaphore']]]
 ];

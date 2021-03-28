@@ -110,7 +110,7 @@ $(function() {
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;      }</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
 <div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_hardware_i2_c.html#a4c96824679e943e87b012eeb9944e845">   58</a></span>&#160;      <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_pico_hardware_i2_c.html#a4c96824679e943e87b012eeb9944e845">begin</a>(uint8_t address, <span class="keywordtype">int</span> sdaPin, <span class="keywordtype">int</span> sclPin) {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Info, <span class="stringliteral">&quot;begin %d&quot;</span>, address);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Info, <span class="stringliteral">&quot;begin %d\n&quot;</span>, address);</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        setupPins(sdaPin,sclPin);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        transmission_address = address;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        i2c_init(i2c, 100000);</div>
@@ -138,7 +138,7 @@ $(function() {
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      }</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    </div>
 <div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_hardware_i2_c.html#a25a4af90bc15c10d6b1574b01f3f8628">   89</a></span>&#160;      <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classpico__arduino_1_1_pico_hardware_i2_c.html#a25a4af90bc15c10d6b1574b01f3f8628">beginTransmission</a>(uint8_t address) {</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Info, <span class="stringliteral">&quot;beginTransmission %d&quot;</span>, address);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Info, <span class="stringliteral">&quot;beginTransmission %d\n&quot;</span>, address);</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        transmission_address=address;</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;      }</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
@@ -177,7 +177,7 @@ $(function() {
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;      }</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
 <div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="classpico__arduino_1_1_pico_hardware_i2_c.html#a2479fe005040eb2df29e6ab90c4dfd9c">  133</a></span>&#160;      <span class="keyword">virtual</span> <span class="keywordtype">size_t</span> <a class="code" href="classpico__arduino_1_1_pico_hardware_i2_c.html#a2479fe005040eb2df29e6ab90c4dfd9c">requestFrom</a>(uint8_t address, <span class="keywordtype">size_t</span> len, <span class="keywordtype">bool</span> stopBit) {</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Info,<span class="stringliteral">&quot;requestFrom (%d, %ld, %s)&quot;</span>, address,len, stopBit?<span class="stringliteral">&quot;stop&quot;</span>:<span class="stringliteral">&quot;no-stop&quot;</span>);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Info,<span class="stringliteral">&quot;requestFrom (%d, %ld, %s)\n&quot;</span>, address,len, stopBit?<span class="stringliteral">&quot;stop&quot;</span>:<span class="stringliteral">&quot;no-stop&quot;</span>);</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        flush();</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        setupReadBuffer(len);</div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        read_address = address;</div>
@@ -195,7 +195,7 @@ $(function() {
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;          Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#ab9d0b62acfb7340d1c72733ca444df11">warning</a>(<span class="stringliteral">&quot;requestFrom-&gt;&quot;</span>,<span class="stringliteral">&quot;PICO_ERROR_GENERIC&quot;</span>);</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;          read_len = 0;</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        }</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Debug, <span class="stringliteral">&quot;requestFrom -&gt; %d&quot;</span>,read_len);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Debug, <span class="stringliteral">&quot;requestFrom -&gt; %ld\n&quot;</span>,read_len);</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="comment">// call recieveHandler</span></div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordflow">if</span> (read_len&gt;0 &amp;&amp; this-&gt;recieveHandler!=<span class="keyword">nullptr</span>){</div>
@@ -227,7 +227,7 @@ $(function() {
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;          buffer_available = 0;</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;          Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#aaa97c3dc199ebbc76007f51685a63057">error</a>(<span class="stringliteral">&quot;buffer_available is negative - corrected to 0&quot;</span>);</div>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        }</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Debug, <span class="stringliteral">&quot;available: %d&quot;</span>, buffer_available);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Debug, <span class="stringliteral">&quot;available: %d\n&quot;</span>, buffer_available);</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="keywordflow">return</span> buffer_available;</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;      }</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
@@ -286,7 +286,7 @@ $(function() {
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;      <span class="keywordtype">int</span> flush(<span class="keywordtype">bool</span> stop=<span class="keyword">false</span>) {</div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        <span class="keywordtype">bool</span> result = 0; <span class="comment">// 4:other error</span></div>
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        <span class="keywordflow">if</span> (write_pos&gt;0) {</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;          Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Debug, <span class="stringliteral">&quot;flush address:%d, len:%d, end:%s&quot;</span>,transmission_address, write_pos, stop ? <span class="stringliteral">&quot;stop&quot;</span>: <span class="stringliteral">&quot;no-stop&quot;</span> );</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;          Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Debug, <span class="stringliteral">&quot;flush address:%d, len:%d, end:%s\n&quot;</span>,transmission_address, write_pos, stop ? <span class="stringliteral">&quot;stop&quot;</span>: <span class="stringliteral">&quot;no-stop&quot;</span> );</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;          <span class="keywordtype">int</span> result = i2c_write_blocking(i2c, transmission_address, write_buffer, write_pos, !stop);</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;          <span class="keywordflow">if</span> (result == write_pos){</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;            result = 0; <span class="comment">// OK</span></div>
@@ -296,7 +296,7 @@ $(function() {
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            result = 4; <span class="comment">// 4:other error</span></div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;          }</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;          write_pos = 0;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;          Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Debug, <span class="stringliteral">&quot;flush-&gt;%d&quot;</span>, result);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;          Logger.<a class="code" href="classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100">printf</a>(PicoLogger::Debug, <span class="stringliteral">&quot;flush-&gt;%d\n&quot;</span>, result);</div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;          </div>
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        }</div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160; </div>

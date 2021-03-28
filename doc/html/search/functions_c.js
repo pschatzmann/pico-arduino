@@ -1,10 +1,19 @@
 var searchData=
 [
-  ['read_234',['read',['../classpico__arduino_1_1_pico_hardware_i2_c.html#a1700f5766fadc05fd889f9bb803cb2b8',1,'pico_arduino::PicoHardwareI2C::read()'],['../classpico__arduino_1_1_pico_p_w_m.html#ace41e43de1581c0b0806c783a500959f',1,'pico_arduino::PicoPWM::read()'],['../classpico__arduino_1_1_servo.html#a3421d86e35b0b160dee4600ba2a5e401',1,'pico_arduino::Servo::read()']]],
-  ['readmicroseconds_235',['readMicroseconds',['../classpico__arduino_1_1_servo.html#acb434fc2fa6eb0d5279f435d2748135c',1,'pico_arduino::Servo']]],
-  ['readpercent_236',['readPercent',['../classpico__arduino_1_1_pico_p_w_m.html#a874ba6144f89a0eb956d8f4bb704c419',1,'pico_arduino::PicoPWM']]],
-  ['release_237',['release',['../classpico__arduino_1_1_semaphore.html#a5cb8328099d434976c467cce67530dad',1,'pico_arduino::Semaphore']]],
-  ['releasechannel_238',['releaseChannel',['../classpico__arduino_1_1_pico_d_m_a.html#a87c663d00dd4148fa48570bb95bc0959',1,'pico_arduino::PicoDMA']]],
-  ['requestfrom_239',['requestFrom',['../classpico__arduino_1_1_pico_hardware_i2_c.html#a2479fe005040eb2df29e6ab90c4dfd9c',1,'pico_arduino::PicoHardwareI2C::requestFrom(uint8_t address, size_t len, bool stopBit)'],['../classpico__arduino_1_1_pico_hardware_i2_c.html#a7d9628f24ffe2d5e5e4b2fdd615ac9a9',1,'pico_arduino::PicoHardwareI2C::requestFrom(uint8_t address, size_t len)']]],
-  ['reset_240',['reset',['../classpico__arduino_1_1_semaphore.html#aea707e639a3951c2552bd21d52b0ee3f',1,'pico_arduino::Semaphore']]]
+  ['peek_259',['peek',['../classpico__arduino_1_1_pico_hardware_i2_c.html#a30f0c39db5bf3dee384c6ddcddc61eae',1,'pico_arduino::PicoHardwareI2C::peek()'],['../classpico__arduino_1_1_queue.html#a7a6e63fb7ae4bef7d6d3a7dce62cb88f',1,'pico_arduino::Queue::peek()']]],
+  ['period_260',['period',['../classpico__arduino_1_1_pico_p_w_m_writer.html#a54635abb2cf029c45d7494b5dde8ce4d',1,'pico_arduino::PicoPWMWriter::period()'],['../classpico__arduino_1_1_pico_p_w_m_reader.html#a146fa3a516eb351fc5f38ca316d30762',1,'pico_arduino::PicoPWMReader::period()'],['../classpico__arduino_1_1_pico_p_w_m_nano.html#a7a66769292358aea66f0adbf7b749cbe',1,'pico_arduino::PicoPWMNano::period()'],['../classpico__arduino_1_1_pico_p_w_m.html#a86fda94b5e6b93ef89f94818e66a4f19',1,'pico_arduino::PicoPWM::period()']]],
+  ['picodma_261',['PicoDMA',['../classpico__arduino_1_1_pico_d_m_a.html#a1bf1ea36cc6f503c1c75f4e739b04724',1,'pico_arduino::PicoDMA']]],
+  ['picohardwarei2c_262',['PicoHardwareI2C',['../classpico__arduino_1_1_pico_hardware_i2_c.html#a04311a1f7066122e88aa267ac9bed311',1,'pico_arduino::PicoHardwareI2C']]],
+  ['picopinfunction_263',['PicoPinFunction',['../classpico__arduino_1_1_pico_pin_function.html#ac5006de817cf58ecdcb188bcb136a654',1,'pico_arduino::PicoPinFunction']]],
+  ['picopwm_264',['PicoPWM',['../classpico__arduino_1_1_pico_p_w_m.html#a57b6b2a7028632223906cd91db913c11',1,'pico_arduino::PicoPWM']]],
+  ['picopwmnano_265',['PicoPWMNano',['../classpico__arduino_1_1_pico_p_w_m_nano.html#aa31824dc72713a77b75ac26452da9dc3',1,'pico_arduino::PicoPWMNano']]],
+  ['picopwmreader_266',['PicoPWMReader',['../classpico__arduino_1_1_pico_p_w_m_reader.html#a1cc8b8642c7d5f39e44381ddfba3de8b',1,'pico_arduino::PicoPWMReader']]],
+  ['picopwmwriter_267',['PicoPWMWriter',['../classpico__arduino_1_1_pico_p_w_m_writer.html#a36812556eb8f9c30527d9057f87f2d85',1,'pico_arduino::PicoPWMWriter']]],
+  ['pinmap_268',['pinMap',['../classpico__arduino_1_1_arduino_pico_tone.html#a640d30fcaa7427ff6b454416f76324e7',1,'pico_arduino::ArduinoPicoTone']]],
+  ['pinmode_269',['pinMode',['../classpico__arduino_1_1_pico_pin_function.html#a33aba2e6926caeb9d88ad1dd25c0fcc7',1,'pico_arduino::PicoPinFunction']]],
+  ['pinmodestr_270',['pinModeStr',['../classpico__arduino_1_1_pico_pin_function.html#a6331b6706cda74fea7a44c43809d0aeb',1,'pico_arduino::PicoPinFunction']]],
+  ['pop_271',['pop',['../classpico__arduino_1_1_muliticore_fifo.html#a293da0bd9699cdd185c7138748cada7c',1,'pico_arduino::MuliticoreFifo::pop()'],['../classpico__arduino_1_1_queue.html#a20de6ff48e011bbf0455731e01563855',1,'pico_arduino::Queue::pop()']]],
+  ['printf_272',['printf',['../classpico__arduino_1_1_pico_logger.html#a54b25231805f12e4fa40d30f8df2e100',1,'pico_arduino::PicoLogger']]],
+  ['push_273',['push',['../classpico__arduino_1_1_muliticore_fifo.html#afcf7f2f96a795e2802252af917fcce2d',1,'pico_arduino::MuliticoreFifo::push()'],['../classpico__arduino_1_1_queue.html#ab9b0b1a11d8ada97ecafd4e3c92003e2',1,'pico_arduino::Queue::push()']]],
+  ['put_274',['put',['../classpico__arduino_1_1_map.html#acc8fb030dccbd80c64830a2e1124a16b',1,'pico_arduino::Map']]]
 ];

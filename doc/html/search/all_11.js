@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['udp_118',['UDP',['../classarduino_1_1_u_d_p.html',1,'arduino']]],
-  ['up_119',['up',['../classpico__arduino_1_1_semaphore.html#ac400aaefdb8c9a54f6012d7dbd905022',1,'pico_arduino::Semaphore']]],
-  ['usepin_120',['usePin',['../classpico__arduino_1_1_pico_pin_function.html#a450b2d8403557bcdbb8852f6ff4fa183',1,'pico_arduino::PicoPinFunction']]],
-  ['usinginterrupt_121',['usingInterrupt',['../classpico__arduino_1_1_pico_hardware_s_p_i.html#a561470e678844aa53eb62ab6411f862e',1,'pico_arduino::PicoHardwareSPI']]]
+  ['thread_131',['Thread',['../classpico__arduino_1_1_thread.html',1,'pico_arduino']]],
+  ['timeralarm_132',['TimerAlarm',['../classpico__arduino_1_1_timer_alarm.html',1,'pico_arduino']]],
+  ['timeralarmrepeating_133',['TimerAlarmRepeating',['../classpico__arduino_1_1_timer_alarm_repeating.html',1,'pico_arduino']]],
+  ['tone_134',['tone',['../classpico__arduino_1_1_arduino_pico_tone.html#a520b3a028afaf5a77b92c95477fb00b9',1,'pico_arduino::ArduinoPicoTone']]],
+  ['transfer_135',['transfer',['../classpico__arduino_1_1_pico_hardware_s_p_i.html#aec20f37cc7f99cbbd6d4bcf3e1ec91d9',1,'pico_arduino::PicoHardwareSPI::transfer(uint8_t data)'],['../classpico__arduino_1_1_pico_hardware_s_p_i.html#a8eeb629e6ca3c7c52132d1794021f1f8',1,'pico_arduino::PicoHardwareSPI::transfer(void *array, size_t len)']]],
+  ['transfer16_136',['transfer16',['../classpico__arduino_1_1_pico_hardware_s_p_i.html#ae5dbc29cef4e4b7795d2ef5c2afa71ec',1,'pico_arduino::PicoHardwareSPI']]]
 ];

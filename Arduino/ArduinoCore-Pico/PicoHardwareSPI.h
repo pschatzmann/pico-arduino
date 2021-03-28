@@ -86,7 +86,7 @@ class PicoHardwareSPI : public HardwareSPI {
             // set baud rate and format on change of settings
             if (last_settings != settings){
                 SPIMode mode = settings.getDataMode();
-                Logger.printf(PicoLogger::Debug, "spi_set_baudrate %d", settings.getClockFreq());
+                Logger.printf(PicoLogger::Debug, "spi_set_baudrate %d\n", settings.getClockFreq());
                 spi_set_baudrate(spi, settings.getClockFreq());
 
                 switch (mode) {
@@ -188,13 +188,13 @@ class PicoHardwareSPI : public HardwareSPI {
          * @param interruptNumber 
          */
         virtual void usingInterrupt(int interruptNumber) {
-            Logger.printf(PicoLogger::Info, "usingInterrupt %d", interruptNumber);
+            Logger.printf(PicoLogger::Info, "usingInterrupt %d\n", interruptNumber);
             using_interrupt_no = interruptNumber;
         }
         
         /// If your program will perform SPI transactions within an interrupt, call this function to de-register the interrupt number 
         virtual void notUsingInterrupt(int interruptNumber) {
-            Logger.printf(PicoLogger::Info,"notUsingInterrupt %d",interruptNumber);
+            Logger.printf(PicoLogger::Info,"notUsingInterrupt %d\n",interruptNumber);
             irq_set_enabled(interruptNumber, true);
             using_interrupt_no = 0;
         }
@@ -298,10 +298,10 @@ class PicoHardwareSPI : public HardwareSPI {
 
             // display pin assignments
             if (Logger.isLogging()) {
-                Logger.printf(PicoLogger::Info, "pinRx is %d", pinRx);
-                Logger.printf(PicoLogger::Info,"pinTx is %d", pinTx);
-                Logger.printf(PicoLogger::Info,"pinSCK is %d",pinSCK);
-                Logger.printf(PicoLogger::Info,"pinCS is %d", pinCS);
+                Logger.printf(PicoLogger::Info, "pinRx is %d\n", pinRx);
+                Logger.printf(PicoLogger::Info,"pinTx is %d\n", pinTx);
+                Logger.printf(PicoLogger::Info,"pinSCK is %d\n",pinSCK);
+                Logger.printf(PicoLogger::Info,"pinCS is %d\n", pinCS);
             }
 
         }

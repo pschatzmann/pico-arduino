@@ -48,11 +48,6 @@ class Thread {
             started(false);   
         }
 
-        // // Send core 1 to sleep.
-        // void sleep() {
-        //     multicore_sleep_core1();
-        // }
-
         /// check if the core1 has been started and is not stoped
         bool isRunning() {
             return started();

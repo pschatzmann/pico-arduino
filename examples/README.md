@@ -43,8 +43,10 @@ Here is the list of the provided examples using the Arduino functionality
 - [pwm_arduino_read](pwm_arduino_read)
 - [pwm_servo](pwm_servo)
 - [Using an Arduino library](example_with_arduino_library)
-- [SPI with SdFat](sd_info)
-- [I2C with HW290](i2c_hw290)
+- [sd_info](sd_info)
+- [sd_bench](sd_bench)
+- [sd_read_csv](sd_read_csv)
+- [i2c_hw290](i2c_hw290)
 - [Bluetooth with a HC-05](hc_05)
 - [Wifi with a ESP01](esp01)
 
