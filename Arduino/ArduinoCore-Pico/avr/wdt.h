@@ -20,8 +20,11 @@ inline void wdt_reset(){
 }
 
 inline void wdt_enable(int delay_ms ){
+#ifndef NO_WATCHDOG
     watchdog_enable(delay_ms, false);
+#endif
 }
+
 
 
 

@@ -6,16 +6,26 @@
 
 #ifdef PICO
 
-int motor_pins[] = {4,5,6,7};
-int pwm_frequency = 50000;
+#ifndef MOTOR_START_PIN
+#define MOTOR_START_PIN 4
+#endif
+
+#ifndef MOTOR_PWM_FREQUENCY
+#define MOTOR_PWM_FREQUENCY 50000
+#endif
+
+int motor_pins[4];
+int pwm_frequency = MOTOR_PWM_FREQUENCY;
 PicoPWM *pwm;
 
 void MotorsSpeedControl::Init() {
+    // setup PicoPWM
     if (pwm==nullptr) {
         pwm = new PicoPWM(pwm_frequency, MAX_POWER);
     }
     // Set motors pin PD4, PD5, PD6, PD7 as outputs
     for (int id=0; id<4;id++){
+        motor_pins[id] = MOTOR_START_PIN + id;
         pwm->begin(motor_pins[id]);
     }
 }

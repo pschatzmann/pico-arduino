@@ -71,3 +71,6 @@ Here is some other Pico specific functionality:
 - [hallo_world_ext](hallo_world_ext)
 - [strings](strings)
 
+And finally some more complex examples:
+
+- [CodeDroneDIY](codedronediy)

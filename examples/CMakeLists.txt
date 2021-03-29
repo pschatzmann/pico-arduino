@@ -38,5 +38,6 @@ add_subdirectory(hallo_world_printf)
 add_subdirectory(hallo_world_ext)
 add_subdirectory(strings)
 add_subdirectory(pin_interrupt)
+add_subdirectory(codedronediy)
 
 
