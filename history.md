@@ -41,3 +41,4 @@
      - Example for watchdog
      - DMA support with examples
      - Implementation of namespace using pico_arudino
+     - Drone example
