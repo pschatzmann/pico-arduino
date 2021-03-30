@@ -10,15 +10,13 @@ include(FetchContent)
 
 project("${ARDUINO_SKETCH_NAME}")
 
-## Download of tf micro subdirectory from Guthub
+## Download Tensorflow from Guthub
 FetchContent_Declare( tf  GIT_REPOSITORY "https://github.com/pschatzmann/pico-tflmicro.git" GIT_TAG main )
 FetchContent_MakeAvailable(tf)
 
-## Define all Source files 
+## Define the Source file and library
 set(ARDUINO_SKETCH_SOURCE tf_hallo_world.cpp  )
-# set(ARDUINO_SKETCH_INCLUDES  "${tf_SOURCE_DIR}/src")
 set(ARDUINO_SKETCH_LIB  pico-tflmicro)
-# set(ARDUINO_SKETCH_DEFINITIONS "-DPICO_ARDUINO_NO_MAIN")
 
 include("${PICO_SDK_ARDUINO_PATH}/ArduinoSketch.cmake")
 
