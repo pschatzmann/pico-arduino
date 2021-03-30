@@ -10,7 +10,7 @@ include(FetchContent)
 
 project("${ARDUINO_SKETCH_NAME}")
 
-## Download Tensorflow from Guthub
+## Download Tensorflow from Github
 FetchContent_Declare( tf  GIT_REPOSITORY "https://github.com/pschatzmann/pico-tflmicro.git" GIT_TAG main )
 FetchContent_MakeAvailable(tf)
 
