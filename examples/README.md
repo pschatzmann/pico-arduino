@@ -74,3 +74,4 @@ Here is some other Pico specific functionality:
 And finally some more complex examples:
 
 - [CodeDroneDIY](codedronediy)
+- [tensorflow_micro](tensorflow_micro)
