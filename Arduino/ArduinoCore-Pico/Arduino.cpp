@@ -91,6 +91,11 @@ int analogRead(pin_size_t pinNumber){
     return -1;
 }
 
+// enter bootloader without press BOOTSEL just like micropython
+void bootloader(){
+    reset_usb_boot(0, 0);
+}
+
 // reads the on board temparature in C 
 int temperature(){
     // init ADC only if it has not been set up yet

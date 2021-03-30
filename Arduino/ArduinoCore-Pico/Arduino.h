@@ -25,6 +25,7 @@
 #include "PicoSemaphore.h"
 #include "PicoMulticoreFifo.h"
 #include "PicoQueue.h"
+#include "pico/bootrom.h"
 #include "pico/stdlib.h"
 #include "pico/unique_id.h"
 #include "hardware/gpio.h"
@@ -36,6 +37,8 @@ using namespace pico_arduino;
 using namespace arduino;
 
 // Pico specific global methods
+// Enter bootloader without press BOOTSEL just like micropython
+void bootloader();
 // Provides the on board temperature in Celsius
 int temperature();
 // Temperature in Fahrenheit for our friends in Belize, Paulau, the Cayman Islands and the Bahamas
