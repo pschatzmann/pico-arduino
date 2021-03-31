@@ -33,12 +33,12 @@ TfLiteTensor* input = nullptr;
 TfLiteTensor* output = nullptr;
 int inference_count = 0;
 
-constexpr int kTensorArenaSize = 2000;
+const int kTensorArenaSize = 2000;
 uint8_t tensor_arena[kTensorArenaSize];
 
 
 // We define the output function
-void HandleOutput(tflite::ErrorReporter* error_reporter, float x_value,float y_value) {
+void HandleOutput(ErrorReporter* error_reporter, float x_value,float y_value) {
   // Log the current X and Y values
   TF_LITE_REPORT_ERROR(error_reporter, "x_value: %f, y_value: %f\n",
       static_cast<double>(x_value),
