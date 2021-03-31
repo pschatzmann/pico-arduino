@@ -8,3 +8,5 @@ I have added the [Tensorflow hallo world example](https://github.com/pschatzmann
 - __tf_hallo_world.cpp__ contains the Arduino sketch
 - __tf_hallo_world_model.h__ contains the (binary) model.
 - __CMakeLists.txt__ is used to download Tensorflow with the help of FetchContent and build the source file
+
+The model has been trained on the sin function...

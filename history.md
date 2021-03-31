@@ -42,3 +42,5 @@
      - DMA support with examples
      - Implementation of namespace using pico_arudino
      - Drone example
+- __v0.8__ More examples
+     - Tensorflow

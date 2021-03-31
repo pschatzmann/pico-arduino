@@ -16,7 +16,8 @@ FetchContent_MakeAvailable(tf)
 
 ## Define the Source file and library
 set(ARDUINO_SKETCH_SOURCE tf_hallo_world.cpp  )
-set(ARDUINO_SKETCH_LIB  pico-tflmicro)
+set(ARDUINO_SKETCH_LIB pico-tflmicro)
+set(ARDUINO_SKETCH_DEFINITIONS "-DARDUINOSTL_M_H")
 
 include("${PICO_SDK_ARDUINO_PATH}/ArduinoSketch.cmake")
 
