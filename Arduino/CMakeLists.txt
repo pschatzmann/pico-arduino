@@ -41,7 +41,6 @@ include_directories(
 add_library(arduino ${ARD_DIR_LIST} ${ARD_DIR_EXT_LIST} )
 
 target_link_libraries(arduino
-#    pico_stdio_uart 
     pico_stdio_usb 
     pico_stdlib 
     pico_runtime
@@ -55,16 +54,6 @@ target_link_libraries(arduino
     hardware_spi
     hardware_sync
 )
-
-
-#---------------------
-
-#add_subdirectory("${PICO_SDK_ARDUINO_PATH}/Arduino/USB")
-## Header only libraries
-#add_subdirectory("${PICO_SDK_ARDUINO_PATH}/Arduino/PicoI2S")
-#add_subdirectory("${PICO_SDK_ARDUINO_PATH}/Arduino/SoftwareSerial")
-
-#---------------------
 
 install(TARGETS arduino
     DESTINATION ${PICO_SDK_ARDUINO_PATH}/lib
