@@ -11,16 +11,13 @@ if (DEFINED ENV{PICO_SDK_ARDUINO_PATH} AND (NOT PICO_SDK_ARDUINO_PATH))
     message("Using PICO_SDK_ARDUINO_PATH from environment ('${PICO_SDK_ARDUINO_PATH}')")
 endif ()
 
-
 # Initialize the SDK based on PICO_SDK_PATH
 # note: this must happen before project()
 include(${PICO_SDK_PATH}/external/pico_sdk_import.cmake)
 
-# Support for external projects
-include(ExternalProject)
 
 # The Project starts here
-project(ArduinoPicoProject)
+project(ArduinoPicoLibrary)
 
 add_definitions(-DPICO -DARDUINO)
 
@@ -36,6 +33,7 @@ include_directories(
     "${PICO_SDK_ARDUINO_PATH}/Arduino"
     "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-API/api" 
     "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-Pico"
+    "${PICO_SDK_ARDUINO_PATH}/Arduino/Tools"
 )
 
 add_library(arduino ${ARD_DIR_LIST} ${ARD_DIR_EXT_LIST} )
