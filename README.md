@@ -10,19 +10,23 @@ However I did not want to wait for the official support to be available, so as a
 - Provide a full implementation of the Arduino API 
 - Provide additional easy to use C++ classes for the functionaity which is specific to the Pico
 - Keep the pico specific build process using cmake
+- Use this project just as additinal cmake library
 - Support of existing Arduino Libraries
 - Provide examples 
 
 ## Installation
 
+The installation is only necessary, if you want to use the ArduinoSketch.cmake includes e.g. to build the provided examples. 
+
 1. First you need to install the Pico C Framwork. Please [follow the instructions](https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf) and do not forget to define the PICO_SDK_PATH environment variable.
+
 
 2. Clone this project with 
 
 ```
 git clone https://github.com/pschatzmann/pico-arduino
 ```
-3. Define the environment PICO_SDK_ARDUINO_PATH variable to point to the project location.
+2. Define the environment PICO_SDK_ARDUINO_PATH variable to point to the project location.
 
 
 ## Examples

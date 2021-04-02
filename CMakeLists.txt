@@ -15,7 +15,6 @@ endif ()
 project(pico-arduino)
 
 add_subdirectory(Arduino)
-add_subdirectory(examples EXCLUDE_FROM_ALL)
 
 
 
