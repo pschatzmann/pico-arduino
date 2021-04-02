@@ -1,5 +1,4 @@
 
-This example demonstrates how we can use this project just as additional library 
-The magic happens in the CMakeLists.txt
+This example demonstrates how we can use this project just as additional library: 
+The magic happens in the CMakeLists.txt where the project is included with the help of FetchContent
 
-For details [consult my Blog](https://www.pschatzmann.ch/home/2021/02/10/using-arduino-libraries-on-the-pico/)
