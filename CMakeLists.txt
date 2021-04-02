@@ -16,9 +16,9 @@ endif()
 
 # initialize the Pico SDK
 include(${PICO_SDK_PATH}/pico_sdk_init.cmake)
-pico_sdk_init()
 
 project(pico-arduino)
+pico_sdk_init()
 
 add_subdirectory(Arduino)
 

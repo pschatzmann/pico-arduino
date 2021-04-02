@@ -44,3 +44,4 @@
      - Drone example
 - __v0.8__ More examples
      - Tensorflow
+     - Example how to use this project as (external) library
