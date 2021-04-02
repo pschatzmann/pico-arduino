@@ -42,7 +42,7 @@
      - DMA support with examples
      - Implementation of namespace using pico_arudino
      - Drone example
-- __v0.8__ More examples
-     - Tensorflow
+- __v0.8__ More examples / Use project as library
      - We can use the project as external library and just pull it in e.g. with the help of FetchContent
      - Example how to use this project as (external) library
+     - Tensorflow example
