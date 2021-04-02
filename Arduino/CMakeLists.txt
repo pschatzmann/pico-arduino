@@ -44,13 +44,14 @@ target_link_libraries(arduino
     pico_runtime
     pico_multicore 
     pico_util 
-    hardware_gpio
+    pico_unique_id
     hardware_pwm 
-    hardware_i2c 
     hardware_adc
     hardware_clocks
     hardware_spi
-    hardware_sync
+    hardware_i2c
+    hardware_pio
+    hardware_dma
 )
 
 install(TARGETS arduino
