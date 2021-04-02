@@ -30,7 +30,7 @@ file(GLOB ARD_DIR_EXT_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/ArduinoCore-
 
 add_library(arduino ${ARD_DIR_LIST} ${ARD_DIR_EXT_LIST} )
 
-target_include_directories(use_as_library PUBLIC
+target_include_directories(arduino PUBLIC
     "${PICO_SDK_ARDUINO_PATH}/Arduino"
     "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-API/api" 
     "${PICO_SDK_ARDUINO_PATH}/Arduino/ArduinoCore-Pico"
