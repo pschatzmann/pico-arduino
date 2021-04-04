@@ -7,19 +7,17 @@ However I did not want to wait for the official support to be available, so as a
 
 ## Design goals
 
-- Provide a full implementation of the Arduino API 
-- Provide additional easy to use C++ classes for the functionaity which is specific to the Pico
-- Keep the pico specific build process using cmake
-- Option to use this project just as additinal cmake library
-- Support of existing Arduino Libraries
-- Provide examples 
+- Provide a full implementation of the Arduino API so that we easliy use Arduino Sketches and Arduino Libraries on the Raspberry Pico
+- Provide additional easy to use C++ classes for the Pico specific functionaity  
+- Keep the Pico specific build process using cmake so that we can use all existing C++ libraries. 
+- Treat this project as just an additinal cmake library
+- Provide a full set of examples 
 
 ## Installation
 
-The installation is only necessary, if you want to use the ArduinoSketch.cmake includes e.g. to build the provided examples. 
-
 1. First you need to install the Pico C Framwork. Please [follow the instructions](https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf) and do not forget to define the PICO_SDK_PATH environment variable.
 
+The subsequent installation steps are only necessary, if you want to use the ArduinoSketch.cmake includes e.g. to build the provided examples:
 
 2. Clone this project with 
 
@@ -41,7 +39,7 @@ The generated [Class Documentation](https://pschatzmann.github.io/pico-arduino/d
 
 It helps to know the functions of the pins. Here is a copy of the pinout provided by the official [Raspberry Pi Pico Documentation](https://www.raspberrypi.org/documentation/pico/getting-started/):
 
-<img src="https://www.raspberrypi.org/documentation/pico/getting-started/static/15243f1ffd3b8ee646a1708bf4c0e866/Pico-R3-Pinout.svg" alt="Raspberry Pi Pico pin out diagram">
+<img src="https://pschatzmann.github.io/pico-arduino/doc/resources/Pico-R3-Pinout.svg" alt="Raspberry Pi Pico pin out diagram">
 
 If a method is requiring a pin, you can provide the GPIO number as integer or use the corresponding GP name as given in the sheet above.
 
