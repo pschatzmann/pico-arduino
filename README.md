@@ -39,7 +39,7 @@ The generated [Class Documentation](https://pschatzmann.github.io/pico-arduino/d
 
 It helps to know the functions of the pins. Here is a copy of the pinout provided by the official [Raspberry Pi Pico Documentation](https://www.raspberrypi.org/documentation/pico/getting-started/):
 
-<img src="https://pschatzmann.github.io/pico-arduino/doc/resources/Pico-R3-Pinout.svg" alt="Raspberry Pi Pico pin out diagram">
+<img src="https://pschatzmann.github.io/pico-arduino/doc/resources/Pico-R3-Pinout.svg" alt="Raspberry Pi Pico pinout">
 
 If a method is requiring a pin, you can provide the GPIO number as integer or use the corresponding GP name as given in the sheet above.
 
