@@ -149,7 +149,7 @@ class PicoPinFunction {
                 pinInfo[pinNumber].is_setup = false;
                 pinInfo[pinNumber].is_defined = true;
 
-                Logger.printf(PicoLogger::Debug, "PicoGPIOFunction::PinMode -> has changed - pin: %d\n", pinNumber);
+                Logger.printf(PicoLogger::Debug, "PicoGPIOFunction::PinMode -> has changed - pin: %d - mode: %d\n", pinNumber, pinMode);
                 changed = true;
             }
             return changed;
@@ -203,15 +203,16 @@ class PicoPinFunction {
 
         /// setup Pico pin init function bysed on functionality
         void usePin(pin_size_t pinNumber, PinFunctionEnum pinFunction, PinSetup *setup = nullptr){
-            Logger.printf(PicoLogger::Debug, "PicoGPIOFunction::usePin %d\n", pinNumber);
+            Logger.printf(PicoLogger::Debug, "PicoGPIOFunction::usePin %d / function: %d\n", pinNumber,pinFunction);
             PinInfo *info = & (pinInfo[pinNumber]);
             //Logger.debug("is_setup:", pinInfo[pinNumber].is_setup ? "true" : "false");
-            if (!info->is_setup) {
+            if (!info->is_setup || info->pin_function != pinFunction) {
                 // initialize setup method
                 if (setup!=nullptr){
                     setup->setupPin(info, pinNumber);
                     info->is_setup = true;
                 }
+                info->pin_function = pinFunction;
             }
 
             // fuctionality which needs to be executed each time before the pin use
