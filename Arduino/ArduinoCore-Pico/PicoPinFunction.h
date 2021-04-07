@@ -96,7 +96,7 @@ public:
 
 protected:
     bool adc_init_flag = false;
-    int current_adc;
+    int current_adc = -1;
 
     // singleton ! use the instance method to get the object
     PinSetupADC() {
