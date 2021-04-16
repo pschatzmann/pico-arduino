@@ -3,7 +3,7 @@
 Recently I was receiving my Raspberry PI Pico and I had the opportunity to play around with it. Actually most of the time I spent reading the Manuals...
 The conclusion: interesting - but a little bit too complicated. So I was quite happy to read that Arduino plans to add an official support for this Microcontroller. 
 
-However I did not want to wait for the official support to be available, so as a temporary solution, I decided to make my own Arduino API available as a separate project. 
+However I did not want to wait for the official support to be available, so as a temporary solution, I decided to make my own Arduino API available as a separate project. In the meantime the official Arduino support is avaiable, but I still think that this project is quite usefull because of it's unique design goals:
 
 ## Design goals
 
@@ -12,6 +12,8 @@ However I did not want to wait for the official support to be available, so as a
 - Keep the Pico specific build process using cmake so that we can use all existing C++ libraries. 
 - Treat this project as just an additinal cmake library
 - Provide a full set of examples 
+
+In a nutshell we can profit from both: the advantages of the Arduino and the advantages of the Pico SDK.
 
 ## Installation
 
@@ -39,7 +41,7 @@ The generated [Class Documentation](https://pschatzmann.github.io/pico-arduino/d
 
 It helps to know the functions of the pins. Here is a copy of the pinout provided by the official [Raspberry Pi Pico Documentation](https://www.raspberrypi.org/documentation/pico/getting-started/):
 
-<img src="https://pschatzmann.github.io/pico-arduino/doc/resources/Pico-R3-Pinout.svg" alt="Raspberry Pi Pico pinout">
+<img src="https://pschatzmann.github.io/pico-arduino/doc/resources/Pico-R3-Pinout.svg" alt="Raspberry Pi Pico pinout{">
 
 If a method is requiring a pin, you can provide the GPIO number as integer or use the corresponding GP name as given in the sheet above.
 

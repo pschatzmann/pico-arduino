@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <stdarg.h>     /* va_list, va_start, va_arg, va_end */
 #include "pins_arduino.h"
+#include "network.h"
 #include "ArduinoAPI.h"
 #include "PicoLogger.h"
 #include "PicoHardwareSerial.h"
@@ -51,3 +52,4 @@ pin_size_t digitalPinToInterrupt(pin_size_t interruptPin);
 // Some Arduino libraries rely on the following
 char *dtostrf (double __val, signed char __width, unsigned char __prec, char *__s);
 char *dtostre (double __val, char *__s, unsigned char __prec, unsigned char __flags);
+
