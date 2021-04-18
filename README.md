@@ -3,14 +3,14 @@
 Recently I was receiving my Raspberry PI Pico and I had the opportunity to play around with it. Actually most of the time I spent reading the Manuals...
 The conclusion: interesting - but a little bit too complicated. So I was quite happy to read that Arduino plans to add an official support for this Microcontroller. 
 
-However I did not want to wait for the official support to be available, so as a temporary solution, I decided to make my own Arduino API available as a separate project. In the meantime the official Arduino support is avaiable, but I still think that this project is quite usefull because of it's unique design goals:
+However I did not want to wait for the official support to be available, so as a temporary solution, I decided to make my own Arduino API available as a separate project. In the meantime the official Arduino support is avaiable, but I still think that this project is quite useful because of it's unique design goals:
 
 ## Design goals
 
 - Provide a full implementation of the Arduino API so that we easliy use Arduino Sketches and Arduino Libraries on the Raspberry Pico
 - Provide additional easy to use C++ classes for the Pico specific functionaity  
 - Keep the Pico specific build process using cmake so that we can use all existing C++ libraries. 
-- Treat this project as just an additinal cmake library
+- Use this project as just an additional cmake library
 - Provide a full set of examples 
 
 In a nutshell we can profit from both: the advantages of the Arduino and the advantages of the Pico SDK.
