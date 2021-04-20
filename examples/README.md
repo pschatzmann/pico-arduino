@@ -56,6 +56,7 @@ The Pico has 2 processors, so here are the examples which use this Pico specific
 
 - [multi_processor](multi_processor) 
 - [multi_processor_fifo](multi_processor_fifo) 
+- [multi_processor_with_volatile](multi_processor_with_volatile) 
 - [queue](queue)
 - [semaphore](semaphore) 
 
@@ -76,3 +77,4 @@ And finally some more complex examples:
 
 - [CodeDroneDIY](codedronediy)
 - [tensorflow_micro](tensorflow_micro)
+- [logic-analyzer](logic-analyzer)

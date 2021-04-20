@@ -16,6 +16,7 @@ add_subdirectory(hallo_world_serial_define_pins)
 add_subdirectory(i2c_hw290)
 add_subdirectory(multi_processor)
 add_subdirectory(multi_processor_fifo)
+add_subdirectory(multi_processor_with_volatile)
 add_subdirectory(queue)
 add_subdirectory(sd_info)
 add_subdirectory(sd_read_csv)
@@ -39,5 +40,4 @@ add_subdirectory(hallo_world_ext)
 add_subdirectory(strings)
 add_subdirectory(pin_interrupt)
 add_subdirectory(codedronediy)
-
 

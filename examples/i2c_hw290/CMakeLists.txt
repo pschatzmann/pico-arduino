@@ -10,7 +10,7 @@ include(FetchContent)
 project("${ARDUINO_SKETCH_NAME}")
 
 ## Download of hw290 Arduino library from Guthub
-FetchContent_Declare( hw290 GIT_REPOSITORY https://github.com/ElectronicCats/mpu6050.git  GIT_TAG  master)
+FetchContent_Declare( hw290 GIT_REPOSITORY https://github.com/ElectronicCats/mpu6050.git  GIT_TAG  v0.2.1)
 FetchContent_MakeAvailable(hw290)
 
 ## Define all Source files incl hw290
