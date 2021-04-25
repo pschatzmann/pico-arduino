@@ -94,8 +94,8 @@ class PicoPWMWriter : public PinSetup {
             uint16_t value = (1.0 * dutyCyleNanoSeconds) / tick_period_nano_sec;
 
             if (Logger.isLogging(PicoLogger::Debug)){
-                Logger.printf(PicoLogger::Debug, "PWM duty cycle ns: %lu",dutyCyleNanoSeconds);
-                Logger.printf(PicoLogger::Debug, "PWM duty cycle(internal): %lu", value);
+                Logger.printf(PicoLogger::Debug, "PWM duty cycle ns: %lu\n",dutyCyleNanoSeconds);
+                Logger.printf(PicoLogger::Debug, "PWM duty cycle(internal): %lu\n", value);
             }
             pwm_set_chan_level(slice_num, channel, value);
         }
@@ -153,12 +153,12 @@ class PicoPWMWriter : public PinSetup {
 
         void logConfig(uint32_t sys_clock_freq, float dividerTick, uint16_t wrap ) {
             if (Logger.isLogging(PicoLogger::Debug)){
-                Logger.printf(PicoLogger::Debug, "Period ns: %lu", period_nano_sec);
-                Logger.printf(PicoLogger::Debug, "Tick period ns: %lu", tick_period_nano_sec);
-                Logger.printf(PicoLogger::Debug, "PWM hz: %f", frequency());
-                Logger.printf(PicoLogger::Debug, "Systemclock hz: %u", sys_clock_freq);
-                Logger.printf(PicoLogger::Debug, "Tick divider: %f", dividerTick);
-                Logger.printf(PicoLogger::Debug, "PWM wrap: df", wrap);
+                Logger.printf(PicoLogger::Debug, "Period ns: %lu\n", period_nano_sec);
+                Logger.printf(PicoLogger::Debug, "Tick period ns: %lu\n", tick_period_nano_sec);
+                Logger.printf(PicoLogger::Debug, "PWM hz: %f\n", frequency());
+                Logger.printf(PicoLogger::Debug, "Systemclock hz: %u\n", sys_clock_freq);
+                Logger.printf(PicoLogger::Debug, "Tick divider: %f\n", dividerTick);
+                Logger.printf(PicoLogger::Debug, "PWM wrap: df\n", wrap);
             }
         }
 
