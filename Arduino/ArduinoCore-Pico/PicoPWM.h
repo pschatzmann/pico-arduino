@@ -158,7 +158,7 @@ class PicoPWMWriter : public PinSetup {
                 Logger.printf(PicoLogger::Debug, "PWM hz: %f\n", frequency());
                 Logger.printf(PicoLogger::Debug, "Systemclock hz: %u\n", sys_clock_freq);
                 Logger.printf(PicoLogger::Debug, "Tick divider: %f\n", dividerTick);
-                Logger.printf(PicoLogger::Debug, "PWM wrap: df\n", wrap);
+                Logger.printf(PicoLogger::Debug, "PWM wrap: %u\n", wrap);
             }
         }
 
