@@ -94,11 +94,8 @@ class PicoPWMWriter : public PinSetup {
             uint16_t value = (1.0 * dutyCyleNanoSeconds) / tick_period_nano_sec;
 
             if (Logger.isLogging(PicoLogger::Debug)){
-                char str[40];
-                sprintf(str,"%lu", dutyCyleNanoSeconds);
-                Logger.debug("PWM duty cycle ns:",str);
-                sprintf(str,"%lu", value);
-                Logger.debug("PWM duty cycle(internal):",str);
+                Logger.printf(PicoLogger::Debug, "PWM duty cycle ns: %lu",dutyCyleNanoSeconds);
+                Logger.printf(PicoLogger::Debug, "PWM duty cycle(internal): %lu", value);
             }
             pwm_set_chan_level(slice_num, channel, value);
         }
@@ -156,19 +153,12 @@ class PicoPWMWriter : public PinSetup {
 
         void logConfig(uint32_t sys_clock_freq, float dividerTick, uint16_t wrap ) {
             if (Logger.isLogging(PicoLogger::Debug)){
-                char str[80];
-                sprintf(str,"%lu", period_nano_sec);
-                Logger.debug("Period ns:", str);
-                sprintf(str,"%f", tick_period_nano_sec);
-                Logger.debug("Tick period ns:", str);
-                sprintf(str,"%f", frequency());
-                Logger.debug("PWM hz:", str);
-                sprintf(str,"%f", sys_clock_freq);
-                Logger.debug("Systemclock hz:", str);
-                sprintf(str,"%f", dividerTick);
-                Logger.debug("Tick divider:", str);
-                sprintf(str,"%d", wrap);
-                Logger.debug("PWM wrap:", str);
+                Logger.printf(PicoLogger::Debug, "Period ns: %lu", period_nano_sec);
+                Logger.printf(PicoLogger::Debug, "Tick period ns: %lu", tick_period_nano_sec);
+                Logger.printf(PicoLogger::Debug, "PWM hz: %f", frequency());
+                Logger.printf(PicoLogger::Debug, "Systemclock hz: %u", sys_clock_freq);
+                Logger.printf(PicoLogger::Debug, "Tick divider: %f", dividerTick);
+                Logger.printf(PicoLogger::Debug, "PWM wrap: df", wrap);
             }
         }
 

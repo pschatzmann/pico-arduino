@@ -41,7 +41,7 @@ file(GLOB ARD_DIR_PICO_LIST CONFIGURE_DEPENDS "${PICO_SDK_ARDUINO_PATH}/Arduino/
 
 # PICO
 add_executable(${ARDUINO_SKETCH_NAME} ${HEADER_LIST} ${ARDUINO_SKETCH_SOURCE} ${ARD_DIR_LIST} ${ARD_DIR_PICO_LIST})
-pico_enable_stdio_usb("${ARDUINO_SKETCH_NAME}" 1)
+#pico_enable_stdio_usb("${ARDUINO_SKETCH_NAME}" 1)
 
 # Add pico_stdlib library which aggregates commonly used features
 target_link_libraries("${ARDUINO_SKETCH_NAME}" PRIVATE
