@@ -77,4 +77,4 @@ And finally some more complex examples:
 
 - [CodeDroneDIY](codedronediy)
 - [tensorflow_micro](tensorflow_micro)
-- [logic-analyzer](logic-analyzer)
+- [logic_analyzer](logic_analyzer)
