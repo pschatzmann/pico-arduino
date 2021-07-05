@@ -5,13 +5,13 @@ include(FetchContent)
 set(PICO_SDK_PATH $ENV{PICO_SDK_PATH})
 include(${PICO_SDK_PATH}/external/pico_sdk_import.cmake)
 
-# define project settins
+# define project settings
 set(PICO_SDK_ARDUINO_PATH $ENV{PICO_SDK_ARDUINO_PATH})
 set(ARDUINO_SKETCH_SOURCE "audio_pwm.cpp" )
 set(ARDUINO_SKETCH_NAME "audio_pwm" )
 set(ARDUINO_SKETCH_LIB "arduino-audio-tools" )
 
-# Standard Sketch logic
+# Standard Sketch Logic
 project("${ARDUINO_SKETCH_NAME}")
 
 # make arduino-audio-tools available
