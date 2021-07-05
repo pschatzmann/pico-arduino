@@ -78,3 +78,4 @@ And finally some more complex examples:
 - [CodeDroneDIY](codedronediy)
 - [tensorflow_micro](tensorflow_micro)
 - [logic_analyzer](logic_analyzer)
+- [audio_pwm](audio_pwm)
