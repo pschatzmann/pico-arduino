@@ -73,9 +73,14 @@ Here is some other Pico specific functionality:
 - [hallo_world_ext](hallo_world_ext)
 - [strings](strings)
 
-And finally some more complex examples:
+And now some more complex examples:
 
 - [CodeDroneDIY](codedronediy)
 - [tensorflow_micro](tensorflow_micro)
 - [logic_analyzer](logic_analyzer)
+
+Audio:
+
 - [audio_pwm](audio_pwm)
+- [audio_i2s_test](audio_i2s_test)
+
